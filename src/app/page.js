@@ -1,103 +1,59 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex min-h-screen">
+      {/* Sidebar */}
+      <aside className="w-64 bg-white border-r border-gray-300 p-6 fixed h-screen top-0 left-0 flex flex-col justify-between">
+        <div>
+          <h1 className="text-4xl font-bold text-green-800 mb-4">Ruby Lu</h1>
+          <div className="flex space-x-2 mb-6">
+            <a href="#" aria-label="Email"><span className="text-xl">✉️</span></a>
+            <a href="#" aria-label="LinkedIn"><span className="text-xl">🔗</span></a>
+            <a href="#" aria-label="GitHub"><span className="text-xl">🐙</span></a>
+          </div>
+          <nav className="space-y-2 text-gray-800">
+            <a href="#about" className="text-brown-500 font-semibold">About</a>
+            <a href="#recent" className="block">Recent Work</a>
+            <a href="#resume" className="block">Resume</a>
+            <a href="#misc" className="block">Miscellaneous</a>
+          </nav>
         </div>
+      </aside>
+
+      {/* Content */}
+      <main className="ml-64 p-10 flex-1 bg-[#fdfdfd] text-gray-900">
+        <section id="about" className="mb-16">
+          <h2 className="text-3xl font-bold text-[#a8896c] mb-4">Hi, my name is Ruby!</h2>
+          <p className="text-lg">
+            I study computer science at the University of Waterloo and I’m constantly seeking opportunities to evolve my skill set. I’m passionate about <strong>learning as much as possible</strong> and <strong>working on things with a tangible impact</strong>.
+          </p>
+        </section>
+
+        <section id="recent" className="mb-16">
+          <h2 className="text-3xl font-bold text-[#a8896c] mb-4">Past, present, and future</h2>
+          <p className="mb-4">
+            In the <span className="text-[#d0bba2]">summer of 2024</span>, I worked on enhancing desktop applications and automating systems for <strong>YM Inc.</strong>, a Toronto-based retail company that operates fashion brands across North America.
+          </p>
+          <p className="mb-4">
+            In <span className="text-[#b9c3d1]">winter 2025</span>, I interned at <strong>Hatch</strong> in their Niagara Falls office, where I dipped my toes into the complexities of hydropower optimization. I worked to improve the efficiency of hydroelectric dams and explored the use of machine learning for predicting water inflow - I found this experience to be a really interesting intersection of engineering, sustainability, and software.
+          </p>
+          <p className="mb-4">
+            In the <span className="text-[#d0bba2]">fall of 2025</span>, I’ll be joining <strong>Amazon Web Services (AWS)</strong> in Seattle as an SDE intern, where I’ll be contributing to the DynamoDB team. I’m really excited to be getting the chance to explore the world of cloud computing.
+          </p>
+          <p>
+            I’m currently on the lookout for <span className="text-[#d0bba2]">summer 2026</span> internship opportunities.
+          </p>
+        </section>
+
+        <section id="resume" className="mb-16">
+          <h2 className="text-2xl font-bold">Resume</h2>
+          <p>[Add resume download or details here]</p>
+        </section>
+
+        <section id="misc" className="mb-16">
+          <h2 className="text-2xl font-bold">Miscellaneous</h2>
+          <p>[Add any additional content here]</p>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
