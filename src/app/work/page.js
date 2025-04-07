@@ -1,9 +1,10 @@
-export default function WorkPage() {
-    return (
-      <div>
-        <h2 className="text-3xl font-bold mb-4">Recent Work</h2>
-        <p className="text-lg">Here’s what I’ve been working on recently...</p>
-      </div>
-    );
-  }
-  
+export default function About() {
+  return (
+    <div>
+      <h1 className="text-4xl font-bold text-[#836f56] mb-6">Hi, my name is Ruby!</h1>
+      <p className="text-lg mb-8">
+        I study computer science at the University of Waterloo and I’m constantly seeking opportunities to evolve my skill set. I’m passionate about <strong>learning as much as possible</strong> and <strong>working on things with a tangible impact</strong>.
+      </p>
+    </div>
+  );
+}
