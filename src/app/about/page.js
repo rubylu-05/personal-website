@@ -1,6 +1,6 @@
 export default function About() {
     return (
-      <div className="mt-6 ml-6 mr-20">
+      <div className="mt-6 ml-6 mr-2">
         <h1 className="text-3xl font-heading text-secondary mb-4">Hi, I'm Ruby!</h1>
         <p className="text-base font-light font-body mb-12">
             I'm a computer science student at the University of Waterloo who loves building practical solutions and learning through implementation.

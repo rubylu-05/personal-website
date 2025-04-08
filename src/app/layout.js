@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { metadata } from './metadata';
 import { AiFillMail, AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
+import Image from 'next/image'
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -22,9 +23,12 @@ export default function RootLayout({ children }) {
         <div className="flex h-full">
           {/* Sidebar */}
           <aside className="bg-light2 w-[30%] flex justify-center items-center px-6 py-6" style={{
-            backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(175, 139, 106, 0.25) 100%)'
+            backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(175,139,106,0.25) 100%)'
           }}>
             <div className="text-center">
+              <Image src="/images/pfp.png" alt="me" width={100} height={100} 
+                className="mb-6 rounded-full mx-auto mb-4 shadow-[0_0_30px_15px_rgba(175,139,106,0.25)]"
+              />
               <div className="text-5xl font-heading text-primary mb-6">Ruby Lu</div>
               <div className="flex justify-center gap-6 text-xl mb-6">
                 <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
