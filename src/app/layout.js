@@ -2,18 +2,33 @@
 
 import '../styles/globals.css';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { metadata } from './metadata';
 import { AiFillMail, AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [isSidebarVisible, setSidebarVisible] = useState(true);
 
-  const handleLinkClick = () => {
-    setSidebarVisible(false);
+  useEffect(() => {
+    if (pathname === '/') {
+      setSidebarVisible(true);
+    } else {
+      setSidebarVisible(false);
+    }
+  }, [pathname]);
+
+  const handleLinkClick = (e, href) => {
+    if (pathname === href) {
+      e.preventDefault();
+      setSidebarVisible(true);
+      router.push('/');
+    } else {
+      setSidebarVisible(false);
+    }
   };
 
   return (
@@ -51,28 +66,28 @@ export default function RootLayout({ children }) {
               <nav className="text-black text-base font-light font-body space-y-2">
                 <Link
                   href="/about"
-                  onClick={handleLinkClick}
+                  onClick={(e) => handleLinkClick(e, '/about')}
                   className={`block hover:text-secondary ${pathname === '/about' ? 'text-secondary' : ''}`}
                 >
                   About
                 </Link>
                 <Link
                   href="/work"
-                  onClick={handleLinkClick}
+                  onClick={(e) => handleLinkClick(e, '/work')}
                   className={`block hover:text-secondary ${pathname === '/work' ? 'text-secondary' : ''}`}
                 >
                   Recent Work
                 </Link>
                 <Link
                   href="/resume"
-                  onClick={handleLinkClick}
+                  onClick={(e) => handleLinkClick(e, '/resume')}
                   className={`block hover:text-secondary ${pathname === '/resume' ? 'text-secondary' : ''}`}
                 >
                   Resume
                 </Link>
                 <Link
                   href="/misc"
-                  onClick={handleLinkClick}
+                  onClick={(e) => handleLinkClick(e, '/misc')}
                   className={`block hover:text-secondary ${pathname === '/misc' ? 'text-secondary' : ''}`}
                 >
                   Miscellaneous Art
