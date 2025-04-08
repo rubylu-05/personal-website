@@ -13,11 +13,12 @@ module.exports = {
         "secondary": "#af8b6a"
       },
       fontFamily: {
-        "body": ['Source Sans 3'],
-        "heading": ['Fjalla One']
+        "body": ['Inter'],
+        "heading": ['Inter']
       },
       fontWeight: {
         'extrabold': 800,
+        'extralight': 200,
       },
     },
   },

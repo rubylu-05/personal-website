@@ -25,3 +25,11 @@
   transform-origin: bottom left;
   background-color: #145943;
 }
+
+.transition-all {
+  transition: all 0.5s ease-in-out;
+}
+
+.transition-transform {
+  transition: transform 0.5s ease-in-out;
+}
