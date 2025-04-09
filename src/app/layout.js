@@ -14,6 +14,7 @@ export default function RootLayout({ children }) {
   const [isSidebarVisible, setSidebarVisible] = useState(pathname === '/');
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [nowPlaying, setNowPlaying] = useState(null);
   
   const messages = {
     '/': "Welcome! Feel free to take a look around :)",
@@ -24,14 +25,46 @@ export default function RootLayout({ children }) {
 
   const currentMessage = messages[pathname] || messages['/'];
 
-  useEffect(() => {
-    setSidebarVisible(pathname === '/');
-    setDisplayText('');
-    setCurrentIndex(0);
-  }, [pathname]);
+  const fetchNowPlaying = async () => {
+    try {
+      const response = await fetch('/api/lastfm');
+      const data = await response.json();
+      
+      if (data?.nowplaying) {
+        setNowPlaying({
+          artist: data.artist['#text'],
+          track: data.name,
+          album: data.album['#text'],
+          image: data.image
+        });
+      } else {
+        setNowPlaying(null);
+      }
+    } catch (error) {
+      console.error('Error fetching now playing:', error);
+      setNowPlaying(null);
+    }
+  };
 
   useEffect(() => {
-    if (currentIndex < currentMessage.length) {
+    fetchNowPlaying();
+    
+    const interval = setInterval(fetchNowPlaying, 10000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    setSidebarVisible(pathname === '/');
+    
+    if (!nowPlaying) {
+      setDisplayText('');
+      setCurrentIndex(0);
+    }
+  }, [pathname, nowPlaying]);
+
+  useEffect(() => {
+    if (!nowPlaying && currentIndex < currentMessage.length) {
       const timeout = setTimeout(() => {
         setDisplayText(prev => prev + currentMessage[currentIndex]);
         setCurrentIndex(prev => prev + 1);
@@ -39,7 +72,7 @@ export default function RootLayout({ children }) {
       
       return () => clearTimeout(timeout);
     }
-  }, [currentIndex, currentMessage]);
+  }, [currentIndex, currentMessage, nowPlaying]);
 
   const handleLinkClick = (e, href) => {
     if (pathname === href) {
@@ -116,10 +149,27 @@ export default function RootLayout({ children }) {
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
               <div className="relative -top-5 mx-auto">
                 <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px]">
-                  {displayText}
+                  {nowPlaying ? (
+                    <div className="flex items-center gap-3 max-w-xs">
+                      {nowPlaying.image && (
+                        <img 
+                          src={nowPlaying.image} 
+                          alt={`${nowPlaying.track} cover`} 
+                          className="w-10 h-10 rounded-sm object-cover"
+                        />
+                      )}
+                      <div className="text-left">
+                        <div className="font-medium">Now playing:</div>
+                        <div className="truncate">{nowPlaying.track}</div>
+                        <div className="text-xs text-gray-600 truncate">{nowPlaying.artist}</div>
+                      </div>
+                    </div>
+                  ) : (
+                    displayText
+                  )}
                 </div>
                 <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 
-      border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white">
+                  border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white">
                 </div>
               </div>
 
