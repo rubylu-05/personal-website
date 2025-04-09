@@ -33,3 +33,23 @@
 .transition-transform {
   transition: transform 0.5s ease-in-out;
 }
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.sidebar-gradient {
+  background: linear-gradient(220deg, #f5f5ef, #f4ebe3, #f7dcc2, #f4ebe3);
+  background-size: 240% 240%;
+  animation: gradient-animation 7s ease infinite;
+  transition: all 0.7s ease;
+}
+

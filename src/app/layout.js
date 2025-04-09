@@ -11,15 +11,35 @@ import { useState, useEffect } from 'react';
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
-  const [isSidebarVisible, setSidebarVisible] = useState(true);
+  const [isSidebarVisible, setSidebarVisible] = useState(pathname === '/');
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const messages = {
+    '/': "Welcome! Feel free to take a look around :)",
+    '/about': "A quick peek into my personal intersts and growth as a developer.",
+    '/work': "Recent projects that I've poured my curiosity into - they all taught me something new.",
+    '/misc': "Sometimes I draw, so here's a casual gallery if you're interested!"
+  };
+
+  const currentMessage = messages[pathname] || messages['/'];
 
   useEffect(() => {
-    if (pathname === '/') {
-      setSidebarVisible(true);
-    } else {
-      setSidebarVisible(false);
-    }
+    setSidebarVisible(pathname === '/');
+    setDisplayText('');
+    setCurrentIndex(0);
   }, [pathname]);
+
+  useEffect(() => {
+    if (currentIndex < currentMessage.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(prev => prev + currentMessage[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 50);
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, currentMessage]);
 
   const handleLinkClick = (e, href) => {
     if (pathname === href) {
@@ -42,25 +62,23 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-light text-black h-screen w-screen overflow-hidden">
         <div className="flex h-full">
-          {/* Sidebar */}
-          <aside className={`transition-all duration-700 ${isSidebarVisible ? 'w-full' : 'w-[30%]'} bg-light2 flex justify-center items-center px-6 py-6`} style={{
-            backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(175,139,106,0.25) 100%)',
-            flexShrink: 0,
-          }}>
-            <div className="text-center">
-              <Image src="/images/pfp.png" alt="me" width={100} height={100}
-                className="mb-6 rounded-full mx-auto mb-4 shadow-[0_0_30px_15px_rgba(175,139,106,0.25)]"
-              />
-              <div className="text-4xl font-body font-extrabold text-primary mb-6">Ruby Lu</div>
+          <aside
+            className={`transition-all duration-700 ${isSidebarVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative`}
+            style={{
+              flexShrink: 0,
+            }}
+          >
+            <div className="text-center relative mb-48">
+              <div className="text-5xl font-body font-extrabold text-primary mb-6">Ruby Lu</div>
               <div className="flex justify-center gap-6 text-xl mb-6">
                 <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
-                  <AiFillMail className="text-secondary hover:text-primary" />
+                  <AiFillMail className="text-secondary hover:text-primary text-2xl" />
                 </a>
                 <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer">
-                  <AiFillLinkedin className="text-secondary hover:text-primary" />
+                  <AiFillLinkedin className="text-secondary hover:text-primary text-2xl" />
                 </a>
                 <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer">
-                  <AiFillGithub className="text-secondary hover:text-primary" />
+                  <AiFillGithub className="text-secondary hover:text-primary text-2xl" />
                 </a>
               </div>
               <nav className="text-black text-base font-light font-body space-y-2">
@@ -93,6 +111,25 @@ export default function RootLayout({ children }) {
                   Miscellaneous Art
                 </Link>
               </nav>
+            </div>
+
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+              <div className="relative -top-5 mx-auto">
+                <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px]">
+                  {displayText}
+                </div>
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 
+      border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white">
+                </div>
+              </div>
+
+              <Image
+                src="/images/me.png"
+                alt="me"
+                width={150}
+                height={150}
+                className="mx-auto"
+              />
             </div>
           </aside>
 
