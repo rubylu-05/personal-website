@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   
   const messages = {
     '/': "Welcome! Feel free to take a look around :)",
-    '/about': "A quick peek into my personal intersts and growth as a developer.",
+    '/about': "A quick peek into my personal interests and growth as a developer.",
     '/work': "Recent projects that I've poured my curiosity into - they all taught me something new.",
     '/misc': "Sometimes I draw, so here's a casual gallery if you're interested!"
   };
