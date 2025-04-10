@@ -47,9 +47,9 @@
 }
 
 .sidebar-gradient {
-  background: linear-gradient(220deg, #f5f5ef, #f4ebe3, #f7dcc2, #f4ebe3);
+  background: linear-gradient(220deg, #f5f5ef, #f4ebe3, #f7dcc2);
   background-size: 240% 240%;
-  animation: gradient-animation 7s ease infinite;
+  animation: gradient-animation 10s ease infinite;
   transition: all 0.7s ease;
 }
 
