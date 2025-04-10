@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nowPlaying, setNowPlaying] = useState(null);
+  const [showNowPlaying, setShowNowPlaying] = useState(false);
 
   const messages = {
     '/': "Welcome! Feel free to take a look around :)",
@@ -48,31 +49,37 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     fetchNowPlaying();
-
     const interval = setInterval(fetchNowPlaying, 10000);
-
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     setSidebarVisible(pathname === '/');
+    resetDialogue();
+  }, [pathname]);
 
-    if (!nowPlaying) {
-      setDisplayText('');
-      setCurrentIndex(0);
-    }
-  }, [pathname, nowPlaying]);
+  const resetDialogue = () => {
+    setDisplayText('');
+    setCurrentIndex(0);
+    setShowNowPlaying(false);
+  };
 
   useEffect(() => {
-    if (!nowPlaying && currentIndex < currentMessage.length) {
+    if (currentIndex < currentMessage.length) {
       const timeout = setTimeout(() => {
         setDisplayText(prev => prev + currentMessage[currentIndex]);
         setCurrentIndex(prev => prev + 1);
       }, 50);
 
       return () => clearTimeout(timeout);
+    } else if (currentIndex === currentMessage.length && !showNowPlaying) {
+      const delay = setTimeout(() => {
+        setShowNowPlaying(true);
+      }, 3000);
+      
+      return () => clearTimeout(delay);
     }
-  }, [currentIndex, currentMessage, nowPlaying]);
+  }, [currentIndex, currentMessage, showNowPlaying]);
 
   const handleLinkClick = (e, href) => {
     if (pathname === href) {
@@ -82,6 +89,10 @@ export default function RootLayout({ children }) {
     } else {
       setSidebarVisible(false);
     }
+  };
+
+  const handleAvatarClick = () => {
+    resetDialogue();
   };
 
   return (
@@ -127,7 +138,7 @@ export default function RootLayout({ children }) {
                   onClick={(e) => handleLinkClick(e, '/work')}
                   className={`block hover:text-secondary ${pathname === '/work' ? 'text-secondary' : ''}`}
                 >
-                  Recent Work
+                  Recent Projects
                 </Link>
                 <Link
                   href="/resume"
@@ -141,7 +152,7 @@ export default function RootLayout({ children }) {
                   onClick={(e) => handleLinkClick(e, '/misc')}
                   className={`block hover:text-secondary ${pathname === '/misc' ? 'text-secondary' : ''}`}
                 >
-                  Miscellaneous Art
+                  Life Outside of Coding
                 </Link>
               </nav>
             </div>
@@ -149,7 +160,7 @@ export default function RootLayout({ children }) {
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
               <div className="relative -top-5 mx-auto">
                 <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px]">
-                  {nowPlaying ? (
+                  {showNowPlaying && nowPlaying ? (
                     <div className="flex items-center gap-4 max-w-xs">
                       <div className="relative shrink-0">
                         <img
@@ -182,13 +193,15 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
 
-              <Image
-                src="/images/me.png"
-                alt="me"
-                width={150}
-                height={150}
-                className="mx-auto"
-              />
+              <div onClick={handleAvatarClick} className="cursor-pointer">
+                <Image
+                  src={showNowPlaying && nowPlaying ? "/images/me-listening.png" : "/images/me.png"}
+                  alt="me"
+                  width={125}
+                  height={125}
+                  className="mx-auto w-[150px] h-[150px] object-contain mt-2"
+                />
+              </div>
             </div>
           </aside>
 
