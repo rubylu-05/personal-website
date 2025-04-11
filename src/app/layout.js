@@ -76,7 +76,7 @@ export default function RootLayout({ children }) {
       const delay = setTimeout(() => {
         setShowNowPlaying(true);
       }, 3000);
-      
+
       return () => clearTimeout(delay);
     }
   }, [currentIndex, currentMessage, showNowPlaying]);
@@ -104,7 +104,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-light text-black h-screen w-screen overflow-hidden">
+      <body className="bg-light text-black h-screen w-screen">
         <div className="flex h-full">
           <aside
             className={`transition-all duration-700 ${isSidebarVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative`}
@@ -206,10 +206,15 @@ export default function RootLayout({ children }) {
           </aside>
 
           {/* Main content area */}
-          <main className={`flex-1 flex justify-center items-start overflow-y-auto p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'}`} style={{
-            backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(244, 235, 227, 1) 100%)',
-            flexGrow: 1,
-          }}>
+          <main className={`flex-1 flex justify-center items-start overflow-y-auto p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
+          [&::-webkit-scrollbar]:w-2
+          [&::-webkit-scrollbar-track]:bg-light
+          [&::-webkit-scrollbar-thumb]:bg-primary
+          dark:[&::-webkit-scrollbar-track]:bg-light
+          dark:[&::-webkit-scrollbar-thumb]:bg-primary`} style={{
+              backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(244, 235, 227, 1) 100%)',
+              flexGrow: 1,
+            }}>
             <div className="w-full">{children}</div>
           </main>
         </div>
