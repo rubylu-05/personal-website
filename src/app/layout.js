@@ -31,12 +31,13 @@ export default function RootLayout({ children }) {
       const response = await fetch('/api/lastfm');
       const data = await response.json();
 
-      if (data?.nowplaying) {
+      if (data?.track?.name) {  // If we have any track data
         setNowPlaying({
-          artist: data.artist['#text'],
-          track: data.name,
-          album: data.album['#text'],
-          image: data.image
+          artist: data.track.artist['#text'] || data.track.artist,
+          track: data.track.name,
+          album: data.track.album?.['#text'],
+          image: data.track.image,
+          nowplaying: data.nowplaying
         });
       } else {
         setNowPlaying(null);
@@ -141,13 +142,6 @@ export default function RootLayout({ children }) {
                   Recent Projects
                 </Link>
                 <Link
-                  href="/resume"
-                  onClick={(e) => handleLinkClick(e, '/resume')}
-                  className={`block hover:text-secondary ${pathname === '/resume' ? 'text-secondary' : ''}`}
-                >
-                  Resume
-                </Link>
-                <Link
                   href="/misc"
                   onClick={(e) => handleLinkClick(e, '/misc')}
                   className={`block hover:text-secondary ${pathname === '/misc' ? 'text-secondary' : ''}`}
@@ -157,33 +151,52 @@ export default function RootLayout({ children }) {
               </nav>
             </div>
 
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
-              <div className="relative -top-5 mx-auto">
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
+              <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
                 <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px]">
-                  {showNowPlaying && nowPlaying ? (
-                    <div className="flex items-center gap-4 max-w-xs">
-                      <div className="relative shrink-0">
-                        <img
-                          src={nowPlaying.image || '/default-artist.png'}
-                          alt={`${nowPlaying.track} cover`}
-                          className="w-12 h-12 rounded-full object-cover animate-spin-slow"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = '/default-artist.png';
-                          }}
-                        />
-                        <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full"></div>
-                      </div>
-                      <div className="text-left overflow-hidden min-w-0">
-                        <div className="text-xs text-secondary font-light">Currently Listening to:</div>
-                        <div className="truncate font-bold -mb-0.5" title={nowPlaying.track}>
-                          {nowPlaying.track}
+                  {showNowPlaying ? (
+                    nowPlaying ? (
+                      <div className="flex items-center gap-4">
+                        <div className="relative shrink-0">
+                          <img
+                            src={nowPlaying.image || '/default-song.png'}
+                            alt={`${nowPlaying.track} cover`}
+                            className={`w-12 h-12 rounded-full object-cover border border-secondary ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''}`}
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = '/default-artist.png';
+                            }}
+                          />
+                          <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full border border-secondary"></div>
                         </div>
-                        <div className="truncate text-xs text-gray-600" title={nowPlaying.artist}>
-                          {nowPlaying.artist}
+                        <div className="text-left overflow-hidden min-w-0">
+                          <div className="text-xs text-secondary font-light">
+                            {nowPlaying.nowplaying ? 'Now Listening on Spotify:' : 'Last Played on Spotify:'}
+                          </div>
+                          <div className="truncate font-bold -mb-0.5" title={nowPlaying.track}>
+                            {nowPlaying.track}
+                          </div>
+                          <div className="truncate text-xs text-gray-600" title={nowPlaying.artist}>
+                            {nowPlaying.artist}
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    ) : (
+                      <div className="flex items-center gap-4">
+                        <div className="relative shrink-0">
+                          <img
+                            src="/default-song.png"
+                            alt="Not listening"
+                            className="h-12 rounded-full object-cover"
+                          />
+                        </div>
+                        <div className="text-left overflow-hidden min-w-0">
+                          <div className="text-xs text-secondary font-light">Last Played on Spotify:</div>
+                          <div className="font-bold -mb-0.5">—</div>
+                          <div className="text-xs text-gray-600">[No recent tracks found]</div>
+                        </div>
+                      </div>
+                    )
                   ) : (
                     displayText
                   )}
@@ -195,7 +208,7 @@ export default function RootLayout({ children }) {
 
               <div onClick={handleAvatarClick} className="cursor-pointer">
                 <Image
-                  src={showNowPlaying && nowPlaying ? "/images/me-listening.png" : "/images/me.png"}
+                  src={showNowPlaying && nowPlaying?.nowplaying ? "/images/me-listening.png" : "/images/me.png"}
                   alt="me"
                   width={125}
                   height={125}
@@ -205,7 +218,6 @@ export default function RootLayout({ children }) {
             </div>
           </aside>
 
-          {/* Main content area */}
           <main className={`flex-1 flex justify-center items-start overflow-y-auto p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
           [&::-webkit-scrollbar]:w-2
           [&::-webkit-scrollbar-track]:bg-light
