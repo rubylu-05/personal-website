@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { metadata } from './metadata';
 import { AiFillMail, AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
@@ -16,6 +16,12 @@ export default function RootLayout({ children }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nowPlaying, setNowPlaying] = useState(null);
   const [showNowPlaying, setShowNowPlaying] = useState(false);
+  const [sidebarWidth, setSidebarWidth] = useState('30%');
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef(null);
+
+  const MIN_SIDEBAR_WIDTH = 20;
+  const MAX_SIDEBAR_WIDTH = 60;
 
   const messages = {
     '/': "Welcome! Feel free to take a look around :)",
@@ -31,7 +37,7 @@ export default function RootLayout({ children }) {
       const response = await fetch('/api/lastfm');
       const data = await response.json();
 
-      if (data?.track?.name) {  // If we have any track data
+      if (data?.track?.name) {
         setNowPlaying({
           artist: data.track.artist['#text'] || data.track.artist,
           track: data.track.name,
@@ -96,6 +102,43 @@ export default function RootLayout({ children }) {
     resetDialogue();
   };
 
+  const startDrag = (e) => {
+    setIsDragging(true);
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  };
+
+  const onDrag = (e) => {
+    if (!isDragging) return;
+    
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const containerWidth = containerRect.width;
+    const mouseX = e.clientX - containerRect.left;
+    
+    const newWidthPercent = (mouseX / containerWidth) * 100;
+    
+    const constrainedWidth = Math.max(MIN_SIDEBAR_WIDTH, Math.min(newWidthPercent, MAX_SIDEBAR_WIDTH));
+    
+    setSidebarWidth(`${constrainedWidth}%`);
+  };
+
+  const stopDrag = () => {
+    setIsDragging(false);
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  };
+
+  useEffect(() => {
+    if (isDragging) {
+      window.addEventListener('mousemove', onDrag);
+      window.addEventListener('mouseup', stopDrag);
+      return () => {
+        window.removeEventListener('mousemove', onDrag);
+        window.removeEventListener('mouseup', stopDrag);
+      };
+    }
+  }, [isDragging]);
+
   return (
     <html lang="en">
       <head>
@@ -105,12 +148,13 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-light text-black h-screen w-screen">
+      <body className="bg-light text-black h-screen w-screen overflow-hidden" ref={containerRef}>
         <div className="flex h-full">
           <aside
             className={`transition-all duration-700 ${isSidebarVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative`}
             style={{
               flexShrink: 0,
+              width: isSidebarVisible ? '100%' : sidebarWidth
             }}
           >
             <div className="text-center relative mb-48">
@@ -218,16 +262,27 @@ export default function RootLayout({ children }) {
             </div>
           </aside>
 
-          <main className={`flex-1 flex justify-center items-start overflow-y-auto p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
-          [&::-webkit-scrollbar]:w-2
-          [&::-webkit-scrollbar-track]:bg-light
-          [&::-webkit-scrollbar-thumb]:bg-primary
-          dark:[&::-webkit-scrollbar-track]:bg-light
-          dark:[&::-webkit-scrollbar-thumb]:bg-primary`} style={{
+          {/* Draggable divider */}
+          {!isSidebarVisible && (
+            <div 
+              className="w-1 bg-transparent hover:bg-primary cursor-col-resize transition-colors duration-200"
+              onMouseDown={startDrag}
+            />
+          )}
+
+          <main 
+            className={`flex-1 flex justify-center items-start overflow-y-auto p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
+            [&::-webkit-scrollbar]:w-2
+            [&::-webkit-scrollbar-track]:bg-light
+            [&::-webkit-scrollbar-thumb]:bg-primary
+            dark:[&::-webkit-scrollbar-track]:bg-light
+            dark:[&::-webkit-scrollbar-thumb]:bg-primary`} 
+            style={{
               backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(244, 235, 227, 1) 100%)',
               flexGrow: 1,
-            }}>
-            <div className="w-full">{children}</div>
+            }}
+          >
+            <div className="w-full max-w-screen-xl">{children}</div>
           </main>
         </div>
       </body>

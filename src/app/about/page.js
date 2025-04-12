@@ -31,14 +31,14 @@ const skillGroups = [
 
 export default function About() {
   return (
-    <div className="mt-6 ml-6 mr-10">
+    <div className="mt-6 ml-6 mr-20">
       <h1 className="text-4xl font-body font-extralight text-secondary mb-4">Hi, I'm Ruby!</h1>
-      <p className="text-base font-light font-body mb-4">
+      <p className="font-light font-body mb-4">
         I'm a computer science student at the University of Waterloo who loves building practical solutions and learning through implementation. I've worked across various tech stacks in academic, personal, and professional projects, and I'm always eager to learn more.
       </p>
       <p className="mb-12 font-body font-light">
         When I'm not staring at a terminal, you'll probably find me indulging in my creative side through <Link href="/misc" className="text-primary font-extrabold underline-animation">art</Link>, 
-        whether it's sketching, painting, digital art, or working with alcohol markers. I also like to make an unnecessary amount of Spotify <a href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f" className="text-primary font-extrabold underline-animation" target="_blank"> playlists</a> and consider myself to be a movie enthusiast (with a lot of love for the horror genre), having watched and logged 561 <a href="https://letterboxd.com/rubylu/" className="text-primary font-extrabold underline-animation" target="_blank"> films</a> on Letterboxd so far.
+        whether it's sketching, painting, digital art, or working with alcohol markers. I also like to make an unnecessary amount of Spotify <a href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f" className="text-primary font-extrabold underline-animation" target="_blank"> playlists</a> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged 561 <a href="https://letterboxd.com/rubylu/" className="text-primary font-extrabold underline-animation" target="_blank"> films</a> on Letterboxd so far.
       </p>
       
       <h2 className="text-4xl font-body font-extralight text-secondary mb-4">Past, present, and future</h2>
