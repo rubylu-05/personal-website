@@ -50,10 +50,12 @@
   background: linear-gradient(220deg, #f5f5ef, #f4ebe3, #f7dcc2);
   background-size: 240% 240%;
   animation: gradient-animation 10s ease infinite;
+}
+
+.sidebar-transition {
   transition: all 0.7s ease;
 }
 
-/* Add these styles to your global CSS file */
 .underline-animation {
   position: relative;
   display: inline-block;

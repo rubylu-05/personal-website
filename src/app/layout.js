@@ -151,7 +151,8 @@ export default function RootLayout({ children }) {
       <body className="bg-light text-black h-screen w-screen overflow-hidden" ref={containerRef}>
         <div className="flex h-full">
           <aside
-            className={`transition-all duration-700 ${isSidebarVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative`}
+            className={`${isSidebarVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-700' : ''
+              }`}
             style={{
               flexShrink: 0,
               width: isSidebarVisible ? '100%' : sidebarWidth
@@ -208,7 +209,7 @@ export default function RootLayout({ children }) {
                             className={`shadow-[0_0_15px_5px_rgba(175,139,106,0.3)] w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''}`}
                             onError={(e) => {
                               e.target.onerror = null;
-                              e.target.src = '/default-artist.png';
+                              e.target.src = '/default-song.png';
                             }}
                           />
                           <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full shadow-[inset_0_0_15px_5px_rgba(175,139,106,0.3)]"></div>
@@ -250,13 +251,13 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
 
-              <div className="cursor-pointer">
+              <div>
                 <Image
                   src={showNowPlaying && nowPlaying?.nowplaying ? "/images/avatar/me-listening.png" : "/images/avatar/me.png"}
                   alt="me"
                   width={125}
                   height={125}
-                  className="mx-auto w-[150px] h-[150px] object-contain mt-2"
+                  className="mx-auto h-[15%] object-contain mt-2 hover:scale-105 transition-transform duration-200 cursor-pointer"
                   onClick={handleAvatarClick}
                 />
               </div>
@@ -266,7 +267,7 @@ export default function RootLayout({ children }) {
           {/* Draggable divider */}
           {!isSidebarVisible && (
             <div
-              className="w-1 bg-[#ede7e1] hover:bg-primary cursor-col-resize transition-colors duration-200"
+              className="w-2 bg-[#ebe5e1] hover:bg-primary cursor-col-resize transition-colors duration-200"
               onMouseDown={startDrag}
             />
           )}

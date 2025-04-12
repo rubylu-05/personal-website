@@ -145,7 +145,7 @@ export default function Work() {
                     alt={project.title}
                     width={400}
                     height={300}
-                    className="w-full h-auto rounded-lg object-cover transition-transform duration-200 hover:scale-105"
+                    className="w-full h-auto rounded-lg object-contain transition-transform duration-200 hover:scale-105"
                   />
                 </div>
                 
