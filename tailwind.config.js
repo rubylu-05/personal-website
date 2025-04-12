@@ -14,10 +14,10 @@ module.exports = {
       },
       fontFamily: {
         "body": ['Inter'],
-        "heading": ['Inter']
+        "heading": ['Work Sans']
       },
       fontWeight: {
-        'extrabold': 800,
+        'extrabold': 700,
         'extralight': 200,
       },
       animation: {

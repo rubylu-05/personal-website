@@ -110,15 +110,15 @@ export default function RootLayout({ children }) {
 
   const onDrag = (e) => {
     if (!isDragging) return;
-    
+
     const containerRect = containerRef.current.getBoundingClientRect();
     const containerWidth = containerRect.width;
     const mouseX = e.clientX - containerRect.left;
-    
+
     const newWidthPercent = (mouseX / containerWidth) * 100;
-    
+
     const constrainedWidth = Math.max(MIN_SIDEBAR_WIDTH, Math.min(newWidthPercent, MAX_SIDEBAR_WIDTH));
-    
+
     setSidebarWidth(`${constrainedWidth}%`);
   };
 
@@ -146,7 +146,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-light text-black h-screen w-screen overflow-hidden" ref={containerRef}>
         <div className="flex h-full">
@@ -158,7 +158,7 @@ export default function RootLayout({ children }) {
             }}
           >
             <div className="text-center relative mb-48">
-              <div className="text-5xl font-body font-extrabold text-primary mb-6">Ruby Lu</div>
+              <div className="text-5xl font-heading font-extrabold text-primary mb-6">Ruby Lu</div>
               <div className="flex justify-center gap-6 text-xl mb-6">
                 <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
                   <AiFillMail className="text-secondary hover:text-primary text-2xl" />
@@ -205,13 +205,13 @@ export default function RootLayout({ children }) {
                           <img
                             src={nowPlaying.image || '/default-song.png'}
                             alt={`${nowPlaying.track} cover`}
-                            className={`w-12 h-12 rounded-full object-cover border border-secondary ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''}`}
+                            className={`shadow-[0_0_15px_5px_rgba(175,139,106,0.3)] w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''}`}
                             onError={(e) => {
                               e.target.onerror = null;
                               e.target.src = '/default-artist.png';
                             }}
                           />
-                          <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full border border-secondary"></div>
+                          <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full shadow-[inset_0_0_15px_5px_rgba(175,139,106,0.3)]"></div>
                         </div>
                         <div className="text-left overflow-hidden min-w-0">
                           <div className="text-xs text-secondary font-light">
@@ -250,13 +250,14 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
 
-              <div onClick={handleAvatarClick} className="cursor-pointer">
+              <div className="cursor-pointer">
                 <Image
-                  src={showNowPlaying && nowPlaying?.nowplaying ? "/images/me-listening.png" : "/images/me.png"}
+                  src={showNowPlaying && nowPlaying?.nowplaying ? "/images/avatar/me-listening.png" : "/images/avatar/me.png"}
                   alt="me"
                   width={125}
                   height={125}
                   className="mx-auto w-[150px] h-[150px] object-contain mt-2"
+                  onClick={handleAvatarClick}
                 />
               </div>
             </div>
@@ -264,19 +265,19 @@ export default function RootLayout({ children }) {
 
           {/* Draggable divider */}
           {!isSidebarVisible && (
-            <div 
-              className="w-1 bg-transparent hover:bg-primary cursor-col-resize transition-colors duration-200"
+            <div
+              className="w-1 bg-[#ede7e1] hover:bg-primary cursor-col-resize transition-colors duration-200"
               onMouseDown={startDrag}
             />
           )}
 
-          <main 
+          <main
             className={`flex-1 flex justify-center items-start overflow-y-auto p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
             [&::-webkit-scrollbar]:w-2
             [&::-webkit-scrollbar-track]:bg-light
             [&::-webkit-scrollbar-thumb]:bg-primary
             dark:[&::-webkit-scrollbar-track]:bg-light
-            dark:[&::-webkit-scrollbar-thumb]:bg-primary`} 
+            dark:[&::-webkit-scrollbar-thumb]:bg-primary`}
             style={{
               backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(244, 235, 227, 1) 100%)',
               flexGrow: 1,

@@ -7,10 +7,10 @@ import { FaGithub } from 'react-icons/fa';
 const projects = [
   {
     id: 1,
-    title: "Hydropower Inflow Forecasting with LSTM",
+    title: "Hydropower Inflow Forecasting",
     subtitle: "A machine learning model to optimize hydropower plants",
     image: "/images/projects/lstm.png",
-    shortDescription: "During my recent co-op term at Hatch, I used Pandas and Tensorflow to build a custom LSTM model to predict water inflow, which is one of the most unpredictable variables hydropower. By analyzing historical hydrology data (rainfall, snowmelt, soil conditions, and more), this model helps optimize reservoir management by minimizing head losses. In the end, the model was able to achieve an r\u00B2 score of 0.91, indicating high accuracy compared to baseline methods.",
+    shortDescription: "During my recent co-op term at Hatch, I used Pandas and Tensorflow to build a custom LSTM model to predict water inflow, which is one of the most unpredictable variables hydropower. By processing large datasets of time-based hydrology data, this model helps optimize reservoir management by minimizing head losses. In the end, the model was able to achieve an r\u00B2 score of 0.91, indicating high accuracy compared to baseline methods.",
     fullDescription: [
       {
         section: "Technical Overview",
@@ -135,7 +135,7 @@ export default function Work() {
           return (
             <div 
               key={project.id}
-              className={`bg-white dark:bg-gray-800 rounded-xl p-6 transition-all duration-300 ease-in-out overflow-hidden ${expandedId === project.id ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.2)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'}`}
+              className={`bg-white dark:bg-gray-800 rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${expandedId === project.id ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.2)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'}`}
             >
               {/* Top section with image and basic info */}
               <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>
