@@ -92,7 +92,7 @@ const projects = [
   {
     id: 4,
     title: "Chroma: Your Personal Colour Assistant",
-    subtitle: "A mobile app to simplify your painting and colour mixing process",
+    subtitle: "A mobile app to simplify the painting and colour mixing process",
     image: "/images/projects/chroma.png",
     shortDescription: "Chroma was built for an online hackathon called WaffleHacks, where me and my partner wanted to make a tool that takes the guesswork out of colour matching by generating palettes and determining ratios mathematically. This project was motivated by our shared enthusiasm for art.",
     demoLink: "https://devpost.com/software/chroma-q3wshr",
@@ -135,7 +135,7 @@ export default function Work() {
           return (
             <div 
               key={project.id}
-              className={`bg-white dark:bg-gray-800 rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${expandedId === project.id ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.2)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'}`}
+              className={`bg-white dark:bg-gray-800 rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${expandedId === project.id ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.15)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'}`}
             >
               {/* Top section with image and basic info */}
               <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>
@@ -151,10 +151,10 @@ export default function Work() {
                 
                 {/* Project Content */}
                 <div className="md:w-2/3">
-                  <h2 className="text-2xl font-body font-bold text-primary mb-2">
+                  <h2 className="text-2xl font-heading font-bold text-primary mb-2">
                     {project.title}
                   </h2>
-                  <h3 className="text-lg font-body font-light text-secondary mb-4">
+                  <h3 className="text-lg font-heading font-light text-secondary mb-4 leading-snug">
                     {project.subtitle}
                   </h3>
                   
@@ -169,12 +169,12 @@ export default function Work() {
                 <div className="mt-4 space-y-6">
                   {project.fullDescription.map((section, index) => (
                     <div key={index} className="mb-6">
-                      <h4 className="text-xl font-body font-bold text-primary mb-3">
+                      <h4 className="text-lg font-heading font-bold text-primary mb-2">
                         {section.section}
                       </h4>
                       
                       {section.intro && (
-                        <p className="font-body text-sm font-light mb-3">
+                        <p className="font-body text-sm font-light mb-2">
                           {section.intro}
                         </p>
                       )}
@@ -203,7 +203,7 @@ export default function Work() {
                       href={project.githubLink} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-secondary hover:text-primary transition-colors duration-200"
+                      className="text-secondary hover:text-primary transition-colors duration-200 hover:scale-105 transition-all duration-100 ease-out"
                     >
                       <FaGithub size={20} />
                     </a>
@@ -213,7 +213,7 @@ export default function Work() {
                       href={project.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all duration-200"
+                      className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105 duration-200"
                     >
                       Link
                     </a>
@@ -221,7 +221,7 @@ export default function Work() {
                 </div>
                 <button
                   onClick={() => toggleExpand(project.id)}
-                  className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all duration-200"
+                  className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105 duration-200"
                 >
                   {expandedId === project.id ? 'Show Less' : 'Read More'}
                 </button>

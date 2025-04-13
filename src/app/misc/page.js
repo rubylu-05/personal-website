@@ -2,6 +2,16 @@
 
 const artGroups = [
     {
+        title: 'Digital',
+        pieces: [
+            {
+                description: 'Street under a pink sky, drawn digitally',
+                image: '/images/art/street.png',
+                fullWidth: true
+            }
+        ]
+    },
+    {
         title: 'Alcohol Markers',
         pieces: [
             {
@@ -9,7 +19,7 @@ const artGroups = [
                 image: '/images/art/fury_road.png'
             },
             {
-                description: 'A quaint little storefront, drawn with Tombow alcohol markers and fineliner pens',
+                description: 'A quaint storefront, drawn with Tombow alcohol markers and fineliner pens',
                 image: '/images/art/storefront.png'
             },
             {
@@ -63,16 +73,6 @@ const artGroups = [
         ]
     },
     {
-        title: 'Digital',
-        pieces: [
-            {
-                description: 'Street under a pink sky, drawn digitally',
-                image: '/images/art/street.png',
-                fullWidth: true
-            }
-        ]
-    },
-    {
         title: 'Needle Felting',
         description: 'Needle felting is pretty fun! I\'ve made a bunch of little animals, but here are my personal favourites.',
         pieces: [
@@ -111,7 +111,7 @@ export default function ArtGallery() {
                                 <img
                                     src={piece.image}
                                     alt=""
-                                    className={`w-full h-auto object-fill mb-3 rounded-lg shadow-[0_0_30px_15px_rgba(175,139,106,0.1)] hover:shadow-[0_0_30px_15px_rgba(175,139,106,0.25)] hover:scale-[1.03] transition-all duration-300 ease-in-out w-full ${piece.fullWidth ? "max-h-96" : ""}`}
+                                    className={`w-full h-auto object-fill mb-3 rounded-lg shadow-[0_0_30px_15px_rgba(175,139,106,0.1)] hover:shadow-[0_0_30px_15px_rgba(175,139,106,0.25)] hover:scale-[1.02] transition-all duration-300 ease-out w-full ${piece.fullWidth ? "max-h-96" : ""}`}
                                 />
                                 <p className="font-body font-light text-xs">{piece.description}</p>
                             </div>

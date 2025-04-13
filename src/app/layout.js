@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     '/': "Welcome! Feel free to take a look around :)",
     '/about': "A quick peek into my personal interests and growth as a developer.",
     '/work': "Recent projects that I've poured my curiosity into - they all taught me something new.",
-    '/misc': "Sometimes I draw, so here's a casual gallery if you're interested!"
+    '/misc': "These are what my interests and hobbies look like outside of computer science."
   };
 
   const currentMessage = messages[pathname] || messages['/'];
@@ -128,6 +128,10 @@ export default function RootLayout({ children }) {
     document.body.style.userSelect = '';
   };
 
+  const handleDoubleClick = () => {
+    setSidebarWidth('30%');
+  };
+
   useEffect(() => {
     if (isDragging) {
       window.addEventListener('mousemove', onDrag);
@@ -151,7 +155,7 @@ export default function RootLayout({ children }) {
       <body className="bg-light text-black h-screen w-screen overflow-hidden" ref={containerRef}>
         <div className="flex h-full">
           <aside
-            className={`${isSidebarVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-700' : ''
+            className={`${isSidebarVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''
               }`}
             style={{
               flexShrink: 0,
@@ -159,37 +163,42 @@ export default function RootLayout({ children }) {
             }}
           >
             <div className="text-center relative mb-48">
-              <div className="text-5xl font-heading font-extrabold text-primary mb-6">Ruby Lu</div>
+              <div
+                className="text-5xl font-heading font-extrabold text-primary mb-6"
+                style={{ textShadow: '0 0 40px rgba(175, 139, 106, 0.7)' }}
+              >
+                Ruby <span className="font-extralight">Lu</span>
+              </div>
               <div className="flex justify-center gap-6 text-xl mb-6">
                 <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
-                  <AiFillMail className="text-secondary hover:text-primary text-2xl" />
+                  <AiFillMail className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
                 </a>
                 <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer">
-                  <AiFillLinkedin className="text-secondary hover:text-primary text-2xl" />
+                  <AiFillLinkedin className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
                 </a>
                 <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer">
-                  <AiFillGithub className="text-secondary hover:text-primary text-2xl" />
+                  <AiFillGithub className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
                 </a>
               </div>
               <nav className="text-black text-base font-light font-body space-y-2">
                 <Link
                   href="/about"
                   onClick={(e) => handleLinkClick(e, '/about')}
-                  className={`block hover:text-secondary ${pathname === '/about' ? 'text-secondary' : ''}`}
+                  className={`block hover:text-secondary transition-all duration-50 ease-out ${pathname === '/about' ? 'text-secondary' : ''}`}
                 >
                   About
                 </Link>
                 <Link
                   href="/work"
                   onClick={(e) => handleLinkClick(e, '/work')}
-                  className={`block hover:text-secondary ${pathname === '/work' ? 'text-secondary' : ''}`}
+                  className={`block hover:text-secondary transition-all duration-50 ease-out ${pathname === '/work' ? 'text-secondary' : ''}`}
                 >
                   Recent Projects
                 </Link>
                 <Link
                   href="/misc"
                   onClick={(e) => handleLinkClick(e, '/misc')}
-                  className={`block hover:text-secondary ${pathname === '/misc' ? 'text-secondary' : ''}`}
+                  className={`block hover:text-secondary transition-all duration-50 ease-out ${pathname === '/misc' ? 'text-secondary' : ''}`}
                 >
                   Life Outside of Coding
                 </Link>
@@ -206,22 +215,22 @@ export default function RootLayout({ children }) {
                           <img
                             src={nowPlaying.image || '/default-song.png'}
                             alt={`${nowPlaying.track} cover`}
-                            className={`shadow-[0_0_15px_5px_rgba(175,139,106,0.3)] w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''}`}
+                            className={`shadow-[0_0_15px_5px_rgba(175,139,106,0.2)] w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''}`}
                             onError={(e) => {
                               e.target.onerror = null;
                               e.target.src = '/default-song.png';
                             }}
                           />
-                          <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full shadow-[inset_0_0_15px_5px_rgba(175,139,106,0.3)]"></div>
+                          <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full shadow-[inset_0_0_15px_5px_rgba(175,139,106,0.2)]"></div>
                         </div>
                         <div className="text-left overflow-hidden min-w-0">
-                          <div className="text-xs text-secondary font-light">
+                          <div className="text-xs font-body font-extralight text-bold text-secondary font-light">
                             {nowPlaying.nowplaying ? 'Now Listening on Spotify:' : 'Last Played on Spotify:'}
                           </div>
-                          <div className="truncate font-bold -mb-0.5" title={nowPlaying.track}>
+                          <div className="truncate font-heading font-extrabold -mb-0.5 text-sm" title={nowPlaying.track}>
                             {nowPlaying.track}
                           </div>
-                          <div className="truncate text-xs text-gray-600" title={nowPlaying.artist}>
+                          <div className="truncate font-body font-extralight text-xs" title={nowPlaying.artist}>
                             {nowPlaying.artist}
                           </div>
                         </div>
@@ -246,8 +255,7 @@ export default function RootLayout({ children }) {
                     displayText
                   )}
                 </div>
-                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 
-      border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white">
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white">
                 </div>
               </div>
 
@@ -257,7 +265,7 @@ export default function RootLayout({ children }) {
                   alt="me"
                   width={125}
                   height={125}
-                  className="mx-auto h-[15%] object-contain mt-2 hover:scale-105 transition-transform duration-200 cursor-pointer"
+                  className="mx-auto h-[15%] object-contain mt-2 hover:scale-[103%] transition-transform duration-200 cursor-pointer"
                   onClick={handleAvatarClick}
                 />
               </div>
@@ -267,13 +275,15 @@ export default function RootLayout({ children }) {
           {/* Draggable divider */}
           {!isSidebarVisible && (
             <div
-              className="w-2 bg-[#ebe5e1] hover:bg-primary cursor-col-resize transition-colors duration-200"
+              className="w-2 bg-secondary opacity-[25%] hover:opacity-100 hover:bg-primary cursor-col-resize transition-all duration-500 transition-ease-out"
               onMouseDown={startDrag}
+              onDoubleClick={handleDoubleClick}
+              title="Double-click to reset width"
             />
           )}
 
           <main
-            className={`flex-1 flex justify-center items-start overflow-y-auto p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
+            className={`flex-1 flex justify-center items-start p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
             [&::-webkit-scrollbar]:w-2
             [&::-webkit-scrollbar-track]:bg-light
             [&::-webkit-scrollbar-thumb]:bg-primary

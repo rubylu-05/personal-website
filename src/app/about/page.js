@@ -65,7 +65,7 @@ export default function About() {
               {group.items.map((skillName, skillIndex) => (
                 <div 
                   key={`${skillName}-${skillIndex}`} 
-                  className="bg-light2 dark:bg-gray-800 px-4 py-2 rounded-lg flex items-center whitespace-nowrap"
+                  className="hover:scale-105 transition-all duration-100 bg-light2 dark:bg-gray-800 px-4 py-2 rounded-lg flex items-center whitespace-nowrap"
                 >
                   <div className="w-6 h-6 mr-2 flex items-center justify-center">
                     <img 

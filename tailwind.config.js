@@ -20,6 +20,9 @@ module.exports = {
         'extrabold': 700,
         'extralight': 200,
       },
+      fontSize: {
+        'xl': '22px'
+      },
       animation: {
         'spin-slow': 'spin 3s linear infinite',
       }
