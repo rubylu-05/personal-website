@@ -144,7 +144,7 @@ export default function RootLayout({ children }) {
   }, [isDragging]);
 
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
@@ -286,9 +286,7 @@ export default function RootLayout({ children }) {
             className={`flex-1 flex justify-center items-start p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
             [&::-webkit-scrollbar]:w-2
             [&::-webkit-scrollbar-track]:bg-light
-            [&::-webkit-scrollbar-thumb]:bg-primary
-            dark:[&::-webkit-scrollbar-track]:bg-light
-            dark:[&::-webkit-scrollbar-thumb]:bg-primary`}
+            [&::-webkit-scrollbar-thumb]:bg-primary`}
             style={{
               backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(244, 235, 227, 1) 100%)',
               flexGrow: 1,

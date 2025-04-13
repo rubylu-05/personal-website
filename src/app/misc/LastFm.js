@@ -65,7 +65,7 @@ function LastFm() {
                         {artists.map((artist, index) => (
                             <div 
                                 key={`${artist.name}-${index}`} 
-                                className="bg-light2 dark:bg-gray-800 px-4 py-3 rounded-lg flex items-center"
+                                className="bg-light2 px-4 py-3 rounded-lg flex items-center"
                             >
                                 <div className="w-8 h-8 rounded-full mr-3 flex-shrink-0 overflow-hidden">
                                     <img

@@ -29,12 +29,25 @@ function Letterboxd() {
         fetchData();
     }, []);
 
+    const getStarRating = (rating) => {
+        if (!rating) return null;
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+        
+        return (
+            <span className="text-secondary text-xs">
+                {'★'.repeat(fullStars)}
+                {hasHalfStar && '½'}
+            </span>
+        );
+    };
+
     if (loading) {
         return <p className="font-body font-light">Loading movie data...</p>;
     }
 
     if (error) {
-        return <p className="font-body font-light text-red-500">{error}</p>;
+        return <p className="font-body font-light">{error}</p>;
     }
 
     return (
@@ -45,9 +58,9 @@ function Letterboxd() {
                     movies.map((movie, index) => (
                         <div 
                             key={`${movie.title}-${index}`} 
-                            className="bg-light2 dark:bg-gray-800 px-4 py-3 rounded-lg flex items-center"
+                            className="bg-light2 px-4 py-3 rounded-lg flex pl-0 pt-0 pb-0"
                         >
-                            <div className="w-8 h-8 rounded mr-3 flex-shrink-0 overflow-hidden">
+                            <div className="w-12 h-16 rounded-md mr-3 flex-shrink-0 overflow-hidden">
                                 {movie.image ? (
                                     <img
                                         src={movie.image}
@@ -63,9 +76,31 @@ function Letterboxd() {
                                     </div>
                                 )}
                             </div>
-                            <div>
-                                <span className="font-body font-medium">{movie.title}</span>
-                                <span className="font-body font-light text-xs block">{movie.year}</span>
+                            <div className="flex-1 min-w-0 flex flex-col justify-center">
+                                {/* First line - Title and Rating */}
+                                <div className="flex justify-between items-baseline mb-0.5">
+                                    <span 
+                                        className="font-body font-medium truncate mr-2"
+                                        title={movie.title}
+                                    >
+                                        {movie.title}
+                                    </span>
+                                    {movie.rating && (
+                                        <span className="font-body font-medium text-sm whitespace-nowrap">
+                                            {getStarRating(movie.rating)}
+                                        </span>
+                                    )}
+                                </div>
+                                
+                                {/* Second line - Year and Watched Date */}
+                                <div className="flex justify-between items-baseline">
+                                    <span className="font-body font-light text-xs">
+                                        {movie.year}
+                                    </span>
+                                    <span className="font-body font-light text-xs whitespace-nowrap">
+                                        Watched {movie.watchedDate}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     ))

@@ -1,23 +1,45 @@
 import Parser from 'rss-parser';
 
-const parser = new Parser();
+const parser = new Parser({
+  customFields: {
+    item: [
+      'letterboxd:filmTitle',
+      'letterboxd:filmYear',
+      'letterboxd:memberRating',
+      'letterboxd:watchedDate',
+      'tmdb:movieId'
+    ]
+  }
+});
 
 export async function GET() {
     try {
         const feed = await parser.parseURL('https://letterboxd.com/rubylu/rss/');
         
         const movies = feed.items.map(item => {
-            const titleMatch = item.title.match(/^(.*?)\s*\((\d{4})\)$/);
-            const title = titleMatch ? titleMatch[1] : item.title;
-            const year = titleMatch ? titleMatch[2] : '';
+            const title = item['letterboxd:filmTitle'];
+            const year = item['letterboxd:filmYear'];
+            
+            let rating = null;
+            if (item['letterboxd:memberRating']) {
+                rating = parseFloat(item['letterboxd:memberRating']);
+            }
             
             const imageMatch = item.content.match(/<img.*?src="(.*?)"/);
             const image = imageMatch ? imageMatch[1] : null;
+            
+            const watchedDate = new Date(item['letterboxd:watchedDate'] || item.isoDate).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            });
             
             return {
                 title,
                 year,
                 image,
+                rating,
+                watchedDate,
                 link: item.link
             };
         });

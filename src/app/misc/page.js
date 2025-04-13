@@ -17,7 +17,7 @@ const artGroups = [
         title: 'Alcohol Markers',
         pieces: [
             {
-                description: 'I bought some grayscale Tombow alcohol markers from Dollarama and watched Mad Max: Fury Road (one of my favourite movies) for the first time, inspiring me to draw this',
+                description: 'I bought some grayscale Tombow alcohol markers from Dollarama and watched Mad Max: Fury Road for the first time, inspiring me to draw this',
                 image: '/images/art/fury_road.png'
             },
             {
@@ -113,7 +113,7 @@ export default function ArtGallery() {
                                 <img
                                     src={piece.image}
                                     alt=""
-                                    className={`w-full h-auto object-fill mb-3 rounded-lg shadow-[0_0_30px_15px_rgba(175,139,106,0.1)] hover:shadow-[0_0_30px_15px_rgba(175,139,106,0.25)] hover:scale-[1.02] duration-500 ease-out w-full ${piece.fullWidth ? "max-h-96" : ""}`}
+                                    className={`w-full h-auto object-fill mb-3 rounded-lg shadow-[0_0_30px_15px_rgba(175,139,106,0.1)] hover:shadow-[0_0_30px_15px_rgba(175,139,106,0.25)] hover:scale-[1.02] duration-500 ease-out w-full`}
                                 />
                                 <p className="font-body font-light text-xs">{piece.description}</p>
                             </div>
