@@ -184,21 +184,21 @@ export default function RootLayout({ children }) {
                 <Link
                   href="/about"
                   onClick={(e) => handleLinkClick(e, '/about')}
-                  className={`block hover:text-secondary transition-all duration-50 ease-out ${pathname === '/about' ? 'text-secondary' : ''}`}
+                  className={`block hover:text-secondary duration-200 ease-out ${pathname === '/about' ? 'text-secondary' : ''}`}
                 >
                   About
                 </Link>
                 <Link
                   href="/work"
                   onClick={(e) => handleLinkClick(e, '/work')}
-                  className={`block hover:text-secondary transition-all duration-50 ease-out ${pathname === '/work' ? 'text-secondary' : ''}`}
+                  className={`block hover:text-secondary duration-200 ease-out ${pathname === '/work' ? 'text-secondary' : ''}`}
                 >
                   Recent Projects
                 </Link>
                 <Link
                   href="/misc"
                   onClick={(e) => handleLinkClick(e, '/misc')}
-                  className={`block hover:text-secondary transition-all duration-50 ease-out ${pathname === '/misc' ? 'text-secondary' : ''}`}
+                  className={`block hover:text-secondary duration-200 ease-out ${pathname === '/misc' ? 'text-secondary' : ''}`}
                 >
                   Life Outside of Coding
                 </Link>

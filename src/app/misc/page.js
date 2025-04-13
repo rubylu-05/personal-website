@@ -1,4 +1,6 @@
 'use client';
+import LastFm from './LastFm'
+import Letterboxd from './Letterboxd';
 
 const artGroups = [
     {
@@ -111,7 +113,7 @@ export default function ArtGallery() {
                                 <img
                                     src={piece.image}
                                     alt=""
-                                    className={`w-full h-auto object-fill mb-3 rounded-lg shadow-[0_0_30px_15px_rgba(175,139,106,0.1)] hover:shadow-[0_0_30px_15px_rgba(175,139,106,0.25)] hover:scale-[1.02] transition-all duration-300 ease-out w-full ${piece.fullWidth ? "max-h-96" : ""}`}
+                                    className={`w-full h-auto object-fill mb-3 rounded-lg shadow-[0_0_30px_15px_rgba(175,139,106,0.1)] hover:shadow-[0_0_30px_15px_rgba(175,139,106,0.25)] hover:scale-[1.02] duration-500 ease-out w-full ${piece.fullWidth ? "max-h-96" : ""}`}
                                 />
                                 <p className="font-body font-light text-xs">{piece.description}</p>
                             </div>
@@ -119,6 +121,15 @@ export default function ArtGallery() {
                     </div>
                 </div>
             ))}
+            <h1 className="text-4xl font-heading font-extralight text-secondary mb-4 mt-20">Movies + Music</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <Letterboxd/>
+                </div>
+                <div>
+                    <LastFm/>
+                </div>
+            </div>
         </div>
     );
 }

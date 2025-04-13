@@ -4,20 +4,20 @@ import Link from 'next/link';
 
 const skillGroups = [
   {
-    category: 'Languages',
+    category: 'Programming Languages',
     items: ['Python', 'C++', 'C', 'C#', 'Java', 'JavaScript', 'Dart']
   },
   {
     category: 'Web Development',
-    items: ['HTML/CSS', 'React.js', 'Next.js', 'Node.js', 'Flask']
+    items: ['HTML/CSS', 'React.js', 'Next.js', 'Node.js', 'Tailwind CSS', 'Flask']
   },
   {
     category: 'Data & Machine Learning',
-    items: ['TensorFlow', 'OpenCV', 'Pandas', 'SQL']
+    items: ['TensorFlow', 'OpenCV', 'Pandas', 'BeautifulSoup']
   },
   {
-    category: 'Cloud & Databases',
-    items: ['Firebase', 'MongoDB', 'AWS']
+    category: 'Cloud & Database',
+    items: ['Firebase', 'MongoDB', 'AWS', 'SQL']
   },
   {
     category: 'Mobile Development',
@@ -46,7 +46,7 @@ export default function About() {
         In the summer of 2024, I worked on enhancing desktop applications and automating systems for <a href="https://www.ym-inc.com" className="text-primary font-extrabold underline-animation" target="_blank">YM Inc.</a>, a Toronto-based retail company that operates fashion brands across North America.
       </p>
       <p className="mb-4 font-body font-light">
-        In winter 2025, I interned at <a href="https://www.hatch.com/" className="text-primary font-extrabold underline-animation" target="_blank">Hatch</a> in their Niagara Falls office, where I dipped my toes into the complexities of hydropower optimization. I worked to improve the efficiency of hydroelectric dams and explored the use of machine learning for predicting water inflow - this experience ended up being a really interesting intersection of engineering, sustainability, and software.
+        In winter 2025, I interned at <a href="https://www.hatch.com/" className="text-primary font-extrabold underline-animation" target="_blank">Hatch</a> in their Niagara Falls office, where I dipped my toes into the complexities of hydropower optimization. I worked on improving the efficiency of hydroelectric dams and explored the use of machine learning for predicting water inflow - this experience ended up being a really interesting intersection of engineering, sustainability, and software.
       </p>
       <p className="mb-4 font-body font-light">
         In the fall of 2025, I'll be joining <a href="https://aws.amazon.com/" className="text-primary font-extrabold underline-animation" target="_blank">Amazon Web Services (AWS)</a> in Seattle as a Software Development Engineering Intern, which I'm pretty excited about!
@@ -65,11 +65,11 @@ export default function About() {
               {group.items.map((skillName, skillIndex) => (
                 <div 
                   key={`${skillName}-${skillIndex}`} 
-                  className="hover:scale-105 transition-all duration-100 bg-light2 dark:bg-gray-800 px-4 py-2 rounded-lg flex items-center whitespace-nowrap"
+                  className="hover:scale-105 duration-300 bg-light2 dark:bg-gray-800 px-4 py-2 rounded-lg flex items-center whitespace-nowrap"
                 >
                   <div className="w-6 h-6 mr-2 flex items-center justify-center">
                     <img 
-                      src={`/images/tech_icons/${skillName.toLowerCase().replace('.', '').replace('/', '-').replace('#', 'sharp')}.png`} 
+                      src={`/images/tech_icons/${skillName.toLowerCase().replace('.', '').replace('/', '-').replace('#', 'sharp').replace(' ', '')}.png`}
                       alt={skillName}
                       className="w-5 h-5 object-contain"
                     />
