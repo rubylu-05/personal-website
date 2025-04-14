@@ -48,7 +48,7 @@ export default function About() {
     };
 
     const startCountAnimation = (finalNumber) => {
-      const duration = 5000;
+      const duration = 2000;
       const startTime = performance.now();
 
       const updateCount = (currentTime) => {

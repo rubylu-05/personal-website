@@ -46,7 +46,7 @@ const artGroups = [
     },
     {
         title: 'Creatures & Cryptids',
-        description: 'These are some illustrations inspired by famous cryptids and mythical creatures - I\'ve always found cryptids to be pretty interesting since they exist somewhere between folklore and modern myth. Plus they\'re fun to draw since their depictions are very open to interpretation.',
+        description: 'These are some illustrations inspired by famous cryptids and mythical creatures - I\'ve always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they\'re fun to draw since their depictions are very open to interpretation.',
         pieces: [
             {
                 description: 'Wendigo (one of my favourite cryptids), drawn digitally',
@@ -122,14 +122,12 @@ export default function ArtGallery() {
                 </div>
             ))}
             <h1 className="text-4xl font-heading font-extralight text-secondary mb-4 mt-20">Movies + Music</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <Letterboxd/>
-                </div>
-                <div>
-                    <LastFm/>
-                </div>
+
+            <div className="mb-12">
+                <Letterboxd />
             </div>
+
+            <LastFm />
         </div>
     );
 }

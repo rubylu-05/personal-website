@@ -29,9 +29,9 @@ export async function GET() {
             const image = imageMatch ? imageMatch[1] : null;
             
             const watchedDate = new Date(item['letterboxd:watchedDate'] || item.isoDate).toLocaleDateString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric'
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric'
             });
             
             return {

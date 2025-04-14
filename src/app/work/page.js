@@ -127,28 +127,28 @@ export default function Work() {
   };
 
   return (
-    <div className="mt-6 ml-6 mr-10">      
+    <div className="mt-6 ml-6 mr-10">
       <div className="space-y-6">
         {projects.map((project, index) => {
           const imageOnRight = index % 2 !== 0;
-          
+
           return (
-            <div 
+            <div
               key={project.id}
               className={`bg-white rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${expandedId === project.id ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.15)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'}`}
             >
               {/* Top section with image and basic info */}
               <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>
                 <div className="md:w-1/3 relative" >
-                  <Image 
-                    src={project.image} 
+                  <Image
+                    src={project.image}
                     alt={project.title}
                     width={400}
                     height={300}
                     className="w-full h-auto rounded-lg object-contain transition-transform duration-200 hover:scale-105"
                   />
                 </div>
-                
+
                 {/* Project Content */}
                 <div className="md:w-2/3">
                   <h2 className="text-2xl font-heading font-bold text-primary mb-2">
@@ -157,13 +157,13 @@ export default function Work() {
                   <h3 className="text-lg font-heading font-light text-secondary mb-4 leading-snug">
                     {project.subtitle}
                   </h3>
-                  
+
                   <p className="font-body text-sm font-light">
                     {project.shortDescription}
                   </p>
                 </div>
               </div>
-              
+
               {/* Expanded Content */}
               <div className={`overflow-hidden transition-all duration-300 ease-in-out ${expandedId === project.id ? 'max-h-[1000px]' : 'max-h-0'}`}>
                 <div className="mt-4 space-y-6">
@@ -172,13 +172,13 @@ export default function Work() {
                       <h4 className="text-lg font-heading font-bold text-primary mb-2">
                         {section.section}
                       </h4>
-                      
+
                       {section.intro && (
                         <p className="font-body text-sm font-light mb-2">
                           {section.intro}
                         </p>
                       )}
-                      
+
                       {section.points ? (
                         <ul className="list-disc pl-5 font-body text-sm font-light space-y-1 [&>li]:marker:text-secondary">
                           {section.points.map((point, i) => (
@@ -194,14 +194,14 @@ export default function Work() {
                   ))}
                 </div>
               </div>
-              
+
               {/* Buttons section */}
               <div className="flex justify-between mt-4">
                 <div className="flex items-center gap-2">
                   {project.githubLink && (
-                    <a 
-                      href={project.githubLink} 
-                      target="_blank" 
+                    <a
+                      href={project.githubLink}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="text-secondary hover:text-primary transition-colors duration-200 hover:scale-105 transition-all duration-100 ease-out"
                     >

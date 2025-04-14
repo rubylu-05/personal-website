@@ -12,8 +12,8 @@ function LastFm() {
             try {
                 const lastFmResponse = await fetch('/api/lastfm');
                 const lastFmData = await lastFmResponse.json();
-                const lastFmArtists = lastFmData?.topartists?.artist?.slice(0, 10) || [];
-                
+                const lastFmArtists = lastFmData?.topartists?.artist?.slice(0, 20) || [];
+
                 const enhancedArtists = await Promise.all(
                     lastFmArtists.map(async (artist) => {
                         try {
@@ -21,7 +21,7 @@ function LastFm() {
                                 `/api/deezer?artist=${encodeURIComponent(artist.name)}`
                             );
                             const deezerData = await deezerProxyResponse.json();
-                            
+
                             return {
                                 ...artist,
                                 imageUrl: deezerData.picture_small || '/default-artist.png'
@@ -58,29 +58,27 @@ function LastFm() {
 
     return (
         <div className="mb-12">
+            <h3 className="text-xl font-heading font-extrabold text-primary mb-4">Top artists this week</h3>
             {artists.length > 0 ? (
-                <div>
-                    <h3 className="text-xl font-heading font-extrabold text-primary mb-4">Top artists this week</h3>
-                    <div className="space-y-3">
-                        {artists.map((artist, index) => (
-                            <div 
-                                key={`${artist.name}-${index}`} 
-                                className="bg-light2 px-4 py-3 rounded-lg flex items-center"
-                            >
-                                <div className="w-8 h-8 rounded-full mr-3 flex-shrink-0 overflow-hidden">
-                                    <img
-                                        src={artist.imageUrl}
-                                        alt={artist.name}
-                                        className="w-full h-full object-cover"
-                                        onError={(e) => {
-                                            e.target.src = '/default-artist.png';
-                                        }}
-                                    />
-                                </div>
-                                <span className="font-body font-medium">{artist.name}</span>
+                <div className="flex flex-wrap gap-3">
+                    {artists.map((artist, index) => (
+                        <div
+                            key={`${artist.name}-${index}`}
+                            className="hover:scale-105 duration-300 bg-light2 px-4 py-2 rounded-lg flex items-center whitespace-nowrap"
+                        >
+                            <div className="w-6 h-6 mr-2 flex items-center justify-center">
+                                <img
+                                    src={artist.imageUrl}
+                                    alt={artist.name}
+                                    className="w-5 h-5 object-contain rounded-full"
+                                    onError={(e) => {
+                                        e.target.src = '/default-artist.png';
+                                    }}
+                                />
                             </div>
-                        ))}
-                    </div>
+                            <span className="font-body font-medium text-sm">{artist.name}</span>
+                        </div>
+                    ))}
                 </div>
             ) : (
                 <p className="font-body font-light">Couldn't load music data at the moment.</p>

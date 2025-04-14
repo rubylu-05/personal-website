@@ -167,7 +167,7 @@ export default function RootLayout({ children }) {
                 className="text-5xl font-heading font-extrabold text-primary mb-6"
                 style={{ textShadow: '0 0 40px rgba(175, 139, 106, 0.7)' }}
               >
-                Ruby <span className="font-extralight">Lu</span>
+                Ruby Lu
               </div>
               <div className="flex justify-center gap-6 text-xl mb-6">
                 <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">

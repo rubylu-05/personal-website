@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const [nowPlayingResponse, topArtistsResponse] = await Promise.all([
       fetch(`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${LASTFM_API_KEY}&format=json&limit=1`),
-      fetch(`http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${username}&api_key=${LASTFM_API_KEY}&format=json&period=7day&limit=10`)
+      fetch(`http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${username}&api_key=${LASTFM_API_KEY}&format=json&period=7day&limit=20`)
     ]);
 
     if (!nowPlayingResponse.ok || !topArtistsResponse.ok) {
