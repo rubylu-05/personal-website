@@ -1,6 +1,7 @@
 'use client';
 import LastFm from './LastFm'
 import Letterboxd from './Letterboxd';
+import AlbumCollage from './AlbumCollage';
 
 const artGroups = [
     {
@@ -121,13 +122,14 @@ export default function ArtGallery() {
                     </div>
                 </div>
             ))}
-            <h1 className="text-4xl font-heading font-extralight text-secondary mb-4 mt-20">Movies + Music</h1>
+            <h1 className="text-4xl font-heading font-extralight text-secondary mb-4 mt-20">Recent Watching & Listening</h1>
 
             <div className="mb-12">
                 <Letterboxd />
             </div>
-
             <LastFm />
+            <h1 className="text-4xl font-heading font-extralight text-secondary mb-4 mt-20">Favourites!</h1>
+            <AlbumCollage />
         </div>
     );
 }
