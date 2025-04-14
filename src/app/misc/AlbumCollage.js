@@ -2,6 +2,10 @@
 
 const albums = [
     {
+        title: 'Illmatic',
+        artist: 'Nas'
+    },
+    {
         title: 'Currents',
         artist: 'Tame Impala'
     },
@@ -82,10 +86,6 @@ const albums = [
         artist: 'Outkast'
     },
     {
-        title: 'Section.80',
-        artist: 'Kendrick Lamar'
-    },
-    {
         title: 'Random Access Memories',
         artist: 'Daft Punk'
     },
@@ -163,6 +163,7 @@ const albums = [
     },
 ];
 
+
 export default function AlbumCollage() {
     const getImagePath = (title) => {
         const formattedTitle = title
@@ -175,27 +176,24 @@ export default function AlbumCollage() {
     return (
         <div>
             <h3 className="text-xl font-heading font-extrabold text-primary mb-4">Favourite Albums</h3>
-            <div className="bg-light2 rounded-lg p-3">
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2">
                 {albums.map((album, index) => (
-                    <div 
-                        key={index} 
-                        className="group relative"
-                    >
+                    <div key={index} className="relative group">
                         <div className="aspect-square">
                             <img
                                 src={getImagePath(album.title)}
                                 alt={`${album.artist} - ${album.title}`}
-                                className="w-full h-full object-cover transition-all duration-300"
+                                className="w-full h-full object-cover transition-all duration-300 rounded-lg hover:scale-105"
                             />
                         </div>
-                        <div className="absolute hidden sm:block -bottom-10 left-0 right-0 bg-white dark:bg-gray-800 p-1 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 text-xs whitespace-nowrap overflow-hidden text-ellipsis">
-                            <p className="font-semibold">{album.title}</p>
-                            <p className="text-gray-600 dark:text-gray-300">{album.artist}</p>
+
+                        <div className="absolute hidden sm:flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-white p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 text-xs rounded-md whitespace-nowrap border border-gray-200 w-auto min-w-[120px] max-w-[300px] pointer-events-none">
+                            <p className="font-semibold text-center text-wrap" title={album.title}>{album.title}</p>
+                            <p className="text-gray-600 dark:text-gray-300 text-center text-wrap" title={album.artist}>{album.artist}</p>
+                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-gray-800 dark:border-t-gray-200"></div>
                         </div>
                     </div>
                 ))}
-                </div>
             </div>
         </div>
     );

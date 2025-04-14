@@ -2,6 +2,7 @@
 import LastFm from './LastFm'
 import Letterboxd from './Letterboxd';
 import AlbumCollage from './AlbumCollage';
+import Movies from './Movies';
 
 const artGroups = [
     {
@@ -129,7 +130,12 @@ export default function ArtGallery() {
             </div>
             <LastFm />
             <h1 className="text-4xl font-heading font-extralight text-secondary mb-4 mt-20">Favourites!</h1>
-            <AlbumCollage />
+            <div className="mb-12">
+                <Movies />
+            </div>
+            <div className="mb-12">
+                <AlbumCollage />
+            </div>
         </div>
     );
 }
