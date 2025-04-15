@@ -72,7 +72,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="mt-6 ml-6 mr-20">
+    <div className="p-20 pt-16">
       <h1 className="text-4xl font-heading font-extralight text-secondary mb-4">Hi, I'm Ruby!</h1>
       <p className="mb-4 font-body font-light">
         I'm a computer science student at the University of Waterloo who loves building practical solutions and learning through implementation. I've worked across various tech stacks in academic, personal, and professional projects, and I'm always eager to learn more.
@@ -97,10 +97,10 @@ export default function About() {
       <h2 className="text-4xl font-heading font-extralight text-secondary mb-4">Technical skills</h2>
       <p className="mb-4 font-body font-light">In no particular order, these are some languages, libraries, frameworks, and technologies that I have experience working with.</p>
 
-      <div className="mb-12">
+      <div>
         {skillGroups.map((group, groupIndex) => (
           <div key={groupIndex} className="mb-8">
-            <h3 className="text-xl font-heading font-extrabold text-primary mb-4">{group.category}</h3>
+            <h3 className="text-xl font-heading font-extrabold text-primary mb-2">{group.category}</h3>
             <div className="flex flex-wrap gap-3">
               {group.items.map((skillName, skillIndex) => (
                 <div

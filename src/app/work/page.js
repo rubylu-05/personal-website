@@ -127,7 +127,7 @@ export default function Work() {
   };
 
   return (
-    <div className="mt-6 ml-6 mr-10">
+    <div className="p-20 pt-16">
       <div className="space-y-6">
         {projects.map((project, index) => {
           const imageOnRight = index % 2 !== 0;
@@ -135,7 +135,7 @@ export default function Work() {
           return (
             <div
               key={project.id}
-              className={`bg-white rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${expandedId === project.id ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.15)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'}`}
+              className={`bg-white rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${expandedId === project.id ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.12)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'}`}
             >
               {/* Top section with image and basic info */}
               <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>

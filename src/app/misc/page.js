@@ -51,7 +51,7 @@ export default function Misc() {
     };
 
     return (
-        <div className="mt-6 ml-6 mr-20">
+        <div className="overflow-x-hidden p-20 pt-16">
             <h1 className="text-4xl font-heading font-extralight text-secondary mb-4">Artistic Work</h1>
             <p className="font-body font-light">
                 A gallery of miscellaneous drawings, paintings, and crafts!
@@ -68,7 +68,7 @@ export default function Misc() {
                                 <img
                                     src={piece.image}
                                     alt=""
-                                    className={`w-full h-auto object-fill mb-3 rounded-lg shadow-[0_0_30px_15px_rgba(175,139,106,0.1)] hover:shadow-[0_0_30px_15px_rgba(175,139,106,0.25)] hover:scale-[1.02] duration-500 ease-out w-full`}
+                                    className={`w-full h-auto object-fill mb-3 rounded-lg shadow-[0_0_30px_15px_rgba(175,139,106,0.1)] hover:shadow-[0_0_30px_15px_rgba(175,139,106,0.12)] hover:scale-[1.02] duration-500 ease-out w-full`}
                                 />
                                 <p className="font-body font-light text-xs">{piece.description}</p>
                             </div>

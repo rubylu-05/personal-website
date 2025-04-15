@@ -275,7 +275,7 @@ export default function RootLayout({ children }) {
           {/* Draggable divider */}
           {!isSidebarVisible && (
             <div
-              className="w-2 bg-secondary opacity-[25%] hover:opacity-100 hover:bg-primary cursor-col-resize transition-all duration-500 transition-ease-out"
+              className="w-2 bg-secondary opacity-[20%] hover:opacity-100 hover:bg-primary cursor-col-resize transition-all duration-500 transition-ease-out"
               onMouseDown={startDrag}
               onDoubleClick={handleDoubleClick}
               title="Double-click to reset width"
@@ -283,7 +283,7 @@ export default function RootLayout({ children }) {
           )}
 
           <main
-            className={`flex-1 flex justify-center items-start p-10 transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
+            className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
             [&::-webkit-scrollbar]:w-2
             [&::-webkit-scrollbar-track]:bg-light
             [&::-webkit-scrollbar-thumb]:bg-primary`}
