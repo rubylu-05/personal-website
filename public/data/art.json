@@ -1,0 +1,91 @@
+[
+    {
+      "title": "Digital",
+      "pieces": [
+        {
+          "description": "Street under a pink sky, drawn digitally",
+          "image": "https://i.postimg.cc/PJsYSD87/street.png",
+          "fullWidth": true
+        }
+      ]
+    },
+    {
+      "title": "Alcohol Markers",
+      "pieces": [
+        {
+          "description": "I bought some grayscale Tombow alcohol markers from Dollarama and watched Mad Max: Fury Road for the first time, inspiring me to draw this",
+          "image": "https://i.postimg.cc/g07v6Qcm/fury-road.png"
+        },
+        {
+          "description": "A quaint storefront, drawn with Tombow alcohol markers and fineliner pens",
+          "image": "https://i.postimg.cc/XNdwpsR6/storefront.png"
+        },
+        {
+          "description": "I drew a Corvette for a family friend who really likes cars",
+          "image": "https://i.postimg.cc/RF3Ls9pW/car.png"
+        }
+      ]
+    },
+    {
+      "title": "Cats!",
+      "description": "I found a bunch of cute photos of cats on Pinterest as reference.",
+      "pieces": [
+        {
+          "description": "A sleepy cat, painted with acrylics",
+          "image": "https://i.postimg.cc/sfhJ5jZ8/cat.png"
+        },
+        {
+          "description": "Sleepy gray cats, drawn with alcohol markers and fineliner pens",
+          "image": "https://i.postimg.cc/xdpP3q5r/cats.png"
+        }
+      ]
+    },
+    {
+      "title": "Creatures & Cryptids",
+      "description": "These are some illustrations inspired by famous cryptids and mythical creatures - I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their depictions are very open to interpretation.",
+      "pieces": [
+        {
+          "description": "Wendigo (one of my favourite cryptids), drawn digitally",
+          "image": "https://i.postimg.cc/90dTKfdQ/wendigo.png"
+        },
+        {
+          "description": "Mothman (another one of my favourites), drawn with pencils",
+          "image": "https://i.postimg.cc/Ls5t52px/mothman.jpg"
+        }
+      ]
+    },
+    {
+      "pieces": [
+        {
+          "description": "Death worm, drawn digitally",
+          "image": "https://i.postimg.cc/Z5TFk6Dt/deathworm.png"
+        },
+        {
+          "description": "Original (?), drawn digitally",
+          "image": "https://i.postimg.cc/fT7jg8Cf/creature.png"
+        },
+        {
+          "description": "Dragon, drawn digitally",
+          "image": "https://i.postimg.cc/sXZ5Pm1S/dragon.png"
+        }
+      ]
+    },
+    {
+      "title": "Needle Felting",
+      "description": "Needle felting is pretty fun! I've made a bunch of little animals, but here are my personal favourites.",
+      "pieces": [
+        {
+          "description": "Bunny!",
+          "image": "https://i.postimg.cc/zGj73xRG/bunny.jpg"
+        },
+        {
+          "description": "Frog!",
+          "image": "https://i.postimg.cc/VkD9z53S/frog.jpg"
+        },
+        {
+          "description": "Dinosaur!",
+          "image": "https://i.postimg.cc/rF2NJB1p/dinosaur.jpg"
+        }
+      ]
+    }
+  ]

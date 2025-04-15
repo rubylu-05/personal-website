@@ -3,74 +3,20 @@
 import { useEffect, useState, useRef } from 'react';
 
 function Movies() {
-    const [movies] = useState([
-        {
-            title: 'Inglorious Basterds',
-            year: '2009',
-        },
-        {
-            title: 'The Fly',
-            year: '1986',
-        },
-        {
-            title: 'Mad Max: Fury Road',
-            year: '2015',
-        },
-        {
-            title: 'Fantastic Mr. Fox',
-            year: '2009',
-        },
-        {
-            title: 'Godzilla Minus One',
-            year: '2023',
-        },
-        {
-            title: 'Jaws',
-            year: '1975',
-        },
-        {
-            title: 'Possession',
-            year: '1980',
-        },
-        {
-            title: 'Perfect Blue',
-            year: '1997',
-        },
-        {
-            title: 'Requiem for a Dream',
-            year: '2001',
-        },
-        {
-            title: 'Misery',
-            year: '1990',
-        },
-        {
-            title: 'Eternal Sunshine of the Spotless Mind',
-            year: '2004',
-        },
-        {
-            title: 'The Social Network',
-            year: '2010',
-        },
-        {
-            title: 'Re-Animator',
-            year: '1985',
-        },
-        {
-            title: 'Prisoners',
-            year: '2013',
-        },
-        {
-            title: 'Ratatouille',
-            year: '2007',
-        }
-    ]);
+    const [movies, setMovies] = useState([]);
     const [offset, setOffset] = useState(0);
     const containerRef = useRef(null);
     const itemRefs = useRef([]);
     const autoScrollInterval = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
     const componentRef = useRef(null);
+
+    useEffect(() => {
+        fetch('/data/movies.json')
+            .then(response => response.json())
+            .then(data => setMovies(data))
+            .catch(error => console.error('Error loading movies data:', error));
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -149,6 +95,10 @@ function Movies() {
         }
     }, [isHovered]);
 
+    if (movies.length === 0) {
+        return <div>Loading movies...</div>;
+    }
+
     return (
         <div ref={componentRef}>
             <h3 className="text-xl font-heading font-extrabold text-primary mb-4">Favourite Movies</h3>
@@ -187,7 +137,7 @@ function Movies() {
                                 >
                                     <div className="w-full h-48 rounded-md mb-3 overflow-hidden">
                                         <img
-                                            src={`/images/fav_movies/${movie.title.replace(/[^\w\s]/g, '').replace(/\s+/g, '').toLowerCase()}.png`}
+                                            src={movie.image}
                                             alt={movie.title}
                                             className="w-full h-full object-cover"
                                         />
