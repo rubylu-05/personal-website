@@ -135,7 +135,7 @@ function Letterboxd() {
 
     return (
         <div ref={componentRef}>
-            <h3 className="text-xl font-heading font-extrabold text-primary mb-4">Last watched movies</h3>
+            <h3 className="text-xl font-heading font-extrabold text-primary mb-4">Recently watched movies</h3>
 
             <div className="relative">
                 <div

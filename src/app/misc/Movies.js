@@ -61,10 +61,6 @@ function Movies() {
             year: '2013',
         },
         {
-            title: 'White Chicks',
-            year: '2005',
-        },
-        {
             title: 'Ratatouille',
             year: '2007',
         }
@@ -174,7 +170,7 @@ function Movies() {
                         </svg>
                     </button>
 
-                    <div className="relative w-full overflow-hidden" style={{ height: '16rem' }}>
+                    <div className="relative w-full overflow-hidden" style={{ height: '17rem' }}>
                         <div
                             ref={containerRef}
                             className="flex transition-transform duration-500 ease-in-out pl-0"
@@ -198,17 +194,15 @@ function Movies() {
                                     </div>
 
                                     <div className="space-y-0.5">
-                                        <div className="flex justify-between items-baseline">
-                                            <span
-                                                className="font-body font-medium text-sm truncate flex-1"
-                                                title={movie.title}
-                                            >
-                                                {movie.title}
-                                            </span>
-                                            <span className="font-body font-light text-xs whitespace-nowrap ml-2">
-                                                ({movie.year})
-                                            </span>
-                                        </div>
+                                        <span
+                                            className="font-body font-medium text-sm block truncate"
+                                            title={movie.title}
+                                        >
+                                            {movie.title}
+                                        </span>
+                                        <span className="font-body font-light text-xs block">
+                                            {movie.year}
+                                        </span>
                                     </div>
                                 </div>
                             ))}

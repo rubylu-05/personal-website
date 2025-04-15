@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     '/': "Welcome! Feel free to take a look around :)",
     '/about': "A quick peek into my personal interests and growth as a developer.",
     '/work': "Recent projects that I've poured my curiosity into - they all taught me something new.",
-    '/misc': "These are what my interests and hobbies look like outside of computer science."
+    '/misc': "This is where I get to ramble about art, movies, and music that I like."
   };
 
   const currentMessage = messages[pathname] || messages['/'];
