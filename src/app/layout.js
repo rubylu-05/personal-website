@@ -366,7 +366,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick })
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-        <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px]">
+        <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px] font-body font-light">
           {showNowPlaying ? (
             nowPlaying ? (
               <NowPlayingDisplay nowPlaying={nowPlaying} />

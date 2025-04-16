@@ -127,7 +127,7 @@ const RecentMediaSection = () => (
         <p className="font-body font-light mb-6">
             Below are my most recently watched movies (fetched from my Letterboxd activity), as well as my top played artists this week (fetched from my Spotify listening).
         </p>
-        <div className="mb-4">
+        <div className="mb-10">
             <Letterboxd />
         </div>
         <LastFm />
@@ -142,7 +142,7 @@ const FavoritesSection = () => (
         <p className="font-body font-light mb-4">
             Since I shared my recents, I wanted to share my favourites as well, though this will probably change once in a while.
         </p>
-        <div className="mb-4">
+        <div className="mb-10">
             <Movies />
         </div>
         <div className="mb-12">

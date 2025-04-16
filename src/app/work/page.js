@@ -155,7 +155,7 @@ const ProjectDescriptionSection = ({ section }) => (
 );
 
 const ExpandedContent = ({ isExpanded, fullDescription }) => (
-  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-[1000px]' : 'max-h-0'
+  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? '' : 'max-h-0'
     }`}>
     <div className="mt-4 space-y-6">
       {fullDescription.map((section, index) => (
