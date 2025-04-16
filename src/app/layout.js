@@ -8,9 +8,20 @@ import { AiFillMail, AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
+const MESSAGES = {
+  '/': "Welcome! Feel free to take a look around :)",
+  '/about': "A quick peek into my personal interests and growth as a developer.",
+  '/work': "Recent projects that I've poured my curiosity into - they all taught me something new.",
+  '/misc': "This is where I get to ramble about art, movies, and music that I like."
+};
+
+const MIN_SIDEBAR_WIDTH = 20;
+const MAX_SIDEBAR_WIDTH = 60;
+
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
+  const containerRef = useRef(null);
   const [isSidebarVisible, setSidebarVisible] = useState(pathname === '/');
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,19 +29,8 @@ export default function RootLayout({ children }) {
   const [showNowPlaying, setShowNowPlaying] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState('30%');
   const [isDragging, setIsDragging] = useState(false);
-  const containerRef = useRef(null);
 
-  const MIN_SIDEBAR_WIDTH = 20;
-  const MAX_SIDEBAR_WIDTH = 60;
-
-  const messages = {
-    '/': "Welcome! Feel free to take a look around :)",
-    '/about': "A quick peek into my personal interests and growth as a developer.",
-    '/work': "Recent projects that I've poured my curiosity into - they all taught me something new.",
-    '/misc': "This is where I get to ramble about art, movies, and music that I like."
-  };
-
-  const currentMessage = messages[pathname] || messages['/'];
+  const currentMessage = MESSAGES[pathname] || MESSAGES['/'];
 
   const fetchNowPlaying = async () => {
     try {
@@ -54,6 +54,47 @@ export default function RootLayout({ children }) {
     }
   };
 
+  const resetDialogue = () => {
+    setDisplayText('');
+    setCurrentIndex(0);
+    setShowNowPlaying(false);
+  };
+
+  const startDrag = (e) => {
+    setIsDragging(true);
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  };
+
+  const onDrag = (e) => {
+    if (!isDragging || !containerRef.current) return;
+
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const containerWidth = containerRect.width;
+    const mouseX = e.clientX - containerRect.left;
+
+    const newWidthPercent = (mouseX / containerWidth) * 100;
+    const constrainedWidth = Math.max(MIN_SIDEBAR_WIDTH, Math.min(newWidthPercent, MAX_SIDEBAR_WIDTH));
+
+    setSidebarWidth(`${constrainedWidth}%`);
+  };
+
+  const stopDrag = () => {
+    setIsDragging(false);
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  };
+
+  const handleLinkClick = (e, href) => {
+    if (pathname === href) {
+      e.preventDefault();
+      setSidebarVisible(true);
+      router.push('/');
+    } else {
+      setSidebarVisible(false);
+    }
+  };
+
   useEffect(() => {
     fetchNowPlaying();
     const interval = setInterval(fetchNowPlaying, 10000);
@@ -64,12 +105,6 @@ export default function RootLayout({ children }) {
     setSidebarVisible(pathname === '/');
     resetDialogue();
   }, [pathname]);
-
-  const resetDialogue = () => {
-    setDisplayText('');
-    setCurrentIndex(0);
-    setShowNowPlaying(false);
-  };
 
   useEffect(() => {
     if (currentIndex < currentMessage.length) {
@@ -87,50 +122,6 @@ export default function RootLayout({ children }) {
       return () => clearTimeout(delay);
     }
   }, [currentIndex, currentMessage, showNowPlaying]);
-
-  const handleLinkClick = (e, href) => {
-    if (pathname === href) {
-      e.preventDefault();
-      setSidebarVisible(true);
-      router.push('/');
-    } else {
-      setSidebarVisible(false);
-    }
-  };
-
-  const handleAvatarClick = () => {
-    resetDialogue();
-  };
-
-  const startDrag = (e) => {
-    setIsDragging(true);
-    document.body.style.cursor = 'col-resize';
-    document.body.style.userSelect = 'none';
-  };
-
-  const onDrag = (e) => {
-    if (!isDragging) return;
-
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const containerWidth = containerRect.width;
-    const mouseX = e.clientX - containerRect.left;
-
-    const newWidthPercent = (mouseX / containerWidth) * 100;
-
-    const constrainedWidth = Math.max(MIN_SIDEBAR_WIDTH, Math.min(newWidthPercent, MAX_SIDEBAR_WIDTH));
-
-    setSidebarWidth(`${constrainedWidth}%`);
-  };
-
-  const stopDrag = () => {
-    setIsDragging(false);
-    document.body.style.cursor = '';
-    document.body.style.userSelect = '';
-  };
-
-  const handleDoubleClick = () => {
-    setSidebarWidth('30%');
-  };
 
   useEffect(() => {
     if (isDragging) {
@@ -150,140 +141,35 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-light text-black h-screen w-screen overflow-hidden" ref={containerRef}>
         <div className="flex h-full">
-          <aside
-            className={`${isSidebarVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''
-              }`}
-            style={{
-              flexShrink: 0,
-              width: isSidebarVisible ? '100%' : sidebarWidth
-            }}
-          >
-            <div className="text-center relative mb-48">
-              <div
-                className="text-5xl font-heading font-extrabold text-primary mb-6"
-                style={{ textShadow: '0 0 40px rgba(175, 139, 106, 0.7)' }}
-              >
-                Ruby Lu
-              </div>
-              <div className="flex justify-center gap-6 text-xl mb-6">
-                <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
-                  <AiFillMail className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
-                </a>
-                <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer">
-                  <AiFillLinkedin className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
-                </a>
-                <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer">
-                  <AiFillGithub className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
-                </a>
-              </div>
-              <nav className="text-black text-base font-light font-body space-y-2">
-                <Link
-                  href="/about"
-                  onClick={(e) => handleLinkClick(e, '/about')}
-                  className={`block hover:text-secondary duration-200 ease-out ${pathname === '/about' ? 'text-secondary' : ''}`}
-                >
-                  About
-                </Link>
-                <Link
-                  href="/work"
-                  onClick={(e) => handleLinkClick(e, '/work')}
-                  className={`block hover:text-secondary duration-200 ease-out ${pathname === '/work' ? 'text-secondary' : ''}`}
-                >
-                  Recent Projects
-                </Link>
-                <Link
-                  href="/misc"
-                  onClick={(e) => handleLinkClick(e, '/misc')}
-                  className={`block hover:text-secondary duration-200 ease-out ${pathname === '/misc' ? 'text-secondary' : ''}`}
-                >
-                  Life Outside of Coding
-                </Link>
-              </nav>
-            </div>
-
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
-              <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-                <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px]">
-                  {showNowPlaying ? (
-                    nowPlaying ? (
-                      <div className="flex items-center gap-4">
-                        <div className="relative shrink-0">
-                          <img
-                            src={nowPlaying.image || '/default-song.png'}
-                            alt={`${nowPlaying.track} cover`}
-                            className={`shadow-[0_0_15px_5px_rgba(175,139,106,0.2)] w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''}`}
-                            onError={(e) => {
-                              e.target.onerror = null;
-                              e.target.src = '/default-song.png';
-                            }}
-                          />
-                          <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full shadow-[inset_0_0_15px_5px_rgba(175,139,106,0.2)]"></div>
-                        </div>
-                        <div className="text-left overflow-hidden min-w-0">
-                          <div className="text-xs font-body font-extralight text-bold text-secondary font-light">
-                            {nowPlaying.nowplaying ? 'Now Listening on Spotify:' : 'Last Played on Spotify:'}
-                          </div>
-                          <div className="truncate font-heading font-extrabold -mb-0.5 text-sm" title={nowPlaying.track}>
-                            {nowPlaying.track}
-                          </div>
-                          <div className="truncate font-body font-extralight text-xs" title={nowPlaying.artist}>
-                            {nowPlaying.artist}
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-4">
-                        <div className="relative shrink-0">
-                          <img
-                            src="/default-song.png"
-                            alt="Not listening"
-                            className="h-12 rounded-full object-cover"
-                          />
-                        </div>
-                        <div className="text-left overflow-hidden min-w-0">
-                          <div className="text-xs text-secondary font-light">Last Played on Spotify:</div>
-                          <div className="font-bold -mb-0.5">—</div>
-                          <div className="text-xs text-gray-600">[No recent tracks found]</div>
-                        </div>
-                      </div>
-                    )
-                  ) : (
-                    displayText
-                  )}
-                </div>
-                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white">
-                </div>
-              </div>
-
-              <div>
-                <Image
-                  src={showNowPlaying && nowPlaying?.nowplaying ? "/images/avatar/me-listening.png" : "/images/avatar/me.png"}
-                  alt="me"
-                  width={125}
-                  height={125}
-                  className="mx-auto h-[15%] object-contain mt-2 hover:scale-[103%] transition-transform duration-200 cursor-pointer"
-                  onClick={handleAvatarClick}
-                />
-              </div>
-            </div>
-          </aside>
+          {/* Sidebar */}
+          <Sidebar
+            isVisible={isSidebarVisible}
+            width={sidebarWidth}
+            isDragging={isDragging}
+            pathname={pathname}
+            displayText={displayText}
+            showNowPlaying={showNowPlaying}
+            nowPlaying={nowPlaying}
+            onLinkClick={handleLinkClick}
+            onAvatarClick={resetDialogue}
+          />
 
           {/* Draggable divider */}
           {!isSidebarVisible && (
             <div
               className="w-2 bg-secondary opacity-[20%] hover:opacity-100 hover:bg-primary cursor-col-resize transition-all duration-500 transition-ease-out"
               onMouseDown={startDrag}
-              onDoubleClick={handleDoubleClick}
+              onDoubleClick={() => setSidebarWidth('30%')}
               title="Double-click to reset width"
             />
           )}
 
-          <main
-            className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
+          {/* Main content */}
+          <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
             [&::-webkit-scrollbar]:w-2
             [&::-webkit-scrollbar-track]:bg-light
             [&::-webkit-scrollbar-thumb]:bg-primary`}
@@ -297,5 +183,166 @@ export default function RootLayout({ children }) {
         </div>
       </body>
     </html>
+  );
+}
+
+function Sidebar({
+  isVisible,
+  width,
+  isDragging,
+  pathname,
+  displayText,
+  showNowPlaying,
+  nowPlaying,
+  onLinkClick,
+  onAvatarClick
+}) {
+  return (
+    <aside
+      className={`${isVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''
+        }`}
+      style={{
+        flexShrink: 0,
+        width: isVisible ? '100%' : width
+      }}
+    >
+      <div className="text-center relative mb-48">
+        <h1 className="text-5xl font-heading font-extrabold text-primary mb-6" style={{ textShadow: '0 0 40px rgba(175, 139, 106, 0.7)' }}>
+          Ruby Lu
+        </h1>
+
+        <SocialLinks />
+
+        <nav className="text-black text-base font-light font-body space-y-2">
+          <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')}>
+            About
+          </NavLink>
+          <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')}>
+            Recent Projects
+          </NavLink>
+          <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')}>
+            Life Outside of Coding
+          </NavLink>
+        </nav>
+      </div>
+
+      <DialogueBox
+        displayText={displayText}
+        showNowPlaying={showNowPlaying}
+        nowPlaying={nowPlaying}
+        onAvatarClick={onAvatarClick}
+      />
+    </aside>
+  );
+}
+
+function SocialLinks() {
+  return (
+    <div className="flex justify-center gap-6 text-xl mb-6">
+      <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
+        <AiFillMail className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
+      </a>
+      <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer">
+        <AiFillLinkedin className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
+      </a>
+      <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer">
+        <AiFillGithub className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
+      </a>
+    </div>
+  );
+}
+
+function NavLink({ href, pathname, onClick, children }) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className={`block hover:text-secondary duration-200 ease-out ${pathname === href ? 'text-secondary' : ''
+        }`}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick }) {
+  return (
+    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
+      <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
+        <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px]">
+          {showNowPlaying ? (
+            nowPlaying ? (
+              <NowPlayingDisplay nowPlaying={nowPlaying} />
+            ) : (
+              <NoTracksDisplay />
+            )
+          ) : (
+            displayText
+          )}
+        </div>
+        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white"></div>
+      </div>
+
+      <div>
+        <Image
+          src={showNowPlaying && nowPlaying?.nowplaying ? "/images/avatar/me-listening.png" : "/images/avatar/me.png"}
+          alt="me"
+          width={125}
+          height={125}
+          className="mx-auto h-[15%] object-contain mt-2 hover:scale-[103%] transition-transform duration-200 cursor-pointer"
+          onClick={onAvatarClick}
+        />
+      </div>
+    </div>
+  );
+}
+
+function NowPlayingDisplay({ nowPlaying }) {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="relative shrink-0">
+        <img
+          src={nowPlaying.image || '/default-song.png'}
+          alt={`${nowPlaying.track} cover`}
+          className={`shadow-[0_0_15px_5px_rgba(175,139,106,0.2)] w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''
+            }`}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = '/default-song.png';
+          }}
+        />
+        <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full shadow-[inset_0_0_15px_5px_rgba(175,139,106,0.2)]"></div>
+      </div>
+      <div className="text-left overflow-hidden min-w-0">
+        <div className="text-xs font-body font-extralight text-bold text-secondary font-light">
+          {nowPlaying.nowplaying ? 'Now Listening on Spotify:' : 'Last Played on Spotify:'}
+        </div>
+        <div className="truncate font-heading font-extrabold -mb-0.5 text-sm" title={nowPlaying.track}>
+          {nowPlaying.track}
+        </div>
+        <div className="truncate font-body font-extralight text-xs" title={nowPlaying.artist}>
+          {nowPlaying.artist}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function NoTracksDisplay() {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="relative shrink-0">
+        <img
+          src="/default-song.png"
+          alt="Not listening"
+          className="h-12 rounded-full object-cover"
+        />
+      </div>
+      <div className="text-left overflow-hidden min-w-0">
+        <div className="text-xs text-secondary font-light">Last Played on Spotify:</div>
+        <div className="font-bold -mb-0.5">—</div>
+        <div className="text-xs text-gray-600">[No recent tracks found]</div>
+      </div>
+    </div>
   );
 }

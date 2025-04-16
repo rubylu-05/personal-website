@@ -119,6 +119,110 @@ const projects = [
   }
 ];
 
+const ProjectLink = ({ href, children }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105 duration-200"
+  >
+    {children}
+  </a>
+);
+
+const ProjectDescriptionSection = ({ section }) => (
+  <div className="mb-6">
+    <h4 className="text-lg font-heading font-bold text-primary mb-2">
+      {section.section}
+    </h4>
+    {section.intro && (
+      <p className="font-body text-sm font-light mb-2">
+        {section.intro}
+      </p>
+    )}
+    {section.points ? (
+      <ul className="list-disc pl-5 font-body text-sm font-light space-y-1 [&>li]:marker:text-secondary">
+        {section.points.map((point, i) => (
+          <li key={i}>{point}</li>
+        ))}
+      </ul>
+    ) : (
+      <p className="font-body text-sm font-light">
+        {section.content}
+      </p>
+    )}
+  </div>
+);
+
+const ExpandedContent = ({ isExpanded, fullDescription }) => (
+  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+    isExpanded ? 'max-h-[1000px]' : 'max-h-0'
+  }`}>
+    <div className="mt-4 space-y-6">
+      {fullDescription.map((section, index) => (
+        <ProjectDescriptionSection key={index} section={section} />
+      ))}
+    </div>
+  </div>
+);
+
+const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
+  <div className={`bg-white rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${
+    isExpanded ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.12)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'
+  }`}>
+    <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>
+      <div className="md:w-1/3 relative">
+        <Image
+          src={project.image}
+          alt={project.title}
+          width={400}
+          height={300}
+          className="w-full h-auto rounded-lg object-contain transition-transform duration-200 hover:scale-105"
+        />
+      </div>
+
+      <div className="md:w-2/3">
+        <h2 className="text-2xl font-heading font-bold text-primary mb-2">
+          {project.title}
+        </h2>
+        <h3 className="text-lg font-heading font-light text-secondary mb-4 leading-snug">
+          {project.subtitle}
+        </h3>
+        <p className="font-body text-sm font-light">
+          {project.shortDescription}
+        </p>
+      </div>
+    </div>
+
+    <ExpandedContent 
+      isExpanded={isExpanded} 
+      fullDescription={project.fullDescription} 
+    />
+
+    <div className="flex justify-between mt-4">
+      <div className="flex items-center gap-2">
+        {project.githubLink && (
+          <a
+            href={project.githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-secondary hover:text-primary transition-colors duration-200 hover:scale-105"
+          >
+            <FaGithub size={20} />
+          </a>
+        )}
+        {project.demoLink && <ProjectLink href={project.demoLink}>Link</ProjectLink>}
+      </div>
+      <button
+        onClick={() => toggleExpand(project.id)}
+        className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105 duration-200"
+      >
+        {isExpanded ? 'Show Less' : 'Read More'}
+      </button>
+    </div>
+  </div>
+);
+
 export default function Work() {
   const [expandedId, setExpandedId] = useState(null);
 
@@ -129,106 +233,15 @@ export default function Work() {
   return (
     <div className="p-20 pt-16">
       <div className="space-y-6">
-        {projects.map((project, index) => {
-          const imageOnRight = index % 2 !== 0;
-
-          return (
-            <div
-              key={project.id}
-              className={`bg-white rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${expandedId === project.id ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.12)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'}`}
-            >
-              {/* Top section with image and basic info */}
-              <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>
-                <div className="md:w-1/3 relative" >
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={400}
-                    height={300}
-                    className="w-full h-auto rounded-lg object-contain transition-transform duration-200 hover:scale-105"
-                  />
-                </div>
-
-                {/* Project Content */}
-                <div className="md:w-2/3">
-                  <h2 className="text-2xl font-heading font-bold text-primary mb-2">
-                    {project.title}
-                  </h2>
-                  <h3 className="text-lg font-heading font-light text-secondary mb-4 leading-snug">
-                    {project.subtitle}
-                  </h3>
-
-                  <p className="font-body text-sm font-light">
-                    {project.shortDescription}
-                  </p>
-                </div>
-              </div>
-
-              {/* Expanded Content */}
-              <div className={`overflow-hidden transition-all duration-300 ease-in-out ${expandedId === project.id ? 'max-h-[1000px]' : 'max-h-0'}`}>
-                <div className="mt-4 space-y-6">
-                  {project.fullDescription.map((section, index) => (
-                    <div key={index} className="mb-6">
-                      <h4 className="text-lg font-heading font-bold text-primary mb-2">
-                        {section.section}
-                      </h4>
-
-                      {section.intro && (
-                        <p className="font-body text-sm font-light mb-2">
-                          {section.intro}
-                        </p>
-                      )}
-
-                      {section.points ? (
-                        <ul className="list-disc pl-5 font-body text-sm font-light space-y-1 [&>li]:marker:text-secondary">
-                          {section.points.map((point, i) => (
-                            <li key={i}>{point}</li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="font-body text-sm font-light">
-                          {section.content}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Buttons section */}
-              <div className="flex justify-between mt-4">
-                <div className="flex items-center gap-2">
-                  {project.githubLink && (
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-secondary hover:text-primary transition-colors duration-200 hover:scale-105 transition-all duration-100 ease-out"
-                    >
-                      <FaGithub size={20} />
-                    </a>
-                  )}
-                  {project.demoLink && (
-                    <a
-                      href={project.demoLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105 duration-200"
-                    >
-                      Link
-                    </a>
-                  )}
-                </div>
-                <button
-                  onClick={() => toggleExpand(project.id)}
-                  className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105 duration-200"
-                >
-                  {expandedId === project.id ? 'Show Less' : 'Read More'}
-                </button>
-              </div>
-            </div>
-          );
-        })}
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            imageOnRight={index % 2 !== 0}
+            isExpanded={expandedId === project.id}
+            toggleExpand={toggleExpand}
+          />
+        ))}
       </div>
     </div>
   );
