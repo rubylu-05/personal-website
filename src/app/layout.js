@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
   const router = useRouter();
   const containerRef = useRef(null);
   const [isSidebarVisible, setSidebarVisible] = useState(pathname === '/');
+  const [isMobile, setIsMobile] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nowPlaying, setNowPlaying] = useState(null);
@@ -31,7 +32,7 @@ export default function RootLayout({ children }) {
   const [isDragging, setIsDragging] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [hasStartedTyping, setHasStartedTyping] = useState(false);
 
   const currentMessage = MESSAGES[pathname] || MESSAGES['/'];
 
@@ -71,6 +72,11 @@ export default function RootLayout({ children }) {
     setDisplayText('');
     setCurrentIndex(0);
     setShowNowPlaying(false);
+    setHasStartedTyping(false);
+    
+    setTimeout(() => {
+      setHasStartedTyping(true);
+    }, isMobile ? 100 : 0);
   };
 
   const startDrag = (e) => {
@@ -128,11 +134,21 @@ export default function RootLayout({ children }) {
   }, [pathname, isMobile]);
 
   useEffect(() => {
+    const startTimer = setTimeout(() => {
+      setHasStartedTyping(true);
+    }, isMobile ? 10 : 0);
+
+    return () => clearTimeout(startTimer);
+  }, [currentMessage, isMobile]);
+
+  useEffect(() => {
+    if (!hasStartedTyping) return;
+
     if (currentIndex < currentMessage.length) {
       const timeout = setTimeout(() => {
         setDisplayText(prev => prev + currentMessage[currentIndex]);
         setCurrentIndex(prev => prev + 1);
-      }, 50);
+      }, isMobile ? 30 : 50);
 
       return () => clearTimeout(timeout);
     } else if (currentIndex === currentMessage.length && !showNowPlaying) {
@@ -142,7 +158,7 @@ export default function RootLayout({ children }) {
 
       return () => clearTimeout(delay);
     }
-  }, [currentIndex, currentMessage, showNowPlaying]);
+  }, [currentIndex, currentMessage, showNowPlaying, hasStartedTyping, isMobile]);
 
   useEffect(() => {
     if (isDragging) {
@@ -173,7 +189,6 @@ export default function RootLayout({ children }) {
     };
   }, [isMobileMenuOpen]);
 
-
   return (
     <html lang="en" className="light">
       <head>
@@ -186,7 +201,6 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-light text-black" style={{ height: '100dvh', width: '100vw', overflow: 'hidden' }} ref={containerRef}>
         <div className="flex h-full">
-
           {isMobile && pathname !== '/' && (
             <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
               <button
@@ -199,7 +213,6 @@ export default function RootLayout({ children }) {
 
               {isMobileMenuOpen && (
                 <div className="fixed right-4 top-16 w-48 bg-white rounded-lg py-3 z-[1000] shadow-[0_0_15px_5px_rgba(175,139,106,0.12)]">
-                  {/* Centered navigation links */}
                   <div className="flex flex-col items-center space-y-2">
                     <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>
                       Home
@@ -242,6 +255,7 @@ export default function RootLayout({ children }) {
               onLinkClick={handleLinkClick}
               onAvatarClick={resetDialogue}
               isMobile={isMobile}
+              hasStartedTyping={hasStartedTyping}
             />
           )}
 
@@ -254,9 +268,8 @@ export default function RootLayout({ children }) {
             />
           )}
 
-          {/* Main content */}
           <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
-  ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-light [&::-webkit-scrollbar-thumb]:bg-primary' : ''} relative`}
+            ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-light [&::-webkit-scrollbar-thumb]:bg-primary' : ''} relative`}
             style={{
               backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(244, 235, 227, 1) 100%)',
               flexGrow: 1,
@@ -280,7 +293,8 @@ function Sidebar({
   nowPlaying,
   onLinkClick,
   onAvatarClick,
-  isMobile
+  isMobile,
+  hasStartedTyping
 }) {
   return (
     <aside
@@ -292,7 +306,7 @@ function Sidebar({
       }}
     >
       <div className="text-center relative mb-48">
-        <h1 className="text-5xl font-heading font-extrabold text-primary mb-6" style={{ textShadow: '0 0 40px rgba(175, 139, 106, 0.7)' }}>
+        <h1 className="text-5xl font-heading font-extrabold text-primary mb-6">
           Ruby Lu
         </h1>
 
@@ -311,12 +325,36 @@ function Sidebar({
         </nav>
       </div>
 
-      <DialogueBox
-        displayText={displayText}
-        showNowPlaying={showNowPlaying}
-        nowPlaying={nowPlaying}
-        onAvatarClick={onAvatarClick}
-      />
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
+        {hasStartedTyping && (
+          <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
+            <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px] font-body font-light">
+              {showNowPlaying ? (
+                nowPlaying ? (
+                  <NowPlayingDisplay nowPlaying={nowPlaying} />
+                ) : (
+                  <NoTracksDisplay />
+                )
+              ) : (
+                displayText
+              )}
+            </div>
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white"></div>
+          </div>
+        )}
+
+        <div>
+          <Image
+            src={showNowPlaying && nowPlaying?.nowplaying ? "/images/avatar/me-listening.png" : "/images/avatar/me.png"}
+            alt="me"
+            width={125}
+            height={125}
+            className="mx-auto h-[15%] object-contain mt-2 hover:scale-[103%] transition-transform duration-200 cursor-pointer"
+            onClick={onAvatarClick}
+            priority
+          />
+        </div>
+      </div>
     </aside>
   );
 }
@@ -359,38 +397,6 @@ function MobileNavLink({ href, pathname, onClick, children }) {
     >
       {children}
     </Link>
-  );
-}
-
-function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick }) {
-  return (
-    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
-      <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-        <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px] font-body font-light">
-          {showNowPlaying ? (
-            nowPlaying ? (
-              <NowPlayingDisplay nowPlaying={nowPlaying} />
-            ) : (
-              <NoTracksDisplay />
-            )
-          ) : (
-            displayText
-          )}
-        </div>
-        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white"></div>
-      </div>
-
-      <div>
-        <Image
-          src={showNowPlaying && nowPlaying?.nowplaying ? "/images/avatar/me-listening.png" : "/images/avatar/me.png"}
-          alt="me"
-          width={125}
-          height={125}
-          className="mx-auto h-[15%] object-contain mt-2 hover:scale-[103%] transition-transform duration-200 cursor-pointer"
-          onClick={onAvatarClick}
-        />
-      </div>
-    </div>
   );
 }
 
