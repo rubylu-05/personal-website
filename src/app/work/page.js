@@ -155,9 +155,8 @@ const ProjectDescriptionSection = ({ section }) => (
 );
 
 const ExpandedContent = ({ isExpanded, fullDescription }) => (
-  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-    isExpanded ? 'max-h-[1000px]' : 'max-h-0'
-  }`}>
+  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-[1000px]' : 'max-h-0'
+    }`}>
     <div className="mt-4 space-y-6">
       {fullDescription.map((section, index) => (
         <ProjectDescriptionSection key={index} section={section} />
@@ -167,9 +166,8 @@ const ExpandedContent = ({ isExpanded, fullDescription }) => (
 );
 
 const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
-  <div className={`bg-white rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${
-    isExpanded ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.12)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'
-  }`}>
+  <div className={`bg-white rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.12)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'
+    }`}>
     <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>
       <div className="md:w-1/3 relative">
         <Image
@@ -194,9 +192,9 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
       </div>
     </div>
 
-    <ExpandedContent 
-      isExpanded={isExpanded} 
-      fullDescription={project.fullDescription} 
+    <ExpandedContent
+      isExpanded={isExpanded}
+      fullDescription={project.fullDescription}
     />
 
     <div className="flex justify-between mt-4">
@@ -231,7 +229,7 @@ export default function Work() {
   };
 
   return (
-    <div className="p-20 pt-16">
+    <div className="px-10 py-8 sm:p-20 sm:pt-16">
       <div className="space-y-6">
         {projects.map((project, index) => (
           <ProjectCard

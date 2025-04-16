@@ -19,7 +19,7 @@ export default function AlbumCollage() {
     return (
         <div>
             <h3 className="text-xl font-heading font-extrabold text-primary mb-4">Favourite Albums</h3>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2">
+            <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2">
                 {albums.map((album, index) => (
                     <div key={index} className="relative group">
                         <div className="aspect-square">

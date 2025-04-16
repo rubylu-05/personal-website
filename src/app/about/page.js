@@ -51,7 +51,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="p-20 pt-16">
+    <div className="px-10 py-8 sm:p-20 sm:pt-16">
       <h1 className="text-4xl font-heading font-extralight text-secondary mb-4">Hi, I'm Ruby!</h1>
       <p className="mb-4 font-body font-light">
         I'm a computer science student at the University of Waterloo who loves building practical solutions and learning through implementation. I've worked across various tech stacks in academic, personal, and professional projects, and I'm always eager to learn more.

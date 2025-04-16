@@ -4,7 +4,7 @@ import '../styles/globals.css';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { metadata } from './metadata';
-import { AiFillMail, AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
+import { AiFillMail, AiFillLinkedin, AiFillGithub, AiOutlineMenu } from 'react-icons/ai';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
@@ -29,8 +29,21 @@ export default function RootLayout({ children }) {
   const [showNowPlaying, setShowNowPlaying] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState('30%');
   const [isDragging, setIsDragging] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const currentMessage = MESSAGES[pathname] || MESSAGES['/'];
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   const fetchNowPlaying = async () => {
     try {
@@ -61,13 +74,14 @@ export default function RootLayout({ children }) {
   };
 
   const startDrag = (e) => {
+    if (isMobile) return;
     setIsDragging(true);
     document.body.style.cursor = 'col-resize';
     document.body.style.userSelect = 'none';
   };
 
   const onDrag = (e) => {
-    if (!isDragging || !containerRef.current) return;
+    if (!isDragging || !containerRef.current || isMobile) return;
 
     const containerRect = containerRef.current.getBoundingClientRect();
     const containerWidth = containerRect.width;
@@ -93,6 +107,11 @@ export default function RootLayout({ children }) {
     } else {
       setSidebarVisible(false);
     }
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   useEffect(() => {
@@ -102,9 +121,11 @@ export default function RootLayout({ children }) {
   }, []);
 
   useEffect(() => {
-    setSidebarVisible(pathname === '/');
+    if (isMobile) {
+      setSidebarVisible(pathname === '/');
+    }
     resetDialogue();
-  }, [pathname]);
+  }, [pathname, isMobile]);
 
   useEffect(() => {
     if (currentIndex < currentMessage.length) {
@@ -134,32 +155,97 @@ export default function RootLayout({ children }) {
     }
   }, [isDragging]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+
   return (
     <html lang="en" className="light">
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-light text-black h-screen w-screen overflow-hidden" ref={containerRef}>
+      <body className="bg-light text-black" style={{ height: '100dvh', width: '100vw', overflow: 'hidden' }} ref={containerRef}>
         <div className="flex h-full">
-          {/* Sidebar */}
-          <Sidebar
-            isVisible={isSidebarVisible}
-            width={sidebarWidth}
-            isDragging={isDragging}
-            pathname={pathname}
-            displayText={displayText}
-            showNowPlaying={showNowPlaying}
-            nowPlaying={nowPlaying}
-            onLinkClick={handleLinkClick}
-            onAvatarClick={resetDialogue}
-          />
 
-          {/* Draggable divider */}
-          {!isSidebarVisible && (
+          {isMobile && pathname !== '/' && (
+            <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 rounded-full bg-light shadow-[0_0_15px_5px_rgba(175,139,106,0.12)]"
+                aria-label="Menu"
+              >
+                <AiOutlineMenu className="text-2xl text-secondary" />
+              </button>
+
+              {isMobileMenuOpen && (
+                <div className="fixed right-4 top-16 w-48 bg-white rounded-lg py-3 z-[1000] shadow-[0_0_15px_5px_rgba(175,139,106,0.12)]">
+                  {/* Centered navigation links */}
+                  <div className="flex flex-col items-center space-y-2">
+                    <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>
+                      Home
+                    </MobileNavLink>
+                    <MobileNavLink href="/about" pathname={pathname} onClick={(e) => handleLinkClick(e, '/about')}>
+                      About
+                    </MobileNavLink>
+                    <MobileNavLink href="/work" pathname={pathname} onClick={(e) => handleLinkClick(e, '/work')}>
+                      Recent Projects
+                    </MobileNavLink>
+                    <MobileNavLink href="/misc" pathname={pathname} onClick={(e) => handleLinkClick(e, '/misc')}>
+                      Life Outside of Coding
+                    </MobileNavLink>
+                  </div>
+
+                  <div className="flex justify-center gap-4 px-4 pt-4">
+                    <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-secondary hover:text-primary hover:scale-105 transition-all">
+                      <AiFillMail className="text-lg" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-primary hover:scale-105 transition-all">
+                      <AiFillLinkedin className="text-lg" />
+                    </a>
+                    <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-primary hover:scale-105 transition-all">
+                      <AiFillGithub className="text-lg" />
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          {(!isMobile || pathname === '/') && (
+            <Sidebar
+              isVisible={isSidebarVisible}
+              width={sidebarWidth}
+              isDragging={isDragging}
+              pathname={pathname}
+              displayText={displayText}
+              showNowPlaying={showNowPlaying}
+              nowPlaying={nowPlaying}
+              onLinkClick={handleLinkClick}
+              onAvatarClick={resetDialogue}
+              isMobile={isMobile}
+            />
+          )}
+
+          {!isSidebarVisible && !isMobile && (
             <div
               className="w-2 bg-secondary opacity-[20%] hover:opacity-100 hover:bg-primary cursor-col-resize transition-all duration-500 transition-ease-out"
               onMouseDown={startDrag}
@@ -169,10 +255,8 @@ export default function RootLayout({ children }) {
           )}
 
           {/* Main content */}
-          <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
-            [&::-webkit-scrollbar]:w-2
-            [&::-webkit-scrollbar-track]:bg-light
-            [&::-webkit-scrollbar-thumb]:bg-primary`}
+          <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
+  ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-light [&::-webkit-scrollbar-thumb]:bg-primary' : ''} relative`}
             style={{
               backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(244, 235, 227, 1) 100%)',
               flexGrow: 1,
@@ -195,7 +279,8 @@ function Sidebar({
   showNowPlaying,
   nowPlaying,
   onLinkClick,
-  onAvatarClick
+  onAvatarClick,
+  isMobile
 }) {
   return (
     <aside
@@ -203,7 +288,7 @@ function Sidebar({
         }`}
       style={{
         flexShrink: 0,
-        width: isVisible ? '100%' : width
+        width: isVisible ? '100%' : isMobile ? '100%' : width
       }}
     >
       <div className="text-center relative mb-48">
@@ -257,8 +342,20 @@ function NavLink({ href, pathname, onClick, children }) {
     <Link
       href={href}
       onClick={onClick}
-      className={`block hover:text-secondary duration-200 ease-out ${pathname === href ? 'text-secondary' : ''
+      className={`block hover:text-secondary duration-500 ease-out ${pathname === href ? 'text-secondary' : ''
         }`}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function MobileNavLink({ href, pathname, onClick, children }) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className={`px-4 py-1 text-sm font-body font-light hover:text-secondary ${pathname === href ? 'text-secondary' : 'text-gray-700'}`}
     >
       {children}
     </Link>

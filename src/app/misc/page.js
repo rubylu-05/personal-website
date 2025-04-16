@@ -28,7 +28,7 @@ export default function Misc() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!watchRec && !listenRec) return;
-        
+
         setIsSubmitting(true);
         setSubmitMessage('');
 
@@ -39,8 +39,8 @@ export default function Misc() {
                 body: JSON.stringify({ watchRec, listenRec }),
             });
 
-            setSubmitMessage(response.ok 
-                ? 'Thanks for your recommendations!' 
+            setSubmitMessage(response.ok
+                ? 'Thanks for your recommendations!'
                 : 'Failed to send. Please try again.'
             );
 
@@ -57,14 +57,14 @@ export default function Misc() {
     };
 
     return (
-        <div className="overflow-x-hidden p-20 pt-16">
+        <div className="overflow-x-hidden px-10 py-8 sm:p-20 sm:pt-16">
             <ArtGallery artGroups={artGroups} />
-            
+
             <RecentMediaSection />
-            
+
             <FavoritesSection />
-            
-            <RecommendationForm 
+
+            <RecommendationForm
                 watchRec={watchRec}
                 listenRec={listenRec}
                 isSubmitting={isSubmitting}
@@ -140,7 +140,7 @@ const FavoritesSection = () => (
             Favourites!
         </h1>
         <p className="font-body font-light mb-4">
-            Since I shared my recent watching & listening, I wanted to share my favourites as well, though this can all be subject to change.
+            Since I shared my recents, I wanted to share my favourites as well, though this will probably change once in a while.
         </p>
         <div className="mb-4">
             <Movies />
