@@ -39,6 +39,10 @@ export default function RootLayout({ children }) {
   const currentMessage = MESSAGES[pathname] || MESSAGES['/'];
 
   useEffect(() => {
+    const storedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(storedTheme);
+    document.documentElement.className = storedTheme;
+    
     const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
@@ -47,6 +51,7 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     document.documentElement.className = theme;
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
