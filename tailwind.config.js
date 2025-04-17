@@ -7,17 +7,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "light": "#fffffb",
-        "light2": "#f4ebe3",
-        "primary": "#145943",
-        "secondary": "#af8b6a"
+        "background": "#ffffff",
+        "primary": "#000000",
+        "secondary": "#909bad"
       },
       fontFamily: {
-        "body": ['Inter'],
-        "heading": ['Work Sans']
+        "body": ['DM Mono'],
+        "heading": ['DM Mono']
       },
       fontWeight: {
-        'extrabold': 700,
+        'light': 300,
         'extralight': 200,
       },
       fontSize: {

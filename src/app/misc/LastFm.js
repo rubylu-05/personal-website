@@ -64,7 +64,7 @@ function LastFm() {
                     {artists.map((artist, index) => (
                         <div
                             key={`${artist.name}-${index}`}
-                            className="hover:scale-105 duration-300 bg-light2 px-4 py-2 rounded-lg flex items-center whitespace-nowrap"
+                            className="hover:scale-105 transition-all bg-background px-4 py-2 border border-primary flex items-center whitespace-nowrap"
                         >
                             <div className="w-6 h-6 mr-2 flex items-center justify-center">
                                 <img

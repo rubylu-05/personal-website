@@ -79,7 +79,7 @@ export default function Misc() {
 
 const ArtGallery = ({ artGroups }) => (
     <>
-        <h1 className="text-4xl font-heading font-extralight text-secondary mb-4">Artistic Work</h1>
+        <h1 className="text-4xl font-heading font-light text-primary mb-4">Artistic Work</h1>
         <p className="font-body font-light">
             A gallery of miscellaneous drawings, paintings, and crafts!
         </p>
@@ -87,7 +87,7 @@ const ArtGallery = ({ artGroups }) => (
         {artGroups.map((group, groupIndex) => (
             <div key={groupIndex} className="mb-4">
                 {group.title && (
-                    <h2 className="text-xl font-heading font-extrabold text-primary mb-2 mt-10">
+                    <h2 className="text-xl font-heading font-bold text-primary mb-2 mt-10">
                         {group.title}
                     </h2>
                 )}
@@ -110,7 +110,7 @@ const ArtPiece = ({ piece }) => (
         <img
             src={piece.image}
             alt=""
-            className={`w-full h-auto object-fill mb-3 rounded-lg shadow-[0_0_30px_15px_rgba(175,139,106,0.1)] hover:shadow-[0_0_30px_15px_rgba(175,139,106,0.12)] hover:scale-[1.02] duration-500 ease-out`}
+            className={`w-full h-auto object-fill mb-3 border border-primary hover:scale-[1.02] transition-all`}
         />
         <p className="font-body font-light text-xs">{piece.description}</p>
     </div>
@@ -118,7 +118,7 @@ const ArtPiece = ({ piece }) => (
 
 const RecentMediaSection = () => (
     <>
-        <h1 className="text-4xl font-heading font-extralight text-secondary mb-4 mt-20">
+        <h1 className="text-4xl font-heading font-light text-primary mb-4 mt-20">
             Recent Watching & Listening
         </h1>
         <p className="font-body font-light mb-2">
@@ -136,7 +136,7 @@ const RecentMediaSection = () => (
 
 const FavoritesSection = () => (
     <>
-        <h1 className="text-4xl font-heading font-extralight text-secondary mb-4 mt-20">
+        <h1 className="text-4xl font-heading font-light text-primary mb-4 mt-20">
             Favourites!
         </h1>
         <p className="font-body font-light mb-4">
@@ -197,7 +197,7 @@ const RecommendationInput = ({ label, value, onChange, placeholder }) => (
             type="text"
             value={value}
             onChange={onChange}
-            className="w-full p-2 border border-light2 rounded-lg font-body font-light focus:outline-none focus:ring-1 focus:ring-black placeholder-secondary/50"
+            className="w-full p-2 border border-primary font-body font-light focus:outline-none focus:ring-1 focus:ring-primary placeholder-secondary/50"
             placeholder={placeholder}
         />
     </div>
@@ -207,7 +207,7 @@ const SubmitButton = ({ isSubmitting }) => (
     <button
         type="submit"
         disabled={isSubmitting}
-        className="px-4 py-2 bg-secondary text-white rounded-lg text-sm font-body hover:bg-primary transition-colors disabled:opacity-50 transition-all hover:scale-105"
+        className="px-4 py-2 bg-primary text-background text-sm font-body font-bold hover:bg-secondary transition-all disabled:secondary hover:scale-105"
     >
         {isSubmitting ? 'Sending...' : 'Send!'}
     </button>

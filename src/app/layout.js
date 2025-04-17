@@ -1,10 +1,10 @@
 'use client';
-
 import '../styles/globals.css';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { metadata } from './metadata';
-import { AiFillMail, AiFillLinkedin, AiFillGithub, AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineLinkedin, AiOutlineMenu } from 'react-icons/ai';
+import { FiGithub } from 'react-icons/fi';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
@@ -182,23 +182,23 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sono:wght@200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
       </head>
-      <body className="bg-light text-black" style={{ height: '100dvh', width: '100vw', overflow: 'hidden' }} ref={containerRef}>
+      <body className="bg-background text-primary" style={{ height: '100dvh', width: '100vw', overflow: 'hidden' }} ref={containerRef}>
         <div className="flex h-full">
 
           {isMobile && pathname !== '/' && (
             <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
               <button
                 onClick={toggleMobileMenu}
-                className="p-2 rounded-full bg-light shadow-[0_0_15px_5px_rgba(175,139,106,0.12)]"
+                className="p-2 border border-primary bg-background"
                 aria-label="Menu"
               >
-                <AiOutlineMenu className="text-2xl text-secondary" />
+                <AiOutlineMenu className="text-2xl text-primary" />
               </button>
 
               {isMobileMenuOpen && (
-                <div className="fixed right-4 top-16 w-48 bg-white rounded-lg py-3 z-[1000] shadow-[0_0_15px_5px_rgba(175,139,106,0.12)]">
+                <div className="fixed right-4 top-16 w-60 bg-background py-3 z-[1000] border border-primary">
                   {/* Centered navigation links */}
                   <div className="flex flex-col items-center space-y-2">
                     <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>
@@ -216,14 +216,14 @@ export default function RootLayout({ children }) {
                   </div>
 
                   <div className="flex justify-center gap-4 px-4 pt-4">
-                    <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-secondary hover:text-primary hover:scale-105 transition-all">
-                      <AiFillMail className="text-lg" />
+                    <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-primary hover:text-secondary hover:scale-105 transition-all">
+                      <AiOutlineMail className="text-lg" />
                     </a>
-                    <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-primary hover:scale-105 transition-all">
-                      <AiFillLinkedin className="text-lg" />
+                    <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-secondary hover:scale-105 transition-all">
+                      <AiOutlineLinkedin className="text-lg" />
                     </a>
-                    <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-primary hover:scale-105 transition-all">
-                      <AiFillGithub className="text-lg" />
+                    <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-secondary hover:scale-105 transition-all">
+                      <FiGithub className="text-lg" />
                     </a>
                   </div>
                 </div>
@@ -247,7 +247,7 @@ export default function RootLayout({ children }) {
 
           {!isSidebarVisible && !isMobile && (
             <div
-              className="w-2 bg-secondary opacity-[20%] hover:opacity-100 hover:bg-primary cursor-col-resize transition-all duration-500 transition-ease-out"
+              className="w-2 bg-transparent hover:bg-primary cursor-col-resize transition-all duration-500 transition-ease-out"
               onMouseDown={startDrag}
               onDoubleClick={() => setSidebarWidth('30%')}
               title="Double-click to reset width"
@@ -256,9 +256,8 @@ export default function RootLayout({ children }) {
 
           {/* Main content */}
           <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
-  ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-light [&::-webkit-scrollbar-thumb]:bg-primary' : ''} relative`}
+  ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-background [&::-webkit-scrollbar-thumb]:bg-primary' : ''} relative`}
             style={{
-              backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 20%, rgba(244, 235, 227, 1) 100%)',
               flexGrow: 1,
             }}
           >
@@ -284,7 +283,7 @@ function Sidebar({
 }) {
   return (
     <aside
-      className={`${isVisible ? 'w-full' : 'w-[30%]'} sidebar-gradient flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''
+      className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background border-r border-primary flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''
         }`}
       style={{
         flexShrink: 0,
@@ -292,13 +291,12 @@ function Sidebar({
       }}
     >
       <div className="text-center relative mb-48">
-        <h1 className="text-5xl font-heading font-extrabold text-primary mb-6" style={{ textShadow: '0 0 40px rgba(175, 139, 106, 0.7)' }}>
+        <h1 className="text-5xl font-heading font-bold text-primary mb-6">
           Ruby Lu
         </h1>
 
         <SocialLinks />
-
-        <nav className="text-black text-base font-light font-body space-y-2">
+        <nav className="text-primary text-base font-light font-body space-y-2">
           <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')}>
             About
           </NavLink>
@@ -325,13 +323,13 @@ function SocialLinks() {
   return (
     <div className="flex justify-center gap-6 text-xl mb-6">
       <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
-        <AiFillMail className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
+        <AiOutlineMail className="text-primary hover:text-secondary hover:scale-105 text-2xl transition-all" />
       </a>
       <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer">
-        <AiFillLinkedin className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
+        <AiOutlineLinkedin className="text-primary hover:text-secondary hover:scale-105 text-2xl transition-all" />
       </a>
       <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer">
-        <AiFillGithub className="text-secondary hover:text-primary hover:scale-105 text-2xl transition-all duration-100 ease-out" />
+        <FiGithub className="text-primary hover:text-secondary hover:scale-105 text-2xl transition-all" />
       </a>
     </div>
   );
@@ -342,7 +340,7 @@ function NavLink({ href, pathname, onClick, children }) {
     <Link
       href={href}
       onClick={onClick}
-      className={`block hover:text-secondary duration-500 ease-out ${pathname === href ? 'text-secondary' : ''
+      className={`block hover:text-secondary transition-all ${pathname === href ? 'text-secondary' : ''
         }`}
     >
       {children}
@@ -366,7 +364,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick })
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-        <div className="bg-white rounded-lg p-4 text-sm text-black whitespace-pre-line text-center min-h-[55px] font-body font-light">
+        <div className="bg-background border border-primary p-4 text-sm text-primary whitespace-pre-line text-center min-h-[55px] font-body font-light">
           {showNowPlaying ? (
             nowPlaying ? (
               <NowPlayingDisplay nowPlaying={nowPlaying} />
@@ -377,7 +375,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick })
             displayText
           )}
         </div>
-        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white"></div>
+        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary"></div>
       </div>
 
       <div>
@@ -386,7 +384,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick })
           alt="me"
           width={125}
           height={125}
-          className="mx-auto h-[15%] object-contain mt-2 hover:scale-[103%] transition-transform duration-200 cursor-pointer"
+          className="mx-auto h-[15%] object-contain mt-2 hover:scale-[103%] transition-all cursor-pointer"
           onClick={onAvatarClick}
         />
       </div>
@@ -401,23 +399,23 @@ function NowPlayingDisplay({ nowPlaying }) {
         <img
           src={nowPlaying.image || '/default-song.png'}
           alt={`${nowPlaying.track} cover`}
-          className={`shadow-[0_0_15px_5px_rgba(175,139,106,0.2)] w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''
+          className={`border border-primary w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''
             }`}
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = '/default-song.png';
           }}
         />
-        <div className="absolute inset-0 m-auto w-3 h-3 bg-white rounded-full shadow-[inset_0_0_15px_5px_rgba(175,139,106,0.2)]"></div>
+        <div className="absolute inset-0 m-auto w-3 h-3 bg-background rounded-full border border-primary"></div>
       </div>
       <div className="text-left overflow-hidden min-w-0">
-        <div className="text-xs font-body font-extralight text-bold text-secondary font-light">
+        <div className="text-xs font-body font-light text-bold text-primary font-light">
           {nowPlaying.nowplaying ? 'Now Listening on Spotify:' : 'Last Played on Spotify:'}
         </div>
-        <div className="truncate font-heading font-extrabold -mb-0.5 text-sm" title={nowPlaying.track}>
+        <div className="truncate font-heading font-bold text-sm" title={nowPlaying.track}>
           {nowPlaying.track}
         </div>
-        <div className="truncate font-body font-extralight text-xs" title={nowPlaying.artist}>
+        <div className="truncate font-body font-light text-xs" title={nowPlaying.artist}>
           {nowPlaying.artist}
         </div>
       </div>
@@ -436,9 +434,9 @@ function NoTracksDisplay() {
         />
       </div>
       <div className="text-left overflow-hidden min-w-0">
-        <div className="text-xs text-secondary font-light">Last Played on Spotify:</div>
-        <div className="font-bold -mb-0.5">—</div>
-        <div className="text-xs text-gray-600">[No recent tracks found]</div>
+        <div className="text-xs text-primary font-light">Last Played on Spotify:</div>
+        <div className="font-bold">—</div>
+        <div className="text-xs text-primary">[No recent tracks found]</div>
       </div>
     </div>
   );

@@ -124,7 +124,7 @@ const ProjectLink = ({ href, children }) => (
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105 duration-200"
+    className="bg-primary font-body text-background px-3 py-1 text-xs hover:scale-105 transition-all hover:bg-secondary"
   >
     {children}
   </a>
@@ -166,7 +166,7 @@ const ExpandedContent = ({ isExpanded, fullDescription }) => (
 );
 
 const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
-  <div className={`bg-white rounded-xl p-6 pl-10 pr-10 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'shadow-[0_0_30px_15px_rgba(175,139,106,0.12)]' : 'shadow-[0_0_15px_5px_rgba(175,139,106,0.1)]'
+  <div className={`bg-background border border-primary p-6 pl-10 pr-10 transition-all'
     }`}>
     <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>
       <div className="md:w-1/3 relative">
@@ -175,7 +175,7 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
           alt={project.title}
           width={400}
           height={300}
-          className="w-full h-auto rounded-lg object-contain transition-transform duration-200 hover:scale-105"
+          className="w-full h-auto object-contain transition-all hover:scale-105"
         />
       </div>
 
@@ -183,7 +183,7 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
         <h2 className="text-2xl font-heading font-bold text-primary mb-2">
           {project.title}
         </h2>
-        <h3 className="text-lg font-heading font-light text-secondary mb-4 leading-snug">
+        <h3 className="text-lg font-heading font-light text-secondary mb-4">
           {project.subtitle}
         </h3>
         <p className="font-body text-sm font-light">
@@ -204,7 +204,7 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
             href={project.githubLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-secondary hover:text-primary transition-colors duration-200 hover:scale-105"
+            className="text-primary hover:text-secondary transition-all hover:scale-105"
           >
             <FaGithub size={20} />
           </a>
@@ -213,7 +213,7 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
       </div>
       <button
         onClick={() => toggleExpand(project.id)}
-        className="bg-primary bg-opacity-10 hover:bg-opacity-20 text-primary px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105 duration-200"
+        className="bg-primary text-background px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:bg-secondary"
       >
         {isExpanded ? 'Show Less' : 'Read More'}
       </button>
@@ -222,10 +222,14 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
 );
 
 export default function Work() {
-  const [expandedId, setExpandedId] = useState(null);
+  const [expandedIds, setExpandedIds] = useState([]);
 
   const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id);
+    setExpandedIds(prev => 
+      prev.includes(id) 
+        ? prev.filter(item => item !== id) 
+        : [...prev, id]
+    );
   };
 
   return (
@@ -236,7 +240,7 @@ export default function Work() {
             key={project.id}
             project={project}
             imageOnRight={index % 2 !== 0}
-            isExpanded={expandedId === project.id}
+            isExpanded={expandedIds.includes(project.id)}
             toggleExpand={toggleExpand}
           />
         ))}

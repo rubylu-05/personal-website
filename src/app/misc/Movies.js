@@ -101,7 +101,7 @@ function Movies() {
 
     return (
         <div ref={componentRef}>
-            <h3 className="text-xl font-heading font-extrabold text-primary mb-4">Favourite Movies</h3>
+            <h3 className="text-xl font-heading font-bold text-primary mb-4">Favourite Movies</h3>
 
             <div className="relative">
                 <div
@@ -111,7 +111,7 @@ function Movies() {
                 >
                     <button
                         onClick={prevMovie}
-                        className="text-secondary hover:text-primary transition-colors p-2 mr-1 absolute left-0 z-10"
+                        className="text-primary hover:text-secondary transition-all p-2 mr-1 absolute left-0 z-10"
                         style={{ transform: 'translateX(-100%)' }}
                         aria-label="Previous movie"
                     >
@@ -123,7 +123,7 @@ function Movies() {
                     <div className="relative w-full overflow-hidden" style={{ height: '17rem' }}>
                         <div
                             ref={containerRef}
-                            className="flex transition-transform duration-500 ease-in-out pl-0"
+                            className="flex transition-all pl-0"
                             style={{
                                 transform: `translateX(${-offset * (itemRefs.current[0]?.offsetWidth + 24)}px)`
                             }}
@@ -132,10 +132,10 @@ function Movies() {
                                 <div
                                     key={`${movie.title}-${index}`}
                                     ref={el => itemRefs.current[index] = el}
-                                    className="flex-shrink-0 w-40 mx-3 bg-light2 rounded-lg p-3 transition-shadow cursor-pointer first:ml-0"
+                                    className="flex-shrink-0 w-40 mx-3 bg-primary text-background border border-primary p-3 cursor-pointer first:ml-0"
                                     onClick={() => goToMovie(index)}
                                 >
-                                    <div className="w-full h-48 rounded-md mb-3 overflow-hidden">
+                                    <div className="w-full h-48 border border-primary mb-3 overflow-hidden">
                                         <img
                                             src={movie.image}
                                             alt={movie.title}
@@ -161,7 +161,7 @@ function Movies() {
 
                     <button
                         onClick={nextMovie}
-                        className="text-secondary hover:text-primary transition-colors p-2 ml-1 absolute right-0 z-10"
+                        className="text-primary hover:text-secondary transition-all p-2 ml-1 absolute right-0 z-10"
                         style={{ transform: 'translateX(100%)' }}
                         aria-label="Next movie"
                     >
