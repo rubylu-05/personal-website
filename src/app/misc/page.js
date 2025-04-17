@@ -57,7 +57,7 @@ export default function Misc() {
     };
 
     return (
-        <div className="overflow-x-hidden px-10 py-8 sm:p-20 sm:pt-16">
+        <div className="overflow-x-hidden px-8 py-12 sm:p-20 sm:pt-16">
             <ArtGallery artGroups={artGroups} />
 
             <RecentMediaSection />

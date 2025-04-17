@@ -2,15 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background: #ffffff;
+  --primary: #000000;
+  --secondary: #909bad;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --primary: #e6e6e6;
+  --secondary: #a0aec0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--primary);
+}
+
 .underline-animation {
   position: relative;
   display: inline;
-  color: #000000;
+  color: var(--primary);
   text-decoration: underline;
   text-decoration-color: rgba(20, 89, 67, 0.4);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
-  background-image: linear-gradient(#000000, #000000);
+  background-image: linear-gradient(var(--primary), var(--primary));
   background-position: 0 93%;
   background-size: 0% 1px;
   background-repeat: no-repeat;
@@ -37,11 +54,9 @@
   0% {
     background-position: 0% 50%;
   }
-
   50% {
     background-position: 100% 50%;
   }
-
   100% {
     background-position: 0% 50%;
   }
@@ -49,6 +64,12 @@
 
 .sidebar-gradient {
   background: linear-gradient(220deg, #f5f5ef, #f7eade, #fadcc0);
+  background-size: 240% 240%;
+  animation: gradient-animation 7s ease infinite;
+}
+
+.dark .sidebar-gradient {
+  background: linear-gradient(220deg, #1a1a1a, #2a2a2a, #3a3a3a);
   background-size: 240% 240%;
   animation: gradient-animation 7s ease infinite;
 }
@@ -61,4 +82,12 @@
   aside {
     width: 100% !important;
   }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

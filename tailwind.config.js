@@ -4,12 +4,13 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        "background": "#ffffff",
-        "primary": "#000000",
-        "secondary": "#909bad"
+        "background": "var(--background)",
+        "primary": "var(--primary)",
+        "secondary": "var(--secondary)",
       },
       fontFamily: {
         "body": ['DM Mono'],

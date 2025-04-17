@@ -10,6 +10,7 @@ function Movies() {
     const autoScrollInterval = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
     const componentRef = useRef(null);
+    const [touchStartX, setTouchStartX] = useState(0);
 
     useEffect(() => {
         fetch('/data/movies.json')
@@ -95,6 +96,23 @@ function Movies() {
         }
     }, [isHovered]);
 
+    const handleTouchStart = (e) => {
+        setTouchStartX(e.touches[0].clientX);
+    };
+
+    const handleTouchEnd = (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                nextMovie();
+            } else {
+                prevMovie();
+            }
+        }
+    };
+
     if (movies.length === 0) {
         return <div>Loading movies...</div>;
     }
@@ -108,6 +126,8 @@ function Movies() {
                     className="flex items-center"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
                 >
                     <button
                         onClick={prevMovie}
@@ -171,12 +191,12 @@ function Movies() {
                     </button>
                 </div>
 
-                <div className="flex justify-center mt-2 space-x-1.5">
+                <div className="flex justify-center mt-2 space-x-1.5 overflow-x-auto py-2 no-scrollbar">
                     {movies.map((_, index) => (
                         <button
                             key={`indicator-${index}`}
                             onClick={() => goToMovie(index)}
-                            className={`w-2 h-2 rounded-full transition-all ${index === offset ? 'bg-primary w-3' : 'bg-secondary opacity-50'}`}
+                            className={`flex-shrink-0 w-2 h-2 rounded-full transition-all ${index === offset ? 'bg-primary w-3' : 'bg-secondary opacity-50'}`}
                             aria-label={`Go to movie ${index + 1}`}
                         />
                     ))}

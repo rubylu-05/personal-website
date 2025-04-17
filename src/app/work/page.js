@@ -10,7 +10,7 @@ const projects = [
     title: "Hydropower Inflow Forecasting",
     subtitle: "A machine learning model to optimize hydropower plants",
     image: "/images/projects/lstm.png",
-    shortDescription: "During my recent co-op term at Hatch, I used Pandas and Tensorflow to build a custom LSTM model to predict water inflow, which is one of the most unpredictable variables hydropower. By processing large datasets of time-based hydrology data, this model helps optimize reservoir management by minimizing head losses. In the end, the model was able to achieve an r\u00B2 score of 0.91, indicating high accuracy compared to baseline methods.",
+    shortDescription: "During my recent co-op term at Hatch, I used Pandas and Tensorflow to build a custom LSTM model to predict water inflow, which is one of the most unpredictable variables in hydropower. By processing large datasets of time-based hydrology data, this model helps optimize reservoir management by minimizing head losses. In the end, the model was able to achieve an r\u00B2 score of 0.91, indicating high accuracy compared to baseline methods.",
     fullDescription: [
       {
         section: "Technical Overview",
@@ -166,7 +166,7 @@ const ExpandedContent = ({ isExpanded, fullDescription }) => (
 );
 
 const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
-  <div className={`bg-background border border-primary p-6 pl-10 pr-10 transition-all'
+  <div className={`bg-background border border-primary p-6 sm:p-6 sm:pl-10 sm:pr-10 transition-all'
     }`}>
     <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>
       <div className="md:w-1/3 relative">
@@ -233,7 +233,7 @@ export default function Work() {
   };
 
   return (
-    <div className="px-10 py-8 sm:p-20 sm:pt-16">
+    <div className="px-8 py-8 sm:p-20 sm:pt-16">
       <div className="space-y-6">
         {projects.map((project, index) => (
           <ProjectCard
