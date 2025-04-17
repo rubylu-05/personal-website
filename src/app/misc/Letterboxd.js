@@ -85,7 +85,7 @@ function Letterboxd() {
         const hasHalfStar = rating % 1 >= 0.5;
 
         return (
-            <span className="text-secondary text-xs">
+            <span className="text-[var(--secondary)] text-xs">
                 {'★'.repeat(fullStars)}
                 {hasHalfStar && '½'}
             </span>
@@ -133,7 +133,7 @@ function Letterboxd() {
     const handleTouchEnd = (e) => {
         const touchEndX = e.changedTouches[0].clientX;
         const diff = touchStartX - touchEndX;
-        
+
         if (Math.abs(diff) > 50) {
             if (diff > 0) {
                 nextMovie();
@@ -153,7 +153,7 @@ function Letterboxd() {
 
     return (
         <div ref={componentRef}>
-            <h3 className="text-xl font-heading font-bold text-primary mb-4">Recently watched movies</h3>
+            <h3 className="text-xl font-heading font-bold text-[var(--primary)] mb-4">Recently watched movies</h3>
 
             <div className="relative">
                 <div
@@ -165,7 +165,7 @@ function Letterboxd() {
                 >
                     <button
                         onClick={prevMovie}
-                        className="text-primary hover:text-secondary hover:scale-105 transition-all p-2 mr-1 absolute left-0 z-10"
+                        className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all p-2 mr-1 absolute left-0 z-10"
                         style={{ transform: 'translateX(-100%)' }}
                         aria-label="Previous movie"
                     >
@@ -186,10 +186,10 @@ function Letterboxd() {
                                 <div
                                     key={`${movie.title}-${index}`}
                                     ref={el => itemRefs.current[index] = el}
-                                    className="flex-shrink-0 w-40 mx-3 bg-primary text-background border border-primary p-3 cursor-pointer first:ml-0"
+                                    className="transition-all flex-shrink-0 w-40 mx-3 bg-background dark:bg-darkBackground2 text-[var(--primary)] border border-primary dark:border-darkSecondary p-3 cursor-pointer first:ml-0"
                                     onClick={() => goToMovie(index)}
                                 >
-                                    <div className="w-full h-48 mb-3 overflow-hidden">
+                                    <div className="transition-all w-full h-48 mb-3 overflow-hidden border border-primary dark:border-darkSecondary">
                                         {movie.image ? (
                                             <img
                                                 src={movie.image}
@@ -236,7 +236,7 @@ function Letterboxd() {
 
                     <button
                         onClick={nextMovie}
-                        className="text-primary hover:text-secondary hover:scale-105 transition-all p-2 ml-1 absolute right-0 z-10"
+                        className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all p-2 ml-1 absolute right-0 z-10"
                         style={{ transform: 'translateX(100%)' }}
                         aria-label="Next movie"
                     >
@@ -246,12 +246,12 @@ function Letterboxd() {
                     </button>
                 </div>
 
-                <div className="flex justify-center mt-2 space-x-1.5 overflow-x-auto py-2 no-scrollbar">
+                <div className="flex justify-center mt-2 space-x-2 overflow-x-auto py-2 no-scrollbar">
                     {movies.map((_, index) => (
                         <button
                             key={`indicator-${index}`}
                             onClick={() => goToMovie(index)}
-                            className={`flex-shrink-0 w-2 h-2 rounded-full transition-all ${index === offset ? 'bg-primary w-3' : 'bg-secondary opacity-50'}`}
+                            className={`flex-shrink-0 w-2 h-2 transition-all ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4' : 'bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary'}`}
                             aria-label={`Go to movie ${index + 1}`}
                         />
                     ))}

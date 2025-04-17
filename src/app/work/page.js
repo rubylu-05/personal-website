@@ -10,6 +10,7 @@ const projects = [
     title: "Hydropower Inflow Forecasting",
     subtitle: "A machine learning model to optimize hydropower plants",
     image: "/images/projects/lstm.png",
+    outlineImage: true,
     shortDescription: "During my recent co-op term at Hatch, I used Pandas and Tensorflow to build a custom LSTM model to predict water inflow, which is one of the most unpredictable variables in hydropower. By processing large datasets of time-based hydrology data, this model helps optimize reservoir management by minimizing head losses. In the end, the model was able to achieve an r\u00B2 score of 0.91, indicating high accuracy compared to baseline methods.",
     fullDescription: [
       {
@@ -124,7 +125,7 @@ const ProjectLink = ({ href, children }) => (
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="bg-primary font-body text-background px-3 py-1 text-xs hover:scale-105 transition-all hover:bg-secondary"
+    className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:border-secondary dark:hover:border-darkSecondary dark:hover:bg-darkSecondary hover:text-secondary dark:hover:text-darkPrimary"
   >
     {children}
   </a>
@@ -132,7 +133,7 @@ const ProjectLink = ({ href, children }) => (
 
 const ProjectDescriptionSection = ({ section }) => (
   <div className="mb-6">
-    <h4 className="text-lg font-heading font-bold text-primary mb-2">
+    <h4 className="text-lg font-heading font-bold text-primary dark:text-darkSecondary mb-2">
       {section.section}
     </h4>
     {section.intro && (
@@ -141,7 +142,7 @@ const ProjectDescriptionSection = ({ section }) => (
       </p>
     )}
     {section.points ? (
-      <ul className="list-disc pl-5 font-body text-sm font-light space-y-1 [&>li]:marker:text-secondary">
+      <ul className="list-disc pl-5 font-body text-sm font-light space-y-1 [&>li]:marker:text-[var(--secondary)]">
         {section.points.map((point, i) => (
           <li key={i}>{point}</li>
         ))}
@@ -166,7 +167,7 @@ const ExpandedContent = ({ isExpanded, fullDescription }) => (
 );
 
 const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
-  <div className={`bg-background border border-primary p-6 sm:p-6 sm:pl-10 sm:pr-10 transition-all'
+  <div className={`transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary p-6 sm:p-6 sm:pl-10 sm:pr-10 transition-all'
     }`}>
     <div className={`flex flex-col md:flex-row gap-6 mb-6 ${imageOnRight ? 'md:flex-row-reverse' : ''}`}>
       <div className="md:w-1/3 relative">
@@ -175,18 +176,19 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
           alt={project.title}
           width={400}
           height={300}
-          className="w-full h-auto object-contain transition-all hover:scale-105"
+          className={`w-full h-auto object-contain transition-all hover:scale-105 ${project.outlineImage ? 'border border-primary dark:border-darkSecondary' : ''
+            }`}
         />
       </div>
 
       <div className="md:w-2/3">
-        <h2 className="text-2xl font-heading font-bold text-primary mb-2">
+        <h2 className="text-2xl font-heading font-bold text-[var(--primary)] mb-2">
           {project.title}
         </h2>
-        <h3 className="text-lg font-heading font-light text-secondary mb-4">
+        <h3 className="text-lg font-heading font-bold text-[var(--secondary)] mb-4">
           {project.subtitle}
         </h3>
-        <p className="font-body text-sm font-light">
+        <p className="font-body text-sm font-[var(--primary)]">
           {project.shortDescription}
         </p>
       </div>
@@ -204,7 +206,7 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
             href={project.githubLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary hover:text-secondary transition-all hover:scale-105"
+            className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all hover:scale-105"
           >
             <FaGithub size={20} />
           </a>
@@ -213,7 +215,7 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
       </div>
       <button
         onClick={() => toggleExpand(project.id)}
-        className="bg-primary text-background px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:bg-secondary"
+        className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:border-secondary dark:hover:border-darkSecondary dark:hover:bg-darkSecondary hover:text-secondary dark:hover:text-darkPrimary"
       >
         {isExpanded ? 'Show Less' : 'Read More'}
       </button>
@@ -225,9 +227,9 @@ export default function Work() {
   const [expandedIds, setExpandedIds] = useState([]);
 
   const toggleExpand = (id) => {
-    setExpandedIds(prev => 
-      prev.includes(id) 
-        ? prev.filter(item => item !== id) 
+    setExpandedIds(prev =>
+      prev.includes(id)
+        ? prev.filter(item => item !== id)
         : [...prev, id]
     );
   };

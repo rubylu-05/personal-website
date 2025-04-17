@@ -2,44 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+html.light {
   --background: #ffffff;
   --primary: #000000;
   --secondary: #909bad;
 }
 
-.dark {
-  --background: #1a1a1a;
-  --primary: #e6e6e6;
-  --secondary: #a0aec0;
+html.dark {
+  --background: #1e342e;
+  --primary: #e5f0cc;
+  --secondary: #af8b6c;
 }
 
 body {
   background-color: var(--background);
   color: var(--primary);
-}
-
-.underline-animation {
-  position: relative;
-  display: inline;
-  color: var(--primary);
-  text-decoration: underline;
-  text-decoration-color: rgba(20, 89, 67, 0.4);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  background-image: linear-gradient(var(--primary), var(--primary));
-  background-position: 0 93%;
-  background-size: 0% 1px;
-  background-repeat: no-repeat;
-  transition:
-    background-size 0.3s ease,
-    text-decoration-color 0.3s ease;
-  padding-bottom: 1px;
-}
-
-.underline-animation:hover {
-  text-decoration-color: transparent;
-  background-size: 100% 1px;
+  font-family: 'DM Mono', monospace;
 }
 
 .transition-all {
@@ -62,20 +40,8 @@ body {
   }
 }
 
-.sidebar-gradient {
-  background: linear-gradient(220deg, #f5f5ef, #f7eade, #fadcc0);
-  background-size: 240% 240%;
-  animation: gradient-animation 7s ease infinite;
-}
-
-.dark .sidebar-gradient {
-  background: linear-gradient(220deg, #1a1a1a, #2a2a2a, #3a3a3a);
-  background-size: 240% 240%;
-  animation: gradient-animation 7s ease infinite;
-}
-
 .sidebar-transition {
-  transition: all 0.7s ease;
+  transition: all 1s ease;
 }
 
 @media (max-width: 768px) {

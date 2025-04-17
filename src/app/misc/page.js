@@ -40,8 +40,8 @@ export default function Misc() {
             });
 
             setSubmitMessage(response.ok
-                ? 'Thanks for your recommendations!'
-                : 'Failed to send. Please try again.'
+                ? 'Thanks!'
+                : 'Failed to send :('
             );
 
             if (response.ok) {
@@ -79,7 +79,7 @@ export default function Misc() {
 
 const ArtGallery = ({ artGroups }) => (
     <>
-        <h1 className="text-4xl font-heading font-light text-primary mb-4">Artistic Work</h1>
+        <h1 className="text-4xl font-heading font-light text-primary dark:text-darkSecondary mb-4">Artistic Work</h1>
         <p className="font-body font-light">
             A gallery of miscellaneous drawings, paintings, and crafts!
         </p>
@@ -87,7 +87,7 @@ const ArtGallery = ({ artGroups }) => (
         {artGroups.map((group, groupIndex) => (
             <div key={groupIndex} className="mb-4">
                 {group.title && (
-                    <h2 className="text-xl font-heading font-bold text-primary mb-2 mt-10">
+                    <h2 className="text-xl font-heading font-bold text-[var(--primary)] mb-2 mt-10">
                         {group.title}
                     </h2>
                 )}
@@ -110,7 +110,7 @@ const ArtPiece = ({ piece }) => (
         <img
             src={piece.image}
             alt=""
-            className={`w-full h-auto object-fill mb-3 border border-primary hover:scale-[1.02] transition-all`}
+            className={`w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary hover:scale-[1.02] transition-all`}
         />
         <p className="font-body font-light text-xs">{piece.description}</p>
     </div>
@@ -118,7 +118,7 @@ const ArtPiece = ({ piece }) => (
 
 const RecentMediaSection = () => (
     <>
-        <h1 className="text-4xl font-heading font-light text-primary mb-4 mt-20">
+        <h1 className="text-4xl font-heading font-light text-primary dark:text-darkSecondary mb-4 mt-20">
             Recent Watching & Listening
         </h1>
         <p className="font-body font-light mb-2">
@@ -136,7 +136,7 @@ const RecentMediaSection = () => (
 
 const FavoritesSection = () => (
     <>
-        <h1 className="text-4xl font-heading font-light text-primary mb-4 mt-20">
+        <h1 className="text-4xl font-heading font-light text-primary dark:text-darkSecondary mb-4 mt-20">
             Favourites!
         </h1>
         <p className="font-body font-light mb-4">
@@ -182,7 +182,7 @@ const RecommendationForm = ({
             </div>
             <SubmitButton isSubmitting={isSubmitting} />
             {submitMessage && (
-                <p className="mt-2 font-body font-light text-sm text-primary">
+                <p className="mt-2 font-body font-light text-sm text-[var(--primary)]">
                     {submitMessage}
                 </p>
             )}
@@ -197,7 +197,7 @@ const RecommendationInput = ({ label, value, onChange, placeholder }) => (
             type="text"
             value={value}
             onChange={onChange}
-            className="w-full p-2 border border-primary font-body font-light focus:outline-none focus:ring-1 focus:ring-primary placeholder-secondary/50"
+            className="transition-all w-full p-2 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)]"
             placeholder={placeholder}
         />
     </div>
@@ -207,7 +207,7 @@ const SubmitButton = ({ isSubmitting }) => (
     <button
         type="submit"
         disabled={isSubmitting}
-        className="px-4 py-2 bg-primary text-background text-sm font-body font-bold hover:bg-secondary transition-all disabled:secondary hover:scale-105"
+        className="px-4 py-2 bg-background dark:bg-darkBackground2 text-[var(--primary)] hover:text-secondary dark:hover:text-darkPrimary border border-primary dark:border-darkSecondary hover:border-[var(--secondary)] dark:hover:bg-darkSecondary text-sm font-body font-light transition-all hover:scale-105"
     >
         {isSubmitting ? 'Sending...' : 'Send!'}
     </button>

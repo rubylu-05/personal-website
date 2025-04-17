@@ -53,24 +53,24 @@ function LastFm() {
     }
 
     if (error) {
-        return <p className="font-body font-light text-red-500">{error}</p>;
+        return <p className="font-body font-light">{error}</p>;
     }
 
     return (
         <div className="mb-12">
-            <h3 className="text-xl font-heading font-extrabold text-primary mb-4">Top artists this week</h3>
+            <h3 className="text-xl font-heading font-extrabold text-[var(--primary)] mb-4">Top artists this week</h3>
             {artists.length > 0 ? (
                 <div className="flex flex-wrap gap-3">
                     {artists.map((artist, index) => (
                         <div
                             key={`${artist.name}-${index}`}
-                            className="hover:scale-105 transition-all bg-background px-4 py-2 border border-primary flex items-center whitespace-nowrap"
+                            className="hover:scale-105 transition-all bg-background dark:bg-darkBackground2 px-4 py-2 pl-2 border border-primary dark:border-darkSecondary flex items-center whitespace-nowrap text-[var(--primary)]"
                         >
-                            <div className="w-6 h-6 mr-2 flex items-center justify-center">
+                            <div className="w-6 h-6 mr-2 flex items-center justify-center border border-primary dark:border-darkSecondary">
                                 <img
                                     src={artist.imageUrl}
                                     alt={artist.name}
-                                    className="w-5 h-5 object-contain rounded-full"
+                                    className="w-6 h-6 object-contain"
                                     onError={(e) => {
                                         e.target.src = '/default-artist.png';
                                     }}

@@ -3,8 +3,10 @@ import '../styles/globals.css';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { metadata } from './metadata';
-import { AiOutlineMail, AiOutlineLinkedin, AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineLinkedin, AiOutlineMenu } from 'react-icons/ai';
 import { FiGithub } from 'react-icons/fi';
+import { MdOutlineMail } from 'react-icons/md';
+import { BsMoon, BsSun } from 'react-icons/bs';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
@@ -32,24 +34,30 @@ export default function RootLayout({ children }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [theme, setTheme] = useState('light');
 
   const currentMessage = MESSAGES[pathname] || MESSAGES['/'];
 
   useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.className = theme;
+  }, [theme]);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  };
+
   const fetchNowPlaying = async () => {
     try {
       const response = await fetch('/api/lastfm');
       const data = await response.json();
-
       if (data?.track?.name) {
         setNowPlaying({
           artist: data.track.artist['#text'] || data.track.artist,
@@ -82,14 +90,11 @@ export default function RootLayout({ children }) {
 
   const onDrag = (e) => {
     if (!isDragging || !containerRef.current || isMobile) return;
-
     const containerRect = containerRef.current.getBoundingClientRect();
     const containerWidth = containerRect.width;
     const mouseX = e.clientX - containerRect.left;
-
     const newWidthPercent = (mouseX / containerWidth) * 100;
     const constrainedWidth = Math.max(MIN_SIDEBAR_WIDTH, Math.min(newWidthPercent, MAX_SIDEBAR_WIDTH));
-
     setSidebarWidth(`${constrainedWidth}%`);
   };
 
@@ -133,13 +138,11 @@ export default function RootLayout({ children }) {
         setDisplayText(prev => prev + currentMessage[currentIndex]);
         setCurrentIndex(prev => prev + 1);
       }, 50);
-
       return () => clearTimeout(timeout);
     } else if (currentIndex === currentMessage.length && !showNowPlaying) {
       const delay = setTimeout(() => {
         setShowNowPlaying(true);
       }, 3000);
-
       return () => clearTimeout(delay);
     }
   }, [currentIndex, currentMessage, showNowPlaying]);
@@ -173,58 +176,47 @@ export default function RootLayout({ children }) {
     };
   }, [isMobileMenuOpen]);
 
-
   return (
-    <html lang="en" className="light">
+    <html lang="en">
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sono:wght@200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-background text-primary" style={{ height: '100dvh', width: '100vw', overflow: 'hidden' }} ref={containerRef}>
+      <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100vw', overflow: 'hidden' }} ref={containerRef}>
         <div className="flex h-full">
-
           {isMobile && pathname !== '/' && (
             <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
-              <button
-                onClick={toggleMobileMenu}
-                className="p-2 border border-primary bg-background"
-                aria-label="Menu"
-              >
-                <AiOutlineMenu className="text-2xl text-primary" />
+              <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2" aria-label="Menu">
+                <AiOutlineMenu className="text-2xl text-[var(--primary)]" />
               </button>
 
               {isMobileMenuOpen && (
-                <div className="fixed right-4 top-16 w-60 bg-background py-3 z-[1000] border border-primary">
-                  {/* Centered navigation links */}
+                <div className="fixed right-4 top-16 w-60 bg-background dark:bg-darkBackground2 py-3 z-[1000] border border-primary dark:border-darkSecondary transition-all">
                   <div className="flex flex-col items-center space-y-2">
-                    <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>
-                      Home
-                    </MobileNavLink>
-                    <MobileNavLink href="/about" pathname={pathname} onClick={(e) => handleLinkClick(e, '/about')}>
-                      About
-                    </MobileNavLink>
-                    <MobileNavLink href="/work" pathname={pathname} onClick={(e) => handleLinkClick(e, '/work')}>
-                      Recent Projects
-                    </MobileNavLink>
-                    <MobileNavLink href="/misc" pathname={pathname} onClick={(e) => handleLinkClick(e, '/misc')}>
-                      Life Outside of Coding
-                    </MobileNavLink>
+                    <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>Home</MobileNavLink>
+                    <MobileNavLink href="/about" pathname={pathname} onClick={(e) => handleLinkClick(e, '/about')}>About</MobileNavLink>
+                    <MobileNavLink href="/work" pathname={pathname} onClick={(e) => handleLinkClick(e, '/work')}>Recent Projects</MobileNavLink>
+                    <MobileNavLink href="/misc" pathname={pathname} onClick={(e) => handleLinkClick(e, '/misc')}>Life Outside of Coding</MobileNavLink>
                   </div>
-
                   <div className="flex justify-center gap-4 px-4 pt-4">
-                    <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-primary hover:text-secondary hover:scale-105 transition-all">
-                      <AiOutlineMail className="text-lg" />
+                    <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all">
+                      <MdOutlineMail className="text-lg" />
                     </a>
-                    <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-secondary hover:scale-105 transition-all">
+                    <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all">
                       <AiOutlineLinkedin className="text-lg" />
                     </a>
-                    <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-secondary hover:scale-105 transition-all">
+                    <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all">
                       <FiGithub className="text-lg" />
                     </a>
+                    <button
+                      onClick={toggleTheme}
+                      className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all"
+                      aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+                    >
+                      {theme === 'light' ? <BsMoon className="text-lg" /> : <BsSun className="text-lg" />}
+                    </button>
                   </div>
                 </div>
               )}
@@ -242,24 +234,22 @@ export default function RootLayout({ children }) {
               onLinkClick={handleLinkClick}
               onAvatarClick={resetDialogue}
               isMobile={isMobile}
+              onToggleTheme={toggleTheme}
+              theme={theme}
             />
           )}
 
           {!isSidebarVisible && !isMobile && (
-            <div
-              className="w-2 bg-transparent hover:bg-primary cursor-col-resize transition-all duration-500 transition-ease-out"
+            <div className="w-2 bg-transparent hover:bg-primary dark:hover:bg-darkSecondary cursor-col-resize transition-all duration-500 transition-ease-out"
               onMouseDown={startDrag}
               onDoubleClick={() => setSidebarWidth('30%')}
               title="Double-click to reset width"
             />
           )}
 
-          {/* Main content */}
           <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
-  ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-background [&::-webkit-scrollbar-thumb]:bg-primary' : ''} relative`}
-            style={{
-              flexGrow: 1,
-            }}
+            ${!isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''} relative`}
+            style={{ flexGrow: 1 }}
           >
             <div className="w-full max-w-screen-xl">{children}</div>
           </main>
@@ -269,68 +259,84 @@ export default function RootLayout({ children }) {
   );
 }
 
-function Sidebar({
-  isVisible,
-  width,
-  isDragging,
-  pathname,
-  displayText,
-  showNowPlaying,
-  nowPlaying,
-  onLinkClick,
-  onAvatarClick,
-  isMobile
-}) {
+function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowPlaying, nowPlaying, onLinkClick, onAvatarClick, isMobile, onToggleTheme, theme }) {
   return (
     <aside
-      className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background border-r border-primary flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''
-        }`}
-      style={{
-        flexShrink: 0,
-        width: isVisible ? '100%' : isMobile ? '100%' : width
-      }}
+      className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkSecondary flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''}`}
+      style={{ flexShrink: 0, width: isVisible ? '100%' : isMobile ? '100%' : width }}
     >
       <div className="text-center relative mb-48">
-        <h1 className="text-5xl font-heading font-bold text-primary mb-6">
-          Ruby Lu
-        </h1>
-
-        <SocialLinks />
-        <nav className="text-primary text-base font-light font-body space-y-2">
-          <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')}>
-            About
-          </NavLink>
-          <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')}>
-            Recent Projects
-          </NavLink>
-          <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')}>
-            Life Outside of Coding
-          </NavLink>
+        <h1 className="text-5xl font-heading font-bold text-primary dark:text-darkSecondary mb-6">Ruby Lu</h1>
+        <SocialLinks onToggleTheme={onToggleTheme} theme={theme} />
+        <nav className="text-[var(--primary)] text-base font-light font-body space-y-2">
+          <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')}>About</NavLink>
+          <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')}>Recent Projects</NavLink>
+          <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')}>Life Outside of Coding</NavLink>
         </nav>
       </div>
-
-      <DialogueBox
-        displayText={displayText}
-        showNowPlaying={showNowPlaying}
-        nowPlaying={nowPlaying}
-        onAvatarClick={onAvatarClick}
-      />
+      <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} />
     </aside>
   );
 }
 
-function SocialLinks() {
+function SocialLinks({ onToggleTheme, theme }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
   return (
-    <div className="flex justify-center gap-6 text-xl mb-6">
-      <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
-        <AiOutlineMail className="text-primary hover:text-secondary hover:scale-105 text-2xl transition-all" />
-      </a>
-      <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer">
-        <AiOutlineLinkedin className="text-primary hover:text-secondary hover:scale-105 text-2xl transition-all" />
-      </a>
-      <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer">
-        <FiGithub className="text-primary hover:text-secondary hover:scale-105 text-2xl transition-all" />
-      </a>
+    <div className="flex justify-center gap-6 text-xl mb-6 items-center">
+      <div className="relative group flex items-center">
+        <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
+          <MdOutlineMail className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-2xl transition-all" />
+        </a>
+        {!isMobile && (
+          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-[var(--background)] text-[var(--primary)] border border-primary dark:border-darkSecondary text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
+            Email
+          </span>
+        )}
+      </div>
+
+      <div className="relative group flex items-center">
+        <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer">
+          <AiOutlineLinkedin className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-2xl transition-all" />
+        </a>
+        {!isMobile && (
+          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-[var(--background)] text-[var(--primary)] border border-primary dark:border-darkSecondary text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
+            LinkedIn
+          </span>
+        )}
+      </div>
+
+      <div className="relative group flex items-center">
+        <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer">
+          <FiGithub className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-xl transition-all" />
+        </a>
+        {!isMobile && (
+          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-[var(--background)] text-[var(--primary)] border border-primary dark:border-darkSecondary text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
+            GitHub
+          </span>
+        )}
+      </div>
+
+      <div className="relative group flex items-center">
+        <button
+          onClick={onToggleTheme}
+          className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-2xl transition-all flex items-center justify-center"
+        >
+          {theme === 'light' ? <BsMoon className="text-xl" /> : <BsSun className="text-xl" />}
+        </button>
+        {!isMobile && (
+          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-[var(--background)] text-[var(--primary)] border border-primary dark:border-darkSecondary text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
+            {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
@@ -340,7 +346,7 @@ function NavLink({ href, pathname, onClick, children }) {
     <Link
       href={href}
       onClick={onClick}
-      className={`block hover:text-secondary transition-all ${pathname === href ? 'text-secondary' : ''
+      className={`block hover:text-[var(--secondary)] transition-all ${pathname === href ? 'text-[var(--secondary)]' : ''
         }`}
     >
       {children}
@@ -353,7 +359,7 @@ function MobileNavLink({ href, pathname, onClick, children }) {
     <Link
       href={href}
       onClick={onClick}
-      className={`px-4 py-1 text-sm font-body font-light hover:text-secondary ${pathname === href ? 'text-secondary' : 'text-gray-700'}`}
+      className={`px-4 py-1 text-sm font-body font-light hover:text-[var(--secondary)] ${pathname === href ? 'text-[var(--secondary)]' : 'text-[var(--primary)] transition-all'}`}
     >
       {children}
     </Link>
@@ -364,7 +370,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick })
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-        <div className="bg-background border border-primary p-4 text-sm text-primary whitespace-pre-line text-center min-h-[55px] font-body font-light">
+        <div className="transition-all hover:scale-105 bg-[var(--background)] border border-primary dark:border-darkSecondary p-4 text-sm text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light">
           {showNowPlaying ? (
             nowPlaying ? (
               <NowPlayingDisplay nowPlaying={nowPlaying} />
@@ -375,7 +381,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick })
             displayText
           )}
         </div>
-        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary"></div>
+        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-[var(--secondary)]"></div>
       </div>
 
       <div>
@@ -399,23 +405,23 @@ function NowPlayingDisplay({ nowPlaying }) {
         <img
           src={nowPlaying.image || '/default-song.png'}
           alt={`${nowPlaying.track} cover`}
-          className={`border border-primary w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''
+          className={`border border-primary dark:border-darkSecondary w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''
             }`}
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = '/default-song.png';
           }}
         />
-        <div className="absolute inset-0 m-auto w-3 h-3 bg-background rounded-full border border-primary"></div>
+        <div className="absolute inset-0 m-auto w-3 h-3 bg-[var(--background)] rounded-full border border-primary dark:border-darkSecondary"></div>
       </div>
       <div className="text-left overflow-hidden min-w-0">
-        <div className="text-xs font-body font-light text-bold text-primary font-light">
+        <div className="text-xs font-body font-light text-bold text-[var(--primary)] font-light">
           {nowPlaying.nowplaying ? 'Now Listening on Spotify:' : 'Last Played on Spotify:'}
         </div>
-        <div className="truncate font-heading font-bold text-sm" title={nowPlaying.track}>
+        <div className="truncate font-heading font-bold text-sm text-[var(--primary)]" title={nowPlaying.track}>
           {nowPlaying.track}
         </div>
-        <div className="truncate font-body font-light text-xs" title={nowPlaying.artist}>
+        <div className="truncate font-body font-light text-xs text-[var(--primary)]" title={nowPlaying.artist}>
           {nowPlaying.artist}
         </div>
       </div>
@@ -434,9 +440,9 @@ function NoTracksDisplay() {
         />
       </div>
       <div className="text-left overflow-hidden min-w-0">
-        <div className="text-xs text-primary font-light">Last Played on Spotify:</div>
+        <div className="text-xs text-[var(--primary)] font-light">Last Played on Spotify:</div>
         <div className="font-bold">—</div>
-        <div className="text-xs text-primary">[No recent tracks found]</div>
+        <div className="text-xs text-[var(--primary)] font-light">[No recent tracks found]</div>
       </div>
     </div>
   );
