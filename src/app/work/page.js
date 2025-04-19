@@ -26,7 +26,7 @@ const projects = [
       },
       {
         section: "Thoughts",
-        content: "Hydropower and renewable energy was a field that I had pretty much no knowledge in before working at Hatch, so I was pretty eager to learn about software and its contributions to the energy sector. This project was interesting to work on because of the real-world application and potential for growth. What excited me the most was seeing how this model could be improved and integrated into the company's optimization systems for hydropower plants. As for the development process, I ended up gaining a much deeper understanding of the theory behind machine learning while I was experimenting with the model. Although it took a lot of time and learning, I enjoyed the process."
+        content: "Hydropower and renewable energy was a field that I had pretty much no knowledge in before working at Hatch, so I was eager to learn about the role of software in the energy sector. This project was interesting to work on because of the real-world application and potential for growth. What excited me the most was seeing how this model could be improved and integrated into the company's optimization systems for hydropower plants. As for the development process, I ended up gaining a much deeper understanding of the theory behind machine learning while I was experimenting with the model. Although it took a lot of time and learning, I enjoyed the process."
       }
     ],
   },
@@ -188,7 +188,7 @@ const ProjectCard = ({ project, imageOnRight, isExpanded, toggleExpand }) => (
         <h3 className="text-lg font-heading font-bold text-[var(--secondary)] mb-4">
           {project.subtitle}
         </h3>
-        <p className="font-body text-sm font-[var(--primary)]">
+        <p className="font-body font-light text-sm font-[var(--primary)]">
           {project.shortDescription}
         </p>
       </div>
