@@ -3,27 +3,105 @@ import LastFm from './LastFm';
 import Letterboxd from './Letterboxd';
 import AlbumCollage from './AlbumCollage';
 import Movies from './Movies';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
+const artData = [
+    {
+        "title": "Digital",
+        "pieces": [
+            {
+                "description": "Street under a pink sky, drawn digitally",
+                "image": "/images/art/street.png",
+                "fullWidth": true
+            }
+        ]
+    },
+    {
+        "title": "Alcohol Markers",
+        "pieces": [
+            {
+                "description": "I bought some grayscale Tombow alcohol markers from Dollarama and watched Mad Max: Fury Road for the first time, inspiring me to draw this",
+                "image": "/images/art/fury_road.jpg"
+            },
+            {
+                "description": "A quaint storefront, drawn with Tombow alcohol markers and fineliner pens",
+                "image": "images/art/storefront.png"
+            },
+            {
+                "description": "I drew a Corvette for a family friend who really likes cars",
+                "image": "images/art/car.png"
+            }
+        ]
+    },
+    {
+        "title": "Cats!",
+        "description": "I found a bunch of cute photos of cats on Pinterest as reference.",
+        "pieces": [
+            {
+                "description": "A sleepy cat, painted with acrylics",
+                "image": "/images/art/cat.jpg"
+            },
+            {
+                "description": "Sleepy gray cats, drawn with alcohol markers and fineliner pens",
+                "image": "/images/art/cats.jpg"
+            }
+        ]
+    },
+    {
+        "title": "Creatures & Cryptids",
+        "description": "These are some illustrations inspired by famous cryptids and mythical creatures - I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their depictions are very open to interpretation.",
+        "pieces": [
+            {
+                "description": "Wendigo (one of my favourite cryptids), drawn digitally",
+                "image": "images/art/wendigo.png"
+            },
+            {
+                "description": "Mothman (another one of my favourites), drawn with pencils",
+                "image": "images/art/mothman.jpg"
+            }
+        ]
+    },
+    {
+        "pieces": [
+            {
+                "description": "Death worm, drawn digitally",
+                "image": "images/art/deathworm.png"
+            },
+            {
+                "description": "Original (?), drawn digitally",
+                "image": "images/art/creature.png"
+            },
+            {
+                "description": "Dragon, drawn digitally",
+                "image": "images/art/dragon.png"
+            }
+        ]
+    },
+    {
+        "title": "Needle Felting",
+        "description": "Needle felting is pretty fun! I've made a bunch of little animals, but here are my personal favourites.",
+        "pieces": [
+            {
+                "description": "Bunny!",
+                "image": "images/art/bunny.jpg"
+            },
+            {
+                "description": "Frog!",
+                "image": "images/art/frog.jpg"
+            },
+            {
+                "description": "Dinosaur!",
+                "image": "images/art/dinosaur.jpg"
+            }
+        ]
+    }
+];
 
 export default function Misc() {
-    const [artGroups, setArtGroups] = useState([]);
     const [watchRec, setWatchRec] = useState('');
     const [listenRec, setListenRec] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitMessage, setSubmitMessage] = useState('');
-
-    useEffect(() => {
-        const loadArtData = async () => {
-            try {
-                const response = await fetch('/data/art.json');
-                const data = await response.json();
-                setArtGroups(data);
-            } catch (error) {
-                console.error('Error loading art data:', error);
-            }
-        };
-        loadArtData();
-    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,7 +136,7 @@ export default function Misc() {
 
     return (
         <div className="overflow-x-hidden px-8 py-12 sm:p-20 sm:pt-16">
-            <ArtGallery artGroups={artGroups} />
+            <ArtGallery artGroups={artData} />
 
             <RecentMediaSection />
 
