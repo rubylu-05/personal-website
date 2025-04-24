@@ -212,7 +212,7 @@ export default function RootLayout({ children }) {
                     <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all">
                       <AiOutlineLinkedin className="text-lg" />
                     </a>
-                    <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all">
+                    <a href="https://github.com/rubylu-05" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all">
                       <FiGithub className="text-lg" />
                     </a>
                     <button
@@ -319,7 +319,7 @@ function SocialLinks({ onToggleTheme, theme }) {
       </div>
 
       <div className="relative group flex items-center">
-        <a href="https://github.com/ruby-lu-05" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/rubylu-05" target="_blank" rel="noopener noreferrer">
           <FiGithub className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-xl transition-all" />
         </a>
         {!isMobile && (
