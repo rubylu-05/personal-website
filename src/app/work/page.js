@@ -90,20 +90,29 @@ export default function Work() {
               </div>
               
               <div className="md:w-2/3">
-                <h2 className="text-2xl font-heading font-bold text-primary mb-2">
+                <h2 className="text-2xl font-heading font-bold text-[var(--primary)] mb-2">
                   {project.title}
                 </h2>
-                <h3 className="text-lg font-heading font-bold text-secondary mb-4">
+                <h3 className="text-lg font-heading font-bold text-[var(--secondary)] mb-4">
                   {project.subtitle}
                 </h3>
-                <p className="font-body font-light text-sm text-primary">
+                <p className="font-body font-light text-sm font-[var(--primary)]">
                   {project.shortDescription}
                 </p>
               </div>
             </div>
 
-            {/* Expanded content */}
-            <div className={`overflow-hidden transition-all duration-300 ${expandedIds.includes(project.id) ? '' : 'max-h-0'}`}>
+            {/* Expanded content with animation */}
+            <div 
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                expandedIds.includes(project.id) 
+                  ? 'max-h-[2000px] opacity-100' 
+                  : 'max-h-0 opacity-0'
+              }`}
+              style={{
+                transitionProperty: 'max-height, opacity',
+              }}
+            >
               <div className="mt-4 space-y-6">
                 {project.expandedContent}
               </div>
@@ -117,7 +126,7 @@ export default function Work() {
                     href={project.githubLink} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-primary hover:text-secondary transition-all hover:scale-105"
+                    className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all hover:scale-105"
                   >
                     <FaGithub size={20} />
                   </a>
@@ -127,7 +136,7 @@ export default function Work() {
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-primary px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:border-secondary dark:hover:border-darkSecondary dark:hover:bg-darkSecondary hover:text-secondary dark:hover:text-darkPrimary"
+                    className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:border-secondary dark:hover:border-darkSecondary dark:hover:bg-darkSecondary hover:text-secondary dark:hover:text-darkPrimary"
                   >
                     {project.linkText}
                   </a>
@@ -135,7 +144,7 @@ export default function Work() {
               </div>
               <button
                 onClick={() => toggleExpand(project.id)}
-                className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-primary px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:border-secondary dark:hover:border-darkSecondary dark:hover:bg-darkSecondary hover:text-secondary dark:hover:text-darkPrimary"
+                className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:border-secondary dark:hover:border-darkSecondary dark:hover:bg-darkSecondary hover:text-secondary dark:hover:text-darkPrimary"
               >
                 {expandedIds.includes(project.id) ? 'Show Less' : 'Read More'}
               </button>
