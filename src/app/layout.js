@@ -245,7 +245,7 @@ export default function RootLayout({ children }) {
           )}
 
           {!isSidebarVisible && !isMobile && (
-            <div className="w-2 bg-transparent hover:bg-primary dark:hover:bg-darkSecondary cursor-col-resize transition-all duration-500 transition-ease-out"
+            <div className="w-1 bg-transparent hover:bg-primary dark:hover:bg-darkSecondary cursor-col-resize transition-all duration-500 transition-ease-out"
               onMouseDown={startDrag}
               onDoubleClick={() => setSidebarWidth('30%')}
               title="Double-click to reset width"

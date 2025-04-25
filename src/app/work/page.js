@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import Image from 'next/image';
 import BoxdOffice from './projects/BoxdOffice'
@@ -15,10 +15,10 @@ const projects = [
     title: "Boxd Office",
     subtitle: "A web app that dissects and visualizes your movie watching",
     image: "/images/projects/boxdoffice/boxdoffice.png",
-    description: "Boxd Office is a Letterboxd analytics dashboard that I built and deployed as a personal project. It analyzes a Letterboxd user’s public profile and provides insight into their preferences and patterns through comprehensive data visualization. This project was motivated by my passion for movies and data science; I wanted to obtain and transform raw viewing data into meaningful, interactive charts.",
+    description: "Boxd Office is a Letterboxd analytics dashboard that I built and deployed as a personal project! It scrapes a Letterboxd user’s public profile and provides insight into their preferences and patterns through comprehensive data visualization. This project was motivated by my passion for movies and data science; I wanted to obtain and transform raw viewing data into meaningful, interactive charts.",
     expandedContent: <BoxdOffice />,
     link: "https://boxdoffice.streamlit.app/",
-    linkText: "Live Link",
+    linkText: "Try it out!",
     githubLink: "https://github.com/rubylu-05/boxd-office"
   },
   {
@@ -41,7 +41,7 @@ const projects = [
     description: "Nudge was built at UofT Hacks, where our team of 4 wanted to tackle productivity and procrastination in a way that felt more human than typical productivity apps. Instead of silent reminders or site blockers, we built a Chrome extension that observes your Chrome activity and responds with sarcastic commentary inspired by the game The Stanley Parable.",
     expandedContent: <Nudge />,
     link: "https://dorahacks.io/buidl/21709",
-    linkText: "Hackathon Demo",
+    linkText: "Demo",
     githubLink: "https://github.com/sbrina-w/uofthacks12"
   },
   {
@@ -52,7 +52,7 @@ const projects = [
     description: "Poképlants was built at Hack the 6ix, where our team of 4 wanted to tackle the issue of houseplants dying from lack of care. We wanted to make a product that would make plant care more fun, engaging, and rewarding, so we turned it into a Pokémon-inspired game. This project combines hardware sensors, computer vision, and Pokémon-style web-based RPG to monitor plants in real-time and gamify plant care.",
     expandedContent: <Pokeplants />,
     link: "https://devpost.com/software/pokeplants",
-    linkText: "Hackathon Demo",
+    linkText: "Demo",
     githubLink: "https://github.com/FO214/ht6"
   },
   {
@@ -60,30 +60,36 @@ const projects = [
     title: "Chroma: Your Personal Colour Assistant",
     subtitle: "A mobile app to simplify the painting and colour mixing process",
     image: "/images/projects/chroma.png",
-    description: "Chroma was built for an online hackathon called WaffleHacks, where me and my partner wanted to make a tool that takes the guesswork out of colour matching by generating palettes and determining ratios mathematically. This project was motivated by our shared enthusiasm for art.",
+    description: "Chroma was built for an online hackathon, where me and my teammate wanted to build a tool that takes the guesswork out of colour matching by generating palettes and determining ratios mathematically. This project was motivated by our shared enthusiasm for art.",
     expandedContent: <Chroma />,
     link: "https://devpost.com/software/chroma-q3wshr",
-    linkText: "Hackathon Demo",
+    linkText: "Demo",
     githubLink: "https://github.com/sbrina-w/Chroma/"
   }
 ];
 
 export default function Work() {
   const [expandedIds, setExpandedIds] = useState([]);
+  const contentRefs = useRef({});
 
   const toggleExpand = (id) => {
-    setExpandedIds(prev => 
-      prev.includes(id) 
-        ? prev.filter(item => item !== id) 
+    setExpandedIds((prev) =>
+      prev.includes(id)
+        ? prev.filter((item) => item !== id)
         : [...prev, id]
     );
+  };
+
+  const getHeight = (id) => {
+    const el = contentRefs.current[id];
+    return el ? el.scrollHeight : 0;
   };
 
   return (
     <div className="px-8 py-8 sm:p-20 sm:pt-16">
       <div className="space-y-6">
         {projects.map((project, index) => (
-          <div 
+          <div
             key={project.id}
             className="transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary p-6 sm:p-6 sm:pl-10 sm:pr-10"
           >
@@ -100,7 +106,7 @@ export default function Work() {
                   }`}
                 />
               </div>
-              
+
               <div className="md:w-2/3">
                 <h2 className="text-2xl font-heading font-bold text-[var(--primary)] mb-2">
                   {project.title}
@@ -114,15 +120,15 @@ export default function Work() {
               </div>
             </div>
 
-            {/* Expanded content with animation */}
-            <div 
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedIds.includes(project.id) 
-                  ? 'max-h-[2000px] opacity-100' 
-                  : 'max-h-0 opacity-0'
-              }`}
+            {/* Expanded content with animated height */}
+            <div
+              ref={(el) => (contentRefs.current[project.id] = el)}
+              className="transition-[height,opacity] duration-500 ease-in-out overflow-hidden"
               style={{
-                transitionProperty: 'max-height, opacity',
+                height: expandedIds.includes(project.id)
+                  ? `${getHeight(project.id)}px`
+                  : '0px',
+                opacity: expandedIds.includes(project.id) ? 1 : 0,
               }}
             >
               <div className="mt-4 space-y-6">
@@ -134,9 +140,9 @@ export default function Work() {
             <div className="flex justify-between mt-4">
               <div className="flex items-center gap-2">
                 {project.githubLink && (
-                  <a 
-                    href={project.githubLink} 
-                    target="_blank" 
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all hover:scale-105"
                   >
@@ -144,9 +150,9 @@ export default function Work() {
                   </a>
                 )}
                 {project.link && project.linkText && (
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
+                  <a
+                    href={project.link}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:border-secondary dark:hover:border-darkSecondary dark:hover:bg-darkSecondary hover:text-secondary dark:hover:text-darkPrimary"
                   >

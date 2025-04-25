@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 const SKILL_GROUPS = [
   { category: 'Programming Languages', items: ['Python', 'C++', 'C', 'C#', 'Java', 'JavaScript', 'Dart'] },
   { category: 'Web Development', items: ['HTML/CSS', 'React.js', 'Next.js', 'Node.js', 'Tailwind CSS', 'Flask'] },
-  { category: 'Data & Machine Learning', items: ['TensorFlow', 'OpenCV', 'Pandas', 'BeautifulSoup'] },
+  { category: 'Data Science & Machine Learning', items: ['TensorFlow', 'OpenCV', 'Pandas', 'BeautifulSoup'] },
   { category: 'Cloud & Database', items: ['Firebase', 'MongoDB', 'AWS', 'SQL'] },
   { category: 'Mobile Development', items: ['Flutter'] },
   { category: 'Desktop & Systems', items: ['.NET'] }
@@ -70,7 +70,7 @@ export default function About() {
         In the summer of 2024, I worked on enhancing desktop applications and automating systems for <ExternalLink href="https://www.ym-inc.com">YM Inc.</ExternalLink>, a Toronto-based retail company that operates fashion brands across North America.
       </p>
       <p className="mb-4 font-body font-light">
-        In winter 2025, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I dipped my toes into the complexities of hydropower optimization. I worked on improving the efficiency of hydroelectric dams and explored the use of machine learning for predicting water inflow - this experience ended up being a really interesting intersection of engineering, sustainability, and software.
+        In winter 2025, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I dipped my toes into the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow - this experience ended up being a really interesting intersection of engineering, sustainability, and software.
       </p>
       <p className="mb-4 font-body font-light">
         In the fall of 2025, I'll be joining <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle as a Software Development Engineering Intern, which I'm pretty excited about!

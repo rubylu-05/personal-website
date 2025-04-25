@@ -2,21 +2,21 @@ export default function BoxdOffice() {
     return (
       <div className="mt-4 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="overflow-hidden border border-primary dark:border-darkSecondary">
+          <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary hover:scale-[1.02] transition-all">
             <img 
               src="/images/projects/boxdoffice/1.png" 
               alt="Screenshot 1" 
               className="w-full h-auto object-cover"
             />
           </div>
-          <div className="overflow-hidden border border-primary dark:border-darkSecondary">
+          <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary hover:scale-[1.02] transition-all">
             <img 
               src="/images/projects/boxdoffice/2.png" 
               alt="Screenshot 2" 
               className="w-full h-auto object-cover"
             />
           </div>
-          <div className="overflow-hidden border border-primary dark:border-darkSecondary">
+          <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary hover:scale-[1.02] transition-all">
             <img 
               src="/images/projects/boxdoffice/3.png" 
               alt="Screenshot 3" 
@@ -30,7 +30,7 @@ export default function BoxdOffice() {
             The Project
           </h4>
           <p className="font-body text-sm font-light">
-            Here's a little demo showing what it looks like after you enter your username and it scrapes your profile:
+            Here's what you'll see after your profile has been scraped:
           </p>
           
           <div className="mt-4 overflow-hidden border border-primary dark:border-darkSecondary">
