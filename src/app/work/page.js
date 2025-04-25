@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import Image from 'next/image';
+import BoxdOffice from './projects/BoxdOffice'
 import Hydropower from './projects/Hydropower';
 import Nudge from './projects/Nudge';
 import Pokeplants from './projects/Pokeplants';
@@ -11,44 +12,55 @@ import Chroma from './projects/Chroma';
 const projects = [
   {
     id: 1,
+    title: "Boxd Office",
+    subtitle: "A web app that dissects and visualizes your movie watching",
+    image: "/images/projects/boxdoffice/boxdoffice.png",
+    description: "Boxd Office is a Letterboxd analytics dashboard that I built and deployed as a personal project. It analyzes a Letterboxd user’s public profile and provides insight into their preferences and patterns through comprehensive data visualization. This project was motivated by my passion for movies and data science; I wanted to obtain and transform raw viewing data into meaningful, interactive charts.",
+    expandedContent: <BoxdOffice />,
+    link: "https://boxdoffice.streamlit.app/",
+    linkText: "Live Link",
+    githubLink: "https://github.com/rubylu-05/boxd-office"
+  },
+  {
+    id: 2,
     title: "Hydropower Inflow Forecasting",
     subtitle: "A machine learning model to optimize hydropower plants",
     image: "/images/projects/lstm.png",
     outlineImage: true,
-    shortDescription: "During my recent co-op term at Hatch, I used Pandas and Tensorflow to build a custom LSTM model to predict water inflow, which is one of the most unpredictable variables in hydropower. By processing large datasets of time-based hydrology data, this model helps optimize reservoir management by minimizing head losses. In the end, the model was able to achieve an r² score of 0.91, indicating high accuracy compared to baseline methods.",
+    description: "During my recent co-op term at Hatch, I used Pandas and Tensorflow to build a custom LSTM model to predict water inflow, which is one of the most unpredictable variables in hydropower. By processing large datasets of time-based hydrology data, this model helps optimize reservoir management by minimizing head losses. In the end, the model was able to achieve an r² score of 0.91, indicating high accuracy compared to baseline methods.",
     expandedContent: <Hydropower />,
     link: "",
     linkText: "",
     githubLink: ""
   },
   {
-    id: 2,
+    id: 3,
     title: "Nudge",
     subtitle: "An AI-powered Chrome extension that knows when you're slacking and pressures you to get back on track",
     image: "/images/projects/nudge.png",
-    shortDescription: "Nudge was built at UofT Hacks, where our team of 4 wanted to tackle productivity and procrastination in a way that felt more human than typical productivity apps. Instead of silent reminders or site blockers, we built a Chrome extension that observes your Chrome activity and responds with sarcastic commentary inspired by the game The Stanley Parable.",
+    description: "Nudge was built at UofT Hacks, where our team of 4 wanted to tackle productivity and procrastination in a way that felt more human than typical productivity apps. Instead of silent reminders or site blockers, we built a Chrome extension that observes your Chrome activity and responds with sarcastic commentary inspired by the game The Stanley Parable.",
     expandedContent: <Nudge />,
     link: "https://dorahacks.io/buidl/21709",
     linkText: "Hackathon Demo",
     githubLink: "https://github.com/sbrina-w/uofthacks12"
   },
   {
-    id: 3,
+    id: 4,
     title: "Poképlants",
     subtitle: "A game to make people feel more guilty about killing their houseplants | 1st place @ Hack the 6ix",
     image: "/images/projects/pokeplants.png",
-    shortDescription: "Poképlants was built at Hack the 6ix, where our team of 4 wanted to tackle the issue of houseplants dying from lack of care. We wanted to make a product that would make plant care more fun, engaging, and rewarding, so we turned it into a Pokémon-inspired game. This project combines hardware sensors, computer vision, and Pokémon-style web-based RPG to monitor plants in real-time and gamify plant care.",
+    description: "Poképlants was built at Hack the 6ix, where our team of 4 wanted to tackle the issue of houseplants dying from lack of care. We wanted to make a product that would make plant care more fun, engaging, and rewarding, so we turned it into a Pokémon-inspired game. This project combines hardware sensors, computer vision, and Pokémon-style web-based RPG to monitor plants in real-time and gamify plant care.",
     expandedContent: <Pokeplants />,
     link: "https://devpost.com/software/pokeplants",
     linkText: "Hackathon Demo",
     githubLink: "https://github.com/FO214/ht6"
   },
   {
-    id: 4,
+    id: 5,
     title: "Chroma: Your Personal Colour Assistant",
     subtitle: "A mobile app to simplify the painting and colour mixing process",
     image: "/images/projects/chroma.png",
-    shortDescription: "Chroma was built for an online hackathon called WaffleHacks, where me and my partner wanted to make a tool that takes the guesswork out of colour matching by generating palettes and determining ratios mathematically. This project was motivated by our shared enthusiasm for art.",
+    description: "Chroma was built for an online hackathon called WaffleHacks, where me and my partner wanted to make a tool that takes the guesswork out of colour matching by generating palettes and determining ratios mathematically. This project was motivated by our shared enthusiasm for art.",
     expandedContent: <Chroma />,
     link: "https://devpost.com/software/chroma-q3wshr",
     linkText: "Hackathon Demo",
@@ -93,11 +105,11 @@ export default function Work() {
                 <h2 className="text-2xl font-heading font-bold text-[var(--primary)] mb-2">
                   {project.title}
                 </h2>
-                <h3 className="text-lg font-heading font-bold text-[var(--secondary)] mb-4">
+                <h3 className="text-lg font-heading font-light text-[var(--secondary)] mb-4">
                   {project.subtitle}
                 </h3>
                 <p className="font-body font-light text-sm font-[var(--primary)]">
-                  {project.shortDescription}
+                  {project.description}
                 </p>
               </div>
             </div>
