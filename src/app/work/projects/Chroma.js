@@ -13,7 +13,7 @@ export default function Chroma() {
           <h4 className="text-lg font-heading font-bold text-primary dark:text-darkSecondary mb-2">
             Technical Overview
           </h4>
-          <ul className="list-disc pl-5 font-body text-sm font-light space-y-1 [&>li]:marker:text-[var(--secondary)]">
+          <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
             <li>Flutter was used to build the mobile app</li>
             <li>Flask was used for the back-end, which includes a Python script to handle calculations</li>
             <li>OpenCV was used to extract colours from images</li>

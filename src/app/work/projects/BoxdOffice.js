@@ -45,9 +45,9 @@ export default function BoxdOffice() {
           <h4 className="text-lg font-heading font-bold text-primary dark:text-darkSecondary mb-2">
             Technical Overview
           </h4>
-          <ul className="list-disc pl-5 font-body text-sm font-light space-y-1 [&>li]:marker:text-[var(--secondary)]">
+          <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
             <li>Python with BeautifulSoup was used for web scraping profiles and film data</li>
-            <li>Concurrent scraping with ThreadPoolExecutor was used for faster data collection</li>
+            <li>Multithreaded scraping with ThreadPoolExecutor was used for faster data collection</li>
             <li>Pandas was used for data processing and analysis</li>
             <li>Plotly was used for interactive visualizations</li>
             <li>Streamlit was used for designing and deploying the web interface</li>

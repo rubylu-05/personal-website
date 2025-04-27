@@ -13,7 +13,7 @@ export default function Nudge() {
           <h4 className="text-lg font-heading font-bold text-primary dark:text-darkSecondary mb-2">
             Technical Overview
           </h4>
-          <ul className="list-disc pl-5 font-body text-sm font-light space-y-1 [&>li]:marker:text-[var(--secondary)]">
+          <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
             <li>JavaScript was used to create the core functionality and monitor user activity</li>
             <li>React.js was used to create the extension's pop-up and dashboard</li>
             <li>MongoDB was used to store activity logs</li>

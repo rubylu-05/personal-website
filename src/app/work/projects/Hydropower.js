@@ -8,7 +8,7 @@ export default function Hydropower() {
           <p className="font-body text-sm font-light mb-2">
             Building the time-series forecasting model involved:
           </p>
-          <ul className="list-disc pl-5 font-body text-sm font-light space-y-1 [&>li]:marker:text-[var(--secondary)]">
+          <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
             <li>Scraping and processing 23 years of NASA OPeNDAP hydrology data (2002 - 2024), which included environmental metrics such as rainfall, snowmelt, soil conditions, and much more</li>
             <li>Lots of feature engineering to align the different environmental metrics with their delayed impact on water inflow</li>
             <li>Designing a 3-layer LSTM network with a custom Huber loss function to handle outliers</li>
