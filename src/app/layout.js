@@ -279,6 +279,14 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
           <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')}>Life Outside of Coding</NavLink>
         </nav>
       </div>
+      <div className="absolute bottom-2 left-4 text-xs text-primary dark:text-darkSecondary font-body font-light">
+        <span className="font-bold">Built with ♥</span><br/>
+        by Ruby Lu!
+      </div>
+      <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right">
+        <span className="font-bold">Last updated</span><br/>
+        4/26/2025
+      </div>
       <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} />
     </aside>
   );
@@ -301,9 +309,10 @@ function SocialLinks({ onToggleTheme, theme }) {
           <MdOutlineMail className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-2xl transition-all" />
         </a>
         {!isMobile && (
-          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-[var(--background)] text-[var(--primary)] border border-primary dark:border-darkSecondary text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
-            Email
-          </span>
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+            <span>Email</span>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+          </div>
         )}
       </div>
 
@@ -312,9 +321,10 @@ function SocialLinks({ onToggleTheme, theme }) {
           <AiOutlineLinkedin className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-2xl transition-all" />
         </a>
         {!isMobile && (
-          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-[var(--background)] text-[var(--primary)] border border-primary dark:border-darkSecondary text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
-            LinkedIn
-          </span>
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+            <span>LinkedIn</span>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+          </div>
         )}
       </div>
 
@@ -323,9 +333,10 @@ function SocialLinks({ onToggleTheme, theme }) {
           <FiGithub className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-xl transition-all" />
         </a>
         {!isMobile && (
-          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-[var(--background)] text-[var(--primary)] border border-primary dark:border-darkSecondary text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
-            GitHub
-          </span>
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+            <span>GitHub</span>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+          </div>
         )}
       </div>
 
@@ -337,9 +348,10 @@ function SocialLinks({ onToggleTheme, theme }) {
           {theme === 'light' ? <BsMoon className="text-xl" /> : <BsSun className="text-xl" />}
         </button>
         {!isMobile && (
-          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-[var(--background)] text-[var(--primary)] border border-primary dark:border-darkSecondary text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap">
-            {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
-          </span>
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+            <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+          </div>
         )}
       </div>
     </div>

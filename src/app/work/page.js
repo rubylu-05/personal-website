@@ -164,7 +164,7 @@ export default function Work() {
                 onClick={() => toggleExpand(project.id)}
                 className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all hover:scale-105 hover:border-secondary dark:hover:border-darkSecondary dark:hover:bg-darkSecondary hover:text-secondary dark:hover:text-darkPrimary"
               >
-                {expandedIds.includes(project.id) ? 'Show Less' : 'Read More'}
+                {expandedIds.includes(project.id) ? 'Show less' : 'Show more'}
               </button>
             </div>
           </div>
