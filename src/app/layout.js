@@ -270,9 +270,34 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
       className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkSecondary flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''}`}
       style={{ flexShrink: 0, width: isVisible ? '100%' : isMobile ? '100%' : width, height: '100dvh' }}
     >
+      <div className="absolute top-4 right-4 group">
+        <button
+          onClick={onToggleTheme}
+          className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-xl transition-all"
+          aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+        >
+          {theme === 'light' ? <BsMoon /> : <BsSun />}
+        </button>
+        {!isMobile && (
+          <>
+            {isVisible ? (
+              <div className="absolute flex flex-col right-full top-1/2 transform -translate-y-1/2 mr-2 bg-background dark:bg-darkBackground2 p-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+                <div className="transition-all absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary"></div>
+              </div>
+            ) : (
+              <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-2 bg-background dark:bg-darkBackground2 p-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+                <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkSecondary"></div>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+
       <div className="text-center relative mb-48">
         <h1 className="text-5xl font-heading font-bold text-primary dark:text-darkSecondary mb-6">Ruby Lu</h1>
-        <SocialLinks onToggleTheme={onToggleTheme} theme={theme} />
+        <SocialLinks isMobile={isMobile} />
         <nav className="text-[var(--primary)] text-base font-light font-body space-y-2">
           <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')}>About</NavLink>
           <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')}>Recent Projects</NavLink>
@@ -285,14 +310,14 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
       </div>
       <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right">
         <span className="font-bold">Last updated</span><br/>
-        4/26/2025
+        4/29/2025
       </div>
       <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} />
     </aside>
   );
 }
 
-function SocialLinks({ onToggleTheme, theme }) {
+function SocialLinks() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -335,21 +360,6 @@ function SocialLinks({ onToggleTheme, theme }) {
         {!isMobile && (
           <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
             <span>GitHub</span>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
-          </div>
-        )}
-      </div>
-
-      <div className="relative group flex items-center">
-        <button
-          onClick={onToggleTheme}
-          className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-2xl transition-all flex items-center justify-center"
-        >
-          {theme === 'light' ? <BsMoon className="text-xl" /> : <BsSun className="text-xl" />}
-        </button>
-        {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
-            <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
           </div>
         )}

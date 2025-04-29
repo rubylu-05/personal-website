@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 
 const SKILL_GROUPS = [
   { category: 'Programming Languages', items: ['Python', 'C++', 'C', 'C#', 'Java', 'JavaScript', 'Dart'] },
-  { category: 'Web Development', items: ['HTML/CSS', 'React.js', 'Next.js', 'Node.js', 'Tailwind CSS', 'Flask'] },
-  { category: 'Data Science & Machine Learning', items: ['TensorFlow', 'OpenCV', 'Pandas', 'BeautifulSoup'] },
+  { category: 'Web Development', items: ['HTML/CSS', 'React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Flask'] },
+  { category: 'Data Science & Machine Learning', items: ['TensorFlow', 'OpenCV', 'Pandas', 'Beautiful Soup'] },
   { category: 'Cloud & Database', items: ['Firebase', 'MongoDB', 'AWS', 'SQL'] },
   { category: 'Mobile Development', items: ['Flutter'] },
   { category: 'Desktop & Systems', items: ['.NET'] }

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { useState, useRef } from 'react';
+import { FiGithub } from 'react-icons/fi';
 import Image from 'next/image';
 import BoxdOffice from './projects/BoxdOffice'
 import Hydropower from './projects/Hydropower';
@@ -146,7 +146,7 @@ export default function Work() {
                     rel="noopener noreferrer"
                     className="text-[var(--primary)] sm:hover:text-[var(--secondary)] transition-all sm:hover:scale-105"
                   >
-                    <FaGithub size={20} />
+                    <FiGithub size={20} />
                   </a>
                 )}
                 {project.link && project.linkText && (
