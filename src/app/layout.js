@@ -190,7 +190,7 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100vw', overflow: 'hidden' }} ref={containerRef}>
-        <div className="flex h-full">
+        <div className="flex h-full" style={{ height: '100dvh' }}>
           {isMobile && pathname !== '/' && (
             <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
               <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2" aria-label="Menu">
@@ -252,9 +252,9 @@ export default function RootLayout({ children }) {
             />
           )}
 
-          <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-100 overflow-y-auto
+          <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-[100dvh] overflow-y-auto
             ${!isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''} relative`}
-            style={{ flexGrow: 1 }}
+            style={{ flexGrow: 1, height: '100dvh' }}
           >
             <div className="w-full max-w-screen-xl">{children}</div>
           </main>
@@ -268,7 +268,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
   return (
     <aside
       className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkSecondary flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''}`}
-      style={{ flexShrink: 0, width: isVisible ? '100%' : isMobile ? '100%' : width }}
+      style={{ flexShrink: 0, width: isVisible ? '100%' : isMobile ? '100%' : width, height: '100dvh' }}
     >
       <div className="text-center relative mb-48">
         <h1 className="text-5xl font-heading font-bold text-primary dark:text-darkSecondary mb-6">Ruby Lu</h1>
