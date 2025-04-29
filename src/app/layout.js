@@ -312,7 +312,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
         <span className="font-bold">Last updated</span><br />
         4/29/2025
       </div>
-      <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} />
+      <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} theme={theme} />
     </aside>
   );
 }
@@ -393,7 +393,7 @@ function MobileNavLink({ href, pathname, onClick, children }) {
   );
 }
 
-function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick }) {
+function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, theme }) {
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
@@ -412,8 +412,10 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick })
       </div>
 
       <div>
-        <Image
-          src={showNowPlaying && nowPlaying?.nowplaying ? "/images/avatar/me-listening.png" : "/images/avatar/me.png"}
+        <img
+          src={showNowPlaying && nowPlaying?.nowplaying
+            ? `/images/avatar/${theme}/me-listening.png`
+            : `/images/avatar/${theme}/me.png`}
           alt="me"
           width={125}
           height={125}
