@@ -188,7 +188,7 @@ const ArtPiece = ({ piece }) => (
         <img
             src={piece.image}
             alt=""
-            className={`w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary hover:scale-[1.02] transition-all`}
+            className={`w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary sm:hover:scale-[1.02] transition-all`}
         />
         <p className="font-body font-light text-xs">{piece.description}</p>
     </div>
@@ -285,7 +285,7 @@ const SubmitButton = ({ isSubmitting }) => (
     <button
         type="submit"
         disabled={isSubmitting}
-        className="px-4 py-2 bg-background dark:bg-darkBackground2 text-[var(--primary)] hover:text-secondary dark:hover:text-darkPrimary border border-primary dark:border-darkSecondary hover:border-[var(--secondary)] dark:hover:bg-darkSecondary text-sm font-body font-light transition-all hover:scale-105"
+        className="px-4 py-2 bg-background dark:bg-darkBackground2 text-[var(--primary)] hover:text-secondary dark:hover:text-darkPrimary border border-primary dark:border-darkSecondary hover:border-[var(--secondary)] dark:hover:bg-darkSecondary text-sm font-body font-light transition-all sm:hover:scale-105"
     >
         {isSubmitting ? 'Sending...' : 'Send!'}
     </button>

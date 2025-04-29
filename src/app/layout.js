@@ -387,7 +387,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick })
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-        <div className="transition-all hover:scale-105 bg-[var(--background)] border border-primary dark:border-darkSecondary p-4 text-sm text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light">
+        <div className="transition-all sm:hover:scale-105 bg-[var(--background)] border border-primary dark:border-darkSecondary p-4 text-sm text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light">
           {showNowPlaying ? (
             nowPlaying ? (
               <NowPlayingDisplay nowPlaying={nowPlaying} />
@@ -407,7 +407,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick })
           alt="me"
           width={125}
           height={125}
-          className="mx-auto h-[15%] object-contain mt-2 hover:scale-[103%] transition-all cursor-pointer"
+          className="mx-auto h-[15%] object-contain mt-2 sm:hover:scale-[103%] transition-all cursor-pointer"
           onClick={onAvatarClick}
         />
       </div>
