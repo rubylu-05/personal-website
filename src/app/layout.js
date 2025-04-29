@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
     const storedTheme = localStorage.getItem('theme') || 'light';
     setTheme(storedTheme);
     document.documentElement.className = storedTheme;
-    
+
     const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
@@ -281,12 +281,12 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
         {!isMobile && (
           <>
             {isVisible ? (
-              <div className="absolute flex flex-col right-full top-1/2 transform -translate-y-1/2 mr-2 bg-background dark:bg-darkBackground2 p-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+              <div className="absolute flex flex-col right-full top-1/2 transform -translate-y-1/2 mr-2 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
                 <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
                 <div className="transition-all absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary"></div>
               </div>
             ) : (
-              <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-2 bg-background dark:bg-darkBackground2 p-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+              <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-2 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
                 <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
                 <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkSecondary"></div>
               </div>
@@ -305,11 +305,11 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
         </nav>
       </div>
       <div className="absolute bottom-2 left-4 text-xs text-primary dark:text-darkSecondary font-body font-light">
-        <span className="font-bold">Built with ♥</span><br/>
+        <span className="font-bold">Built with ♥</span><br />
         by Ruby Lu!
       </div>
       <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right">
-        <span className="font-bold">Last updated</span><br/>
+        <span className="font-bold">Last updated</span><br />
         4/29/2025
       </div>
       <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} />
