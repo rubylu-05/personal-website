@@ -108,7 +108,7 @@ const SkillBadge = ({ skillName }) => {
       <div className="w-6 h-6 mr-2 flex items-center justify-center">
         <img src={iconPath} alt={skillName} className="w-5 h-5 object-contain" />
       </div>
-      <span className="font-body font-medium text-sm text-[var(--primary)]">{skillName}</span>
+      <span className="font-body font-light text-sm text-[var(--primary)]">{skillName}</span>
     </div>
   );
 };

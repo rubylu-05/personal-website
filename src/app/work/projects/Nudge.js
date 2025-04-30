@@ -6,7 +6,7 @@ export default function Nudge() {
             The Project
           </h4>
           <p className="font-body text-sm font-light">
-            The user would express the task that they are trying to accomplish; for example, maybe they want to practice Leetcode and get a job. The extension would then start observing their activity, making snarky comments verbally and nudging them to get back on track (hence the name). If they opened a Leetcode problem and went straight to the solution, they would probably get called out. The extension "speaks" out loud in a tone and voice that's meant to mimic the narrator in The Stanley Parable.
+            The user would express the task that they are trying to accomplish; for example, maybe they want to practice Leetcode and get a job. The extension would then start observing their activity, making snarky comments verbally and nudging them to get back on track (hence the name). If they opened a problem and went straight to the solution, they would get called out. The extension "speaks" out loud in a tone and voice that's meant to mimic the narrator in The Stanley Parable.
           </p>
         </div>
         <div className="mb-6">
@@ -15,7 +15,7 @@ export default function Nudge() {
           </h4>
           <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
             <li>JavaScript was used to create the core functionality and monitor user activity</li>
-            <li>React.js was used to create the extension's pop-up and dashboard</li>
+            <li>React was used to create the extension's pop-up and dashboard</li>
             <li>MongoDB was used to store activity logs</li>
             <li>Flask was used for the back-end</li>
             <li>GPT-4 (OpenAI) was used to generate the responses based on the information fetched from the extension</li>

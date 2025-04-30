@@ -19,7 +19,7 @@ export default function Pokeplants() {
             <li>Langchain was used to process data into game actions</li>
             <li>Flask was used for the back-end</li>
             <li>Socket.IO was used for real-time multiplayer battles</li>
-            <li>React.js was used to design the game</li>
+            <li>React was used to design the game</li>
           </ul>
         </div>
         <div className="mb-6">

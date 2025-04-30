@@ -12,8 +12,8 @@ import { useState, useEffect, useRef } from 'react';
 const MESSAGES = {
   '/': "Welcome! Feel free to take a look around :)",
   '/about': "A quick peek into my personal interests and growth as a developer.",
-  '/work': "Recent projects that I've poured my curiosity into - they all taught me something new.",
-  '/misc': "This is where I get to ramble about art, movies, and music that I like."
+  '/work': "Recent projects that I've poured my curiosity into - they all taught me something new!",
+  '/misc': "A space for the non-technical things that I enjoy and appreciate!"
 };
 
 const MIN_SIDEBAR_WIDTH = 20;
@@ -423,6 +423,10 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
     return `/images/avatar/${theme}/me.png`;
   };
 
+  const handleAvatarClick = () => {
+    onAvatarClick();
+  };
+
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px] z-10">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
@@ -445,6 +449,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
           src={getAvatarImage()}
           alt="me"
           className="mx-auto w-[35vw] max-w-[150px] min-w-[80px] sm:max-w-[175px] h-auto object-contain transition-all sm:hover:scale-[103%] cursor-pointer"
+          onClick={handleAvatarClick}
         />
       </div>
     </div>
