@@ -174,7 +174,7 @@ function Letterboxd() {
                         </svg>
                     </button>
 
-                    <div className="relative w-full overflow-hidden" style={{ height: '19rem' }}>
+                    <div className="relative w-full overflow-hidden min-h-[19rem]">
                         <div
                             ref={containerRef}
                             className="flex transition-all pl-0"
@@ -189,18 +189,18 @@ function Letterboxd() {
                                     className="transition-all flex-shrink-0 w-40 mx-3 bg-background dark:bg-darkBackground2 text-[var(--primary)] border border-primary dark:border-darkSecondary p-3 cursor-pointer first:ml-0"
                                     onClick={() => goToMovie(index)}
                                 >
-                                    <div className="transition-all w-full h-48 mb-3 overflow-hidden border border-primary dark:border-darkSecondary">
+                                    <div className="transition-all w-full mb-3 overflow-hidden border border-primary dark:border-darkSecondary">
                                         {movie.image ? (
                                             <img
                                                 src={movie.image}
                                                 alt={movie.title}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-auto object-contain"
                                                 onError={(e) => {
                                                     e.target.src = '/default-movie.png';
                                                 }}
                                             />
                                         ) : (
-                                            <div className="w-full h-full bg-gray-300 flex items-center justify-center">
+                                            <div className="w-full bg-gray-300 flex items-center justify-center" style={{ aspectRatio: '2/3' }}>
                                                 <span className="text-xs">No image</span>
                                             </div>
                                         )}
