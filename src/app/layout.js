@@ -241,6 +241,8 @@ export default function RootLayout({ children }) {
               isMobile={isMobile}
               onToggleTheme={toggleTheme}
               theme={theme}
+              currentIndex={currentIndex}
+              currentMessage={currentMessage}
             />
           )}
 
@@ -264,7 +266,7 @@ export default function RootLayout({ children }) {
   );
 }
 
-function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowPlaying, nowPlaying, onLinkClick, onAvatarClick, isMobile, onToggleTheme, theme }) {
+function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowPlaying, nowPlaying, onLinkClick, onAvatarClick, isMobile, onToggleTheme, theme, currentIndex, currentMessage }) {
   return (
     <aside
       className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkSecondary flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''}`}
@@ -281,7 +283,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
         {!isMobile && (
           <>
             {isVisible ? (
-              <div className="absolute flex flex-col right-full top-1/2 transform -translate-y-1/2 mr-2 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+              <div className="absolute flex flex-col right-full top-1/2 transform -translate-y-1/2 mr-3 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
                 <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
                 <div className="transition-all absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary"></div>
               </div>
@@ -295,7 +297,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
         )}
       </div>
 
-      <div className="text-center relative mb-48">
+      <div className="text-center relative mb-80">
         <h1 className="text-5xl font-heading font-bold text-primary dark:text-darkSecondary mb-6">Ruby Lu</h1>
         <SocialLinks isMobile={isMobile} />
         <nav className="text-[var(--primary)] text-base font-light font-body space-y-2">
@@ -312,7 +314,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
         <span className="font-bold">Last updated</span><br />
         4/29/2025
       </div>
-      <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} theme={theme} />
+      <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} theme={theme} currentIndex={currentIndex} currentMessage={currentMessage} />
     </aside>
   );
 }
@@ -393,11 +395,39 @@ function MobileNavLink({ href, pathname, onClick, children }) {
   );
 }
 
-function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, theme }) {
+function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, theme, currentIndex, currentMessage }) {
+  const [currentAvatar, setCurrentAvatar] = useState(0);
+  const isTyping = currentIndex < currentMessage.length;
+  
+  useEffect(() => {
+    if (isTyping) {
+      const interval = setInterval(() => {
+        setCurrentAvatar(prev => (prev + 1) % 2);
+      }, 200);
+      return () => clearInterval(interval);
+    } else if (showNowPlaying && nowPlaying?.nowplaying) {
+      const interval = setInterval(() => {
+        setCurrentAvatar(prev => (prev + 1) % 2);
+      }, 400);
+      return () => clearInterval(interval);
+    } else {
+      setCurrentAvatar(0);
+    }
+  }, [isTyping, showNowPlaying, nowPlaying]);
+
+  const getAvatarImage = () => {
+    if (isTyping) {
+      return `/images/avatar/${theme}/me-talking${currentAvatar + 1}.png`;
+    } else if (showNowPlaying && nowPlaying?.nowplaying) {
+      return `/images/avatar/${theme}/me-listening${currentAvatar + 1}.png`;
+    }
+    return `/images/avatar/${theme}/me.png`;
+  };
+
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-        <div className="transition-all sm:hover:scale-105 bg-[var(--background)] border border-primary dark:border-darkSecondary p-4 text-sm text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light">
+        <div className="transition-all bg-[var(--background)] border border-primary dark:border-darkSecondary p-4 text-sm text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light">
           {showNowPlaying ? (
             nowPlaying ? (
               <NowPlayingDisplay nowPlaying={nowPlaying} />
@@ -408,18 +438,16 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
             displayText
           )}
         </div>
-        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-[var(--secondary)]"></div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-[var(--secondary)]"></div>
       </div>
 
       <div>
         <img
-          src={showNowPlaying && nowPlaying?.nowplaying
-            ? `/images/avatar/${theme}/me-listening.png`
-            : `/images/avatar/${theme}/me.png`}
+          src={getAvatarImage()}
           alt="me"
-          width={125}
-          height={125}
-          className="mx-auto h-[15%] object-contain mt-2 sm:hover:scale-[103%] transition-all cursor-pointer"
+          width={200}
+          height={200}
+          className="mx-auto h-[15%] object-contain sm:hover:scale-[103%] transition-all cursor-pointer"
           onClick={onAvatarClick}
         />
       </div>
