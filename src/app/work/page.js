@@ -18,7 +18,7 @@ const projects = [
     description: "Boxd Office is a Letterboxd analytics dashboard that I built and deployed as a personal project! It scrapes a Letterboxd user’s public profile and provides insight into their preferences and patterns through comprehensive data visualization. This project was motivated by my passion for movies and data science; I wanted to obtain and transform raw viewing data into meaningful, interactive charts.",
     expandedContent: <BoxdOffice />,
     link: "https://boxdoffice.streamlit.app/",
-    linkText: "Try it out!",
+    linkText: "Try it out",
     githubLink: "https://github.com/rubylu-05/boxd-office"
   },
   {
@@ -47,7 +47,7 @@ const projects = [
   {
     id: 4,
     title: "Poképlants",
-    subtitle: "A game to make people feel more guilty about killing their houseplants | 1st place @ Hack the 6ix",
+    subtitle: "A game to make people feel more guilty about killing their houseplants (1st place @ Hack the 6ix)",
     image: "/images/projects/pokeplants.png",
     description: "Poképlants was built at Hack the 6ix, where our team of 4 wanted to tackle the issue of houseplants dying from lack of care. We wanted to make a product that would make plant care more fun, engaging, and rewarding, so we turned it into a Pokémon-inspired game. This project combines hardware sensors, computer vision, and Pokémon-style web-based RPG to monitor plants in real-time and gamify plant care.",
     expandedContent: <Pokeplants />,

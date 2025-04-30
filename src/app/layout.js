@@ -12,7 +12,7 @@ import { useState, useEffect, useRef } from 'react';
 const MESSAGES = {
   '/': "Welcome! Feel free to take a look around :)",
   '/about': "A quick peek into my personal interests and growth as a developer.",
-  '/work': "Recent projects that I've poured my curiosity into - they all taught me something new!",
+  '/work': "Recent projects that I've poured my curiosity into - they all taught me something new.",
   '/misc': "A space for the non-technical things that I enjoy and appreciate!"
 };
 
@@ -307,7 +307,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
       </div>
       <div className="absolute bottom-2 left-4 text-xs text-primary dark:text-darkSecondary font-body font-light z-20">
         <span className="font-bold">Built with ♥</span><br />
-        by Ruby Lu!
+        by Ruby Lu
       </div>
       <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right z-20">
         <span className="font-bold">Last updated</span><br />
