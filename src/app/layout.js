@@ -7,7 +7,6 @@ import { AiOutlineLinkedin, AiOutlineMenu } from 'react-icons/ai';
 import { FiGithub } from 'react-icons/fi';
 import { MdOutlineMail } from 'react-icons/md';
 import { BsMoon, BsSun } from 'react-icons/bs';
-import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
 const MESSAGES = {
@@ -306,13 +305,13 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
           <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')}>Life Outside of Coding</NavLink>
         </nav>
       </div>
-      <div className="absolute bottom-2 left-4 text-xs text-primary dark:text-darkSecondary font-body font-light">
+      <div className="absolute bottom-2 left-4 text-xs text-primary dark:text-darkSecondary font-body font-light z-20">
         <span className="font-bold">Built with ♥</span><br />
         by Ruby Lu!
       </div>
-      <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right">
+      <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right z-20">
         <span className="font-bold">Last updated</span><br />
-        4/29/2025
+        4/30/2025
       </div>
       <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} theme={theme} currentIndex={currentIndex} currentMessage={currentMessage} />
     </aside>
@@ -398,7 +397,7 @@ function MobileNavLink({ href, pathname, onClick, children }) {
 function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, theme, currentIndex, currentMessage }) {
   const [currentAvatar, setCurrentAvatar] = useState(0);
   const isTyping = currentIndex < currentMessage.length;
-  
+
   useEffect(() => {
     if (isTyping) {
       const interval = setInterval(() => {
@@ -425,7 +424,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
   };
 
   return (
-    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px]">
+    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px] z-10">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
         <div className="transition-all bg-[var(--background)] border border-primary dark:border-darkSecondary p-4 text-sm text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light">
           {showNowPlaying ? (
@@ -445,10 +444,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
         <img
           src={getAvatarImage()}
           alt="me"
-          width={175}
-          height={175}
-          className="mx-auto h-[15%] object-contain sm:hover:scale-[103%] transition-all cursor-pointer"
-          onClick={onAvatarClick}
+          className="mx-auto w-[35vw] max-w-[150px] min-w-[80px] sm:max-w-[175px] h-auto object-contain transition-all sm:hover:scale-[103%] cursor-pointer"
         />
       </div>
     </div>
