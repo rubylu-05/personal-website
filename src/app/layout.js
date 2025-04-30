@@ -297,7 +297,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
         )}
       </div>
 
-      <div className="text-center relative mb-80">
+      <div className="text-center relative mb-72">
         <h1 className="text-5xl font-heading font-bold text-primary dark:text-darkSecondary mb-6">Ruby Lu</h1>
         <SocialLinks isMobile={isMobile} />
         <nav className="text-[var(--primary)] text-base font-light font-body space-y-2">
@@ -445,8 +445,8 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
         <img
           src={getAvatarImage()}
           alt="me"
-          width={200}
-          height={200}
+          width={175}
+          height={175}
           className="mx-auto h-[15%] object-contain sm:hover:scale-[103%] transition-all cursor-pointer"
           onClick={onAvatarClick}
         />
