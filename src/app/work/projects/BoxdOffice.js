@@ -46,7 +46,7 @@ export default function BoxdOffice() {
             Technical Overview
           </h4>
           <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
-            <li>Python with BeautifulSoup was used for web scraping profiles and film data</li>
+            <li>Python with Beautiful Soup was used for web scraping profiles and film data</li>
             <li>Multithreaded scraping with ThreadPoolExecutor was used for faster data collection</li>
             <li>Pandas was used for data processing and analysis</li>
             <li>Plotly was used for interactive visualizations</li>
@@ -59,7 +59,7 @@ export default function BoxdOffice() {
             Thoughts
           </h4>
           <p className="font-body text-sm font-light">
-            This project was a really fun way to combine my personal interests into a tangible product. I thought a lot about what kind of insights would actually be meaningful to someone who watches a lot of movies and how to present those insights in a way that's both informative and enjoyable to look at. Letterboxd's lack of a public API meant I had to get creative with BeautifulSoup, which was both frustrating and rewarding. On the frontend side, I put a lot of effort into mimicking Letterboxd's UI to make the dashboard feel like a natural extension of the platform. Streamlit's convenience was a blessing for rapid prototyping, but its limitations forced me to get a little hacky with injected HTML/CSS to achieve the exact look that I wanted. There's a lot of room to improve and expand the project, but overall I'm happy with how it turned out, and it was super satisfying to bring the idea to life.
+            This project was a really fun way to combine my personal interests into a tangible product. I thought a lot about what kind of insights would actually be meaningful to someone who watches a lot of movies and how to present those insights in a way that's both informative and enjoyable to look at. Letterboxd doesn't have a public API, so I turned to web scraping with Beautiful Soup. This meant I had to be careful with rate limits; I accidentally exceeded them at one point, but this helped me implement better error handling and request throttling in the final version. On the frontend side, I put a lot of effort into mimicking Letterboxd's UI to make the dashboard feel like a natural extension of the platform. Streamlit's convenience was a blessing for rapid prototyping, but its limitations forced me to get a little creative with injected HTML/CSS to achieve the exact look that I wanted. There's a lot of room to improve and expand the project, but overall I'm happy with how it turned out, and it was super satisfying to bring the idea to life.
           </p>
         </div>
       </div>

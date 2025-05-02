@@ -76,7 +76,7 @@ function LastFm() {
                                     }}
                                 />
                             </div>
-                            <span className="font-body font-light text-sm">{artist.name}</span>
+                            <span className="font-body font-medium text-sm">{artist.name}</span>
                         </div>
                     ))}
                 </div>

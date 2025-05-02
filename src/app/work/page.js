@@ -15,7 +15,7 @@ const projects = [
     title: "Boxd Office",
     subtitle: "A web app that dissects and visualizes your movie watching",
     image: "/images/projects/boxdoffice/boxdoffice.png",
-    description: "Boxd Office is a Letterboxd analytics dashboard that I built and deployed as a personal project! It scrapes a Letterboxd user’s public profile and provides insight into their preferences and patterns through comprehensive data visualization. This project was motivated by my passion for movies and data science; I wanted to obtain and transform raw viewing data into meaningful, interactive charts.",
+    description: "Boxd Office is a Letterboxd analytics dashboard that I built and deployed as a personal project! It scrapes a Letterboxd user’s public profile and provides insight into their preferences and patterns through comprehensive data visualization. This project was motivated by my passion for movies and interest in data science; I wanted to obtain and transform raw viewing data into meaningful, interactive charts.",
     expandedContent: <BoxdOffice />,
     link: "https://boxdoffice.streamlit.app/",
     linkText: "Try it out",
