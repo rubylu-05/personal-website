@@ -206,28 +206,30 @@ function Letterboxd() {
                                         )}
                                     </div>
 
-                                    <div className="space-y-0.5">
+                                    <div className="space-y-1">
                                         <div className="flex justify-between items-baseline">
                                             <span
-                                                className="font-body font-medium text-sm truncate flex-1"
+                                                className="font-body font-medium text-sm truncate w-full"
                                                 title={movie.title}
                                             >
                                                 {movie.title}
                                             </span>
-                                            <span className="font-body font-light text-xs whitespace-nowrap ml-2">
-                                                ({movie.year})
-                                            </span>
+                                        </div>
+
+                                        <div className="flex justify-between items-center">
+                                            <div className="font-body font-light text-xs flex items-center">
+                                                {movie.year}
+                                            </div>
+                                            {movie.rating && (
+                                                <div className="font-sans flex items-center">
+                                                    {getStarRating(movie.rating)}
+                                                </div>
+                                            )}
                                         </div>
 
                                         <div className="font-body font-light text-xs">
                                             Watched {movie.watchedDate}
                                         </div>
-
-                                        {movie.rating && (
-                                            <div className="pt-0.5">
-                                                {getStarRating(movie.rating)}
-                                            </div>
-                                        )}
                                     </div>
                                 </div>
                             ))}
