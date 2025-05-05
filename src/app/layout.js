@@ -188,6 +188,19 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
       </head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5B61LYJNK"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-G5B61LYJNK', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
       <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100dvw', overflow: 'hidden' }} ref={containerRef}>
         <div className="flex" style={{ height: '100dvh' }}>
           {isMobile && pathname !== '/' && (
