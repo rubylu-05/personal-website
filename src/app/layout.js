@@ -35,7 +35,6 @@ export default function RootLayout({ children }) {
   const menuRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [theme, setTheme] = useState('light');
-  const mainContentRef = useRef(null);
 
   const currentMessage = MESSAGES[pathname] || MESSAGES['/'];
 
@@ -182,26 +181,6 @@ export default function RootLayout({ children }) {
     };
   }, [isMobileMenuOpen]);
 
-  useEffect(() => {
-    const handleWheel = (e) => {
-      if (mainContentRef.current && !isMobile) {
-        const { scrollTop, scrollHeight, clientHeight } = mainContentRef.current;
-        const atTop = scrollTop === 0 && e.deltaY < 0;
-        const atBottom = scrollTop + clientHeight >= scrollHeight && e.deltaY > 0;
-        
-        if (!atTop && !atBottom) {
-          e.preventDefault();
-          mainContentRef.current.scrollTop += e.deltaY;
-        }
-      }
-    };
-
-    document.addEventListener('wheel', handleWheel, { passive: false });
-    return () => {
-      document.removeEventListener('wheel', handleWheel);
-    };
-  }, [isMobile]);
-
   return (
     <html lang="en">
       <head>
@@ -276,10 +255,9 @@ export default function RootLayout({ children }) {
             />
           )}
 
-          <main 
-            ref={mainContentRef}
-            className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} overflow-y-auto h-full
-              ${!isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''} relative`}
+          <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-[100dvh] overflow-y-auto
+            ${!isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''} relative`}
+            style={{ flexGrow: 1, height: '100dvh' }}
           >
             <div className="w-full max-w-screen-xl">{children}</div>
           </main>
@@ -335,7 +313,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
       </div>
       <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right z-20">
         <span className="font-bold">Last updated</span><br />
-        5/2/2025
+        5/6/2025
       </div>
       <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} theme={theme} currentIndex={currentIndex} currentMessage={currentMessage} />
     </aside>
