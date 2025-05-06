@@ -8,6 +8,7 @@ import { FiGithub } from 'react-icons/fi';
 import { MdOutlineMail } from 'react-icons/md';
 import { BsMoon, BsSun } from 'react-icons/bs';
 import { useState, useEffect, useRef } from 'react';
+import GoogleTag from '../GoogleTag'
 
 const MESSAGES = {
   '/': "Welcome! Feel free to take a look around :)",
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
   const menuRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [theme, setTheme] = useState('light');
+  const mainContentRef = useRef(null);
 
   const currentMessage = MESSAGES[pathname] || MESSAGES['/'];
 
@@ -180,6 +182,26 @@ export default function RootLayout({ children }) {
     };
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    const handleWheel = (e) => {
+      if (mainContentRef.current && !isMobile) {
+        const { scrollTop, scrollHeight, clientHeight } = mainContentRef.current;
+        const atTop = scrollTop === 0 && e.deltaY < 0;
+        const atBottom = scrollTop + clientHeight >= scrollHeight && e.deltaY > 0;
+        
+        if (!atTop && !atBottom) {
+          e.preventDefault();
+          mainContentRef.current.scrollTop += e.deltaY;
+        }
+      }
+    };
+
+    document.addEventListener('wheel', handleWheel, { passive: false });
+    return () => {
+      document.removeEventListener('wheel', handleWheel);
+    };
+  }, [isMobile]);
+
   return (
     <html lang="en">
       <head>
@@ -188,19 +210,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
       </head>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5B61LYJNK"></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-G5B61LYJNK', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
+      <GoogleTag/>
       <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100dvw', overflow: 'hidden' }} ref={containerRef}>
         <div className="flex" style={{ height: '100dvh' }}>
           {isMobile && pathname !== '/' && (
@@ -266,9 +276,10 @@ export default function RootLayout({ children }) {
             />
           )}
 
-          <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-[100dvh] overflow-y-auto
-            ${!isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''} relative`}
-            style={{ flexGrow: 1, height: '100dvh' }}
+          <main 
+            ref={mainContentRef}
+            className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} overflow-y-auto h-full
+              ${!isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''} relative`}
           >
             <div className="w-full max-w-screen-xl">{children}</div>
           </main>
