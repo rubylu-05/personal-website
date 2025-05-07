@@ -101,7 +101,7 @@ export default function Work() {
                   alt={project.title}
                   width={400}
                   height={300}
-                  className={`w-full h-auto object-contain transition-all sm:hover:scale-105 ${
+                  className={`w-full h-auto object-contain transition-all lg:hover:scale-105 ${
                     project.outlineImage ? 'border border-primary dark:border-darkSecondary' : ''
                   }`}
                 />
@@ -144,7 +144,7 @@ export default function Work() {
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--primary)] sm:hover:text-[var(--secondary)] transition-all sm:hover:scale-105"
+                    className="text-[var(--primary)] lg:hover:text-[var(--secondary)] transition-all lg:hover:scale-105"
                   >
                     <FiGithub size={20} />
                   </a>
@@ -154,7 +154,7 @@ export default function Work() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all sm:hover:scale-105 sm:hover:border-secondary sm:dark:hover:border-darkSecondary sm:dark:hover:bg-darkSecondary sm:hover:text-secondary sm:dark:hover:text-darkPrimary"
+                    className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all lg:hover:scale-105 lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
                   >
                     {project.linkText}
                   </a>
@@ -162,7 +162,7 @@ export default function Work() {
               </div>
               <button
                 onClick={() => toggleExpand(project.id)}
-                className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all sm:hover:scale-105 sm:hover:border-secondary sm:dark:hover:border-darkSecondary sm:dark:hover:bg-darkSecondary sm:hover:text-secondary sm:dark:hover:text-darkPrimary"
+                className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all lg:hover:scale-105 lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
               >
                 {expandedIds.includes(project.id) ? 'Show less' : 'Show more'}
               </button>

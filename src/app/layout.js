@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
     setTheme(storedTheme);
     document.documentElement.className = storedTheme;
 
-    const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
+    const checkIfMobile = () => setIsMobile(window.innerWidth <= 1024);
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
     return () => window.removeEventListener('resize', checkIfMobile);
@@ -346,7 +346,7 @@ function SocialLinks() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
+    const checkIfMobile = () => setIsMobile(window.innerWidth <= 1024);
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
     return () => window.removeEventListener('resize', checkIfMobile);
@@ -472,7 +472,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
         <img
           src={getAvatarImage()}
           alt="me"
-          className="mx-auto w-[35vw] max-w-[150px] min-w-[80px] sm:max-w-[175px] h-auto object-contain transition-all sm:hover:scale-[103%] cursor-pointer"
+          className="mx-auto w-[35vw] max-w-[150px] min-w-[80px] sm:max-w-[175px] h-auto object-contain transition-all lg:hover:scale-[103%] cursor-pointer"
           onClick={handleAvatarClick}
         />
       </div>

@@ -45,7 +45,7 @@ export default function AlbumCollage() {
                             <img
                                 src={album.image}
                                 alt={`${album.artist} - ${album.title}`}
-                                className="w-full h-full object-cover transition-all border border-primary dark:border-darkSecondary sm:hover:scale-105"
+                                className="w-full h-full object-cover transition-all border border-primary dark:border-darkSecondary lg:hover:scale-105"
                             />
                         </div>
 
