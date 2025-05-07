@@ -3,10 +3,10 @@ export const metadata = {
   description: 'Showcasing my professional history, passion projects, and personal interests.',
   metadataBase: new URL('https://www.rubylu.dev'),
   icons: {
-    icon: '/favicon.ico'
+    icon: '/favicon.ico',
   },
   openGraph: {
-    title: 'Ruby Lu | CS @ UWaterloo',
+    title: 'Ruby Lu',
     description: 'Showcasing my professional history, passion projects, and personal interests.',
     url: 'https://www.rubylu.dev/',
     siteName: 'Ruby Lu',
@@ -14,17 +14,17 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://www.rubylu.dev/images/preview.jpeg',
+        url: '/images/preview.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Ruby Lu Portfolio Preview',
+        alt: 'Preview',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ruby Lu | CS @ UWaterloo',
+    title: 'Ruby Lu',
     description: 'Showcasing my professional history, passion projects, and personal interests.',
-    images: ['https://www.rubylu.dev/images/preview.jpeg'],
+    images: ['/images/preview.jpeg'],
   }
 };
