@@ -187,7 +187,7 @@ export default function RootLayout({ children }) {
         const { scrollTop, scrollHeight, clientHeight } = mainContentRef.current;
         const atTop = scrollTop === 0 && e.deltaY < 0;
         const atBottom = scrollTop + clientHeight >= scrollHeight && e.deltaY > 0;
-        
+
         if (!atTop && !atBottom) {
           e.preventDefault();
           mainContentRef.current.scrollTop += e.deltaY;
@@ -274,7 +274,7 @@ export default function RootLayout({ children }) {
             />
           )}
 
-          <main 
+          <main
             ref={mainContentRef}
             className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} overflow-y-auto h-full
               ${!isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''} relative`}
@@ -282,10 +282,10 @@ export default function RootLayout({ children }) {
             <div className="w-full max-w-screen-xl">{children}</div>
           </main>
         </div>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5B61LYJNK"></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5B61LYJNK"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -293,8 +293,8 @@ export default function RootLayout({ children }) {
               page_path: window.location.pathname,
             });
           `,
-        }}
-      />
+          }}
+        />
       </body>
     </html>
   );
@@ -431,26 +431,52 @@ function MobileNavLink({ href, pathname, onClick, children }) {
 
 function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, theme, currentIndex, currentMessage }) {
   const [currentAvatar, setCurrentAvatar] = useState(0);
+  const [isForcedTalking, setIsForcedTalking] = useState(false);
   const isTyping = currentIndex < currentMessage.length;
+  const animationIntervalRef = useRef(null);
 
   useEffect(() => {
-    if (isTyping) {
-      const interval = setInterval(() => {
+    return () => {
+      if (animationIntervalRef.current) {
+        clearInterval(animationIntervalRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (animationIntervalRef.current) {
+      clearInterval(animationIntervalRef.current);
+      animationIntervalRef.current = null;
+    }
+
+    if (isTyping || isForcedTalking) {
+      animationIntervalRef.current = setInterval(() => {
         setCurrentAvatar(prev => (prev + 1) % 2);
       }, 200);
-      return () => clearInterval(interval);
+
+      if (isForcedTalking) {
+        const timeout = setTimeout(() => {
+          setIsForcedTalking(false);
+        }, 300);
+        return () => clearTimeout(timeout);
+      }
     } else if (showNowPlaying && nowPlaying?.nowplaying) {
-      const interval = setInterval(() => {
+      animationIntervalRef.current = setInterval(() => {
         setCurrentAvatar(prev => (prev + 1) % 2);
       }, 400);
-      return () => clearInterval(interval);
     } else {
       setCurrentAvatar(0);
     }
-  }, [isTyping, showNowPlaying, nowPlaying]);
+
+    return () => {
+      if (animationIntervalRef.current) {
+        clearInterval(animationIntervalRef.current);
+      }
+    };
+  }, [isTyping, showNowPlaying, nowPlaying, isForcedTalking]);
 
   const getAvatarImage = () => {
-    if (isTyping) {
+    if (isTyping || isForcedTalking) {
       return `/images/avatar/${theme}/me-talking${currentAvatar + 1}.png`;
     } else if (showNowPlaying && nowPlaying?.nowplaying) {
       return `/images/avatar/${theme}/me-listening${currentAvatar + 1}.png`;
@@ -459,33 +485,47 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
   };
 
   const handleAvatarClick = () => {
+    setIsForcedTalking(true);
+    setCurrentAvatar(0);
+
+    if (animationIntervalRef.current) {
+      clearInterval(animationIntervalRef.current);
+      animationIntervalRef.current = null;
+    }
+
+    animationIntervalRef.current = setInterval(() => {
+      setCurrentAvatar(prev => (prev + 1) % 2);
+    }, 200);
+
     onAvatarClick();
   };
 
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px] z-10">
-      <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-        <div className="transition-all bg-[var(--background)] border border-primary dark:border-darkSecondary p-4 text-sm text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light">
-          {showNowPlaying ? (
-            nowPlaying ? (
-              <NowPlayingDisplay nowPlaying={nowPlaying} />
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[500px] z-10">
+        <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
+          <div className="transition-all bg-[var(--background)] border border-primary dark:border-darkSecondary p-4 text-sm text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light">
+            {showNowPlaying ? (
+              nowPlaying ? (
+                <NowPlayingDisplay nowPlaying={nowPlaying} />
+              ) : (
+                <NoTracksDisplay />
+              )
             ) : (
-              <NoTracksDisplay />
-            )
-          ) : (
-            displayText
-          )}
+              displayText
+            )}
+          </div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-[var(--secondary)]"></div>
         </div>
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-[var(--secondary)]"></div>
-      </div>
 
-      <div>
-        <img
-          src={getAvatarImage()}
-          alt="me"
-          className="mx-auto w-[35vw] max-w-[150px] min-w-[80px] sm:max-w-[175px] h-auto object-contain transition-all sm:hover:scale-[103%] cursor-pointer"
-          onClick={handleAvatarClick}
-        />
+        <div>
+          <img
+            src={getAvatarImage()}
+            alt="me"
+            className="mx-auto w-[35vw] max-w-[150px] min-w-[80px] sm:max-w-[175px] h-auto object-contain transition-all sm:hover:scale-[103%] cursor-pointer"
+            onClick={handleAvatarClick}
+          />
+        </div>
       </div>
     </div>
   );
