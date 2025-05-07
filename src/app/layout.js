@@ -8,6 +8,7 @@ import { FiGithub } from 'react-icons/fi';
 import { MdOutlineMail } from 'react-icons/md';
 import { BsMoon, BsSun } from 'react-icons/bs';
 import { useState, useEffect, useRef } from 'react';
+import { Analytics } from "@vercel/analytics/react"
 
 const MESSAGES = {
   '/': "Welcome! Feel free to take a look around :)",
@@ -282,19 +283,7 @@ export default function RootLayout({ children }) {
             <div className="w-full max-w-screen-xl">{children}</div>
           </main>
         </div>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5B61LYJNK"></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-G5B61LYJNK', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
+        <Analytics />
       </body>
     </html>
   );
