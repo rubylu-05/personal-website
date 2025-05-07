@@ -4,21 +4,21 @@ export default function BoxdOffice() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary">
             <img 
-              src="/images/projects/boxdoffice/1.png" 
+              src="/images/projects/boxdoffice/1.jpeg" 
               alt="Screenshot 1" 
               className="w-full h-auto object-cover"
             />
           </div>
           <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary">
             <img 
-              src="/images/projects/boxdoffice/2.png" 
+              src="/images/projects/boxdoffice/2.jpeg" 
               alt="Screenshot 2" 
               className="w-full h-auto object-cover"
             />
           </div>
           <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary">
             <img 
-              src="/images/projects/boxdoffice/3.png" 
+              src="/images/projects/boxdoffice/3.jpeg" 
               alt="Screenshot 3" 
               className="w-full h-auto object-cover"
             />

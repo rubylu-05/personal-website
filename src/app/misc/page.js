@@ -4,6 +4,7 @@ import Letterboxd from './Letterboxd';
 import AlbumCollage from './AlbumCollage';
 import Movies from './Movies';
 import { useState } from 'react';
+import Image from 'next/image'
 
 const artData = [
     {
