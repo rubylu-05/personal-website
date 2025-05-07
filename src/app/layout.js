@@ -205,26 +205,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-      <title>{metadata.title}</title>
+        <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-        <link rel="icon" href={metadata.icons.icon} />
-        
-        <meta property="og:title" content={metadata.openGraph.title} />
-        <meta property="og:description" content={metadata.openGraph.description} />
-        <meta property="og:url" content={metadata.openGraph.url} />
-        <meta property="og:site_name" content={metadata.openGraph.siteName} />
-        <meta property="og:locale" content={metadata.openGraph.locale} />
-        <meta property="og:type" content={metadata.openGraph.type} />
-        <meta property="og:image" content={metadata.metadataBase.toString() + metadata.openGraph.images[0].url} />
-        <meta property="og:image:width" content={metadata.openGraph.images[0].width} />
-        <meta property="og:image:height" content={metadata.openGraph.images[0].height} />
-        <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
-
-        <meta name="twitter:card" content={metadata.twitter.card} />
-        <meta name="twitter:title" content={metadata.twitter.title} />
-        <meta name="twitter:description" content={metadata.twitter.description} />
-        <meta name="twitter:image" content={metadata.metadataBase.toString() + metadata.twitter.images[0]} />
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100dvw', overflow: 'hidden' }} ref={containerRef}>
