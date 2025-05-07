@@ -184,6 +184,10 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     const handleWheel = (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        return;
+      }
+  
       if (mainContentRef.current && !isMobile) {
         const { scrollTop, scrollHeight, clientHeight } = mainContentRef.current;
         const atTop = scrollTop === 0 && e.deltaY < 0;
@@ -195,7 +199,7 @@ export default function RootLayout({ children }) {
         }
       }
     };
-
+  
     document.addEventListener('wheel', handleWheel, { passive: false });
     return () => {
       document.removeEventListener('wheel', handleWheel);
