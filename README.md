@@ -1,13 +1,15 @@
 ## [rubylu.dev](https://www.rubylu.dev/)
 
-A website displaying my projects, skills, and personal interests :) <br><br>
-These are the technologies that I used:
+![Light Theme Screenshot](public/images/screenshots/light.png)
+![Dark Theme Screenshot](public/images/screenshots/dark.png)
+
+Technologies used:
 
 - **Framework**: Next.js
 - **Styling**: Tailwind CSS
 - **Deployment**: Vercel
 - **APIs & Services Integrated**:
   - Letterboxd RSS feed (for recently watched movie data)
-  - Last.fm API (for spotify listening data)
+  - Last.fm API (for Spotify listening data)
   - Deezer API (for music artist images)
   - Nodemailer (to email recommendations)
