@@ -70,12 +70,12 @@ export default function About() {
         In the summer of 2024, I worked on enhancing desktop applications and automating systems for <ExternalLink href="https://www.ym-inc.com">YM Inc.</ExternalLink>, a Toronto-based retail company that operates fashion brands across North America.
       </p>
       <p className="mb-4 font-body font-light">
-        In winter 2025, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I dipped my toes into the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow; this experience ended up being a really interesting intersection of engineering, sustainability, and software.
+        In winter 2025, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I was introduced to the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow; this experience ended up being a really interesting intersection of engineering, sustainability, and software.
       </p>
       <p className="mb-4 font-body font-light">
         In the fall of 2025, I'll be joining <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle as a Software Development Engineering Intern, which I'm pretty excited about!
       </p>
-      <p className="mb-12 font-body font-light">I'm currently on the lookout for summer 2026 internship opportunities.</p>
+      <p className="mb-12 font-body font-light">I'm currently on the lookout for 2026 internship opportunities.</p>
 
       <h2 className="text-4xl font-heading font-light text-primary dark:text-darkSecondary mb-4">Technical skills</h2>
       <p className="mb-4 font-body font-light">In no particular order, these are some languages, libraries, frameworks, and technologies that I have experience working with.</p>

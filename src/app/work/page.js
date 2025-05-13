@@ -8,6 +8,7 @@ import Hydropower from './projects/Hydropower';
 import Nudge from './projects/Nudge';
 import Pokeplants from './projects/Pokeplants';
 import Chroma from './projects/Chroma';
+import Biquadris from './projects/Biquadris'
 
 const projects = [
   {
@@ -65,6 +66,14 @@ const projects = [
     link: "https://devpost.com/software/chroma-q3wshr",
     linkText: "Demo",
     githubLink: "https://github.com/sbrina-w/Chroma/"
+  },
+  {
+    id: 6,
+    title: "Biquadris",
+    subtitle: "A multiplayer Tetris clone",
+    image: "/images/projects/biquadris.png",
+    description: "Biquadris was developed as the final project for a Waterloo course called CS 246 (Object-Oriented Software Development). The game supports multiplayer competition, multiple difficulty levels, and Tetris mechanics like block holding, ghost pieces, and upcoming block previews. Built as a collaborative project, Biquadris emphasizes clean architecture, design patterns, and resilience to change, making it easy to extend with new blocks, levels, or gameplay effects.",
+    expandedContent: <Biquadris />
   }
 ];
 

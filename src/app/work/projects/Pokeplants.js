@@ -14,12 +14,12 @@ export default function Pokeplants() {
             Technical Overview
           </h4>
           <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
-            <li>Hardware was used to measure plant health</li>
-            <li>OpenAI was used to identify plants and their health</li>
-            <li>Langchain was used to process data into game actions</li>
-            <li>Flask was used for the back-end</li>
-            <li>Socket.IO was used for real-time multiplayer battles</li>
-            <li>React was used to design the game</li>
+            <li>Hardware for measuring plant health</li>
+            <li>OpenAI for identifying plants and their health</li>
+            <li>Langchain for processing data into game actions</li>
+            <li>Flask for the back end</li>
+            <li>Socket.IO for real-time multiplayer battles</li>
+            <li>React for designing the game</li>
           </ul>
         </div>
         <div className="mb-6">

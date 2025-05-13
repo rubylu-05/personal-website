@@ -339,7 +339,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
       </div>
       <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right z-20">
         <span className="font-bold">Last updated</span><br />
-        5/6/2025
+        5/12/2025
       </div>
       <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} theme={theme} currentIndex={currentIndex} currentMessage={currentMessage} />
     </aside>

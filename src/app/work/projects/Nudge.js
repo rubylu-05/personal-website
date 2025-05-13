@@ -14,12 +14,12 @@ export default function Nudge() {
             Technical Overview
           </h4>
           <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
-            <li>JavaScript was used to create the core functionality and monitor user activity</li>
-            <li>React was used to create the extension's pop-up and dashboard</li>
-            <li>MongoDB was used to store activity logs</li>
-            <li>Flask was used for the back-end</li>
-            <li>GPT-4 (OpenAI) was used to generate the responses based on the information fetched from the extension</li>
-            <li>Eleven Labs TTS was used to give voice to the narrator</li>
+            <li>JavaScript for the core functionality and user activity monitoring</li>
+            <li>React for the extension's pop-up and dashboard</li>
+            <li>MongoDB for storing activity logs</li>
+            <li>Flask for the back end</li>
+            <li>GPT-4 (OpenAI) for generating responses based on the information fetched from the extension</li>
+            <li>Eleven Labs TTS for giving voice to the narrator</li>
           </ul>
         </div>
         <div className="mb-6">
@@ -27,7 +27,7 @@ export default function Nudge() {
             Thoughts
           </h4>
           <p className="font-body text-sm font-light">
-            This product isn't perfect - most hackathon projects aren't - but it taught me a lot about how Chrome extensions work under the hood. I gained some pretty valuable full-stack experience, but unfortunately also learned firsthand about how frustrating Chrome extensions can be to debug, especially when I'm trying to trace different messages and errors between background scripts, popups, and content scripts. However, this made it extra satisfying when the project started coming together nicely. I really enjoyed the process of building Nudge, especially in the unique environment of a hackathon, and found the premise to be pretty fun to design.
+            This product isn't perfect - most hackathon projects aren't - but it taught me a lot about how Chrome extensions work under the hood. I gained some pretty valuable full-stack experience, but unfortunately also learned firsthand about how frustrating Chrome extensions can be to debug, especially when I'm trying to trace different messages and errors between background scripts, popups, and content scripts. However, this made it extra satisfying when the project started coming together nicely. I really enjoyed the process of building Nudge, especially in the unique environment of a hackathon, and found the premise to be fun to design.
           </p>
         </div>
       </div>

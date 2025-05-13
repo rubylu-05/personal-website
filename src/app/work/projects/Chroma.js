@@ -14,10 +14,10 @@ export default function Chroma() {
             Technical Overview
           </h4>
           <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
-            <li>Flutter was used to build the mobile app</li>
-            <li>Flask was used for the back-end, which includes a Python script to handle calculations</li>
-            <li>OpenCV was used to extract colours from images</li>
-            <li>An AWS EC2 instance was used to host the back-end server</li>
+            <li>Flutter for building the mobile app</li>
+            <li>Flask for the back end, which includes a Python script to handle calculations</li>
+            <li>OpenCV for extracting colours from images</li>
+            <li>An AWS EC2 instance for hosting the Flask server</li>
           </ul>
         </div>
         <div className="mb-6">
