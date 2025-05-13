@@ -9,8 +9,8 @@ export default function Biquadris() {
             Some features of the project include:
           </p>
           <ul className="list-disc pl-5 font-body text-sm font-light [&>li]:marker:text-[var(--secondary)]">
-            <li>Multiplayer mechanics (complete 1v1 with another player)</li>
-            <li>Tetris mechanics (hold queue, block previews, and ghost piece visualization)</li>
+            <li>Multiplayer mechanics (compete 1v1 with another player)</li>
+            <li>Tetris mechanics (e.g hold queue, block previews, ghost piece visualization)</li>
             <li>Customizable commands (the ability to rename commands and create macros)</li>
             <li>Level system (5 distinct levels with unique block generation rules)</li>
             <li>Special effects ("blind" and "heavy" modifiers to disrupt opponents)</li>
