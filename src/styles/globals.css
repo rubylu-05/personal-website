@@ -57,3 +57,13 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+@media (pointer: coarse) {
+  html {
+    overscroll-behavior-x: none;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
