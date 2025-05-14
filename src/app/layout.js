@@ -35,7 +35,6 @@ export default function RootLayout({ children }) {
   const menuRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [theme, setTheme] = useState('light');
-  const mainContentRef = useRef(null);
 
   const currentMessage = MESSAGES[pathname] || MESSAGES['/'];
 
@@ -182,46 +181,16 @@ export default function RootLayout({ children }) {
     };
   }, [isMobileMenuOpen]);
 
-  useEffect(() => {
-    const handleWheel = (e) => {
-      if (e.ctrlKey || e.metaKey) {
-        return;
-      }
-    
-      const mainContent = mainContentRef.current;
-      if (mainContent && !isMobile) {
-        const atLeft = mainContent.scrollLeft === 0 && e.deltaX < 0;
-        const atRight = mainContent.scrollLeft + mainContent.clientWidth >= mainContent.scrollWidth && e.deltaX > 0;
-        
-        if (!atLeft && !atRight && Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-          e.preventDefault();
-          mainContent.scrollLeft += e.deltaX;
-        }
-      }
-    };
-  
-    const mainContent = mainContentRef.current;
-    if (mainContent) {
-      mainContent.addEventListener('wheel', handleWheel, { passive: false });
-    }
-    
-    return () => {
-      if (mainContent) {
-        mainContent.removeEventListener('wheel', handleWheel);
-      }
-    };
-  }, [isMobile]);
-
   return (
     <html lang="en">
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100dvw', overflow: 'auto' }} ref={containerRef}>
-        <div className="flex" style={{ height: '100dvh', minWidth: 'fit-content' }}>
+        <div className="flex" style={{ height: '100dvh' }}>
           {isMobile && pathname !== '/' && (
             <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
               <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2" aria-label="Menu">
@@ -285,13 +254,9 @@ export default function RootLayout({ children }) {
             />
           )}
 
-          <main 
-            ref={mainContentRef}
-            className={`flex-1 flex justify-center items-start transition-all duration-700 ${
-              isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'
-            } overflow-y-auto h-full min-w-0 ${
-              !isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''
-            } relative`}
+          <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-[100dvh] overflow-y-auto
+                      ${!isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''} relative`}
+            style={{ flexGrow: 1, height: '100dvh' }}
           >
             <div className="w-full max-w-screen-xl">{children}</div>
           </main>
