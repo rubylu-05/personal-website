@@ -189,7 +189,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100dvw', overflow: 'auto' }} ref={containerRef}>
+      <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100dvw', overflow: 'hidden' }} ref={containerRef}>
         <div className="flex" style={{ height: '100dvh' }}>
           {isMobile && pathname !== '/' && (
             <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
