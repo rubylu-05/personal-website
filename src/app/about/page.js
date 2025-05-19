@@ -55,7 +55,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="px-8 py-12 sm:p-20 sm:pt-16">
+    <div className="px-8 pt-12 sm:px-20 sm:pb-8 sm:pt-16">
       <h1 className="text-4xl font-heading font-light text-primary dark:text-darkSecondary mb-4">Hi, I'm Ruby!</h1>
       <p className="mb-4 font-body font-light tracking-body">
         I'm a computer science student at the University of Waterloo who loves building practical solutions and learning through implementation. I've worked across various tech stacks in academic, personal, and professional projects, and I'm always eager to learn more.
@@ -104,7 +104,7 @@ const SkillBadge = ({ skillName }) => {
     .replace(' ', '')}.png`;
 
   return (
-    <div className="lg:hover:scale-105 transition-all bg-background dark:bg-darkBackground2 px-4 py-2 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkSecondary">
+    <div className="transition-all bg-background dark:bg-darkBackground2 px-4 py-2 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkSecondary">
       <div className="w-6 h-6 mr-2 flex items-center justify-center">
         <img src={iconPath} alt={skillName} className="w-5 h-5 object-contain" />
       </div>

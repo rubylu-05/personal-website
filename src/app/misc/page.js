@@ -136,7 +136,7 @@ export default function Misc() {
     };
 
     return (
-        <div className="overflow-x-hidden px-8 py-12 sm:p-20 sm:pt-16">
+        <div className="overflow-x-hidden px-8 pt-12 sm:px-20 sm:pt-16">
             <ArtGallery artGroups={artData} />
 
             <RecentMediaSection />
@@ -189,7 +189,7 @@ const ArtPiece = ({ piece }) => (
         <img
             src={piece.image}
             alt=""
-            className={`w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary lg:hover:scale-[1.02] transition-all`}
+            className={`w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary transition-all`}
         />
         <p className="font-body font-light text-xs">{piece.description}</p>
     </div>
@@ -286,7 +286,7 @@ const SubmitButton = ({ isSubmitting }) => (
     <button
         type="submit"
         disabled={isSubmitting}
-        className="px-4 py-2 bg-background dark:bg-darkBackground2 text-[var(--primary)] hover:text-secondary dark:hover:text-darkPrimary border border-primary dark:border-darkSecondary hover:border-[var(--secondary)] dark:hover:bg-darkSecondary text-sm font-body font-light transition-all lg:hover:scale-105"
+        className="px-4 py-2 bg-background dark:bg-darkBackground2 text-[var(--primary)] hover:text-secondary dark:hover:text-darkPrimary border border-primary dark:border-darkSecondary hover:border-[var(--secondary)] dark:hover:bg-darkSecondary text-sm font-body font-light transition-all"
     >
         {isSubmitting ? 'Sending...' : 'Send!'}
     </button>

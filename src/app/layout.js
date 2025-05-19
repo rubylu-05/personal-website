@@ -190,76 +190,123 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100dvw', overflow: 'hidden' }} ref={containerRef}>
-        <div className="flex" style={{ height: '100dvh' }}>
-          {isMobile && pathname !== '/' && (
-            <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
-              <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2" aria-label="Menu">
-                <AiOutlineMenu className="text-2xl text-[var(--primary)]" />
-              </button>
+        <div className="flex flex-col" style={{ height: '100dvh' }}>
+          <div className="flex flex-1 overflow-hidden">
+            {isMobile && pathname !== '/' && (
+              <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
+                <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2" aria-label="Menu">
+                  <AiOutlineMenu className="text-2xl text-[var(--primary)]" />
+                </button>
 
-              {isMobileMenuOpen && (
-                <div className="fixed right-4 top-16 w-60 bg-background dark:bg-darkBackground2 py-3 z-[1000] border border-primary dark:border-darkSecondary transition-all">
-                  <div className="flex flex-col items-center space-y-2">
-                    <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>Home</MobileNavLink>
-                    <MobileNavLink href="/about" pathname={pathname} onClick={(e) => handleLinkClick(e, '/about')}>About</MobileNavLink>
-                    <MobileNavLink href="/work" pathname={pathname} onClick={(e) => handleLinkClick(e, '/work')}>Recent Projects</MobileNavLink>
-                    <MobileNavLink href="/misc" pathname={pathname} onClick={(e) => handleLinkClick(e, '/misc')}>Life Outside of Coding</MobileNavLink>
+                {isMobileMenuOpen && (
+                  <div className="fixed right-4 top-16 w-60 bg-background dark:bg-darkBackground2 py-3 z-[1000] border border-primary dark:border-darkSecondary transition-all">
+                    <div className="flex flex-col items-center space-y-2">
+                      <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>Home</MobileNavLink>
+                      <MobileNavLink href="/about" pathname={pathname} onClick={(e) => handleLinkClick(e, '/about')}>About</MobileNavLink>
+                      <MobileNavLink href="/work" pathname={pathname} onClick={(e) => handleLinkClick(e, '/work')}>Recent Projects</MobileNavLink>
+                      <MobileNavLink href="/misc" pathname={pathname} onClick={(e) => handleLinkClick(e, '/misc')}>Life Outside of Coding</MobileNavLink>
+                    </div>
+                    <div className="flex justify-center gap-4 px-4 pt-4">
+                      <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all">
+                        <MdOutlineMail className="text-lg" />
+                      </a>
+                      <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all">
+                        <AiOutlineLinkedin className="text-lg" />
+                      </a>
+                      <a href="https://github.com/rubylu-05" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all">
+                        <FiGithub className="text-lg" />
+                      </a>
+                      <button
+                        onClick={toggleTheme}
+                        className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all"
+                        aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+                      >
+                        {theme === 'light' ? <BsMoon className="text-lg" /> : <BsSun className="text-lg" />}
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex justify-center gap-4 px-4 pt-4">
-                    <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all">
-                      <MdOutlineMail className="text-lg" />
-                    </a>
-                    <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all">
-                      <AiOutlineLinkedin className="text-lg" />
-                    </a>
-                    <a href="https://github.com/rubylu-05" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all">
-                      <FiGithub className="text-lg" />
-                    </a>
-                    <button
-                      onClick={toggleTheme}
-                      className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all"
-                      aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-                    >
-                      {theme === 'light' ? <BsMoon className="text-lg" /> : <BsSun className="text-lg" />}
-                    </button>
-                  </div>
+                )}
+              </div>
+            )}
+            {(!isMobile || pathname === '/') && (
+              <Sidebar
+                isVisible={isSidebarVisible}
+                width={sidebarWidth}
+                isDragging={isDragging}
+                pathname={pathname}
+                displayText={displayText}
+                showNowPlaying={showNowPlaying}
+                nowPlaying={nowPlaying}
+                onLinkClick={handleLinkClick}
+                onAvatarClick={resetDialogue}
+                isMobile={isMobile}
+                onToggleTheme={toggleTheme}
+                theme={theme}
+                currentIndex={currentIndex}
+                currentMessage={currentMessage}
+              />
+            )}
+
+            {!isSidebarVisible && !isMobile && (
+              <div className="w-1 bg-transparent hover:bg-primary dark:hover:bg-darkSecondary cursor-col-resize transition-all duration-500 transition-ease-out"
+                onMouseDown={startDrag}
+                onDoubleClick={() => setSidebarWidth('30%')}
+                title="Double-click to reset width"
+              />
+            )}
+
+            <main className={`flex-1 transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} overflow-y-auto ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''}`}>
+              <div className="min-h-[calc(100dvh-50px)]">
+                <div className="w-full max-w-screen-xl mx-auto">
+                  {children}
                 </div>
-              )}
-            </div>
-          )}
-          {(!isMobile || pathname === '/') && (
-            <Sidebar
-              isVisible={isSidebarVisible}
-              width={sidebarWidth}
-              isDragging={isDragging}
-              pathname={pathname}
-              displayText={displayText}
-              showNowPlaying={showNowPlaying}
-              nowPlaying={nowPlaying}
-              onLinkClick={handleLinkClick}
-              onAvatarClick={resetDialogue}
-              isMobile={isMobile}
-              onToggleTheme={toggleTheme}
-              theme={theme}
-              currentIndex={currentIndex}
-              currentMessage={currentMessage}
-            />
-          )}
+              </div>
 
-          {!isSidebarVisible && !isMobile && (
-            <div className="w-1 bg-transparent hover:bg-primary dark:hover:bg-darkSecondary cursor-col-resize transition-all duration-500 transition-ease-out"
-              onMouseDown={startDrag}
-              onDoubleClick={() => setSidebarWidth('30%')}
-              title="Double-click to reset width"
-            />
-          )}
-
-          <main className={`flex-1 flex justify-center items-start transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} max-h-[100dvh] overflow-y-auto
-                      ${!isMobile ? 'transition-all [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''} relative`}
-            style={{ flexGrow: 1, height: '100dvh' }}
-          >
-            <div className="w-full max-w-screen-xl">{children}</div>
-          </main>
+              <footer className="w-full py-4 flex justify-center items-center">
+                <div className="flex items-center space-x-2 group">
+                  <a
+                    href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=prev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--secondary)] text-xs peer"
+                    aria-label="Previous"
+                  >
+                    &lt;
+                  </a>
+                  <div className="relative">
+                    <a
+                      href="https://cs.uwatering.com/#https://www.rubylu.dev/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--primary)] transition-all peer"
+                      aria-label="Webring"
+                    >
+                      <img
+                        src={`/images/webring/${theme === 'light' ? 'black' : 'gold'}.png`}
+                        className="w-5 h-5"
+                        alt="Webring"
+                      />
+                    </a>
+                    {!isMobile && (
+                      <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 peer-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                        Waterloo CS Webring
+                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+                      </div>
+                    )}
+                  </div>
+                  <a
+                    href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=next"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--secondary)] text-xs peer"
+                    aria-label="Next"
+                  >
+                    &gt;
+                  </a>
+                </div>
+              </footer>
+            </main>
+          </div>
         </div>
         <Analytics />
       </body>
@@ -273,31 +320,35 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
       className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkSecondary flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''}`}
       style={{ flexShrink: 0, width: isVisible ? '100%' : isMobile ? '100%' : width, height: '100dvh' }}
     >
-      <div className="absolute top-4 right-4 group">
-        <button
-          onClick={onToggleTheme}
-          className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-xl transition-all"
-          aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-        >
-          {theme === 'light' ? <BsMoon /> : <BsSun />}
-        </button>
-        {!isMobile && (
-          <>
-            {isVisible ? (
-              <div className="absolute flex flex-col right-full top-1/2 transform -translate-y-1/2 mr-3 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
-                <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
-                <div className="transition-all absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary"></div>
-              </div>
-            ) : (
-              <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-2 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
-                <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
-                <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkSecondary"></div>
-              </div>
-            )}
-          </>
-        )}
+      <div className="absolute top-4 right-4 flex gap-2">
+        {/* Theme Toggle Button */}
+        <div className="relative group">
+          <button
+            onClick={onToggleTheme}
+            className="text-[var(--primary)] hover:text-[var(--secondary)] text-xl transition-all"
+            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          >
+            {theme === 'light' ? <BsMoon /> : <BsSun />}
+          </button>
+          {!isMobile && (
+            <>
+              {isVisible ? (
+                <div className="absolute flex flex-col right-full top-1/2 transform -translate-y-1/2 mr-3 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                  <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+                  <div className="transition-all absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary"></div>
+                </div>
+              ) : (
+                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-2 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                  <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+                  <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkSecondary"></div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
 
+      {/* Rest of the Sidebar component remains the same */}
       <div className="text-center relative mb-72">
         <h1 className="text-5xl font-heading font-bold text-primary dark:text-darkSecondary mb-6">Ruby Lu</h1>
         <SocialLinks isMobile={isMobile} />
@@ -313,7 +364,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
       </div>
       <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right z-20">
         <span className="font-bold">Last updated</span><br />
-        5/13/2025
+        5/19/2025
       </div>
       <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} theme={theme} currentIndex={currentIndex} currentMessage={currentMessage} />
     </aside>
@@ -334,7 +385,7 @@ function SocialLinks() {
     <div className="flex justify-center gap-6 text-xl mb-6 items-center">
       <div className="relative group flex items-center">
         <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
-          <MdOutlineMail className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-2xl transition-all" />
+          <MdOutlineMail className="text-[var(--primary)] hover:text-[var(--secondary)] text-2xl transition-all" />
         </a>
         {!isMobile && (
           <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
@@ -346,7 +397,7 @@ function SocialLinks() {
 
       <div className="relative group flex items-center">
         <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer">
-          <AiOutlineLinkedin className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-2xl transition-all" />
+          <AiOutlineLinkedin className="text-[var(--primary)] hover:text-[var(--secondary)] text-2xl transition-all" />
         </a>
         {!isMobile && (
           <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
@@ -358,7 +409,7 @@ function SocialLinks() {
 
       <div className="relative group flex items-center">
         <a href="https://github.com/rubylu-05" target="_blank" rel="noopener noreferrer">
-          <FiGithub className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 text-xl transition-all" />
+          <FiGithub className="text-[var(--primary)] hover:text-[var(--secondary)] text-xl transition-all" />
         </a>
         {!isMobile && (
           <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
@@ -450,7 +501,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
         <img
           src={getAvatarImage()}
           alt="me"
-          className="mx-auto w-[35vw] max-w-[150px] min-w-[80px] sm:max-w-[175px] h-auto object-contain transition-all lg:hover:scale-[103%] cursor-pointer"
+          className="mx-auto w-[35vw] max-w-[150px] min-w-[80px] sm:max-w-[175px] h-auto object-contain transition-all cursor-pointer"
           onClick={handleAvatarClick}
         />
       </div>

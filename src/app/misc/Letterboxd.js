@@ -165,7 +165,7 @@ function Letterboxd() {
                 >
                     <button
                         onClick={prevMovie}
-                        className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all p-2 mr-1 absolute left-0 z-10"
+                        className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all p-2 mr-1 absolute left-0 z-10"
                         style={{ transform: 'translateX(-100%)' }}
                         aria-label="Previous movie"
                     >
@@ -238,7 +238,7 @@ function Letterboxd() {
 
                     <button
                         onClick={nextMovie}
-                        className="text-[var(--primary)] hover:text-[var(--secondary)] hover:scale-105 transition-all p-2 ml-1 absolute right-0 z-10"
+                        className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all p-2 ml-1 absolute right-0 z-10"
                         style={{ transform: 'translateX(100%)' }}
                         aria-label="Next movie"
                     >

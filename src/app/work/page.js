@@ -95,7 +95,7 @@ export default function Work() {
   };
 
   return (
-    <div className="px-8 py-8 sm:p-20 sm:pt-16">
+    <div className="px-8 pt-12 pb-8 sm:px-20 sm:pb-12 sm:pt-16">
       <div className="space-y-6">
         {projects.map((project, index) => (
           <div
@@ -110,7 +110,7 @@ export default function Work() {
                   alt={project.title}
                   width={400}
                   height={300}
-                  className={`w-full h-auto object-contain transition-all lg:hover:scale-105 ${
+                  className={`w-full h-auto object-contain transition-all ${
                     project.outlineImage ? 'border border-primary dark:border-darkSecondary' : ''
                   }`}
                 />
@@ -153,7 +153,7 @@ export default function Work() {
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--primary)] lg:hover:text-[var(--secondary)] transition-all lg:hover:scale-105"
+                    className="text-[var(--primary)] lg:hover:text-[var(--secondary)] transition-all"
                   >
                     <FiGithub size={20} />
                   </a>
@@ -163,7 +163,7 @@ export default function Work() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all lg:hover:scale-105 lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
+                    className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
                   >
                     {project.linkText}
                   </a>
@@ -171,7 +171,7 @@ export default function Work() {
               </div>
               <button
                 onClick={() => toggleExpand(project.id)}
-                className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all lg:hover:scale-105 lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
+                className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
               >
                 {expandedIds.includes(project.id) ? 'Show less' : 'Show more'}
               </button>
