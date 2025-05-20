@@ -95,7 +95,7 @@ export default function Work() {
   };
 
   return (
-    <div className="px-8 pt-12 pb-8 sm:px-20 sm:pb-12 sm:pt-16">
+    <div className="px-8 py-8 sm:p-20 sm:pt-16">
       <div className="space-y-6">
         {projects.map((project, index) => (
           <div
@@ -110,9 +110,8 @@ export default function Work() {
                   alt={project.title}
                   width={400}
                   height={300}
-                  className={`w-full h-auto object-contain transition-all ${
-                    project.outlineImage ? 'border border-primary dark:border-darkSecondary' : ''
-                  }`}
+                  className={`w-full h-auto object-contain transition-all ${project.outlineImage ? 'border border-primary dark:border-darkSecondary' : ''
+                    }`}
                 />
               </div>
 

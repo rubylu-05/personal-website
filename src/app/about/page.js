@@ -55,7 +55,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="px-8 pt-12 sm:px-20 sm:pb-8 sm:pt-16">
+    <div className="px-8 py-12 sm:p-20 sm:pt-16">
       <h1 className="text-4xl font-heading font-light text-primary dark:text-darkSecondary mb-4">Hi, I'm Ruby!</h1>
       <p className="mb-4 font-body font-light tracking-body">
         I'm a computer science student at the University of Waterloo who loves building practical solutions and learning through implementation. I've worked across various tech stacks in academic, personal, and professional projects, and I'm always eager to learn more.
@@ -81,8 +81,11 @@ export default function About() {
       <p className="mb-4 font-body font-light">In no particular order, these are some languages, libraries, frameworks, and technologies that I have experience working with.</p>
 
       <div>
-        {SKILL_GROUPS.map((group) => (
-          <div key={group.category} className="mb-8">
+        {SKILL_GROUPS.map((group, index) => (
+          <div
+            key={group.category}
+            className={index !== SKILL_GROUPS.length - 1 ? 'mb-8' : ''}
+          >
             <h3 className="text-xl font-heading font-bold text-[var(--primary)] mb-2">{group.category}</h3>
             <div className="flex flex-wrap gap-3">
               {group.items.map((skillName) => (
@@ -91,6 +94,7 @@ export default function About() {
             </div>
           </div>
         ))}
+
       </div>
     </div>
   );

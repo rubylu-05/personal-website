@@ -4,7 +4,6 @@ import Letterboxd from './Letterboxd';
 import AlbumCollage from './AlbumCollage';
 import Movies from './Movies';
 import { useState } from 'react';
-import Image from 'next/image'
 
 const artData = [
     {
@@ -136,7 +135,7 @@ export default function Misc() {
     };
 
     return (
-        <div className="overflow-x-hidden px-8 pt-12 sm:px-20 sm:pt-16">
+        <div className="overflow-x-hidden px-8 py-12 sm:p-20 sm:pt-16">
             <ArtGallery artGroups={artData} />
 
             <RecentMediaSection />
@@ -239,7 +238,7 @@ const RecommendationForm = ({
     onListenRecChange,
     onSubmit
 }) => (
-    <div className="mt-20 mb-12">
+    <div className="mt-20">
         <p className="font-body font-light mb-6">
             If you've made it this far, feel free to give me recommendations :) I'm not picky and I love watching & listening to new things.
         </p>

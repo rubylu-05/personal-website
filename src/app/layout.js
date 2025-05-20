@@ -261,50 +261,6 @@ export default function RootLayout({ children }) {
                   {children}
                 </div>
               </div>
-
-              <footer className="w-full py-4 flex justify-center items-center">
-                <div className="flex items-center space-x-2 group">
-                  <a
-                    href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=prev"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--secondary)] text-xs peer"
-                    aria-label="Previous"
-                  >
-                    &lt;
-                  </a>
-                  <div className="relative">
-                    <a
-                      href="https://cs.uwatering.com/#https://www.rubylu.dev/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--primary)] transition-all peer"
-                      aria-label="Webring"
-                    >
-                      <img
-                        src={`/images/webring/${theme === 'light' ? 'black' : 'gold'}.png`}
-                        className="w-5 h-5"
-                        alt="Webring"
-                      />
-                    </a>
-                    {!isMobile && (
-                      <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 peer-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
-                        Waterloo CS Webring
-                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
-                      </div>
-                    )}
-                  </div>
-                  <a
-                    href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=next"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--secondary)] text-xs peer"
-                    aria-label="Next"
-                  >
-                    &gt;
-                  </a>
-                </div>
-              </footer>
             </main>
           </div>
         </div>
@@ -320,8 +276,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
       className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkSecondary flex justify-center items-center px-6 py-6 relative ${!isDragging ? 'transition-all duration-300 ease-in-out' : ''}`}
       style={{ flexShrink: 0, width: isVisible ? '100%' : isMobile ? '100%' : width, height: '100dvh' }}
     >
-      <div className="absolute top-4 right-4 flex gap-2">
-        {/* Theme Toggle Button */}
+      <div className="absolute top-3 right-4 flex gap-2">
         <div className="relative group">
           <button
             onClick={onToggleTheme}
@@ -348,7 +303,48 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
         </div>
       </div>
 
-      {/* Rest of the Sidebar component remains the same */}
+      <div className="absolute bottom-3 right-4 flex items-center gap-1 z-20 group">
+        <a
+          href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=prev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--secondary)] text-xs"
+          aria-label="Previous"
+        >
+          &lt;
+        </a>
+        <div className="relative">
+          <a
+            href="https://cs.uwatering.com/#https://www.rubylu.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--primary)] transition-all"
+            aria-label="Webring"
+          >
+            <img
+              src={`/images/webring/${theme === 'light' ? 'black' : 'gold'}.png`}
+              className="w-5 h-5"
+              alt="Webring"
+            />
+          </a>
+          {!isMobile && (
+            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-1 mr-4' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none`}>
+              Waterloo CS Webring
+              <div className={`absolute ${isVisible ? 'left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary' : 'top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary'}`}></div>
+            </div>
+          )}
+        </div>
+        <a
+          href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=next"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--secondary)] text-xs"
+          aria-label="Next"
+        >
+          &gt;
+        </a>
+      </div>
+
       <div className="text-center relative mb-72">
         <h1 className="text-5xl font-heading font-bold text-primary dark:text-darkSecondary mb-6">Ruby Lu</h1>
         <SocialLinks isMobile={isMobile} />
@@ -358,15 +354,21 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
           <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')}>Life Outside of Coding</NavLink>
         </nav>
       </div>
+
       <div className="absolute bottom-2 left-4 text-xs text-primary dark:text-darkSecondary font-body font-light z-20">
         <span className="font-bold">Built with ♥</span><br />
         by Ruby Lu
       </div>
-      <div className="absolute bottom-2 right-4 text-xs text-primary dark:text-darkSecondary font-body font-light text-right z-20">
-        <span className="font-bold">Last updated</span><br />
-        5/19/2025
-      </div>
-      <DialogueBox displayText={displayText} showNowPlaying={showNowPlaying} nowPlaying={nowPlaying} onAvatarClick={onAvatarClick} theme={theme} currentIndex={currentIndex} currentMessage={currentMessage} />
+
+      <DialogueBox
+        displayText={displayText}
+        showNowPlaying={showNowPlaying}
+        nowPlaying={nowPlaying}
+        onAvatarClick={onAvatarClick}
+        theme={theme}
+        currentIndex={currentIndex}
+        currentMessage={currentMessage}
+      />
     </aside>
   );
 }
