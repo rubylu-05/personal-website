@@ -58,7 +58,7 @@ function LastFm() {
 
     return (
         <div className="mb-12">
-            <h3 className="text-xl font-heading font-extrabold text-[var(--primary)] mb-4">Top artists this week</h3>
+            <h3 className="text-xl font-heading font-extrabold text-[var(--primary)] mb-4">Top Artists This Week</h3>
             {artists.length > 0 ? (
                 <div className="flex flex-wrap gap-3">
                     {artists.map((artist, index) => (
@@ -76,7 +76,7 @@ function LastFm() {
                                     }}
                                 />
                             </div>
-                            <span className="font-body font-medium text-sm">{artist.name}</span>
+                            <span className="font-body font-light text-sm">{artist.name}</span>
                         </div>
                     ))}
                 </div>

@@ -97,6 +97,15 @@ const artData = [
     }
 ];
 
+const SectionHeading = ({ children }) => (
+    <div className="flex items-center mb-4">
+      <h2 className="text-4xl font-heading font-medium italic text-primary dark:text-darkSecondary md:whitespace-nowrap">
+        {children}
+      </h2>
+      <div className="hidden md:block w-full h-px bg-primary dark:bg-darkSecondary ml-4"></div>
+    </div>
+  );
+
 export default function Misc() {
     const [watchRec, setWatchRec] = useState('');
     const [listenRec, setListenRec] = useState('');
@@ -136,9 +145,13 @@ export default function Misc() {
 
     return (
         <div className="overflow-x-hidden px-8 py-12 sm:p-20 sm:pt-16">
-            <ArtGallery artGroups={artData} />
-
-            <RecentMediaSection />
+            <div className="mb-24">
+                <ArtGallery artGroups={artData} />
+            </div>
+            
+            <div className="mb-24">
+                <RecentMediaSection />
+            </div>
 
             <FavoritesSection />
 
@@ -157,7 +170,7 @@ export default function Misc() {
 
 const ArtGallery = ({ artGroups }) => (
     <>
-        <h1 className="text-4xl font-heading font-light text-primary dark:text-darkSecondary mb-4">Artistic Work</h1>
+        <SectionHeading>Artistic Work</SectionHeading>
         <p className="font-body font-light">
             A gallery of miscellaneous drawings, paintings, and crafts!
         </p>
@@ -196,9 +209,7 @@ const ArtPiece = ({ piece }) => (
 
 const RecentMediaSection = () => (
     <>
-        <h1 className="text-4xl font-heading font-light text-primary dark:text-darkSecondary mb-4 mt-20">
-            Recent Watching & Listening
-        </h1>
+        <SectionHeading>Recent Watching & Listening</SectionHeading>
         <p className="font-body font-light mb-2">
             I like to watch movies when I have free time. I've always had a lot of love for the horror genre in particular, from campy 80's horror (I love the practical effects from that era!) to atmospheric slow-burns. But my taste is super wide and I enjoy movies from pretty much any genre.
         </p>
@@ -214,9 +225,7 @@ const RecentMediaSection = () => (
 
 const FavoritesSection = () => (
     <>
-        <h1 className="text-4xl font-heading font-light text-primary dark:text-darkSecondary mb-4 mt-20">
-            Favourites!
-        </h1>
+        <SectionHeading>Favourites!</SectionHeading>
         <p className="font-body font-light mb-4">
             Since I shared my recents, I wanted to share my favourites as well, though this will probably change once in a while.
         </p>
@@ -275,8 +284,11 @@ const RecommendationInput = ({ label, value, onChange, placeholder }) => (
             type="text"
             value={value}
             onChange={onChange}
-            className="transition-all w-full p-2 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)]"
+            className="w-full p-2 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)]"
             placeholder={placeholder}
+            style={{
+                fontStyle: value ? 'normal' : 'italic'
+            }}
         />
     </div>
 );

@@ -1,9 +1,6 @@
 ## [rubylu.dev](https://www.rubylu.dev/)
 
 ![Light Theme Screenshot](public/images/screenshots/light.png)
-![Dark Theme Screenshot](public/images/screenshots/dark.png)
-
-Technologies used:
 
 - **Framework**: Next.js
 - **Styling**: Tailwind CSS

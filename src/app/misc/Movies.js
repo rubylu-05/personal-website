@@ -119,7 +119,7 @@ function Movies() {
 
     return (
         <div ref={componentRef}>
-            <h3 className="text-xl font-heading font-bold text-[var(--primary)] mb-4">Favourite movies</h3>
+            <h3 className="text-xl font-heading font-bold text-[var(--primary)] mb-4">Favourite Movies</h3>
 
             <div className="relative">
                 <div
@@ -174,7 +174,7 @@ function Movies() {
 
                                     <div className="space-y-0.5">
                                         <span
-                                            className="font-body font-medium text-sm block truncate"
+                                            className="font-body font-bold text-sm block truncate"
                                             title={movie.title}
                                         >
                                             {movie.title}

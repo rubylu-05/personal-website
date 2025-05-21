@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FiGithub } from 'react-icons/fi';
 import Image from 'next/image';
 import BoxdOffice from './projects/BoxdOffice'
@@ -80,6 +80,14 @@ const projects = [
 export default function Work() {
   const [expandedIds, setExpandedIds] = useState([]);
   const contentRefs = useRef({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => setIsMobile(window.innerWidth <= 1024);
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   const toggleExpand = (id) => {
     setExpandedIds((prev) =>
@@ -100,7 +108,7 @@ export default function Work() {
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className="transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary p-6 sm:p-6 sm:pl-10 sm:pr-10"
+            className="transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary p-6 sm:p-6 sm:pl-8"
           >
             {/* Header with image and basic info */}
             <div className={`flex flex-col md:flex-row gap-6 mb-6 ${index % 2 ? 'md:flex-row-reverse' : ''}`}>
@@ -119,7 +127,7 @@ export default function Work() {
                 <h2 className="text-2xl font-heading font-bold text-[var(--primary)] mb-2">
                   {project.title}
                 </h2>
-                <h3 className="text-lg font-heading font-light text-[var(--secondary)] mb-4">
+                <h3 className="text-lg font-heading font-light dark:font-bold text-primary dark:text-darkSecondary mb-4 italic leading-snug">
                   {project.subtitle}
                 </h3>
                 <p className="font-body font-light text-sm font-[var(--primary)]">
@@ -148,36 +156,44 @@ export default function Work() {
             <div className="flex justify-between mt-4">
               <div className="flex items-center gap-2">
                 {project.githubLink && (
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--primary)] lg:hover:text-[var(--secondary)] transition-all"
-                  >
-                    <FiGithub size={20} />
-                  </a>
+                  <div className="relative group">
+                    <a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--primary)] lg:hover:text-[var(--secondary)] transition-all"
+                    >
+                      <FiGithub size={20} />
+                    </a>
+                    {!isMobile && (
+                      <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 bottom-full mb-2 bg-[var(--background)] px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                        <span>Github Repo</span>
+                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+                      </div>
+                    )}
+                  </div>
                 )}
-                {project.link && project.linkText && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
-                  >
-                    {project.linkText}
-                  </a>
-                )}
-              </div>
-              <button
-                onClick={() => toggleExpand(project.id)}
-                className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-3 py-1 text-xs font-body transition-all lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
-              >
-                {expandedIds.includes(project.id) ? 'Show less' : 'Show more'}
-              </button>
+              {project.link && project.linkText && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-2 py-1 text-xs font-body transition-all lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
+                >
+                  {project.linkText}
+                </a>
+              )}
             </div>
+            <button
+              onClick={() => toggleExpand(project.id)}
+              className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-2 py-1 text-xs font-body transition-all lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
+            >
+              {expandedIds.includes(project.id) ? 'Show less' : 'Show more'}
+            </button>
+          </div>
           </div>
         ))}
-      </div>
     </div>
+    </div >
   );
 }

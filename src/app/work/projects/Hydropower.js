@@ -1,10 +1,10 @@
+import SectionHeading from '../SectionHeading';
+
 export default function Hydropower() {
     return (
       <div className="mt-4 space-y-6">
         <div className="mb-6">
-          <h4 className="text-lg font-heading font-bold text-primary dark:text-darkSecondary mb-2">
-            Technical Overview
-          </h4>
+          <SectionHeading>Technical Overview</SectionHeading>
           <p className="font-body text-sm font-light mb-2">
             Building the time-series forecasting model involved:
           </p>
@@ -17,10 +17,8 @@ export default function Hydropower() {
           </ul>
         </div>
         <div className="mb-6">
-          <h4 className="text-lg font-heading font-bold text-primary dark:text-darkSecondary mb-2">
-            Thoughts
-          </h4>
-          <p className="font-body text-sm font-light">
+          <SectionHeading>Thoughts</SectionHeading>
+          <p className="font-body text-sm mb-6 font-light">
             Hydropower and renewable energy was a field that I had pretty much no knowledge in before working at Hatch, so I was eager to learn about the role of software in the energy sector. This project was interesting to work on because of the real-world application and potential for growth. What excited me the most was seeing how this model could be improved and integrated into the company's optimization systems for hydropower plants. As for the development process, I ended up gaining a much deeper understanding of the theory behind machine learning while I was experimenting with the model. Although it took a lot of time and learning, I enjoyed the process.
           </p>
         </div>

@@ -153,7 +153,7 @@ function Letterboxd() {
 
     return (
         <div ref={componentRef}>
-            <h3 className="text-xl font-heading font-bold text-[var(--primary)] mb-4">Recently watched movies</h3>
+            <h3 className="text-xl font-heading font-bold text-[var(--primary)] mb-4">Recently Watched Movies</h3>
 
             <div className="relative">
                 <div
@@ -209,7 +209,7 @@ function Letterboxd() {
                                     <div className="space-y-1">
                                         <div className="flex justify-between items-baseline">
                                             <span
-                                                className="font-body font-medium text-sm truncate w-full"
+                                                className="font-body font-bold text-sm truncate w-full"
                                                 title={movie.title}
                                             >
                                                 {movie.title}

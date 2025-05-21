@@ -288,12 +288,12 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
           {!isMobile && (
             <>
               {isVisible ? (
-                <div className="absolute flex flex-col right-full top-1/2 transform -translate-y-1/2 mr-3 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                <div className="absolute flex flex-col items-center right-full top-0 mr-3 bg-background dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
                   <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
-                  <div className="transition-all absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary"></div>
+                  <div className="absolute right-0 top-1/2 transform translate-x-full -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary"></div>
                 </div>
               ) : (
-                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-2 bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-2 bg-background dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
                   <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
                   <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkSecondary"></div>
                 </div>
@@ -308,7 +308,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
           href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=prev"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--secondary)] text-xs"
+          className="text-primary dark:text-darkSecondary text-xs"
           aria-label="Previous"
         >
           &lt;
@@ -328,7 +328,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
             />
           </a>
           {!isMobile && (
-            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-1 mr-4' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background dark:bg-darkBackground2 p-2 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none`}>
+            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-1 mr-4' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none`}>
               Waterloo CS Webring
               <div className={`absolute ${isVisible ? 'left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary' : 'top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary'}`}></div>
             </div>
@@ -338,7 +338,7 @@ function Sidebar({ isVisible, width, isDragging, pathname, displayText, showNowP
           href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=next"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[var(--secondary)] text-xs"
+          className="text-primary dark:text-darkSecondary text-xs"
           aria-label="Next"
         >
           &gt;
@@ -429,7 +429,7 @@ function NavLink({ href, pathname, onClick, children }) {
     <Link
       href={href}
       onClick={onClick}
-      className={`block hover:text-[var(--secondary)] transition-all ${pathname === href ? 'text-[var(--secondary)]' : ''
+      className={`block hover:text-[var(--secondary)] transition-[color] duration-[400ms] ease-in-out ${pathname === href ? 'italic dark:text-darkSecondary font-bold' : ''
         }`}
     >
       {children}
@@ -442,7 +442,7 @@ function MobileNavLink({ href, pathname, onClick, children }) {
     <Link
       href={href}
       onClick={onClick}
-      className={`px-4 py-1 text-sm font-body font-light hover:text-[var(--secondary)] ${pathname === href ? 'text-[var(--secondary)]' : 'text-[var(--primary)] transition-all'}`}
+      className={`px-4 py-1 text-sm font-body font-light hover:text-[var(--secondary)] transition-[color] duration-[400ms] ease-in-out ${pathname === href ? 'italic dark:text-darkSecondary font-bold' : 'text-[var(--primary)] transition-all'}`}
     >
       {children}
     </Link>
@@ -531,7 +531,7 @@ function NowPlayingDisplay({ nowPlaying }) {
         <div className="text-xs font-body font-light text-bold text-[var(--primary)] font-light">
           {nowPlaying.nowplaying ? 'Now Listening on Spotify:' : 'Last Played on Spotify:'}
         </div>
-        <div className="truncate font-heading font-bold text-sm text-[var(--primary)]" title={nowPlaying.track}>
+        <div className="truncate font-heading font-bold text-sm text-primary dark:text-darkSecondary italic" title={nowPlaying.track}>
           {nowPlaying.track}
         </div>
         <div className="truncate font-body font-light text-xs text-[var(--primary)]" title={nowPlaying.artist}>
