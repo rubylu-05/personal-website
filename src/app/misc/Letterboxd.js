@@ -153,7 +153,7 @@ function Letterboxd() {
 
     return (
         <div ref={componentRef}>
-            <h3 className="text-xl font-heading font-bold text-[var(--primary)] mb-4">Recently Watched Movies</h3>
+            <h3 className="text-xl font-heading font-bold text-primary dark:text-darkSecondary mb-1">Recently Watched Movies</h3>
 
             <div className="relative">
                 <div
@@ -165,13 +165,11 @@ function Letterboxd() {
                 >
                     <button
                         onClick={prevMovie}
-                        className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all p-2 mr-1 absolute left-0 z-10"
-                        style={{ transform: 'translateX(-100%)' }}
+                        className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all p-2 mr-1/2 absolute left-0 z-10"
+                        style={{ transform: 'translateX(-90%)' }}
                         aria-label="Previous movie"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
+                        &lt;
                     </button>
 
                     <div className="relative w-full overflow-hidden min-h-[19rem]">
@@ -186,7 +184,7 @@ function Letterboxd() {
                                 <div
                                     key={`${movie.title}-${index}`}
                                     ref={el => itemRefs.current[index] = el}
-                                    className="transition-all flex-shrink-0 w-40 mx-3 bg-background dark:bg-darkBackground2 text-[var(--primary)] border border-primary dark:border-darkSecondary p-3 cursor-pointer first:ml-0"
+                                    className="transition-all flex-shrink-0 w-40 mx-3 bg-background dark:bg-darkBackground2 text-[var(--primary)] border border-primary dark:border-darkSecondary p-3 cursor-pointer first:ml-0 md:hover:-translate-y-1 mt-2"
                                     onClick={() => goToMovie(index)}
                                 >
                                     <div className="transition-all w-full mb-3 overflow-hidden border border-primary dark:border-darkSecondary">
@@ -239,12 +237,10 @@ function Letterboxd() {
                     <button
                         onClick={nextMovie}
                         className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all p-2 ml-1 absolute right-0 z-10"
-                        style={{ transform: 'translateX(100%)' }}
+                        style={{ transform: 'translateX(90%)' }}
                         aria-label="Next movie"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
+                        &gt;
                     </button>
                 </div>
 

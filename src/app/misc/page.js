@@ -25,11 +25,11 @@ const artData = [
             },
             {
                 "description": "A quaint storefront, drawn with Tombow alcohol markers and fineliner pens",
-                "image": "images/art/storefront.png"
+                "image": "images/art/storefront.jpeg"
             },
             {
                 "description": "I drew a Corvette for a family friend who really likes cars",
-                "image": "images/art/car.png"
+                "image": "images/art/car.jpeg"
             }
         ]
     },
@@ -178,7 +178,7 @@ const ArtGallery = ({ artGroups }) => (
         {artGroups.map((group, groupIndex) => (
             <div key={groupIndex} className="mb-4">
                 {group.title && (
-                    <h2 className="text-xl font-heading font-bold text-[var(--primary)] mb-2 mt-10">
+                    <h2 className="text-xl font-heading font-bold text-primary dark:text-darkSecondary mb-2 mt-10">
                         {group.title}
                     </h2>
                 )}
@@ -201,7 +201,7 @@ const ArtPiece = ({ piece }) => (
         <img
             src={piece.image}
             alt=""
-            className={`w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary transition-all`}
+            className={`w-full h-auto object-fill mb-2 border border-primary dark:border-darkSecondary md:hover:-translate-y-1 transition-all`}
         />
         <p className="font-body font-light text-xs">{piece.description}</p>
     </div>
@@ -284,7 +284,7 @@ const RecommendationInput = ({ label, value, onChange, placeholder }) => (
             type="text"
             value={value}
             onChange={onChange}
-            className="w-full p-2 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)]"
+            className="w-full px-2 py-1 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)] transition-all"
             placeholder={placeholder}
             style={{
                 fontStyle: value ? 'normal' : 'italic'
@@ -297,7 +297,7 @@ const SubmitButton = ({ isSubmitting }) => (
     <button
         type="submit"
         disabled={isSubmitting}
-        className="px-4 py-2 bg-background dark:bg-darkBackground2 text-[var(--primary)] hover:text-secondary dark:hover:text-darkPrimary border border-primary dark:border-darkSecondary hover:border-[var(--secondary)] dark:hover:bg-darkSecondary text-sm font-body font-light transition-all"
+        className="px-2 py-1 bg-background dark:bg-darkBackground2 text-[var(--primary)] hover:text-secondary dark:hover:text-darkPrimary border border-primary dark:border-darkSecondary hover:border-[var(--secondary)] dark:hover:bg-darkSecondary text-sm font-body font-light transition-all"
     >
         {isSubmitting ? 'Sending...' : 'Send!'}
     </button>

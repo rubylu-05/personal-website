@@ -1,6 +1,8 @@
 ## [rubylu.dev](https://www.rubylu.dev/)
 
-![Light Theme Screenshot](public/images/screenshots/light.png)
+![Screenshot](public/images/screenshots/light.png)
+
+A personal website showcasing my professional history, passion projects, and personal interests.
 
 - **Framework**: Next.js
 - **Styling**: Tailwind CSS

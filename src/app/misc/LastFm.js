@@ -58,13 +58,13 @@ function LastFm() {
 
     return (
         <div className="mb-12">
-            <h3 className="text-xl font-heading font-extrabold text-[var(--primary)] mb-4">Top Artists This Week</h3>
+            <h3 className="text-xl font-heading font-extrabold text-primary dark:text-darkSecondary mb-4">Top Artists This Week</h3>
             {artists.length > 0 ? (
                 <div className="flex flex-wrap gap-3">
                     {artists.map((artist, index) => (
                         <div
                             key={`${artist.name}-${index}`}
-                            className="transition-all bg-background dark:bg-darkBackground2 px-4 py-2 pl-2 border border-primary dark:border-darkSecondary flex items-center whitespace-nowrap text-[var(--primary)]"
+                            className="transition-all bg-background dark:bg-darkBackground2 px-4 py-2 border border-primary dark:border-darkSecondary flex items-center whitespace-nowrap text-[var(--primary)] md:hover:-translate-y-1"
                         >
                             <div className="w-6 h-6 mr-2 flex items-center justify-center border border-primary dark:border-darkSecondary">
                                 <img
@@ -76,7 +76,7 @@ function LastFm() {
                                     }}
                                 />
                             </div>
-                            <span className="font-body font-light text-sm">{artist.name}</span>
+                            <span className="font-body font-medium text-sm">{artist.name}</span>
                         </div>
                     ))}
                 </div>

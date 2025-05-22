@@ -42,21 +42,21 @@ export default function BoxdOffice() {
   return (
     <div className="mt-4 space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary">
+        <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary md:hover:-translate-y-1 transition-all">
           <img
             src="/images/projects/boxdoffice/1.jpeg"
             alt="Screenshot 1"
             className="w-full h-auto object-cover"
           />
         </div>
-        <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary">
+        <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary md:hover:-translate-y-1 transition-all">
           <img
             src="/images/projects/boxdoffice/2.jpeg"
             alt="Screenshot 2"
             className="w-full h-auto object-cover"
           />
         </div>
-        <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary">
+        <div className="w-full h-auto object-fill mb-3 border border-primary dark:border-darkSecondary md:hover:-translate-y-1 transition-all">
           <img
             src="/images/projects/boxdoffice/3.jpeg"
             alt="Screenshot 3"
