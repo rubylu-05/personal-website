@@ -284,7 +284,7 @@ const RecommendationInput = ({ label, value, onChange, placeholder }) => (
             type="text"
             value={value}
             onChange={onChange}
-            className="w-full px-2 py-1 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)] transition-all"
+            className="w-full px-2 py-1 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)]"
             placeholder={placeholder}
             style={{
                 fontStyle: value ? 'normal' : 'italic'
@@ -297,7 +297,7 @@ const SubmitButton = ({ isSubmitting }) => (
     <button
         type="submit"
         disabled={isSubmitting}
-        className="px-2 py-1 bg-background dark:bg-darkBackground2 text-[var(--primary)] hover:text-secondary dark:hover:text-darkPrimary border border-primary dark:border-darkSecondary hover:border-[var(--secondary)] dark:hover:bg-darkSecondary text-sm font-body font-light transition-all"
+        className="px-2 py-1 bg-background lg:hover:bg-primary dark:bg-darkBackground lg:dark:hover:bg-darkSecondary border border-primary dark:border-darkSecondary text-[var(--primary)] lg:hover:text-[var(--background)] text-sm font-body font-light transition-all"
     >
         {isSubmitting ? 'Sending...' : 'Send!'}
     </button>

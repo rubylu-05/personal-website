@@ -104,96 +104,98 @@ export default function Work() {
 
   return (
     <div className="px-8 py-8 sm:p-20 sm:pt-16">
-      <div className="space-y-6">
+      <div className="space-y-8">
         {projects.map((project, index) => (
-          <div
-            key={project.id}
-            className="transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary p-6 sm:p-6 sm:pl-8"
-          >
-            {/* Header with image and basic info */}
-            <div className={`flex flex-col md:flex-row gap-6 mb-6 ${index % 2 ? 'md:flex-row-reverse' : ''}`}>
-              <div className="md:w-1/3 relative">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={400}
-                  height={300}
-                  className={`w-full h-auto object-contain transition-all ${project.outlineImage ? 'border border-primary dark:border-darkSecondary' : ''
-                    }`}
-                />
-              </div>
-
-              <div className="md:w-2/3">
-                <h2 className="text-2xl font-heading font-bold text-[var(--primary)] mb-2">
-                  {project.title}
-                </h2>
-                <h3 className="text-lg font-heading font-light dark:font-bold text-primary dark:text-darkSecondary mb-4 italic leading-snug">
-                  {project.subtitle}
-                </h3>
-                <p className="font-body font-light text-sm font-[var(--primary)]">
-                  {project.description}
-                </p>
-              </div>
-            </div>
-
-            {/* Expanded content with animated height */}
+          <div key={project.id} className="relative">
+            <div className="absolute inset-0 bg-primary dark:bg-darkSecondary z-0" />
             <div
-              ref={(el) => (contentRefs.current[project.id] = el)}
-              className="transition-[height,opacity] duration-500 ease-in-out overflow-hidden"
-              style={{
-                height: expandedIds.includes(project.id)
-                  ? `${getHeight(project.id)}px`
-                  : '0px',
-                opacity: expandedIds.includes(project.id) ? 1 : 0,
-              }}
+              className="transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary lg:hover:translate-x-1.5 p-6 sm:p-6 sm:pl-8 relative z-10"
             >
-              <div className="mt-4 space-y-6">
-                {project.expandedContent}
-              </div>
-            </div>
+              {/* Header with image and basic info */}
+              <div className={`flex flex-col md:flex-row gap-6 mb-6 ${index % 2 ? 'md:flex-row-reverse' : ''}`}>
+                <div className="md:w-1/3 relative">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={400}
+                    height={300}
+                    className={`w-full h-auto object-contain transition-all ${project.outlineImage ? 'border border-primary dark:border-darkSecondary' : ''
+                      }`}
+                  />
+                </div>
 
-            {/* Footer buttons */}
-            <div className="flex justify-between mt-4">
-              <div className="flex items-center gap-2">
-                {project.githubLink && (
-                  <div className="relative group">
+                <div className="md:w-2/3">
+                  <h2 className="text-2xl font-heading font-bold text-[var(--primary)] mb-2">
+                    {project.title}
+                  </h2>
+                  <h3 className="text-lg font-heading font-light dark:font-bold text-primary dark:text-darkSecondary mb-4 italic leading-snug">
+                    {project.subtitle}
+                  </h3>
+                  <p className="font-body font-light text-sm font-[var(--primary)]">
+                    {project.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Expanded content with animated height */}
+              <div
+                ref={(el) => (contentRefs.current[project.id] = el)}
+                className="transition-[height,opacity] duration-500 ease-in-out overflow-hidden"
+                style={{
+                  height: expandedIds.includes(project.id)
+                    ? `${getHeight(project.id)}px`
+                    : '0px',
+                  opacity: expandedIds.includes(project.id) ? 1 : 0,
+                }}
+              >
+                <div className="mt-4 space-y-6">
+                  {project.expandedContent}
+                </div>
+              </div>
+
+              {/* Footer buttons */}
+              <div className="flex justify-between mt-4">
+                <div className="flex items-center gap-2">
+                  {project.githubLink && (
+                    <div className="relative group">
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--primary)] lg:hover:text-[var(--secondary)] transition-all"
+                      >
+                        <FiGithub size={20} />
+                      </a>
+                      {!isMobile && (
+                        <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 bottom-full mb-2 bg-[var(--background)] px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                          <span>Github Repo</span>
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {project.link && project.linkText && (
                     <a
-                      href={project.githubLink}
+                      href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[var(--primary)] lg:hover:text-[var(--secondary)] transition-all"
+                      className="bg-background2 lg:hover:bg-primary dark:bg-darkBackground lg:dark:hover:bg-darkSecondary border border-primary dark:border-darkSecondary text-[var(--primary)] lg:hover:text-[var(--background)] px-2 py-1 text-xs font-body transition-all"
                     >
-                      <FiGithub size={20} />
+                      {project.linkText}
                     </a>
-                    {!isMobile && (
-                      <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 bottom-full mb-2 bg-[var(--background)] px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
-                        <span>Github Repo</span>
-                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              {project.link && project.linkText && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-2 py-1 text-xs font-body transition-all lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
+                  )}
+                </div>
+                <button
+                  onClick={() => toggleExpand(project.id)}
+                  className="bg-background2 lg:hover:bg-primary dark:bg-darkBackground lg:dark:hover:bg-darkSecondary border border-primary dark:border-darkSecondary text-[var(--primary)] lg:hover:text-[var(--background)] px-2 py-1 text-xs font-body transition-all"
                 >
-                  {project.linkText}
-                </a>
-              )}
+                  {expandedIds.includes(project.id) ? 'Show less' : 'Show more'}
+                </button>
+              </div>
             </div>
-            <button
-              onClick={() => toggleExpand(project.id)}
-              className="bg-background dark:bg-darkBackground border border-primary dark:border-darkSecondary text-[var(--primary)] px-2 py-1 text-xs font-body transition-all lg:hover:border-secondary lg:dark:hover:border-darkSecondary lg:dark:hover:bg-darkSecondary lg:hover:text-secondary lg:dark:hover:text-darkPrimary"
-            >
-              {expandedIds.includes(project.id) ? 'Show less' : 'Show more'}
-            </button>
-          </div>
           </div>
         ))}
+      </div>
     </div>
-    </div >
   );
 }

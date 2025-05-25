@@ -167,7 +167,7 @@ export default function RootLayout({ children }) {
                       <MobileNavLink href="/misc" pathname={pathname} onClick={(e) => handleLinkClick(e, '/misc')}>Life Outside of Coding</MobileNavLink>
                     </div>
                     <div className="flex justify-center gap-4 px-4 pt-4">
-                      <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all">
+                      <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-[var(--primary)] hover:dark:text-[var(--secondary)] transition-all">
                         <MdOutlineMail className="text-lg" />
                       </a>
                       <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all">
@@ -238,12 +238,12 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
           {!isMobile && (
             <>
               {isVisible ? (
-                <div className="absolute flex flex-col items-center right-full -top-0.5 mr-3 bg-background dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                <div className="absolute flex flex-col items-center right-full -top-0.5 mr-3 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
                   <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
                   <div className="absolute right-0 top-1/2 transform translate-x-full -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary"></div>
                 </div>
               ) : (
-                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-1 bg-background dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-1 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
                   <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
                   <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkSecondary"></div>
                 </div>
@@ -277,7 +277,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             />
           </a>
           {!isMobile && (
-            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-1 mr-4' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none`}>
+            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-1 mr-4' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none`}>
               Waterloo CS Webring
               <div className={`absolute ${isVisible ? 'left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary' : 'top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary'}`}></div>
             </div>
@@ -338,7 +338,7 @@ function SocialLinks() {
           <MdOutlineMail className="text-[var(--primary)] hover:text-[var(--secondary)] text-2xl transition-all" />
         </a>
         {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
             <span>Email</span>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
           </div>
@@ -350,7 +350,7 @@ function SocialLinks() {
           <AiOutlineLinkedin className="text-[var(--primary)] hover:text-[var(--secondary)] text-2xl transition-all" />
         </a>
         {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
             <span>LinkedIn</span>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
           </div>
@@ -362,7 +362,7 @@ function SocialLinks() {
           <FiGithub className="text-[var(--primary)] hover:text-[var(--secondary)] text-xl transition-all" />
         </a>
         {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none">
             <span>GitHub</span>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
           </div>
@@ -390,7 +390,7 @@ function MobileNavLink({ href, pathname, onClick, children }) {
     <Link
       href={href}
       onClick={onClick}
-      className={`px-4 py-1 text-sm font-body font-light hover:text-[var(--secondary)] transition-[color] transition-[font-style] duration-400 ease-in-out ${pathname === href ? 'italic dark:text-darkSecondary font-bold' : 'text-[var(--primary)] transition-all'}`}
+      className={`px-4 py-1 text-sm font-body hover:text-[var(--secondary)] transition-[color] duration-[0.4s] ease-in-out ${pathname === href ? 'italic dark:text-darkSecondary font-bold' : 'font-light'}`}
     >
       {children}
     </Link>
