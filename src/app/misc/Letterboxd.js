@@ -85,7 +85,7 @@ function Letterboxd() {
         const hasHalfStar = rating % 1 >= 0.5;
 
         return (
-            <span className="text-[var(--secondary)] text-xs">
+            <span className="dark:text-[var(--secondary)] text-xs">
                 {'★'.repeat(fullStars)}
                 {hasHalfStar && '½'}
             </span>
@@ -153,8 +153,7 @@ function Letterboxd() {
 
     return (
         <div ref={componentRef}>
-            <h3 className="text-xl font-heading font-bold text-primary dark:text-darkSecondary mb-1">Recently Watched Movies</h3>
-
+            <h3 className="text-2xl font-heading font-bold text-primary dark:text-darkSecondary mb-1 tracking-tight">Recently Watched Movies</h3>
             <div className="relative">
                 <div
                     className="flex items-center"
@@ -165,14 +164,16 @@ function Letterboxd() {
                 >
                     <button
                         onClick={prevMovie}
-                        className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all p-2 mr-1/2 absolute left-0 z-10"
-                        style={{ transform: 'translateX(-90%)' }}
+                        className="text-[var(--primary)] transition-all absolute left-0 z-10 flex items-center justify-center w-10 h-14"
+                        style={{ transform: 'translateX(-70%)' }}
                         aria-label="Previous movie"
                     >
-                        &lt;
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
                     </button>
 
-                    <div className="relative w-full overflow-hidden min-h-[19rem]">
+                    <div className="relative w-full overflow-x-hidden overflow-y-visible min-h-[19rem] p-1">
                         <div
                             ref={containerRef}
                             className="flex transition-all pl-0"
@@ -184,49 +185,55 @@ function Letterboxd() {
                                 <div
                                     key={`${movie.title}-${index}`}
                                     ref={el => itemRefs.current[index] = el}
-                                    className="transition-all flex-shrink-0 w-40 mx-3 bg-background dark:bg-darkBackground2 text-[var(--primary)] border border-primary dark:border-darkSecondary p-3 cursor-pointer first:ml-0 md:hover:-translate-y-1 mt-2"
+                                    className="relative flex-shrink-0 w-40 mx-3 cursor-pointer first:ml-0"
                                     onClick={() => goToMovie(index)}
                                 >
-                                    <div className="transition-all w-full mb-3 overflow-hidden border border-primary dark:border-darkSecondary">
-                                        {movie.image ? (
-                                            <img
-                                                src={movie.image}
-                                                alt={movie.title}
-                                                className="w-full h-auto object-contain"
-                                                onError={(e) => {
-                                                    e.target.src = '/default-movie.png';
-                                                }}
-                                            />
-                                        ) : (
-                                            <div className="w-full bg-gray-300 flex items-center justify-center" style={{ aspectRatio: '2/3' }}>
-                                                <span className="text-xs">No image</span>
-                                            </div>
-                                        )}
-                                    </div>
+                                    {/* Shadow Layer */}
+                                    <div className="absolute top-[4px] left-[4px] z-0 w-full h-full bg-primary dark:bg-darkSecondary rounded-2xl"></div>
 
-                                    <div className="space-y-1">
-                                        <div className="flex justify-between items-baseline">
-                                            <span
-                                                className="font-body font-bold text-sm truncate w-full"
-                                                title={movie.title}
-                                            >
-                                                {movie.title}
-                                            </span>
-                                        </div>
-
-                                        <div className="flex justify-between items-center">
-                                            <div className="font-body font-light text-xs flex items-center">
-                                                {movie.year}
-                                            </div>
-                                            {movie.rating && (
-                                                <div className="font-sans flex items-center">
-                                                    {getStarRating(movie.rating)}
+                                    {/* Main Card Layer */}
+                                    <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary p-3 md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-2xl">
+                                        <div className="w-full mb-3 overflow-hidden border border-primary dark:border-darkSecondary rounded-md">
+                                            {movie.image ? (
+                                                <img
+                                                    src={movie.image}
+                                                    alt={movie.title}
+                                                    className="w-full h-auto object-contain"
+                                                    onError={(e) => {
+                                                        e.target.src = '/default-movie.png';
+                                                    }}
+                                                />
+                                            ) : (
+                                                <div className="w-full bg-gray-300 flex items-center justify-center" style={{ aspectRatio: '2/3' }}>
+                                                    <span className="text-xs">No image</span>
                                                 </div>
                                             )}
                                         </div>
 
-                                        <div className="font-body font-light text-xs">
-                                            Watched {movie.watchedDate}
+                                        <div className="space-y-1">
+                                            <div className="flex justify-between items-baseline">
+                                                <span
+                                                    className="font-body font-bold text-sm truncate w-full tracking-tighter"
+                                                    title={movie.title}
+                                                >
+                                                    {movie.title}
+                                                </span>
+                                            </div>
+
+                                            <div className="flex justify-between items-center">
+                                                <div className="font-body font-light text-xs flex items-center">
+                                                    {movie.year}
+                                                </div>
+                                                {movie.rating && (
+                                                    <div className="font-sans flex items-center">
+                                                        {getStarRating(movie.rating)}
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="font-body font-light text-xs">
+                                                Watched {movie.watchedDate}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -236,12 +243,14 @@ function Letterboxd() {
 
                     <button
                         onClick={nextMovie}
-                        className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all p-2 ml-1 absolute right-0 z-10"
-                        style={{ transform: 'translateX(90%)' }}
+                        className="text-[var(--primary)] transition-all absolute right-0 z-10 flex items-center justify-center w-10 h-14 translate-x-[70%]"
                         aria-label="Next movie"
                     >
-                        &gt;
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
                     </button>
+
                 </div>
 
                 <div className="flex justify-center mt-2 space-x-2 overflow-x-auto py-2 no-scrollbar">
@@ -249,7 +258,7 @@ function Letterboxd() {
                         <button
                             key={`indicator-${index}`}
                             onClick={() => goToMovie(index)}
-                            className={`flex-shrink-0 w-2 h-2 transition-all ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4' : 'bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary'}`}
+                            className={`flex-shrink-0 w-2 h-2 transition-all rounded-full md:hover:scale-110 ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4' : 'bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary'}`}
                             aria-label={`Go to movie ${index + 1}`}
                         />
                     ))}

@@ -3,302 +3,446 @@ import LastFm from './LastFm';
 import Letterboxd from './Letterboxd';
 import AlbumCollage from './AlbumCollage';
 import Movies from './Movies';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const artData = [
-    {
-        "title": "Digital",
-        "pieces": [
-            {
-                "description": "Street under a pink sky, drawn digitally",
-                "image": "/images/art/street.png",
-                "fullWidth": true
-            }
-        ]
-    },
-    {
-        "title": "Alcohol Markers",
-        "pieces": [
-            {
-                "description": "I bought some grayscale Tombow alcohol markers from Dollarama and watched Mad Max: Fury Road for the first time, inspiring me to draw this",
-                "image": "/images/art/fury_road.jpg"
-            },
-            {
-                "description": "A quaint storefront, drawn with Tombow alcohol markers and fineliner pens",
-                "image": "images/art/storefront.jpeg"
-            },
-            {
-                "description": "I drew a Corvette for a family friend who really likes cars",
-                "image": "images/art/car.jpeg"
-            }
-        ]
-    },
-    {
-        "title": "Cats!",
-        "description": "I found a bunch of cute photos of cats on Pinterest as reference.",
-        "pieces": [
-            {
-                "description": "A sleepy cat, painted with acrylics",
-                "image": "/images/art/cat.jpg"
-            },
-            {
-                "description": "Sleepy gray cats, drawn with alcohol markers",
-                "image": "/images/art/cats.jpg"
-            }
-        ]
-    },
-    {
-        "title": "Creatures & Cryptids",
-        "description": "These are some illustrations inspired by famous cryptids and mythical creatures - I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their appearances are open to interpretation.",
-        "pieces": [
-            {
-                "description": "Wendigo (one of my favourite cryptids), drawn digitally",
-                "image": "images/art/wendigo.png"
-            },
-            {
-                "description": "Mothman (another one of my favourites), drawn with pencils",
-                "image": "images/art/mothman.jpg"
-            }
-        ]
-    },
-    {
-        "pieces": [
-            {
-                "description": "Death worm, drawn digitally",
-                "image": "images/art/deathworm.png"
-            },
-            {
-                "description": "Original (?), drawn digitally",
-                "image": "images/art/creature.png"
-            },
-            {
-                "description": "Dragon, drawn digitally",
-                "image": "images/art/dragon.png"
-            }
-        ]
-    },
-    {
-        "title": "Needle Felting",
-        "description": "Needle felting is pretty fun! I've made a bunch of little animals, but here are my personal favourites.",
-        "pieces": [
-            {
-                "description": "Bunny!",
-                "image": "images/art/bunny.jpg"
-            },
-            {
-                "description": "Frog!",
-                "image": "images/art/frog.jpg"
-            },
-            {
-                "description": "Dinosaur!",
-                "image": "images/art/dinosaur.jpg"
-            }
-        ]
-    }
+  {
+    "title": "Digital",
+    "pieces": [
+      {
+        "description": "Street under a pink sky, drawn digitally",
+        "image": "/images/art/street.png",
+        "fullWidth": true
+      }
+    ]
+  },
+  {
+    "title": "Alcohol Markers",
+    "pieces": [
+      {
+        "description": "I bought some grayscale Tombow alcohol markers from Dollarama and watched Mad Max: Fury Road for the first time, inspiring me to draw this",
+        "image": "/images/art/fury_road.jpg"
+      },
+      {
+        "description": "A quaint storefront, drawn with Tombow alcohol markers and fineliner pens",
+        "image": "images/art/storefront.jpeg"
+      },
+      {
+        "description": "I drew a Corvette for a family friend who really likes cars",
+        "image": "images/art/car.jpeg"
+      }
+    ]
+  },
+  {
+    "title": "Cats!",
+    "description": "I found a bunch of cute photos of cats on Pinterest as reference.",
+    "pieces": [
+      {
+        "description": "A sleepy cat, painted with acrylics",
+        "image": "/images/art/cat.jpg"
+      },
+      {
+        "description": "Sleepy gray cats, drawn with alcohol markers",
+        "image": "/images/art/cats.jpg"
+      }
+    ]
+  },
+  {
+    "title": "Creatures & Cryptids",
+    "description": "These are some illustrations inspired by famous cryptids and mythical creatures - I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their appearances are open to interpretation.",
+    "pieces": [
+      {
+        "description": "Wendigo (one of my favourite cryptids), drawn digitally",
+        "image": "images/art/wendigo.png"
+      },
+      {
+        "description": "Mothman (another one of my favourites), drawn with pencils",
+        "image": "images/art/mothman.jpg"
+      }
+    ]
+  },
+  {
+    "pieces": [
+      {
+        "description": "Death worm, drawn digitally",
+        "image": "images/art/deathworm.png"
+      },
+      {
+        "description": "Original (?), drawn digitally",
+        "image": "images/art/creature.png"
+      },
+      {
+        "description": "Dragon, drawn digitally",
+        "image": "images/art/dragon.png"
+      }
+    ]
+  },
+  {
+    "title": "Needle Felting",
+    "description": "Needle felting is pretty fun! I've made a bunch of little animals, but here are my personal favourites.",
+    "pieces": [
+      {
+        "description": "Bunny!",
+        "image": "images/art/bunny.jpg"
+      },
+      {
+        "description": "Frog!",
+        "image": "images/art/frog.jpg"
+      },
+      {
+        "description": "Dinosaur!",
+        "image": "images/art/dinosaur.jpg"
+      }
+    ]
+  }
 ];
 
-const SectionHeading = ({ children }) => (
-    <div className="flex items-center mb-4">
-      <h2 className="text-4xl font-heading font-medium italic text-primary dark:text-darkSecondary md:whitespace-nowrap">
-        {children}
-      </h2>
-      <div className="hidden md:block w-full h-px bg-primary dark:bg-darkSecondary ml-4"></div>
+const SectionHeading = ({ children, ellipseRotation = -5 }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    const checkIfMobile = () => setIsMobile(window.innerWidth <= 1024);
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+      }
+    );
+
+    if (headingRef.current) {
+      observer.observe(headingRef.current);
+    }
+
+    return () => {
+      if (headingRef.current) {
+        observer.unobserve(headingRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      ref={headingRef}
+      className="flex items-center mb-4 relative group"
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
+    >
+      <div className="relative inline-block">
+        <svg
+          width="160"
+          height="40"
+          viewBox="0 0 180 40"
+          className="absolute -left-3 -top-2 h-12 w-auto"
+        >
+          <ellipse
+            cx="90"
+            cy="20"
+            rx="90"
+            ry="18"
+            transform={`rotate(${ellipseRotation}, 90, 20)`}
+            className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
+            strokeDasharray={
+              isMobile ? '565' :
+                isHovered ? '0, 565' :
+                  isVisible ? '565' : '0, 565'
+            }
+            strokeDashoffset="0"
+            style={{
+              transition: isMobile ? 'none' : 'stroke-dasharray 1.2s ease-in-out',
+            }}
+          />
+        </svg>
+
+        <div className="relative">
+          {/* Shadow (offset) */}
+          <h2
+            className="absolute top-0 left-0 text-5xl font-heading font-slightbold text-primary dark:text-darkSecondary md:whitespace-nowrap tracking-tight"
+            style={{
+              transform: 'translate(3px, 3px)',
+              zIndex: 0,
+            }}
+          >
+            {children}
+          </h2>
+
+          {/* Stroke Layer */}
+          <h2
+            className="text-5xl font-heading font-slightbold text-transparent dark:text-transparent md:whitespace-nowrap tracking-tight"
+            style={{
+              WebkitTextStroke: '3px var(--stroke-colour)',
+              textStroke: '3px var(--stroke-colour)',
+              zIndex: 1,
+            }}
+          >
+            {children}
+          </h2>
+
+          {/* Fill Layer */}
+          <h2
+            className="text-5xl font-heading font-slightbold text-background dark:text-darkPrimary md:whitespace-nowrap tracking-tight absolute top-0 left-0"
+            style={{
+              zIndex: 2,
+            }}
+          >
+            {children}
+          </h2>
+        </div>
+      </div>
+
+      {!isMobile && (
+        <div className="hidden md:flex items-center w-full ml-4 relative top-[2px]">
+          <div className="flex-grow h-px bg-primary dark:bg-darkSecondary"></div>
+          <svg width="20" height="20" viewBox="0 0 20 20" className="ml-1">
+            <path
+              d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
+              fill="transparent"
+              stroke="var(--primary)"
+              strokeWidth="2"
+              strokeLinejoin="round"
+              className="dark:stroke-darkBackground"
+            />
+            <path
+              d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
+              fill="background"
+              stroke="transparent"
+              className="dark:fill-darkSecondary"
+            />
+          </svg>
+        </div>
+      )}
     </div>
   );
+};
 
 export default function Misc() {
-    const [watchRec, setWatchRec] = useState('');
-    const [listenRec, setListenRec] = useState('');
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitMessage, setSubmitMessage] = useState('');
+  const [watchRec, setWatchRec] = useState('');
+  const [listenRec, setListenRec] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!watchRec && !listenRec) return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!watchRec && !listenRec) return;
 
-        setIsSubmitting(true);
-        setSubmitMessage('');
+    setIsSubmitting(true);
+    setSubmitMessage('');
 
-        try {
-            const response = await fetch('/api/send_recs', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ watchRec, listenRec }),
-            });
+    try {
+      const response = await fetch('/api/send_recs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ watchRec, listenRec }),
+      });
 
-            setSubmitMessage(response.ok
-                ? 'Thanks!'
-                : 'Failed to send :('
-            );
+      setSubmitMessage(response.ok
+        ? 'Thanks!'
+        : 'Failed to send :('
+      );
 
-            if (response.ok) {
-                setWatchRec('');
-                setListenRec('');
-            }
-        } catch {
-            setSubmitMessage('An error occurred. Please try again.');
-        } finally {
-            setIsSubmitting(false);
-            setTimeout(() => setSubmitMessage(''), 5000);
-        }
-    };
+      if (response.ok) {
+        setWatchRec('');
+        setListenRec('');
+      }
+    } catch {
+      setSubmitMessage('An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitMessage(''), 5000);
+    }
+  };
 
-    return (
-        <div className="overflow-x-hidden px-8 py-12 sm:p-20 sm:pt-16">
-            <div className="mb-24">
-                <ArtGallery artGroups={artData} />
-            </div>
-            
-            <div className="mb-24">
-                <RecentMediaSection />
-            </div>
+  return (
+    <div className="overflow-x-hidden p-6">
+      <div className="mb-24">
+        <ArtGallery artGroups={artData} />
+      </div>
 
-            <FavoritesSection />
+      <div className="mb-24">
+        <RecentMediaSection />
+      </div>
 
-            <RecommendationForm
-                watchRec={watchRec}
-                listenRec={listenRec}
-                isSubmitting={isSubmitting}
-                submitMessage={submitMessage}
-                onWatchRecChange={(e) => setWatchRec(e.target.value)}
-                onListenRecChange={(e) => setListenRec(e.target.value)}
-                onSubmit={handleSubmit}
-            />
-        </div>
-    );
+      <FavoritesSection />
+
+      <RecommendationForm
+        watchRec={watchRec}
+        listenRec={listenRec}
+        isSubmitting={isSubmitting}
+        submitMessage={submitMessage}
+        onWatchRecChange={(e) => setWatchRec(e.target.value)}
+        onListenRecChange={(e) => setListenRec(e.target.value)}
+        onSubmit={handleSubmit}
+      />
+    </div>
+  );
 }
 
 const ArtGallery = ({ artGroups }) => (
-    <>
-        <SectionHeading>Artistic Work</SectionHeading>
-        <p className="font-body font-light">
-            A gallery of miscellaneous drawings, paintings, and crafts!
-        </p>
+  <>
+    <SectionHeading>Artistic Work</SectionHeading>
+    <p className="font-body font-light text-lg">
+      A gallery of miscellaneous drawings, paintings, and crafts!
+    </p>
 
-        {artGroups.map((group, groupIndex) => (
-            <div key={groupIndex} className="mb-4">
-                {group.title && (
-                    <h2 className="text-xl font-heading font-bold text-primary dark:text-darkSecondary mb-2 mt-10">
-                        {group.title}
-                    </h2>
-                )}
-                {group.description && (
-                    <p className="mb-4 font-body font-light">{group.description}</p>
-                )}
+    {artGroups.map((group, groupIndex) => (
+      <div key={groupIndex} className="mb-4">
+        {group.title && (
+          <h2 className="text-2xl font-heading font-bold text-primary dark:text-darkSecondary mb-2 mt-10 tracking-tighter">
+            {group.title}
+          </h2>
+        )}
+        {group.description && (
+          <p className="mb-4 font-body font-light text-lg">{group.description}</p>
+        )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {group.pieces.map((piece, pieceIndex) => (
-                        <ArtPiece key={pieceIndex} piece={piece} />
-                    ))}
-                </div>
-            </div>
-        ))}
-    </>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {group.pieces.map((piece, pieceIndex) => (
+            <ArtPiece key={pieceIndex} piece={piece} />
+          ))}
+        </div>
+      </div>
+    ))}
+  </>
 );
 
 const ArtPiece = ({ piece }) => (
-    <div className={piece.fullWidth ? "col-span-full" : ""}>
+  <div className={`${piece.fullWidth ? "col-span-full" : ""}`}>
+    {/* Image with shadow effect */}
+    <div className="relative">
+      {/* Black shadow layer (image-sized) */}
+      <div className="absolute top-[4px] left-[4px] z-0 w-full h-full bg-primary dark:bg-darkSecondary rounded-2xl"></div>
+
+      {/* Main image */}
+      <div className="relative z-10 transition-all md:hover:-translate-y-0.5 md:hover:-translate-x-0.5">
         <img
-            src={piece.image}
-            alt=""
-            className={`w-full h-auto object-fill mb-2 border border-primary dark:border-darkSecondary md:hover:-translate-y-1 transition-all`}
+          src={piece.image}
+          alt=""
+          className="w-full h-auto object-fill border border-primary dark:border-darkSecondary rounded-2xl"
         />
-        <p className="font-body font-light text-xs">{piece.description}</p>
+      </div>
     </div>
+
+    {/* Description text */}
+    <p className="font-body font-light text-xs mt-2">{piece.description}</p>
+  </div>
 );
 
 const RecentMediaSection = () => (
-    <>
-        <SectionHeading>Recent Watching & Listening</SectionHeading>
-        <p className="font-body font-light mb-2">
-            I like to watch movies when I have free time. I've always had a lot of love for the horror genre in particular, from campy 80's horror (I love the practical effects from that era!) to atmospheric slow-burns. But my taste is super wide and I enjoy movies from pretty much any genre.
-        </p>
-        <p className="font-body font-light mb-6">
-            Below are my most recently watched movies (fetched from my Letterboxd activity), as well as my top played artists this week (fetched from my Spotify listening).
-        </p>
-        <div className="mb-10">
-            <Letterboxd />
-        </div>
-        <LastFm />
-    </>
+  <>
+    <SectionHeading ellipseRotation={5}>Recent Watching & Listening</SectionHeading>
+    <p className="font-body font-light mb-2 text-lg">
+      I like to watch movies when I have free time. I've always had a lot of love for the horror genre in particular, from campy 80's horror (I love the practical effects from that era!) to atmospheric slow-burns. But my taste is super wide and I enjoy movies from pretty much any genre.
+    </p>
+    <p className="font-body font-light mb-6 text-lg">
+      Below are my most recently watched movies (synced with my Letterboxd account), as well as my top played artists this week (synced with my Spotify listening).
+    </p>
+    <div className="mb-10">
+      <Letterboxd />
+    </div>
+    <LastFm />
+  </>
 );
 
 const FavoritesSection = () => (
-    <>
-        <SectionHeading>Favourites!</SectionHeading>
-        <p className="font-body font-light mb-4">
-            Since I shared my recents, I wanted to share my favourites as well, though this will probably change once in a while.
-        </p>
-        <div className="mb-10">
-            <Movies />
-        </div>
-        <div className="mb-12">
-            <AlbumCollage />
-        </div>
-    </>
+  <>
+    <SectionHeading ellipseRotation={-6}>Favourites!</SectionHeading>
+    <p className="font-body font-light mb-4">
+      Since I shared my recents, I wanted to share my favourites as well, though this will probably change once in a while.
+    </p>
+    <div className="mb-10">
+      <Movies />
+    </div>
+    <div className="mb-12">
+      <AlbumCollage />
+    </div>
+  </>
 );
 
 const RecommendationForm = ({
-    watchRec,
-    listenRec,
-    isSubmitting,
-    submitMessage,
-    onWatchRecChange,
-    onListenRecChange,
-    onSubmit
+  watchRec,
+  listenRec,
+  isSubmitting,
+  submitMessage,
+  onWatchRecChange,
+  onListenRecChange,
+  onSubmit
 }) => (
-    <div className="mt-20">
-        <p className="font-body font-light mb-6">
-            If you've made it this far, feel free to give me recommendations :) I'm not picky and I love watching & listening to new things.
-        </p>
+  <div className="mt-20">
+    <p className="font-body font-light mb-6 text-lg">
+      If you've made it this far, feel free to give me recommendations :) I'm not picky and I love watching & listening to new things.
+    </p>
 
-        <form onSubmit={onSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-                <RecommendationInput
-                    label="Tell me what to watch:"
-                    value={watchRec}
-                    onChange={onWatchRecChange}
-                    placeholder="Movie, TV show, etc."
-                />
-                <RecommendationInput
-                    label="Tell me what to listen to:"
-                    value={listenRec}
-                    onChange={onListenRecChange}
-                    placeholder="Artist, album, song, etc."
-                />
-            </div>
-            <SubmitButton isSubmitting={isSubmitting} />
-            {submitMessage && (
-                <p className="mt-2 font-body font-light text-sm text-[var(--primary)]">
-                    {submitMessage}
-                </p>
-            )}
-        </form>
-    </div>
+    <form onSubmit={onSubmit}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 text-lg">
+        <RecommendationInput
+          label="Tell me what to watch:"
+          value={watchRec}
+          onChange={onWatchRecChange}
+          placeholder="Movie, TV show, etc."
+        />
+        <RecommendationInput
+          label="Tell me what to listen to:"
+          value={listenRec}
+          onChange={onListenRecChange}
+          placeholder="Artist, album, song, etc."
+        />
+      </div>
+      <SubmitButton isSubmitting={isSubmitting} />
+      {submitMessage && (
+        <p className="mt-2 font-body font-light text-sm text-[var(--primary)]">
+          {submitMessage}
+        </p>
+      )}
+    </form>
+  </div>
 );
 
 const RecommendationInput = ({ label, value, onChange, placeholder }) => (
-    <div>
-        <label className="block font-body font-light mb-2">{label}</label>
-        <input
-            type="text"
-            value={value}
-            onChange={onChange}
-            className="w-full px-2 py-1 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)]"
-            placeholder={placeholder}
-            style={{
-                fontStyle: value ? 'normal' : 'italic'
-            }}
-        />
-    </div>
+  <div>
+    <label className="block font-body font-light mb-2">{label}</label>
+    <input
+      type="text"
+      value={value}
+      onChange={onChange}
+      className="w-full px-3 py-1 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)] rounded-full"
+      placeholder={placeholder}
+    />
+  </div>
 );
 
 const SubmitButton = ({ isSubmitting }) => (
+  <div className="relative inline-block">
+    {/* Shadow Layer */}
+    <div className="absolute top-[4px] left-[4px] z-0">
+      <div className="px-3 py-1 flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
+        <span className="font-body tracking-tighter text-base text-[var(--primary)] font-bold">
+          {isSubmitting ? 'Sending...' : 'Send!'}
+        </span>
+      </div>
+    </div>
+    {/* Main Button Layer */}
     <button
-        type="submit"
-        disabled={isSubmitting}
-        className="px-2 py-1 bg-background lg:hover:bg-primary dark:bg-darkBackground lg:dark:hover:bg-darkSecondary border border-primary dark:border-darkSecondary text-[var(--primary)] lg:hover:text-[var(--background)] text-sm font-body font-light transition-all"
+      type="submit"
+      disabled={isSubmitting}
+      className="relative z-10 transition-all bg-background dark:bg-darkBackground2 px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkSecondary md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
     >
+      <span className="font-body tracking-tighter text-base text-[var(--primary)] font-bold">
         {isSubmitting ? 'Sending...' : 'Send!'}
+      </span>
     </button>
+  </div>
 );

@@ -58,27 +58,51 @@ function LastFm() {
 
     return (
         <div className="mb-12">
-            <h3 className="text-xl font-heading font-extrabold text-primary dark:text-darkSecondary mb-4">Top Artists This Week</h3>
+            <h3 className="text-2xl font-heading font-extrabold text-primary dark:text-darkSecondary mb-4 tracking-tighter">Top Artists This Week</h3>
             {artists.length > 0 ? (
                 <div className="flex flex-wrap gap-3">
                     {artists.map((artist, index) => (
-                        <div
-                            key={`${artist.name}-${index}`}
-                            className="transition-all bg-background dark:bg-darkBackground2 p-2 pr-4 border border-primary dark:border-darkSecondary flex items-center whitespace-nowrap text-[var(--primary)] md:hover:-translate-y-1"
-                        >
-                            <div className="w-6 h-6 mr-2 flex items-center justify-center border border-primary dark:border-darkSecondary">
-                                <img
-                                    src={artist.imageUrl}
-                                    alt={artist.name}
-                                    className="w-6 h-6 object-contain"
-                                    onError={(e) => {
-                                        e.target.src = '/default-artist.png';
-                                    }}
-                                />
+                        <div key={`${artist.name}-${index}`} className="relative inline-block">
+                            {/* Shadow Layer */}
+                            <div className="absolute top-[4px] left-[4px] z-0">
+                                <div className="p-2 pr-4 flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
+                                    <div className="w-6 h-6 mr-2 flex items-center justify-center">
+                                        <img
+                                            src={artist.imageUrl}
+                                            alt={artist.name}
+                                            className="w-5 h-5 object-cover rounded-full border border-[var(--primary)] dark:border-darkPrimary"
+                                            onError={(e) => {
+                                                e.target.src = '/default-artist.png';
+                                            }}
+                                        />
+
+                                    </div>
+                                    <span className="font-body font-medium text-sm text-[var(--primary)] text-lg">
+                                        {artist.name}
+                                    </span>
+                                </div>
                             </div>
-                            <span className="font-body font-medium text-sm">{artist.name}</span>
+
+                            {/* Main Card Layer */}
+                            <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 p-2 pr-4 flex items-center whitespace-nowrap border border-primary dark:border-darkSecondary md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full">
+                                <div className="w-6 h-6 mr-2 flex items-center justify-center">
+                                    <img
+                                        src={artist.imageUrl}
+                                        alt={artist.name}
+                                        className="w-5 h-5 object-cover rounded-full border border-primary dark:border-darkSecondary"
+                                        onError={(e) => {
+                                            e.target.src = '/default-artist.png';
+                                        }}
+                                    />
+
+                                </div>
+                                <span className="font-body font-medium text-sm text-[var(--primary)] text-lg">
+                                    {artist.name}
+                                </span>
+                            </div>
                         </div>
                     ))}
+
                 </div>
             ) : (
                 <p className="font-body font-light">Couldn't load music data at the moment.</p>

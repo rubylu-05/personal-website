@@ -9,20 +9,23 @@ module.exports = {
     extend: {
       colors: {
         background: '#ffffff',
-        background2: '#f2f2f2',
+        background2: '#dfebf5',
         primary: '#000000',
-        secondary: '#9c9c9c',
-        darkBackground: '#1e342e',
-        darkBackground2: '#28423c',
-        darkPrimary: '#e5f0cc',
+        secondary: '#657885',
+        darkBackground: '#1c212b',
+        darkBackground2: '#16191f',
+        darkPrimary: '#e6dce0',
         darkSecondary: '#af8b6c',
       },
       fontFamily: {
-        body: ['DM Mono'],
-        heading: ['DM Mono'],
+        body: ['Manrope'],
+        heading: ['Manrope'],
+        title: ['Mangolia']
       },
       fontWeight: {
-        light: 300,
+        light: 400,
+        slightbold: 700,
+        bold: 800,
         extralight: 200,
       },
       fontSize: {

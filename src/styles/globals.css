@@ -2,16 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Mangolia';
+  src: url('/fonts/Mangolia.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 html.light {
-  --background: #f2f2f2;
+  --background: #dfebf5;
   --primary: #000000;
-  --secondary: #9c9c9c;
+  --secondary: #657885;
 }
 
 html.dark {
-  --background: #1e342e;
-  --primary: #e5f0cc;
+  --background: #1c212b;
+  --background2: #16191f;
+  --primary: #e6dce0;
   --secondary: #af8b6c;
+}
+
+:root {
+  --stroke-colour: var(--primary);
+  --dot-colour: var(--primary);
+}
+
+.dark {
+  --stroke-colour: var(--secondary);
+  --dot-colour: var(--secondary);
 }
 
 body {
