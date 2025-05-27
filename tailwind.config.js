@@ -23,8 +23,7 @@ module.exports = {
         title: ['Mangolia']
       },
       fontWeight: {
-        light: 400,
-        slightbold: 700,
+        light: 300,
         bold: 800,
         extralight: 200,
       },

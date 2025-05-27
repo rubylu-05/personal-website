@@ -153,7 +153,7 @@ function Letterboxd() {
 
     return (
         <div ref={componentRef}>
-            <h3 className="text-2xl font-heading font-bold text-primary dark:text-darkSecondary mb-1 tracking-tight">Recently Watched Movies</h3>
+            <h3 className="text-2xl font-body font-bold text-primary dark:text-darkSecondary mb-1 tracking-tight">Recently Watched Movies</h3>
             <div className="relative">
                 <div
                     className="flex items-center"
@@ -213,7 +213,7 @@ function Letterboxd() {
                                         <div className="space-y-1">
                                             <div className="flex justify-between items-baseline">
                                                 <span
-                                                    className="font-body font-bold text-sm truncate w-full tracking-tighter"
+                                                    className="font-body font-bold truncate w-full tracking-tighter"
                                                     title={movie.title}
                                                 >
                                                     {movie.title}
@@ -221,7 +221,7 @@ function Letterboxd() {
                                             </div>
 
                                             <div className="flex justify-between items-center">
-                                                <div className="font-body font-light text-xs flex items-center">
+                                                <div className="font-body text-xs flex items-center">
                                                     {movie.year}
                                                 </div>
                                                 {movie.rating && (
@@ -231,7 +231,7 @@ function Letterboxd() {
                                                 )}
                                             </div>
 
-                                            <div className="font-body font-light text-xs">
+                                            <div className="font-body text-xs">
                                                 Watched {movie.watchedDate}
                                             </div>
                                         </div>

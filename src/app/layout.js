@@ -471,7 +471,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             y="60%"
             dominantBaseline="middle"
             textAnchor="middle"
-            className="font-heading font-title text-8xl fill-primary dark:fill-darkSecondary"
+            className="font-title text-8xl fill-primary dark:fill-darkSecondary"
             style={{ fontSize: '6rem' }}
             transform="rotate(-3, 150, 70) translate(3, 3)"
           >
@@ -484,7 +484,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             y="60%"
             dominantBaseline="middle"
             textAnchor="middle"
-            className="font-heading font-title text-8xl fill-none stroke-[3px] stroke-primary dark:stroke-darkSecondary"
+            className="font-title text-8xl fill-none stroke-[3px] stroke-primary dark:stroke-darkSecondary"
             style={{ fontSize: '6rem' }}
             transform="rotate(-3, 150, 70)"
           >
@@ -497,7 +497,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             y="60%"
             dominantBaseline="middle"
             textAnchor="middle"
-            className="font-heading font-title text-8xl fill-background2 dark:fill-darkPrimary"
+            className="font-title text-8xl fill-background2 dark:fill-darkPrimary"
             style={{ fontSize: '6rem' }}
             transform="rotate(-3, 150, 70)"
           >
@@ -706,7 +706,9 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[520px] z-10">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-        <div className="transition-all bg-[var(--background)] border border-primary dark:border-darkBackground p-4 px-6 text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light text-base rounded-full">
+        <div
+          className={`bg-[var(--background)] border border-primary dark:border-darkBackground p-2 px-4 text-[var(--primary)] whitespace-pre-line text-center min-h-[40px] font-body font-light text-base rounded-full ${showNowPlaying ? 'pr-6' : ''}`}
+        >
           {showNowPlaying ? (
             nowPlaying ? (
               <NowPlayingDisplay nowPlaying={nowPlaying} />
@@ -749,13 +751,13 @@ function NowPlayingDisplay({ nowPlaying }) {
         <div className="absolute inset-0 m-auto w-3 h-3 bg-[var(--background)] rounded-full border border-primary dark:border-darkBackground"></div>
       </div>
       <div className="text-left overflow-hidden min-w-0">
-        <div className="text-sm font-body font-light text-[var(--primary)] mb-[-2px]">
+        <div className="text-sm font-body font-light text-[var(--primary)] mb-[-3px]">
           {nowPlaying.nowplaying ? 'Now Listening on Spotify:' : 'Last Played on Spotify:'}
         </div>
-        <div className="truncate font-heading font-bold text-base text-primary dark:text-darkSecondary tracking-tighter mt-[-2px] mb-[-2px]" title={nowPlaying.track}>
+        <div className="truncate font-heading font-bold text-primary dark:text-darkSecondary tracking-tighter mt-[-2px] mb-[-2px]" title={nowPlaying.track}>
           {nowPlaying.track}
         </div>
-        <div className="truncate font-body font-light text-sm text-[var(--primary)] mt-[-2px]" title={nowPlaying.artist}>
+        <div className="truncate font-body font-light text-sm text-[var(--primary)] mt-[-3px]" title={nowPlaying.artist}>
           {nowPlaying.artist}
         </div>
       </div>

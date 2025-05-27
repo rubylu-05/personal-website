@@ -97,11 +97,13 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
           <div className="relative">
             {/* Shadow (offset) */}
             <h2
-              className="text-5xl font-heading font-slightbold text-primary dark:text-darkSecondary md:whitespace-nowrap tracking-tight"
+              className="text-5xl font-heading font-bold text-primary dark:text-transparent md:whitespace-nowrap tracking-tight"
               style={{
-                transform: 'translate(3px, 3px)',
+                transform: 'translate(2px, 2px)',
                 position: 'absolute',
                 zIndex: 0,
+                WebkitTextStroke: 'var(--stroke-width) var(--shadow-colour)',
+                textStroke: 'var(--stroke-width) var(--stroke-colour)',
               }}
             >
               {children}
@@ -109,7 +111,7 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
 
             {/* Stroke Layer */}
             <h2
-              className="text-5xl font-heading font-slightbold text-transparent md:whitespace-nowrap tracking-tight"
+              className="text-5xl font-heading font-bold md:whitespace-nowrap tracking-tight"
               style={{
                 WebkitTextStroke: 'var(--stroke-width) var(--stroke-colour)',
                 textStroke: 'var(--stroke-width) var(--stroke-colour)',
@@ -122,7 +124,7 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
 
             {/* Fill Layer */}
             <h2
-              className="text-5xl font-heading font-slightbold md:whitespace-nowrap tracking-tight absolute top-0 left-0"
+              className="text-5xl font-heading font-bold md:whitespace-nowrap tracking-tight absolute top-0 left-0"
               style={{
                 color: 'var(--text-fill-colour)',
                 zIndex: 2,
@@ -157,7 +159,7 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
           </div>
         )
       }
-    </div >
+    </div>
   );
 };
 
@@ -251,7 +253,7 @@ export default function About() {
             key={group.category}
             className={index !== SKILL_GROUPS.length - 1 ? 'mb-8' : ''}
           >
-            <h3 className="text-2xl font-heading font-bold text-primary dark:text-darkSecondary mb-2 tracking-tight">{group.category}</h3>
+            <h3 className="text-2xl font-body font-bold text-primary dark:text-darkSecondary mb-2 tracking-tighter">{group.category}</h3>
             <div className="flex flex-wrap gap-3">
               {group.items.map((skillName) => (
                 <SkillBadge key={skillName} skillName={skillName} />

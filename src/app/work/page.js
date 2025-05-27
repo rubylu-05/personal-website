@@ -101,9 +101,26 @@ const ProjectTitle = ({ children, rotateRight = false, isHovered = false }) => (
       />
     </svg>
 
-    {/* Title Text */}
-    <h2 className="relative text-3xl font-heading font-bold text-[var(--primary)] tracking-tighter leading-8">
-      {children}
+    {/* Title Text with Outlined Effect */}
+    <h2 className="relative text-3xl font-body font-bold tracking-tighter leading-8
+      dark:text-transparent dark:font-extrabold dark:tracking-tighter dark:leading-8
+      text-[var(--primary)] dark:text-darkPrimary">
+      
+      {/* Stroke Layer */}
+      <span
+        className="absolute top-0 left-0 -z-10 text-3xl font-body font-bold tracking-tighter leading-8 dark:block hidden"
+        style={{
+          WebkitTextStroke: '2px var(--secondary)',
+          textStroke: '2px var(--secondary)',
+        }}
+      >
+        {children}
+      </span>
+
+      {/* Fill Layer */}
+      <span className="relative z-10 text-[var(--primary)] dark:text-darkPrimary">
+        {children}
+      </span>
     </h2>
   </div>
 );
@@ -140,7 +157,7 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
             <ProjectTitle rotateRight={index % 2 === 0} isHovered={isHovered}>
               {project.title}
             </ProjectTitle>
-            <h3 className="text-lg font-heading font-light text-primary dark:text-darkSecondary mb-4 leading-tight">
+            <h3 className="text-lg font-body text-primary dark:text-darkSecondary mb-6 mt-1 leading-tight">
               {project.subtitle}
             </h3>
             <p className="font-body font-light font-[var(--primary)]">
@@ -203,7 +220,7 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative z-10 transition-all bg-background dark:bg-darkBackground px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
+                  className="relative z-10 transition-all bg-background2 dark:bg-darkBackground px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
                 >
                   <span className="font-body font-medium text-sm text-[var(--primary)]">
                     {project.linkText}
@@ -226,7 +243,7 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
             {/* Main Button Layer */}
             <button
               onClick={() => toggleExpand(project.id)}
-              className="relative z-10 transition-all bg-background dark:bg-darkBackground px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
+              className="relative z-10 transition-all bg-background2 dark:bg-darkBackground px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
             >
               <span className="font-body font-medium text-sm text-[var(--primary)]">
                 {expandedIds.includes(project.id) ? 'Show Less' : 'Show More'}

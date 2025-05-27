@@ -24,6 +24,7 @@ html.dark {
 }
 
 :root {
+  --shadow-colour: var(--primary);
   --stroke-colour: var(--primary);
   --text-fill-colour: white;
   --dot-colour: var(--primary);
@@ -31,10 +32,11 @@ html.dark {
 }
 
 .dark {
+  --shadow-colour: transparent;
   --stroke-colour: var(--secondary);
   --text-fill-colour: var(--primary);
   --dot-colour: var(--background2);
-  --stroke-width: 2px;
+  --stroke-width: 3px;
 }
 
 body {

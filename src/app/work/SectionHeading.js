@@ -1,11 +1,16 @@
 const SectionHeading = ({ children }) => (
   <div className="flex items-center mb-2 mt-4">
-    <h2 className="text-xl font-heading font-bold text-primary dark:text-darkSecondary md:mb-0 md:whitespace-nowrap tracking-tighter">
+    <h2 className="text-xl font-body font-bold text-primary dark:text-darkSecondary md:mb-0 md:whitespace-nowrap tracking-tighter">
       {children}
     </h2>
     <div className="hidden md:flex items-center w-full ml-4">
-      <div className="w-full h-px bg-primary dark:bg-darkSecondary"></div>
-      <svg width="20" height="20" viewBox="0 0 20 20" className="ml-1">
+      <div className="w-full h-px bg-primary dark:bg-darkSecondary mt-1"></div>
+      <svg 
+        width="20" 
+        height="20" 
+        viewBox="0 0 20 20" 
+        className="ml-1 mt-1"
+      >
         <path
           d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
           fill="transparent"
