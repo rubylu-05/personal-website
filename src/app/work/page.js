@@ -4,9 +4,10 @@ import { useState, useRef, useEffect } from 'react';
 import { FiGithub } from 'react-icons/fi';
 import Image from 'next/image';
 import BoxdOffice from './projects/BoxdOffice'
+import Website from './projects/Website'
 import Hydropower from './projects/Hydropower';
-import Nudge from './projects/Nudge';
 import Pokeplants from './projects/Pokeplants';
+import Nudge from './projects/Nudge';
 import Chroma from './projects/Chroma';
 import Biquadris from './projects/Biquadris'
 
@@ -24,6 +25,15 @@ const projects = [
   },
   {
     id: 2,
+    title: "Personal Website",
+    subtitle: "What you're looking at right now!",
+    image: "/images/projects/website/website.png",
+    description: "This website serves as a central hub for my professional history, passion projects, and personal interests. It was designed with both aesthetics and functionality in mind, and I wanted to make it as personal as possible. That’s why I included my art and integrated my real-time Spotify listening and Letterboxd activity to incorporate my taste in movies and music. Thanks for checking it out!",
+    expandedContent: <Website />,
+    githubLink: "https://github.com/rubylu-05/personal-website"
+  },
+  {
+    id: 3,
     title: "Hydropower Inflow Forecasting",
     subtitle: "A machine learning model to optimize hydropower plants",
     image: "/images/projects/lstm.png",
@@ -33,17 +43,6 @@ const projects = [
     link: "",
     linkText: "",
     githubLink: ""
-  },
-  {
-    id: 3,
-    title: "Nudge",
-    subtitle: "An AI-powered Chrome extension that knows when you're slacking and pressures you to get back on track",
-    image: "/images/projects/nudge.png",
-    description: "Nudge was built at UofT Hacks, where our team of 4 wanted to tackle productivity and procrastination in a way that felt more human than typical productivity apps. Instead of silent reminders or site blockers, we built a Chrome extension that observes your Chrome activity and responds with sarcastic commentary inspired by the game The Stanley Parable.",
-    expandedContent: <Nudge />,
-    link: "https://dorahacks.io/buidl/21709",
-    linkText: "Demo",
-    githubLink: "https://github.com/sbrina-w/uofthacks12"
   },
   {
     id: 4,
@@ -58,6 +57,17 @@ const projects = [
   },
   {
     id: 5,
+    title: "Nudge",
+    subtitle: "An AI-powered Chrome extension that knows when you're slacking and pressures you to get back on track",
+    image: "/images/projects/nudge.png",
+    description: "Nudge was built at UofT Hacks, where our team of 4 wanted to tackle productivity and procrastination in a way that felt more human than typical productivity apps. Instead of silent reminders or site blockers, we built a Chrome extension that observes your Chrome activity and responds with sarcastic commentary inspired by the game The Stanley Parable.",
+    expandedContent: <Nudge />,
+    link: "https://dorahacks.io/buidl/21709",
+    linkText: "Demo",
+    githubLink: "https://github.com/sbrina-w/uofthacks12"
+  },
+  {
+    id: 6,
     title: "Chroma: Your Personal Colour Assistant",
     subtitle: "A mobile app to simplify the colour mixing process",
     image: "/images/projects/chroma.png",
@@ -68,7 +78,7 @@ const projects = [
     githubLink: "https://github.com/sbrina-w/Chroma/"
   },
   {
-    id: 6,
+    id: 7,
     title: "Biquadris",
     subtitle: "A multiplayer Tetris clone",
     image: "/images/projects/biquadris.png",
@@ -283,6 +293,9 @@ export default function Work() {
 
   return (
     <div className="p-6 relative">
+      <p className="font-body font-light mb-6 text-lg">
+        For each project, you can click on <span className="font-bold tracking-tighter">Show More</span> for details about the technical process and my thoughts.
+      </p>
       <div className="space-y-8">
         {projects.map((project, index) => (
           <ProjectCard

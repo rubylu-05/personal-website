@@ -164,13 +164,15 @@ function Letterboxd() {
                 >
                     <button
                         onClick={prevMovie}
-                        className="text-[var(--primary)] transition-all absolute left-0 z-10 flex items-center justify-center w-10 h-14"
+                        className="text-[var(--primary)] transition-all absolute left-0 z-10 flex items-center justify-center w-10 h-14 group"
                         style={{ transform: 'translateX(-70%)' }}
                         aria-label="Previous movie"
                     >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M15 18l-6-6 6-6" />
-                        </svg>
+                        <div className="group-hover:scale-[1.2] transition-transform">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                        </div>
                     </button>
 
                     <div className="relative w-full overflow-x-hidden overflow-y-visible min-h-[19rem] p-1">
@@ -243,12 +245,15 @@ function Letterboxd() {
 
                     <button
                         onClick={nextMovie}
-                        className="text-[var(--primary)] transition-all absolute right-0 z-10 flex items-center justify-center w-10 h-14 translate-x-[70%]"
+                        className="text-[var(--primary)] transition-all absolute right-0 z-10 flex items-center justify-center w-10 h-14 group"
+                        style={{ transform: 'translateX(70%)' }}
                         aria-label="Next movie"
                     >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M9 18l6-6-6-6" />
-                        </svg>
+                        <div className="group-hover:scale-[1.2] transition-transform">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M9 18l6-6-6-6" />
+                            </svg>
+                        </div>
                     </button>
 
                 </div>
@@ -258,7 +263,7 @@ function Letterboxd() {
                         <button
                             key={`indicator-${index}`}
                             onClick={() => goToMovie(index)}
-                            className={`flex-shrink-0 w-2 h-2 transition-all rounded-full md:hover:scale-110 ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4' : 'bg-background dark:bg-darkBackground2 border border-primary dark:border-0'}`}
+                            className={`flex-shrink-0 w-2 h-2 transition-all rounded-full md:hover:scale-[1.2] ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4' : 'bg-background dark:bg-darkPrimary border border-primary dark:border-0'}`}
                             aria-label={`Go to movie ${index + 1}`}
                         />
                     ))}

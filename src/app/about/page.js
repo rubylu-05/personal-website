@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 const SKILL_GROUPS = [
   { category: 'Programming Languages', items: ['Python', 'C++', 'C', 'C#', 'Java', 'JavaScript', 'Dart'] },
   { category: 'Web Development', items: ['HTML/CSS', 'React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Flask'] },
-  { category: 'Data Science & Machine Learning', items: ['TensorFlow', 'OpenCV', 'Pandas', 'Beautiful Soup'] },
+  { category: 'Data Science & Machine Learning', items: ['TensorFlow', 'OpenCV', 'Pandas', 'Beautiful Soup', 'Streamlit'] },
   { category: 'Cloud & Database', items: ['Firebase', 'MongoDB', 'AWS', 'SQL'] },
   { category: 'Mobile Development', items: ['Flutter'] },
   { category: 'Desktop & Systems', items: ['.NET'] }
@@ -140,7 +140,15 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
         !isMobile && (
           <div className="hidden md:flex items-center w-full ml-4 relative top-[2px]">
             <div className="flex-grow h-px bg-primary dark:bg-darkSecondary"></div>
-            <svg width="20" height="20" viewBox="0 0 20 20" className="ml-1">
+            <svg 
+              width="20" 
+              height="20" 
+              viewBox="0 0 20 20" 
+              className="ml-1 transition-transform duration-300 ease-in-out"
+              style={{
+                transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+              }}
+            >
               <path
                 d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
                 fill="transparent"

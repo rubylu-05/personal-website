@@ -215,7 +215,15 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
         !isMobile && (
           <div className="hidden md:flex items-center w-full ml-4 relative top-[2px]">
             <div className="flex-grow h-px bg-primary dark:bg-darkSecondary"></div>
-            <svg width="20" height="20" viewBox="0 0 20 20" className="ml-1">
+            <svg 
+              width="20" 
+              height="20" 
+              viewBox="0 0 20 20" 
+              className="ml-1 transition-transform duration-300 ease-in-out"
+              style={{
+                transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+              }}
+            >
               <path
                 d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
                 fill="transparent"
@@ -392,7 +400,7 @@ const RecommendationForm = ({
 }) => (
   <div className="mt-20">
     <p className="font-body font-light mb-6 text-lg">
-      If you've made it this far, feel free to give me recommendations :) I'm not picky and I love watching & listening to new things.
+      If you've made it this far, feel free to give me recommendations if you have any :) I'm not picky and I love watching & listening to new things.
     </p>
 
     <form onSubmit={onSubmit}>
@@ -438,7 +446,7 @@ const SubmitButton = ({ isSubmitting }) => (
     {/* Shadow Layer */}
     <div className="absolute top-[4px] left-[4px] z-0">
       <div className="py-2 px-4 pt flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
-        <span className="font-body tracking-tighter text-base text-[var(--primary)]">
+        <span className="font-body text-base text-[var(--primary)]">
           {isSubmitting ? 'Sending...' : 'Send!'}
         </span>
       </div>
