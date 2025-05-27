@@ -77,26 +77,26 @@ function LastFm() {
                                         />
 
                                     </div>
-                                    <span className="font-body font-medium text-sm text-[var(--primary)] text-lg">
+                                    <span className="font-body font-medium text-[var(--primary)] text-base">
                                         {artist.name}
                                     </span>
                                 </div>
                             </div>
 
                             {/* Main Card Layer */}
-                            <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 p-2 pr-4 flex items-center whitespace-nowrap border border-primary dark:border-darkSecondary md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full">
+                            <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 p-2 pr-4 flex items-center whitespace-nowrap border border-primary dark:border-darkBackground2 md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full">
                                 <div className="w-6 h-6 mr-2 flex items-center justify-center">
                                     <img
                                         src={artist.imageUrl}
                                         alt={artist.name}
-                                        className="w-5 h-5 object-cover rounded-full border border-primary dark:border-darkSecondary"
+                                        className="w-5 h-5 object-cover rounded-full border border-primary dark:border-0"
                                         onError={(e) => {
                                             e.target.src = '/default-artist.png';
                                         }}
                                     />
 
                                 </div>
-                                <span className="font-body font-medium text-sm text-[var(--primary)] text-lg">
+                                <span className="font-body font-medium text-[var(--primary)] text-base">
                                     {artist.name}
                                 </span>
                             </div>

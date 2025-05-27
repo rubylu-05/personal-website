@@ -61,8 +61,8 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
   }, []);
 
   return (
-    <div 
-      ref={headingRef} 
+    <div
+      ref={headingRef}
       className="flex items-center mb-4 relative group"
       onMouseEnter={() => !isMobile && setIsHovered(true)}
       onMouseLeave={() => !isMobile && setIsHovered(false)}
@@ -83,8 +83,8 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
             className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
             strokeDasharray={
               isMobile ? '565' :
-              isHovered ? '0, 565' : 
-              isVisible ? '565' : '0, 565'
+                isHovered ? '0, 565' :
+                  isVisible ? '565' : '0, 565'
             }
             strokeDashoffset="0"
             style={{
@@ -94,63 +94,70 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
         </svg>
 
         <div className="relative">
-          {/* Shadow (offset) */}
-          <h2
-            className="absolute top-0 left-0 text-5xl font-heading font-slightbold text-primary dark:text-darkSecondary md:whitespace-nowrap tracking-tight"
-            style={{
-              transform: 'translate(3px, 3px)',
-              zIndex: 0,
-            }}
-          >
-            {children}
-          </h2>
+          <div className="relative">
+            {/* Shadow (offset) */}
+            <h2
+              className="text-5xl font-heading font-slightbold text-primary dark:text-darkSecondary md:whitespace-nowrap tracking-tight"
+              style={{
+                transform: 'translate(3px, 3px)',
+                position: 'absolute',
+                zIndex: 0,
+              }}
+            >
+              {children}
+            </h2>
 
-          {/* Stroke Layer */}
-          <h2
-            className="text-5xl font-heading font-slightbold text-transparent dark:text-transparent md:whitespace-nowrap tracking-tight"
-            style={{
-              WebkitTextStroke: '3px var(--stroke-colour)',
-              textStroke: '3px var(--stroke-colour)',
-              zIndex: 1,
-            }}
-          >
-            {children}
-          </h2>
+            {/* Stroke Layer */}
+            <h2
+              className="text-5xl font-heading font-slightbold text-transparent md:whitespace-nowrap tracking-tight"
+              style={{
+                WebkitTextStroke: 'var(--stroke-width) var(--stroke-colour)',
+                textStroke: 'var(--stroke-width) var(--stroke-colour)',
+                position: 'relative',
+                zIndex: 1,
+              }}
+            >
+              {children}
+            </h2>
 
-          {/* Fill Layer */}
-          <h2
-            className="text-5xl font-heading font-slightbold text-background dark:text-darkPrimary md:whitespace-nowrap tracking-tight absolute top-0 left-0"
-            style={{
-              zIndex: 2,
-            }}
-          >
-            {children}
-          </h2>
+            {/* Fill Layer */}
+            <h2
+              className="text-5xl font-heading font-slightbold md:whitespace-nowrap tracking-tight absolute top-0 left-0"
+              style={{
+                color: 'var(--text-fill-colour)',
+                zIndex: 2,
+              }}
+            >
+              {children}
+            </h2>
+          </div>
         </div>
       </div>
 
-      {!isMobile && (
-        <div className="hidden md:flex items-center w-full ml-4 relative top-[2px]">
-          <div className="flex-grow h-px bg-primary dark:bg-darkSecondary"></div>
-          <svg width="20" height="20" viewBox="0 0 20 20" className="ml-1">
-            <path
-              d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
-              fill="transparent"
-              stroke="var(--primary)"
-              strokeWidth="2"
-              strokeLinejoin="round"
-              className="dark:stroke-darkBackground"
-            />
-            <path
-              d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
-              fill="background"
-              stroke="transparent"
-              className="dark:fill-darkSecondary"
-            />
-          </svg>
-        </div>
-      )}
-    </div>
+      {
+        !isMobile && (
+          <div className="hidden md:flex items-center w-full ml-4 relative top-[2px]">
+            <div className="flex-grow h-px bg-primary dark:bg-darkSecondary"></div>
+            <svg width="20" height="20" viewBox="0 0 20 20" className="ml-1">
+              <path
+                d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
+                fill="transparent"
+                stroke="var(--primary)"
+                strokeWidth="2"
+                strokeLinejoin="round"
+                className="dark:stroke-darkBackground"
+              />
+              <path
+                d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
+                fill="background"
+                stroke="transparent"
+                className="dark:fill-darkSecondary"
+              />
+            </svg>
+          </div>
+        )
+      }
+    </div >
   );
 };
 
@@ -272,18 +279,18 @@ const SkillBadge = ({ skillName }) => {
           <div className="w-6 h-6 mr-2 flex items-center justify-center">
             <img src={iconPath} alt={`${skillName} icon`} className="w-5 h-5 object-contain" />
           </div>
-          <span className="font-body font-medium text-sm text-[var(--primary)] text-lg">
+          <span className="font-body font-medium text-[var(--primary)] text-base">
             {skillName}
           </span>
         </div>
       </div>
 
       {/* Main Card Layer */}
-      <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 p-2 pr-4 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkSecondary md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full">
+      <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 p-2 pr-4 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground2 md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full">
         <div className="w-6 h-6 mr-2 flex items-center justify-center">
           <img src={iconPath} alt={skillName} className="w-5 h-5 object-contain" />
         </div>
-        <span className="font-body font-medium text-sm text-[var(--primary)] text-lg">{skillName}</span>
+        <span className="font-body font-medium text-[var(--primary)] text-base">{skillName}</span>
       </div>
     </div>
   );

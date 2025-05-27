@@ -11,7 +11,7 @@ export default function Nudge() {
         </div>
         <div className="mb-6">
           <SectionHeading>Technical Overview</SectionHeading>
-          <ul className="list-disc pl-5 font-body  font-light [&>li]:marker:text-[var(--secondary)]">
+          <ul className="list-disc pl-5 font-body  font-light dark:[&>li]:marker:text-darkSecondary">
             <li>JavaScript for the core functionality and user activity monitoring</li>
             <li>React for the extension's pop-up and dashboard</li>
             <li>MongoDB for storing activity logs</li>

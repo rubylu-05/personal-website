@@ -11,7 +11,7 @@ export default function Chroma() {
         </div>
         <div className="mb-6">
           <SectionHeading>Technical Overview</SectionHeading>
-          <ul className="list-disc pl-5 font-body  font-light [&>li]:marker:text-[var(--secondary)]">
+          <ul className="list-disc pl-5 font-body font-light dark:[&>li]:marker:text-darkSecondary">
             <li>Flutter for building the mobile app</li>
             <li>Flask for the back end, which includes a Python script to handle calculations</li>
             <li>OpenCV for extracting colours from images</li>

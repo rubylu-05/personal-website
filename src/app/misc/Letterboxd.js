@@ -192,8 +192,8 @@ function Letterboxd() {
                                     <div className="absolute top-[4px] left-[4px] z-0 w-full h-full bg-primary dark:bg-darkSecondary rounded-2xl"></div>
 
                                     {/* Main Card Layer */}
-                                    <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary p-3 md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-2xl">
-                                        <div className="w-full mb-3 overflow-hidden border border-primary dark:border-darkSecondary rounded-md">
+                                    <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkBackground2 p-3 md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-2xl">
+                                        <div className="w-full mb-3 overflow-hidden border border-primary dark:border-darkBackground2 rounded-xl">
                                             {movie.image ? (
                                                 <img
                                                     src={movie.image}
@@ -258,7 +258,7 @@ function Letterboxd() {
                         <button
                             key={`indicator-${index}`}
                             onClick={() => goToMovie(index)}
-                            className={`flex-shrink-0 w-2 h-2 transition-all rounded-full md:hover:scale-110 ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4' : 'bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary'}`}
+                            className={`flex-shrink-0 w-2 h-2 transition-all rounded-full md:hover:scale-110 ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4' : 'bg-background dark:bg-darkBackground2 border border-primary dark:border-0'}`}
                             aria-label={`Go to movie ${index + 1}`}
                         />
                     ))}

@@ -8,7 +8,7 @@ export default function Biquadris() {
           <p className="font-body  font-light mb-2">
             Some features of the project include:
           </p>
-          <ul className="list-disc pl-5 font-body  font-light [&>li]:marker:text-[var(--secondary)]">
+          <ul className="list-disc pl-5 font-body font-light dark:[&>li]:marker:text-darkSecondary">
             <li>Multiplayer mechanics (compete 1v1 with another player)</li>
             <li>Tetris mechanics (e.g hold queue, block previews, ghost piece visualization)</li>
             <li>Customizable commands (the ability to rename commands and create macros)</li>
@@ -18,7 +18,7 @@ export default function Biquadris() {
         </div>
         <div className="mb-6">
           <SectionHeading>Technical Overview</SectionHeading>
-          <ul className="list-disc pl-5 font-body  font-light [&>li]:marker:text-[var(--secondary)]">
+          <ul className="list-disc pl-5 font-body  font-light dark:[&>li]:marker:text-darkSecondary">
             <li>C++ with smart pointers for automatic memory management</li>
             <li>Object-oriented design (e.g abstract Block and Level hierarchies)</li>
             <li>Observer design pattern for decoupled UI rendering (text and graphical displays via X11)</li>

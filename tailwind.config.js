@@ -13,7 +13,7 @@ module.exports = {
         primary: '#000000',
         secondary: '#657885',
         darkBackground: '#1c212b',
-        darkBackground2: '#16191f',
+        darkBackground2: '#242e40',
         darkPrimary: '#e6dce0',
         darkSecondary: '#af8b6c',
       },

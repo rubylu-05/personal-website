@@ -173,12 +173,12 @@ export default function RootLayout({ children }) {
           <div className="flex flex-1 overflow-hidden">
             {isMobile && pathname !== '/' && (
               <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
-                <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2 rounded-full" aria-label="Menu">
+                <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkBackground2 bg-background dark:bg-darkBackground2 rounded-full" aria-label="Menu">
                   <AiOutlineMenu className="text-2xl text-[var(--primary)]" />
                 </button>
 
                 {isMobileMenuOpen && (
-                  <div className="fixed right-4 top-16 w-60 bg-background dark:bg-darkBackground2 py-3 z-[1000] border border-primary dark:border-darkSecondary transition-all rounded-2xl">
+                  <div className="fixed right-4 top-16 w-60 bg-background dark:bg-darkBackground2 py-3 z-[1000] border border-primary dark:border-darkBackground2 transition-all rounded-2xl">
                     <div className="flex flex-col items-center">
                       <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>Home</MobileNavLink>
                       <MobileNavLink href="/about" pathname={pathname} onClick={(e) => handleLinkClick(e, '/about')}>About</MobileNavLink>
@@ -186,18 +186,18 @@ export default function RootLayout({ children }) {
                       <MobileNavLink href="/misc" pathname={pathname} onClick={(e) => handleLinkClick(e, '/misc')}>Life Outside of Coding</MobileNavLink>
                     </div>
                     <div className="flex justify-center gap-4 px-4 pt-4">
-                      <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-[var(--primary)] hover:dark:text-[var(--secondary)] transition-all">
+                      <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-[var(--primary)] transition-all">
                         <MdOutlineMail className="text-lg" />
                       </a>
-                      <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all">
+                      <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] transition-all">
                         <AiOutlineLinkedin className="text-lg" />
                       </a>
-                      <a href="https://github.com/rubylu-05" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all">
+                      <a href="https://github.com/rubylu-05" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] transition-all">
                         <FiGithub className="text-lg" />
                       </a>
                       <button
                         onClick={toggleTheme}
-                        className="text-[var(--primary)] hover:text-[var(--secondary)] transition-all"
+                        className="text-[var(--primary)] transition-all"
                         aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
                       >
                         {theme === 'light' ? <BsMoon className="text-lg" /> : <BsSun className="text-lg" />}
@@ -280,7 +280,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
 
   return (
     <aside
-      className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkSecondary flex flex-col items-center px-6 py-6 relative transition-all duration-300 ease-in-out`}
+      className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkBackground flex flex-col items-center px-6 py-6 relative transition-all duration-300 ease-in-out`}
       style={{ flexShrink: 0, width: isVisible ? '100%' : isMobile ? '100%' : '30%', height: '100dvh' }}
     >
       <div className="absolute top-3 right-4 flex gap-2">
@@ -295,14 +295,14 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
           {!isMobile && (
             <>
               {isVisible ? (
-                <div className="absolute flex flex-col items-center right-full -top-0.5 mr-3 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none font-body rounded-full">
+                <div className="absolute flex flex-col items-center right-full -top-0.5 mr-3 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
                   <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
-                  <div className="absolute right-0 top-1/2 transform translate-x-full -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary"></div>
+                  <div className="absolute right-0 top-1/2 transform translate-x-full -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkBackground"></div>
                 </div>
               ) : (
-                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-1 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none font-body rounded-full">
+                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-1 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
                   <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
-                  <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkSecondary"></div>
+                  <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkBackground"></div>
                 </div>
               )}
             </>
@@ -337,9 +337,9 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             />
           </a>
           {!isMobile && (
-            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-2 mr-3' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none font-body rounded-full`}>
+            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-2 mr-3' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full`}>
               Waterloo CS Webring
-              <div className={`absolute ${isVisible ? 'left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkSecondary' : 'top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary'}`}></div>
+              <div className={`absolute ${isVisible ? 'left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkBackground' : 'top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground'}`}></div>
             </div>
           )}
         </div>
@@ -356,7 +356,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
         </a>
       </div>
 
-      <div className="w-full flex flex-col items-center mt-20 md:mt-12">
+      <div className="w-full flex flex-col items-center mt-20 md:mt-10">
         <svg
           width="300"
           height="140"
@@ -550,9 +550,9 @@ function SocialLinks() {
           <MdOutlineMail className="text-[var(--primary)] md:hover:scale-110 text-2xl transition-all" />
         </a>
         {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none font-body rounded-full">
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
             <span>Email</span>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground"></div>
           </div>
         )}
       </div>
@@ -562,9 +562,9 @@ function SocialLinks() {
           <AiOutlineLinkedin className="text-[var(--primary)] md:hover:scale-110 text-2xl transition-all" />
         </a>
         {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none font-body rounded-full">
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
             <span>LinkedIn</span>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground"></div>
           </div>
         )}
       </div>
@@ -574,9 +574,9 @@ function SocialLinks() {
           <FiGithub className="text-[var(--primary)] md:hover:scale-110 text-xl transition-all" />
         </a>
         {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground2 px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none font-body rounded-full">
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
             <span>GitHub</span>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground"></div>
           </div>
         )}
       </div>
@@ -661,7 +661,7 @@ function MobileNavLink({ href, pathname, onClick, children }) {
       <Link
         href={href}
         onClick={onClick}
-        className={`relative px-4 py-1 text-base font-body hover:text-[var(--secondary)] duration-[0.4s] ease-in-out ${pathname === href ? 'dark:text-darkSecondary font-bold tracking-tighter' : 'font-light'
+        className={`relative px-4 py-1 text-base font-body duration-[0.4s] ease-in-out ${pathname === href ? 'dark:text-darkSecondary font-bold tracking-tighter' : 'font-light'
           }`}
       >
         {children}
@@ -706,7 +706,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[520px] z-10">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
-        <div className="transition-all bg-[var(--background)] border border-primary dark:border-darkSecondary p-4 px-6 text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light text-base rounded-full">
+        <div className="transition-all bg-[var(--background)] border border-primary dark:border-darkBackground p-4 px-6 text-[var(--primary)] whitespace-pre-line text-center min-h-[55px] font-body font-light text-base rounded-full">
           {showNowPlaying ? (
             nowPlaying ? (
               <NowPlayingDisplay nowPlaying={nowPlaying} />
@@ -717,7 +717,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
             displayText
           )}
         </div>
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-[var(--secondary)]"></div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-darkBackground"></div>
       </div>
 
       <div>
@@ -739,14 +739,14 @@ function NowPlayingDisplay({ nowPlaying }) {
         <img
           src={nowPlaying.image || '/default-song.png'}
           alt={`${nowPlaying.track} cover`}
-          className={`border border-primary dark:border-darkSecondary w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''
+          className={`border border-primary dark:border-darkBackground w-12 h-12 rounded-full object-cover ${nowPlaying.nowplaying ? 'animate-spin-slow' : ''
             }`}
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = '/default-song.png';
           }}
         />
-        <div className="absolute inset-0 m-auto w-3 h-3 bg-[var(--background)] rounded-full border border-primary dark:border-darkSecondary"></div>
+        <div className="absolute inset-0 m-auto w-3 h-3 bg-[var(--background)] rounded-full border border-primary dark:border-darkBackground"></div>
       </div>
       <div className="text-left overflow-hidden min-w-0">
         <div className="text-sm font-body font-light text-[var(--primary)] mb-[-2px]">

@@ -46,21 +46,21 @@ export default function BoxdOffice() {
           <img
             src="/images/projects/boxdoffice/1.jpeg"
             alt="Screenshot 1"
-            className="w-full h-auto object-cover border border-primary dark:border-darkSecondary rounded-lg"
+            className="w-full h-auto object-cover border border-primary dark:border-darkBackground2 rounded-lg"
           />
         </div>
         <div className="w-full h-auto object-fill mb-3">
           <img
             src="/images/projects/boxdoffice/2.jpeg"
             alt="Screenshot 2"
-            className="w-full h-auto object-cover border border-primary dark:border-darkSecondary rounded-lg"
+            className="w-full h-auto object-cover border border-primary dark:border-darkBackground2 rounded-lg"
           />
         </div>
         <div className="w-full h-auto object-fill mb-3">
           <img
             src="/images/projects/boxdoffice/3.jpeg"
             alt="Screenshot 3"
-            className="w-full h-auto object-cover border border-primary dark:border-darkSecondary rounded-lg"
+            className="w-full h-auto object-cover border border-primary dark:border-darkBackground2 rounded-lg"
           />
         </div>
       </div>
@@ -71,7 +71,7 @@ export default function BoxdOffice() {
           Here's what you'll see after your profile has been scraped:
         </p>
 
-        <div className="mt-4 overflow-hidden border border-primary dark:border-darkSecondary rounded-lg">
+        <div className="mt-4 overflow-hidden border border-primary dark:border-darkBackground2 rounded-lg">
           <video
             ref={videoRef}
             controls
@@ -87,7 +87,7 @@ export default function BoxdOffice() {
 
       <div className="mb-6">
         <SectionHeading>Technical Overview</SectionHeading>
-        <ul className="list-disc pl-5 font-body  font-light [&>li]:marker:text-[var(--secondary)]">
+        <ul className="list-disc pl-5 font-body font-light dark:[&>li]:marker:text-darkSecondary">
           <li>Python with Beautiful Soup for web scraping profiles and film data</li>
           <li>Multithreaded scraping with ThreadPoolExecutor for faster data collection</li>
           <li>Pandas for data processing and analysis</li>

@@ -18,19 +18,23 @@ html.light {
 
 html.dark {
   --background: #1c212b;
-  --background2: #16191f;
+  --background2: #242e40;
   --primary: #e6dce0;
   --secondary: #af8b6c;
 }
 
 :root {
   --stroke-colour: var(--primary);
+  --text-fill-colour: white;
   --dot-colour: var(--primary);
+  --stroke-width: 3px;
 }
 
 .dark {
   --stroke-colour: var(--secondary);
-  --dot-colour: var(--secondary);
+  --text-fill-colour: var(--primary);
+  --dot-colour: var(--background2);
+  --stroke-width: 2px;
 }
 
 body {

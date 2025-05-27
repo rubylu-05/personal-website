@@ -324,14 +324,14 @@ const ArtPiece = ({ piece }) => (
     {/* Image with shadow effect */}
     <div className="relative">
       {/* Black shadow layer (image-sized) */}
-      <div className="absolute top-[4px] left-[4px] z-0 w-full h-full bg-primary dark:bg-darkSecondary rounded-2xl"></div>
+      <div className="absolute top-[4px] left-[4px] z-0 w-full h-full bg-primary dark:bg-darkSecondary rounded-xl"></div>
 
       {/* Main image */}
       <div className="relative z-10 transition-all md:hover:-translate-y-0.5 md:hover:-translate-x-0.5">
         <img
           src={piece.image}
           alt=""
-          className="w-full h-auto object-fill border border-primary dark:border-darkSecondary rounded-2xl"
+          className="w-full h-auto object-fill border border-primary dark:border-0 rounded-xl"
         />
       </div>
     </div>
@@ -360,7 +360,7 @@ const RecentMediaSection = () => (
 const FavoritesSection = () => (
   <>
     <SectionHeading ellipseRotation={-6}>Favourites!</SectionHeading>
-    <p className="font-body font-light mb-4">
+    <p className="font-body font-light mb-4 text-lg">
       Since I shared my recents, I wanted to share my favourites as well, though this will probably change once in a while.
     </p>
     <div className="mb-10">
@@ -418,7 +418,7 @@ const RecommendationInput = ({ label, value, onChange, placeholder }) => (
       type="text"
       value={value}
       onChange={onChange}
-      className="w-full px-3 py-1 border bg-background dark:bg-darkBackground2 border-primary dark:border-darkSecondary font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)] rounded-full"
+      className="w-full px-4 py-2 border bg-background dark:bg-darkBackground2 border-primary dark:border-0 font-body font-light focus:outline-none focus:ring-1 focus:ring-[var(--primary)] placeholder-[var(--secondary)] rounded-full"
       placeholder={placeholder}
     />
   </div>
@@ -428,7 +428,7 @@ const SubmitButton = ({ isSubmitting }) => (
   <div className="relative inline-block">
     {/* Shadow Layer */}
     <div className="absolute top-[4px] left-[4px] z-0">
-      <div className="px-3 py-1 flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
+      <div className="py-2 px-4 pt flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
         <span className="font-body tracking-tighter text-base text-[var(--primary)] font-bold">
           {isSubmitting ? 'Sending...' : 'Send!'}
         </span>
@@ -438,9 +438,9 @@ const SubmitButton = ({ isSubmitting }) => (
     <button
       type="submit"
       disabled={isSubmitting}
-      className="relative z-10 transition-all bg-background dark:bg-darkBackground2 px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkSecondary md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
+      className="relative z-10 transition-all bg-background dark:bg-darkBackground2 py-2 px-4 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground2 md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
     >
-      <span className="font-body tracking-tighter text-base text-[var(--primary)] font-bold">
+      <span className="font-body text-base text-[var(--primary)] font-light">
         {isSubmitting ? 'Sending...' : 'Send!'}
       </span>
     </button>

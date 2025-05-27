@@ -59,7 +59,7 @@ const projects = [
   {
     id: 5,
     title: "Chroma: Your Personal Colour Assistant",
-    subtitle: "A mobile app to simplify the painting and colour mixing process",
+    subtitle: "A mobile app to simplify the colour mixing process",
     image: "/images/projects/chroma.png",
     description: "Chroma was built for an online hackathon, where me and my teammate wanted to build a tool that takes the guesswork out of colour matching by generating palettes and determining ratios mathematically. This project was motivated by our shared enthusiasm for art.",
     expandedContent: <Chroma />,
@@ -102,7 +102,7 @@ const ProjectTitle = ({ children, rotateRight = false, isHovered = false }) => (
     </svg>
 
     {/* Title Text */}
-    <h2 className="relative text-3xl font-heading font-bold text-[var(--primary)] tracking-tighter">
+    <h2 className="relative text-3xl font-heading font-bold text-[var(--primary)] tracking-tighter leading-8">
       {children}
     </h2>
   </div>
@@ -112,27 +112,27 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
+    <div
       className="relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Shadow Layer for Project Card */}
-      <div className="absolute top-[6px] left-[6px] w-full h-full bg-primary dark:bg-darkSecondary rounded-2xl"></div>
+      <div className="absolute top-[4px] left-[4px] w-full h-full bg-primary dark:bg-darkSecondary rounded-2xl"></div>
 
       {/* Main Project Card Layer */}
       <div
-        className={`relative z-10 transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkSecondary p-6 sm:p-6 sm:pl-8 rounded-2xl md:hover:-translate-y-0.5 md:hover:-translate-x-0.5`}
+        className={`relative z-10 transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkBackground2 p-6 sm:p-6 sm:pl-8 rounded-2xl md:hover:-translate-y-1 md:hover:-translate-x-1`}
       >
         {/* Header with image and basic info */}
-        <div className={`flex flex-col md:flex-row gap-6 mb-6 ${index % 2 ? 'md:flex-row-reverse' : ''}`}>
+        <div className={`flex flex-col md:flex-row gap-6 mb-6 items-center ${index % 2 ? 'md:flex-row-reverse' : ''}`}>
           <div className="md:w-1/3 relative">
             <Image
               src={project.image}
               alt={project.title}
               width={400}
               height={300}
-              className={`w-full h-auto object-contain transition-all ${project.outlineImage ? 'border border-primary dark:border-darkSecondary' : ''}`}
+              className={`w-full h-auto object-contain transition-all ${project.outlineImage ? 'border border-primary dark:border-darkBackground2 rounded-xl' : ''}`}
             />
           </div>
 
@@ -140,7 +140,7 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
             <ProjectTitle rotateRight={index % 2 === 0} isHovered={isHovered}>
               {project.title}
             </ProjectTitle>
-            <h3 className="text-lg font-heading font-light text-primary dark:text-darkSecondary mb-4 leading-snug">
+            <h3 className="text-lg font-heading font-light text-primary dark:text-darkSecondary mb-4 leading-tight">
               {project.subtitle}
             </h3>
             <p className="font-body font-light font-[var(--primary)]">
@@ -180,9 +180,9 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
                   <FiGithub className="align-middle" />
                 </a>
                 {!isMobile && (
-                  <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 bottom-full mb-2 bg-[var(--background)] px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkSecondary whitespace-nowrap pointer-events-none rounded-full font-body">
+                  <div className="absolute left-1/2 -translate-x-[54%] bottom-full mb-2 bg-[var(--background)] px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none rounded-full font-body w-max">
                     <span>Github Repo</span>
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkSecondary"></div>
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground"></div>
                   </div>
                 )}
               </div>
@@ -193,7 +193,7 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
                 {/* Shadow Layer */}
                 <div className="absolute top-[4px] left-[4px] z-0">
                   <div className="px-3 py-1 flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
-                    <span className="font-body font-medium text-xs text-[var(--primary)]">
+                    <span className="font-body font-medium text-sm text-[var(--primary)]">
                       {project.linkText}
                     </span>
                   </div>
@@ -203,9 +203,9 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative z-10 transition-all bg-background dark:bg-darkBackground2 px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkSecondary md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
+                  className="relative z-10 transition-all bg-background dark:bg-darkBackground px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
                 >
-                  <span className="font-body font-medium text-xs text-[var(--primary)]">
+                  <span className="font-body font-medium text-sm text-[var(--primary)]">
                     {project.linkText}
                   </span>
                 </a>
@@ -218,7 +218,7 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
             {/* Shadow Layer for Show More/Less */}
             <div className="absolute top-[4px] left-[4px] z-0">
               <div className="px-3 py-1 flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
-                <span className="font-body font-medium text-xs text-[var(--primary)]">
+                <span className="font-body font-medium text-sm text-[var(--primary)]">
                   {expandedIds.includes(project.id) ? 'Show Less' : 'Show More'}
                 </span>
               </div>
@@ -226,9 +226,9 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
             {/* Main Button Layer */}
             <button
               onClick={() => toggleExpand(project.id)}
-              className="relative z-10 transition-all bg-background dark:bg-darkBackground2 px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkSecondary md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
+              className="relative z-10 transition-all bg-background dark:bg-darkBackground px-3 py-1 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full"
             >
-              <span className="font-body font-medium text-xs text-[var(--primary)]">
+              <span className="font-body font-medium text-sm text-[var(--primary)]">
                 {expandedIds.includes(project.id) ? 'Show Less' : 'Show More'}
               </span>
             </button>

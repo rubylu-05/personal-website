@@ -11,7 +11,7 @@ export default function Pokeplants() {
         </div>
         <div className="mb-6">
           <SectionHeading>Technical Overview</SectionHeading>
-          <ul className="list-disc pl-5 font-body  font-light [&>li]:marker:text-[var(--secondary)]">
+          <ul className="list-disc pl-5 font-body font-light dark:[&>li]:marker:text-darkSecondary">
             <li>Hardware for measuring plant health</li>
             <li>OpenAI for identifying plants and their health</li>
             <li>Langchain for processing data into game actions</li>
