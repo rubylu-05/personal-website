@@ -178,7 +178,7 @@ export default function RootLayout({ children }) {
                 </button>
 
                 {isMobileMenuOpen && (
-                  <div className="fixed right-4 top-16 w-60 bg-background dark:bg-darkBackground2 py-3 z-[1000] border border-primary dark:border-darkBackground2 transition-all rounded-2xl">
+                  <div className="fixed right-4 top-16 w-60 bg-background dark:bg-darkBackground2 py-3 z-[1000] border border-primary dark:border-darkBackground2 transition-all rounded-2xl dark:shadow-[0_0_15px_rgba(0,0,0,0.5)]">
                     <div className="flex flex-col items-center">
                       <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>Home</MobileNavLink>
                       <MobileNavLink href="/about" pathname={pathname} onClick={(e) => handleLinkClick(e, '/about')}>About</MobileNavLink>
