@@ -207,7 +207,7 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
                   <FiGithub className="align-middle" />
                 </a>
                 {!isMobile && (
-                  <div className="absolute left-1/2 -translate-x-[54%] bottom-full mb-2 bg-[var(--background)] px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none rounded-full font-body w-max">
+                  <div className="absolute left-1/2 -translate-x-[54%] bottom-full mb-2 bg-[var(--background)] px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none rounded-full font-body w-max dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
                     <span>Github Repo</span>
                     <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground"></div>
                   </div>
@@ -293,7 +293,7 @@ export default function Work() {
 
   return (
     <div className="p-6 relative">
-      <p className="font-body font-light mb-6 text-lg">
+      <p className="font-body font-light mb-6">
         For each project, you can click on <span className="font-bold tracking-tighter">Show More</span> for details about the technical process and my thoughts.
       </p>
       <div className="space-y-8">

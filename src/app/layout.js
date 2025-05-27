@@ -173,7 +173,7 @@ export default function RootLayout({ children }) {
           <div className="flex flex-1 overflow-hidden">
             {isMobile && pathname !== '/' && (
               <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
-                <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkBackground2 bg-background dark:bg-darkBackground2 rounded-full" aria-label="Menu">
+                <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkBackground2 bg-background dark:bg-darkBackground2 rounded-full dark:shadow-[0_0_15px_rgba(0,0,0,0.5)]" aria-label="Menu">
                   <AiOutlineMenu className="text-2xl text-[var(--primary)]" />
                 </button>
 
@@ -295,12 +295,12 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
           {!isMobile && (
             <>
               {isVisible ? (
-                <div className="absolute flex flex-col items-center right-full -top-0.5 mr-3 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
+                <div className="absolute flex flex-col items-center right-full -top-0.5 mr-3 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
                   <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
                   <div className="absolute right-0 top-1/2 transform translate-x-full -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkBackground"></div>
                 </div>
               ) : (
-                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-1 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
+                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-1 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
                   <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
                   <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkBackground"></div>
                 </div>
@@ -337,7 +337,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             />
           </a>
           {!isMobile && (
-            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-2 mr-3' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full`}>
+            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-2 mr-3' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]`}>
               Waterloo CS Webring
               <div className={`absolute ${isVisible ? 'left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkBackground' : 'top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground'}`}></div>
             </div>
@@ -550,7 +550,7 @@ function SocialLinks() {
           <MdOutlineMail className="text-[var(--primary)] md:hover:scale-110 text-2xl transition-all" />
         </a>
         {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
             <span>Email</span>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground"></div>
           </div>
@@ -562,7 +562,7 @@ function SocialLinks() {
           <AiOutlineLinkedin className="text-[var(--primary)] md:hover:scale-110 text-2xl transition-all" />
         </a>
         {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
             <span>LinkedIn</span>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground"></div>
           </div>
@@ -574,7 +574,7 @@ function SocialLinks() {
           <FiGithub className="text-[var(--primary)] md:hover:scale-110 text-xl transition-all" />
         </a>
         {!isMobile && (
-          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground2 whitespace-nowrap pointer-events-none font-body rounded-full">
+          <div className="absolute flex flex-col -top-2 left-1/2 transform -translate-x-1/2 -translate-y-full bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
             <span>GitHub</span>
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground"></div>
           </div>
@@ -707,7 +707,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[520px] z-10">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
         <div
-          className={`bg-[var(--background)] border border-primary dark:border-darkBackground p-2 px-4 text-[var(--primary)] whitespace-pre-line text-center min-h-[40px] font-body font-light text-base rounded-full ${showNowPlaying ? 'pr-6' : ''}`}
+          className={`bg-[var(--background)] border border-primary dark:border-darkBackground p-2 px-4 text-[var(--primary)] whitespace-pre-line text-center min-h-[40px] font-body font-light text-base rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)] ${showNowPlaying ? 'pr-6' : ''}`}
         >
           {showNowPlaying ? (
             nowPlaying ? (
@@ -719,7 +719,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
             displayText
           )}
         </div>
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-darkBackground"></div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-darkBackground dark:filter dark:drop-shadow-[0_0_15px_rgba(230,220,224,0.3)]"></div>
       </div>
 
       <div>

@@ -64,15 +64,16 @@
         "artist": "Slowdive",
         "image": "https://upload.wikimedia.org/wikipedia/en/a/a6/Souvlaki_%28album%29_cover.jpg"
     },
-    {
-        "title": "Playboi Carti",
-        "artist": "Playboi Carti",
-        "image": "https://upload.wikimedia.org/wikipedia/en/a/a1/Playboi_Carti_-_mixtape.jpg"
-    },
+
     {
         "title": "Disintegration",
         "artist": "The Cure",
         "image": "https://upload.wikimedia.org/wikipedia/en/b/b8/CureDisintegration.jpg"
+    },
+    {
+        "title": "Playboi Carti",
+        "artist": "Playboi Carti",
+        "image": "https://upload.wikimedia.org/wikipedia/en/a/a1/Playboi_Carti_-_mixtape.jpg"
     },
     {
         "title": "Demon Days",
