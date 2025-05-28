@@ -25,14 +25,29 @@
         "image": "https://a.ltrbxd.com/resized/film-poster/8/4/5/7/0/6/845706-godzilla-minus-one-0-2000-0-3000-crop.jpg?v=a98e8c1ed4"
     },
     {
+        "title": "A Charlie Brown Christmas",
+        "year": "1965",
+        "image": "https://a.ltrbxd.com/resized/film-poster/4/4/0/6/6/44066-a-charlie-brown-christmas-0-2000-0-3000-crop.jpg?v=9afcdc7950"
+    },
+    {
         "title": "Jaws",
         "year": "1975",
         "image": "https://a.ltrbxd.com/resized/film-poster/5/1/5/4/2/51542-jaws-0-2000-0-3000-crop.jpg?v=03299455f6"
     },
     {
+        "title": "Oldboy",
+        "year": "2003",
+        "image": "https://a.ltrbxd.com/resized/film-poster/5/1/4/5/4/51454-oldboy-0-2000-0-3000-crop.jpg?v=294dbcadef"
+    },
+    {
         "title": "Possession",
         "year": "1981",
         "image": "https://a.ltrbxd.com/resized/sm/upload/8c/pk/z8/4v/aIjO3kraeaD4MDBSef3rTO2vIuZ-0-2000-0-3000-crop.jpg?v=cb9f332628"
+    },
+    {
+        "title": "Mamma Mia!",
+        "year": "2008",
+        "image": "https://a.ltrbxd.com/resized/sm/upload/10/5l/wu/jl/gOm2iMMbC6EonrFzmSQ8xvCa4Ei.jpg-0-2000-0-3000-crop.jpg?v=e49de6f770"
     },
     {
         "title": "Perfect Blue",
@@ -62,12 +77,22 @@
     {
         "title": "Re-Animator",
         "year": "1985",
-        "image": "https://a.ltrbxd.com/resized/sm/upload/wd/b8/27/m3/hJnP2O0uTuh8HsR094WLTi3sQwc-0-2000-0-3000-crop.jpg?v=229c35a394"
+        "image": "https://en-images.kinorium.com/movie/200/82589.jpg?1700123901"
+    },
+    {
+        "title": "Ford v Ferrari",
+        "year": "2019",
+        "image": "https://a.ltrbxd.com/resized/film-poster/2/9/1/4/1/9/291419-ford-v-ferrari-0-2000-0-3000-crop.jpg?v=27ed4e72db"
     },
     {
         "title": "Prisoners",
         "year": "2013",
         "image": "https://a.ltrbxd.com/resized/sm/upload/iw/eg/4g/nm/3w79tTsv6tmlT8Jww6snyPrgVok-0-2000-0-3000-crop.jpg?v=778c7ae8b8"
+    },
+    {
+        "title": "Saw X",
+        "year": "2023",
+        "image": "https://a.ltrbxd.com/resized/film-poster/8/5/6/0/3/6/856036-saw-x-0-2000-0-3000-crop.jpg?v=d30236e00f8"
     },
     {
         "title": "Ratatouille",
