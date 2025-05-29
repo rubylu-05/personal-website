@@ -259,7 +259,6 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
           setTimeout(() => {
             setEllipseVisible(true);
           }, 500);
-
         }, 500);
       }, 1200);
     };
@@ -406,9 +405,8 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             width="16"
             height="16"
             viewBox="0 0 16 16"
-            className="text-primary dark:text-darkSecondary transition-all duration-200"
+            className="text-primary dark:text-darkSecondary transition-opacity duration-200"
             style={{
-              transform: sparklesVisible[0] ? 'scale(1)' : 'scale(0)',
               opacity: sparklesVisible[0] ? 1 : 0
             }}
           >
@@ -428,9 +426,8 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             width="16"
             height="16"
             viewBox="0 0 16 16"
-            className="text-primary dark:text-darkSecondary transition-all duration-200"
+            className="text-primary dark:text-darkSecondary transition-opacity duration-200"
             style={{
-              transform: sparklesVisible[1] ? 'scale(1)' : 'scale(0)',
               opacity: sparklesVisible[1] ? 1 : 0
             }}
           >
@@ -450,9 +447,8 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             width="16"
             height="16"
             viewBox="0 0 16 16"
-            className="text-primary dark:text-darkSecondary transition-all duration-200"
+            className="text-primary dark:text-darkSecondary transition-opacity duration-200"
             style={{
-              transform: sparklesVisible[2] ? 'scale(1)' : 'scale(0)',
               opacity: sparklesVisible[2] ? 1 : 0
             }}
           >
@@ -504,7 +500,6 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
             Ruby Lu
           </text>
         </svg>
-
 
         <SocialLinks isMobile={isMobile} />
 

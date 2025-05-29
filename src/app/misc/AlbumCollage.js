@@ -26,7 +26,7 @@ export default function AlbumCollage() {
     };
 
     if (albums.length === 0) {
-        return <div>Loading albums...</div>;
+        return <div className="font-body">Loading albums...</div>;
     }
 
     return (

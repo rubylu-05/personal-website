@@ -82,13 +82,11 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
             transform={`rotate(${ellipseRotation}, 90, 20)`}
             className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
             strokeDasharray={
-              isMobile ? '565' :
-                isHovered ? '0, 565' :
-                  isVisible ? '565' : '0, 565'
+              isVisible ? '565' : '0, 565'
             }
             strokeDashoffset="0"
             style={{
-              transition: isMobile ? 'none' : 'stroke-dasharray 1.2s ease-in-out',
+              transition: isVisible ? 'stroke-dasharray 1.2s ease-in-out' : 'none',
             }}
           />
         </svg>
@@ -140,10 +138,10 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
         !isMobile && (
           <div className="hidden md:flex items-center w-full ml-4 relative top-[2px]">
             <div className="flex-grow h-px bg-primary dark:bg-darkSecondary"></div>
-            <svg 
-              width="20" 
-              height="20" 
-              viewBox="0 0 20 20" 
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
               className="ml-1 transition-transform duration-300 ease-in-out"
               style={{
                 transform: isHovered ? 'scale(1.2)' : 'scale(1)'
@@ -174,8 +172,7 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
 const TimelineItem = ({ children, isLast }) => (
   <div className="relative grid grid-cols-[24px_1fr] gap-2 group">
     <div className="relative">
-      <div className="absolute top-1 w-4 h-4 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2 z-10 md:group-hover:bg-primary dark:md:group-hover:bg-darkSecondary transition-all rounded-full" />
-
+      <div className="absolute top-1.5 w-4 h-4 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2 z-10 md:group-hover:bg-primary dark:md:group-hover:bg-darkSecondary transition-all rounded-full" />
       {!isLast && (
         <div className="absolute top-4 left-[7.5px] bottom-[-8px] w-px bg-primary dark:bg-darkSecondary z-0" />
       )}
@@ -244,7 +241,7 @@ export default function About() {
         </TimelineItem>
         <TimelineItem>
           <p className="mb-4 font-body font-light text-lg">
-            In the fall of 2025, I'll be joining <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle as a Software Development Engineering Intern, which I'm pretty excited about!
+            In the fall of 2025, I'll be joining <ExternalLink href="https://aws.amazon.com/dynamodb/">Amazon Web Services (AWS)</ExternalLink> in Seattle as a Software Development Engineering Intern, which I'm pretty excited about!
           </p>
         </TimelineItem>
         <TimelineItem isLast={true}>

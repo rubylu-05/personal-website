@@ -60,7 +60,7 @@ const projects = [
     title: "Nudge",
     subtitle: "An AI-powered Chrome extension that knows when you're slacking and pressures you to get back on track",
     image: "/images/projects/nudge.png",
-    description: "Nudge was built at UofT Hacks, where our team of 4 wanted to tackle productivity and procrastination in a way that felt more human than typical productivity apps. Instead of silent reminders or site blockers, we built a Chrome extension that observes your Chrome activity and responds with sarcastic commentary inspired by the game The Stanley Parable.",
+    description: "Nudge was built at UofT Hacks, where our team of 4 wanted to tackle productivity and procrastination in a way that felt more human than typical productivity apps. We built a Chrome extension that observes your Chrome activity and responds with sarcastic commentary inspired by the game The Stanley Parable.",
     expandedContent: <Nudge />,
     link: "https://dorahacks.io/buidl/21709",
     linkText: "Demo",
