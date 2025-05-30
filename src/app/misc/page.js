@@ -157,13 +157,13 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
             transform={`rotate(${ellipseRotation}, 90, 20)`}
             className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
             strokeDasharray={
-              isMobile ? '565' :
-                isHovered ? '0, 565' :
-                  isVisible ? '565' : '0, 565'
+              isVisible ? (isHovered && !isMobile ? '0, 565' : '565') : '0, 565'
             }
             strokeDashoffset="0"
             style={{
-              transition: isMobile ? 'none' : 'stroke-dasharray 1.2s ease-in-out',
+              transition: isVisible 
+                ? 'stroke-dasharray 1.2s ease-in-out' 
+                : 'none',
             }}
           />
         </svg>
@@ -215,10 +215,10 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
         !isMobile && (
           <div className="hidden md:flex items-center w-full ml-4 relative top-[2px]">
             <div className="flex-grow h-px bg-primary dark:bg-darkSecondary"></div>
-            <svg 
-              width="20" 
-              height="20" 
-              viewBox="0 0 20 20" 
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
               className="ml-1 transition-transform duration-300 ease-in-out"
               style={{
                 transform: isHovered ? 'scale(1.2)' : 'scale(1)'

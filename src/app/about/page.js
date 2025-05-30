@@ -82,11 +82,13 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
             transform={`rotate(${ellipseRotation}, 90, 20)`}
             className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
             strokeDasharray={
-              isVisible ? '565' : '0, 565'
+              isVisible ? (isHovered && !isMobile ? '0, 565' : '565') : '0, 565'
             }
             strokeDashoffset="0"
             style={{
-              transition: isVisible ? 'stroke-dasharray 1.2s ease-in-out' : 'none',
+              transition: isVisible 
+                ? 'stroke-dasharray 1.2s ease-in-out' 
+                : 'none',
             }}
           />
         </svg>
