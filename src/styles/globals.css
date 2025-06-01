@@ -39,6 +39,7 @@ html.dark {
   --stroke-width: 3px;
   --glow-transparency: 0.2;
   --ellipse-glow:rgb(230,220,224);
+  --sparkle-glow:rgb(175, 139, 108);
 }
 
 body {
