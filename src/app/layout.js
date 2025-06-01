@@ -279,251 +279,272 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
 
   return (
     <aside
-      className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkBackground flex flex-col items-center px-6 py-6 relative transition-all duration-300 ease-in-out`}
+      className={`${isVisible ? 'w-full' : 'w-[30%]'} bg-background dark:bg-darkBackground2 outline outline-1 outline-primary dark:outline-darkBackground flex flex-col relative transition-all duration-300 ease-in-out`}
       style={{ flexShrink: 0, width: isVisible ? '100%' : isMobile ? '100%' : '30%', height: '100dvh' }}
     >
-      <div className="absolute top-3 right-4 flex gap-2">
-        <div className="relative group">
-          <button
-            onClick={onToggleTheme}
-            className="text-[var(--primary)] md:hover:scale-110 text-xl transition-all"
-            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-          >
-            {theme === 'light' ? <BsMoon /> : <BsSun />}
-          </button>
-          {!isMobile && (
-            <>
-              {isVisible ? (
-                <div className="absolute flex flex-col items-center right-full -top-0.5 mr-3 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
-                  <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
-                  <div className="absolute right-0 top-1/2 transform translate-x-full -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkBackground"></div>
-                </div>
-              ) : (
-                <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-1 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
-                  <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
-                  <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkBackground"></div>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="absolute bottom-3 right-4 flex items-center z-20 group">
-        <a
-          href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=prev"
-          rel="noopener noreferrer"
-          className="text-[var(--primary)] md:hover:scale-110 transition-all flex items-center justify-center w-3 h-3 mr-[-4px]"
-          aria-label="Previous"
-        >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </a>
-
-        <div className="relative mx-1">
-          <a
-            href="https://cs.uwatering.com/#https://www.rubylu.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--primary)] transition-all"
-            aria-label="Webring"
-          >
-            <img
-              src={`/images/webring/${theme === 'light' ? 'black' : 'white'}.png`}
-              className="w-5 h-5 md:hover:scale-110 transition-all"
-              alt="Webring"
-            />
-          </a>
-          {!isMobile && (
-            <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-2 mr-3' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]`}>
-              Waterloo CS Webring
-              <div className={`absolute ${isVisible ? 'left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkBackground' : 'top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground'}`}></div>
-            </div>
-          )}
-        </div>
-
-        <a
-          href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=next"
-          rel="noopener noreferrer"
-          className="text-[var(--primary)] md:hover:scale-110 transition-all flex items-center justify-center w-3 h-3 ml-[-8px]"
-          aria-label="Next"
-        >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </a>
-      </div>
-
-      <div className="w-full flex flex-col items-center mt-20 md:mt-10">
-        <svg
-          width="300"
-          height="140"
-          viewBox="0 0 300 140"
-          className="w-full max-w-xs"
-        >
-          <defs>
-            <pattern
-              id="dotsPattern"
-              patternUnits="userSpaceOnUse"
-              width="18"
-              height="18"
+      <div className="flex flex-col items-center justify-center h-[50vh] min-h-[300px] relative">
+        <div className="absolute top-3 right-4 flex gap-2">
+          <div className="relative group">
+            <button
+              onClick={onToggleTheme}
+              className="text-[var(--primary)] md:hover:scale-110 text-xl transition-all"
+              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
-              <circle cx="9" cy="9" r="1" fill="var(--dot-colour)" />
-            </pattern>
-          </defs>
+              {theme === 'light' ? <BsMoon /> : <BsSun />}
+            </button>
+            {!isMobile && (
+              <>
+                {isVisible ? (
+                  <div className="absolute flex flex-col items-center right-full -top-0.5 mr-3 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
+                    <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+                    <div className="absolute right-0 top-1/2 transform translate-x-full -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkBackground"></div>
+                  </div>
+                ) : (
+                  <div className="absolute flex flex-col left-1/2 transform -translate-x-1/2 top-full mt-1 bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-10 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]">
+                    <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+                    <div className="transition-all absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-primary dark:border-b-darkBackground"></div>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </div>
 
-          <ellipse
-            cx="150"
-            cy="70"
-            rx="160"
-            ry="60"
-            transform="rotate(6, 160, 60)"
-            className="fill-[url(#dotsPattern)]"
-            style={{ pointerEvents: 'none' }}
-          />
-
-          {/* Main ellipse */}
-          <ellipse
-            cx="150"
-            cy="70"
-            rx="140"
-            ry="40"
-            transform="rotate(-12, 160, 60)"
-            className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
-            strokeDashoffset="0"
-            style={{
-              transition: 'stroke-dasharray 1.2s ease-in-out',
-              strokeDasharray: ellipseVisible ? '880' : '0, 880',
-            }}
-          />
-
-          {/* Top, between 'y' and 'L' */}
+        <div className="w-full flex flex-col items-center">
           <svg
-            x="170"
-            y="15"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            className="text-primary dark:text-darkSecondary transition-opacity duration-200"
-            style={{
-              opacity: sparklesVisible[0] ? 1 : 0
-            }}
+            width="300"
+            height="140"
+            viewBox="0 0 300 140"
+            className="w-full max-w-xs"
           >
-            <path
-              d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6L8 0Z"
-              stroke="currentColor"
-              strokeWidth="1"
-              strokeLinejoin="round"
-              className="fill-primary dark:fill-darkSecondary"
+            <defs>
+              <pattern
+                id="dotsPattern"
+                patternUnits="userSpaceOnUse"
+                width="18"
+                height="18"
+              >
+                <circle cx="9" cy="9" r="1" fill="var(--dot-colour)" />
+              </pattern>
+            </defs>
+
+            <ellipse
+              cx="150"
+              cy="70"
+              rx="160"
+              ry="60"
+              transform="rotate(6, 160, 60)"
+              className="fill-[url(#dotsPattern)]"
+              style={{ pointerEvents: 'none' }}
             />
+
+            {/* Main ellipse */}
+            <ellipse
+              cx="150"
+              cy="70"
+              rx="140"
+              ry="40"
+              transform="rotate(-12, 160, 60)"
+              className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
+              strokeDashoffset="0"
+              style={{
+                transition: 'stroke-dasharray 1.2s ease-in-out',
+                strokeDasharray: ellipseVisible ? '880' : '0, 880',
+              }}
+            />
+
+            {/* Top, between 'y' and 'L' */}
+            <svg
+              x="170"
+              y="15"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              className="text-primary dark:text-darkSecondary transition-opacity duration-200"
+              style={{
+                opacity: sparklesVisible[0] ? 1 : 0
+              }}
+            >
+              <path
+                d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6L8 0Z"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinejoin="round"
+                className="fill-primary dark:fill-darkSecondary"
+              />
+            </svg>
+
+            {/* Below 'R' slightly to the left */}
+            <svg
+              x="55"
+              y="100"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              className="text-primary dark:text-darkSecondary transition-opacity duration-200"
+              style={{
+                opacity: sparklesVisible[1] ? 1 : 0
+              }}
+            >
+              <path
+                d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6L8 0Z"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinejoin="round"
+                className="fill-primary dark:fill-darkSecondary"
+              />
+            </svg>
+
+            {/* Below 'u' bottom right side */}
+            <svg
+              x="250"
+              y="105"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              className="text-primary dark:text-darkSecondary transition-opacity duration-200"
+              style={{
+                opacity: sparklesVisible[2] ? 1 : 0
+              }}
+            >
+              <path
+                d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6L8 0Z"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinejoin="round"
+                className="fill-primary dark:fill-darkSecondary"
+              />
+            </svg>
+
+            <g
+              className={`transition-transform duration-300 ${pathname !== '/' ? 'cursor-pointer hover:scale-100' : ''}`}
+              transform="rotate(-3, 150, 70)"
+            >
+              <text
+                x="50%"
+                y="60%"
+                dominantBaseline="middle"
+                textAnchor="middle"
+                className="font-title text-8xl fill-primary dark:fill-darkSecondary"
+                style={{ fontSize: '6rem' }}
+                transform="translate(3, 3)"
+                onClick={(e) => {
+                  if (pathname !== '/') {
+                    onLinkClick(e, pathname);
+                  }
+                }}
+              >
+                Ruby Lu
+              </text>
+
+              {/* Text with stroke */}
+              <text
+                x="50%"
+                y="60%"
+                dominantBaseline="middle"
+                textAnchor="middle"
+                className="font-title text-8xl fill-none stroke-[3px] stroke-primary dark:stroke-darkSecondary"
+                style={{ fontSize: '6rem' }}
+                onClick={(e) => {
+                  if (pathname !== '/') {
+                    onLinkClick(e, pathname);
+                  }
+                }}
+              >
+                Ruby Lu
+              </text>
+
+              {/* Text fill */}
+              <text
+                x="50%"
+                y="60%"
+                dominantBaseline="middle"
+                textAnchor="middle"
+                className="font-title text-8xl fill-background2 dark:fill-darkPrimary"
+                style={{ fontSize: '6rem' }}
+                onClick={(e) => {
+                  if (pathname !== '/') {
+                    onLinkClick(e, pathname);
+                  }
+                }}
+              >
+                Ruby Lu
+              </text>
+            </g>
           </svg>
 
-          {/* Below 'R' slightly to the left */}
-          <svg
-            x="55"
-            y="100"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            className="text-primary dark:text-darkSecondary transition-opacity duration-200"
-            style={{
-              opacity: sparklesVisible[1] ? 1 : 0
-            }}
-          >
-            <path
-              d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6L8 0Z"
-              stroke="currentColor"
-              strokeWidth="1"
-              strokeLinejoin="round"
-              className="fill-primary dark:fill-darkSecondary"
-            />
-          </svg>
+          <SocialLinks isMobile={isMobile} />
 
-          {/* Below 'u' bottom right side */}
-          <svg
-            x="250"
-            y="105"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            className="text-primary dark:text-darkSecondary transition-opacity duration-200"
-            style={{
-              opacity: sparklesVisible[2] ? 1 : 0
-            }}
-          >
-            <path
-              d="M8 0L10 6L16 8L10 10L8 16L6 10L0 8L6 6L8 0Z"
-              stroke="currentColor"
-              strokeWidth="1"
-              strokeLinejoin="round"
-              className="fill-primary dark:fill-darkSecondary"
-            />
-          </svg>
-
-          {/* Text shadow */}
-          <text
-            x="50%"
-            y="60%"
-            dominantBaseline="middle"
-            textAnchor="middle"
-            className="font-title text-8xl fill-primary dark:fill-darkSecondary"
-            style={{ fontSize: '6rem' }}
-            transform="rotate(-3, 150, 70) translate(3, 3)"
-          >
-            Ruby Lu
-          </text>
-
-          {/* Text with stroke */}
-          <text
-            x="50%"
-            y="60%"
-            dominantBaseline="middle"
-            textAnchor="middle"
-            className="font-title text-8xl fill-none stroke-[3px] stroke-primary dark:stroke-darkSecondary"
-            style={{ fontSize: '6rem' }}
-            transform="rotate(-3, 150, 70)"
-          >
-            Ruby Lu
-          </text>
-
-          {/* Text fill */}
-          <text
-            x="50%"
-            y="60%"
-            dominantBaseline="middle"
-            textAnchor="middle"
-            className="font-title text-8xl fill-background2 dark:fill-darkPrimary"
-            style={{ fontSize: '6rem' }}
-            transform="rotate(-3, 150, 70)"
-          >
-            Ruby Lu
-          </text>
-        </svg>
-
-        <SocialLinks isMobile={isMobile} />
-
-        <nav className="text-[var(--primary)] text-base font-light font-body mt-4 text-center space-y-1">
-          <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')}>About</NavLink>
-          <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')}>Recent Projects</NavLink>
-          <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')}>Life Outside of Coding</NavLink>
-        </nav>
+          <nav className="text-[var(--primary)] text-base font-light font-body mt-4 text-center space-y-1 relative z-30">
+            <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')}>About</NavLink>
+            <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')}>Recent Projects</NavLink>
+            <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')}>Life Outside of Coding</NavLink>
+          </nav>
+        </div>
       </div>
 
-      <div className="absolute bottom-2 left-4 text-xs text-[var(--primary)] font-body font-light z-20">
-        Built with <span className="dark:text-darkSecondary">♥</span><br />by
-        <span className="font-bold dark:text-darkSecondary tracking-tighter"> Ruby Lu</span>
-      </div>
+      <div className="h-[50vh] flex flex-col justify-end items-center relative">
+        <div className="absolute bottom-2 left-4 text-xs text-[var(--primary)] font-body font-light z-20">
+          Built with <span className="dark:text-darkSecondary">♥</span><br />by
+          <span className="font-bold dark:text-darkSecondary tracking-tighter"> Ruby Lu</span>
+        </div>
 
-      <DialogueBox
-        displayText={displayText}
-        showNowPlaying={showNowPlaying}
-        nowPlaying={nowPlaying}
-        onAvatarClick={onAvatarClick}
-        theme={theme}
-        currentIndex={currentIndex}
-        currentMessage={currentMessage}
-      />
+        <div className="absolute bottom-3 right-4 flex items-center z-20 group">
+          <a
+            href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=prev"
+            rel="noopener noreferrer"
+            className="text-[var(--primary)] md:hover:scale-110 transition-all flex items-center justify-center w-3 h-3 mr-[-4px]"
+            aria-label="Previous"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </a>
+
+          <div className="relative mx-1">
+            <a
+              href="https://cs.uwatering.com/#https://www.rubylu.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--primary)] transition-all"
+              aria-label="Webring"
+            >
+              <img
+                src={`/images/webring/${theme === 'light' ? 'black' : 'white'}.png`}
+                className="w-5 h-5 md:hover:scale-110 transition-all"
+                alt="Webring"
+              />
+            </a>
+            {!isMobile && (
+              <div className={`absolute ${isVisible ? 'right-full top-1/2 transform -translate-y-1/2 -translate-x-2 mr-3' : 'left-1/2 bottom-full transform -translate-x-1/2 mb-2'} bg-background2 dark:bg-darkBackground px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-30 text-xs border border-primary dark:border-darkBackground whitespace-nowrap pointer-events-none font-body rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)]`}>
+                Waterloo CS Webring
+                <div className={`absolute ${isVisible ? 'left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-4 border-l-primary dark:border-l-darkBackground' : 'top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-primary dark:border-t-darkBackground'}`}></div>
+              </div>
+            )}
+          </div>
+
+          <a
+            href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=next"
+            rel="noopener noreferrer"
+            className="text-[var(--primary)] md:hover:scale-110 transition-all flex items-center justify-center w-3 h-3 ml-[-8px]"
+            aria-label="Next"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </a>
+        </div>
+
+        <DialogueBox
+          displayText={displayText}
+          showNowPlaying={showNowPlaying}
+          nowPlaying={nowPlaying}
+          onAvatarClick={onAvatarClick}
+          theme={theme}
+          currentIndex={currentIndex}
+          currentMessage={currentMessage}
+        />
+      </div>
     </aside>
   );
 }
@@ -613,7 +634,7 @@ function NavLink({ href, pathname, onClick, children }) {
   const showEllipse = (isActive || isHovered || wasActive) && !isMobile;
 
   return (
-    <div className="relative">
+    <div className="relative bg-background dark:bg-darkBackground2 transition-all rounded-full px-2">
       {!isMobile && (
         <svg
           width="120"
@@ -641,7 +662,7 @@ function NavLink({ href, pathname, onClick, children }) {
         onClick={onClick}
         onMouseEnter={() => !isMobile && setIsHovered(true)}
         onMouseLeave={() => !isMobile && setIsHovered(false)}
-        className={`relative block text-lg duration-[400ms] ease-in-out ${isActive ? 'font-bold tracking-tighter' : ''}`}
+        className={`relative block text-lg transition-[font-weight,letter-spacing] duration-500 ${isActive ? 'font-bold tracking-tighter' : ''}`}
       >
         {children}
       </Link>
@@ -667,7 +688,21 @@ function MobileNavLink({ href, pathname, onClick, children }) {
 
 function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, theme, currentIndex, currentMessage }) {
   const [currentAvatar, setCurrentAvatar] = useState(0);
+  const [avatarHeight, setAvatarHeight] = useState(0);
+  const avatarRef = useRef(null);
   const isTyping = currentIndex < currentMessage.length;
+
+  useEffect(() => {
+    const updateAvatarSize = () => {
+      const viewportHeight = window.innerHeight;
+      const maxHeight = Math.min(viewportHeight / 3, 400);
+      setAvatarHeight(maxHeight);
+    };
+
+    updateAvatarSize();
+    window.addEventListener('resize', updateAvatarSize);
+    return () => window.removeEventListener('resize', updateAvatarSize);
+  }, []);
 
   useEffect(() => {
     if (isTyping) {
@@ -719,9 +754,16 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
 
       <div>
         <img
+          ref={avatarRef}
           src={getAvatarImage()}
           alt="me"
-          className="mx-auto w-[35vw] max-w-[150px] min-w-[80px] sm:max-w-[175px] h-auto object-contain transition-all cursor-pointer md:hover:scale-[103%] -mb-1"
+          style={{
+            height: `${avatarHeight}px`,
+            width: 'auto',
+            maxWidth: '300px',
+            minWidth: '80px',
+          }}
+          className="mx-auto object-contain transition-transform duration-400 cursor-pointer md:hover:scale-105 -mb-1"
           onClick={handleAvatarClick}
         />
       </div>

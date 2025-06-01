@@ -362,7 +362,7 @@ const RecentMediaSection = () => (
   <>
     <SectionHeading ellipseRotation={5}>Recent Watching & Listening</SectionHeading>
     <p className="font-body font-light mb-2 text-lg">
-      I like to watch movies when I have free time. I've always had a lot of love for the horror genre in particular, from campy 80's horror (I love the practical effects from that era!) to atmospheric slow-burns. But my taste is super wide and I enjoy movies from pretty much any genre.
+      I like to watch movies when I have free time. I've always had a lot of interest in the horror genre in particular, from campy 80's horror (I love the practical effects from that era!) to atmospheric slow-burns. But my taste is super wide and I enjoy movies from pretty much any genre.
     </p>
     <p className="font-body font-light mb-6 text-lg">
       Below are my most recently watched movies (synced with my Letterboxd account), as well as my top played artists this week (synced with my Spotify listening).

@@ -151,19 +151,24 @@
         "image": "https://upload.wikimedia.org/wikipedia/en/c/c5/BlackHolesCover.jpg"
     },
     {
-        "title": "The Score",
-        "artist": "Fugees",
-        "image": "https://upload.wikimedia.org/wikipedia/en/d/df/Fugees_-_The_Score.png"
-    },
-    {
-        "title": "Saturation II",
-        "artist": "BROCKHAMPTON",
-        "image": "https://upload.wikimedia.org/wikipedia/en/d/d1/Brockhampton_-_Saturation_II.png"
+        "title": "The Slow Rush",
+        "artist": "Tame Impala",
+        "image": "https://upload.wikimedia.org/wikipedia/en/5/54/Tame_Impala_-_The_Slow_Rush.png"
     },
     {
         "title": "Black on Both Sides",
         "artist": "Mos Def",
         "image": "https://upload.wikimedia.org/wikipedia/en/0/0f/MosDefBlackonBothSides.jpg"
+    },
+    {
+        "title": "An Evening with Silk Sonic",
+        "artist": "Bruno Mars, Anderson .Paak, Silk Sonic",
+        "image": "https://upload.wikimedia.org/wikipedia/en/8/8e/Silk_Sonic_-_An_Evening_with_Silk_Sonic.png"
+    },
+    {
+        "title": "Saturation II",
+        "artist": "BROCKHAMPTON",
+        "image": "https://upload.wikimedia.org/wikipedia/en/d/d1/Brockhampton_-_Saturation_II.png"
     },
     {
         "title": "Heroes & Villains",
@@ -174,11 +179,6 @@
         "title": "good kid, m.A.A.d city",
         "artist": "Kendrick Lamar",
         "image": "https://upload.wikimedia.org/wikipedia/en/9/93/KendrickGKMC.jpg"
-    },
-    {
-        "title": "The Slow Rush",
-        "artist": "Tame Impala",
-        "image": "https://upload.wikimedia.org/wikipedia/en/5/54/Tame_Impala_-_The_Slow_Rush.png"
     },
     {
         "title": "Rumours",
