@@ -225,7 +225,7 @@ export default function RootLayout({ children }) {
             )}
 
             <main className={`flex-1 transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} overflow-y-auto ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''}`}>
-              <div id="main-content" className="min-h-[calc(100dvh-100px)] flex justify-center px-2 md:px-4 py-10">
+              <div id="main-content" className="flex justify-center px-2 md:px-16 py-10">
                 <div className="w-full max-w-4xl 2xl:max-w-5xl bg-[var(--background)] transition-all">
                   {children}
                 </div>
@@ -350,6 +350,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
               style={{
                 transition: 'stroke-dasharray 1.2s ease-in-out',
                 strokeDasharray: ellipseVisible ? '880' : '0, 880',
+                filter: theme === 'dark' ? 'drop-shadow(0 0 6px rgb(175, 139, 108))' : 'none',
               }}
             />
 
@@ -362,7 +363,8 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
               viewBox="0 0 16 16"
               className="text-primary dark:text-darkSecondary transition-opacity duration-200"
               style={{
-                opacity: sparklesVisible[0] ? 1 : 0
+                opacity: sparklesVisible[0] ? 1 : 0,
+                filter: theme === 'dark' ? 'drop-shadow(0 0 3px rgb(175, 139, 108))' : 'none'
               }}
             >
               <path
@@ -383,7 +385,8 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
               viewBox="0 0 16 16"
               className="text-primary dark:text-darkSecondary transition-opacity duration-200"
               style={{
-                opacity: sparklesVisible[1] ? 1 : 0
+                opacity: sparklesVisible[1] ? 1 : 0,
+                filter: theme === 'dark' ? 'drop-shadow(0 0 3px rgb(175, 139, 108))' : 'none'
               }}
             >
               <path
@@ -404,7 +407,8 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
               viewBox="0 0 16 16"
               className="text-primary dark:text-darkSecondary transition-opacity duration-200"
               style={{
-                opacity: sparklesVisible[2] ? 1 : 0
+                opacity: sparklesVisible[2] ? 1 : 0,
+                filter: theme === 'dark' ? 'drop-shadow(0 0 3px rgb(175, 139, 108))' : 'none'
               }}
             >
               <path
@@ -415,7 +419,6 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
                 className="fill-primary dark:fill-darkSecondary"
               />
             </svg>
-
             <g
               className={`transition-transform duration-300 ${pathname !== '/' ? 'cursor-pointer hover:scale-100' : ''}`}
               transform="rotate(-3, 150, 70)"
@@ -426,7 +429,10 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
                 dominantBaseline="middle"
                 textAnchor="middle"
                 className="font-title text-8xl fill-primary dark:fill-darkSecondary"
-                style={{ fontSize: '6rem' }}
+                style={{
+                  fontSize: '6rem',
+                  filter: theme === 'dark' ? 'drop-shadow(0 0 6px rgba(230,220,224,0.4))' : 'none'
+                }}
                 transform="translate(3, 3)"
                 onClick={(e) => {
                   if (pathname !== '/') {
@@ -474,11 +480,10 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
           </svg>
 
           <SocialLinks isMobile={isMobile} />
-
           <nav className="text-[var(--primary)] text-base font-light font-body mt-4 text-center space-y-1 relative z-30">
-            <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')}>About</NavLink>
-            <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')}>Recent Projects</NavLink>
-            <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')}>Life Outside of Coding</NavLink>
+            <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')} theme={theme}>About</NavLink>
+            <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')} theme={theme}>Recent Projects</NavLink>
+            <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')} theme={theme}>Life Outside of Coding</NavLink>
           </nav>
         </div>
       </div>
@@ -600,7 +605,7 @@ function SocialLinks() {
   );
 }
 
-function NavLink({ href, pathname, onClick, children }) {
+function NavLink({ href, pathname, onClick, children, theme }) {
   const rotations = {
     '/about': 9,
     '/work': -8,
@@ -653,6 +658,7 @@ function NavLink({ href, pathname, onClick, children }) {
             style={{
               transition: 'stroke-dasharray 0.5s ease-in-out',
               strokeDasharray: (isActive || isHovered) ? '345' : '0, 345',
+              filter: theme === 'dark' ? 'drop-shadow(0 0 6px rgb(175, 139, 108))' : 'none',
             }}
           />
         </svg>
@@ -762,6 +768,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
             width: 'auto',
             maxWidth: '300px',
             minWidth: '80px',
+            filter: theme === 'dark' ? 'drop-shadow(0 0 15px rgba(230, 220, 224, 0.1))' : 'none',
           }}
           className="mx-auto object-contain transition-transform duration-400 cursor-pointer md:hover:scale-105 -mb-1"
           onClick={handleAvatarClick}
@@ -773,7 +780,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
 
 function NowPlayingDisplay({ nowPlaying }) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center">
       <div className="relative shrink-0">
         <img
           src={nowPlaying.image || '/default-song.png'}
@@ -788,13 +795,13 @@ function NowPlayingDisplay({ nowPlaying }) {
         <div className="absolute inset-0 m-auto w-3 h-3 bg-[var(--background)] rounded-full border border-primary dark:border-darkBackground"></div>
       </div>
       <div className="text-left overflow-hidden min-w-0">
-        <div className="text-sm font-body font-light text-[var(--primary)] mb-[-3px]">
+        <div className="text-sm font-body font-light text-[var(--primary)] mb-[-3px] pl-4">
           {nowPlaying.nowplaying ? 'Now Listening on Spotify:' : 'Last Played on Spotify:'}
         </div>
-        <div className="truncate font-heading font-bold text-primary dark:text-darkSecondary tracking-tighter mt-[-2px] mb-[-2px]" title={nowPlaying.track}>
+        <div className="truncate font-heading font-bold text-primary dark:text-darkSecondary tracking-tighter mt-[-2px] mb-[-2px] dark:neon-glow pl-4" title={nowPlaying.track}>
           {nowPlaying.track}
         </div>
-        <div className="truncate font-body font-light text-sm text-[var(--primary)] mt-[-3px]" title={nowPlaying.artist}>
+        <div className="truncate font-body font-light text-sm text-[var(--primary)] mt-[-3px] pl-4" title={nowPlaying.artist}>
           {nowPlaying.artist}
         </div>
       </div>

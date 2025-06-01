@@ -15,7 +15,7 @@ const SKILL_GROUPS = [
 const ExternalLink = ({ href, children }) => (
   <a
     href={href}
-    className="text-primary hover:opacity-50 dark:hover:opacity-100 dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter"
+    className="text-primary hover:opacity-50 dark:hover:opacity-100 dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow"
     target="_blank"
   >
     {children}
@@ -69,14 +69,14 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
     >
       <div className="relative inline-block">
         <svg
-          width="160"
-          height="40"
-          viewBox="0 0 180 40"
+          width="200"
+          height="60"
+          viewBox="0 0 200 60"
           className="absolute -left-3 -top-2 h-12 w-auto"
         >
           <ellipse
-            cx="90"
-            cy="20"
+            cx="100"
+            cy="30"
             rx="90"
             ry="18"
             transform={`rotate(${ellipseRotation}, 90, 20)`}
@@ -86,9 +86,10 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
             }
             strokeDashoffset="0"
             style={{
-              transition: isVisible 
-                ? 'stroke-dasharray 1.2s ease-in-out' 
+              transition: isVisible
+                ? 'stroke-dasharray 1.2s ease-in-out'
                 : 'none',
+              filter: 'drop-shadow(0 0 6px var(--ellipse-glow))',
             }}
           />
         </svg>
@@ -146,7 +147,8 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
               viewBox="0 0 20 20"
               className="ml-1 transition-transform duration-300 ease-in-out"
               style={{
-                transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+                transform: isHovered ? 'scale(1.2)' : 'scale(1)',
+                filter: 'drop-shadow(0 0 3px rgb(175, 139, 108))',
               }}
             >
               <path
@@ -155,7 +157,7 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
                 stroke="var(--primary)"
                 strokeWidth="2"
                 strokeLinejoin="round"
-                className="dark:stroke-darkBackground"
+                className="dark:stroke-darkSecondary"
               />
               <path
                 d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
@@ -174,7 +176,7 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
 const TimelineItem = ({ children, isLast }) => (
   <div className="relative grid grid-cols-[24px_1fr] gap-2 group">
     <div className="relative">
-      <div className="absolute top-1.5 w-4 h-4 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2 z-10 md:group-hover:bg-primary dark:md:group-hover:bg-darkSecondary transition-all rounded-full" />
+      <div className="absolute top-1.5 w-4 h-4 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2 z-10 md:group-hover:bg-primary dark:md:group-hover:bg-darkSecondary transition-all rounded-full dark:drop-shadow-[0_0_10px_rgba(230,220,224,0.2)] dark:group-hover:drop-shadow-[0_0_10px_rgba(230,220,224,0.5)]" />
       {!isLast && (
         <div className="absolute top-4 left-[7.5px] bottom-[-8px] w-px bg-primary dark:bg-darkSecondary z-0" />
       )}
@@ -225,7 +227,7 @@ export default function About() {
         I'm a computer science student at the University of Waterloo who loves building practical solutions and learning through implementation. I've worked across various tech stacks in academic, personal, and professional projects, and I'm always eager to learn more.
       </p>
       <p className="mb-16 font-body font-light text-lg">
-        When I'm not staring at a terminal, you'll probably find me indulging in my creative side through <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter">art</Link>,
+        When I'm not staring at a terminal, you'll probably find me indulging in my creative side through <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow">art</Link>,
         whether it's sketching, painting, digital art, or working with alcohol markers. I also like to make an unnecessary amount of Spotify <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">playlists</ExternalLink> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged <ExternalLink href="https://letterboxd.com/rubylu/">{displayCount} films</ExternalLink> on Letterboxd so far.
       </p>
 
@@ -260,7 +262,7 @@ export default function About() {
             key={group.category}
             className={index !== SKILL_GROUPS.length - 1 ? 'mb-8' : ''}
           >
-            <h3 className="text-2xl font-body font-bold text-primary dark:text-darkSecondary mb-2 tracking-tighter">{group.category}</h3>
+            <h3 className="text-2xl font-body font-bold text-primary dark:text-darkSecondary mb-2 tracking-tighter dark:neon-glow">{group.category}</h3>
             <div className="flex flex-wrap gap-3">
               {group.items.map((skillName) => (
                 <SkillBadge key={skillName} skillName={skillName} />

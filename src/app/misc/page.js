@@ -144,14 +144,14 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
     >
       <div className="relative inline-block">
         <svg
-          width="160"
-          height="40"
-          viewBox="0 0 180 40"
+          width="200"
+          height="60"
+          viewBox="0 0 200 60"
           className="absolute -left-3 -top-2 h-12 w-auto"
         >
           <ellipse
-            cx="90"
-            cy="20"
+            cx="100"
+            cy="30"
             rx="90"
             ry="18"
             transform={`rotate(${ellipseRotation}, 90, 20)`}
@@ -161,9 +161,10 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
             }
             strokeDashoffset="0"
             style={{
-              transition: isVisible 
-                ? 'stroke-dasharray 1.2s ease-in-out' 
+              transition: isVisible
+                ? 'stroke-dasharray 1.2s ease-in-out'
                 : 'none',
+              filter: 'drop-shadow(0 0 6px var(--ellipse-glow))',
             }}
           />
         </svg>
@@ -221,7 +222,8 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
               viewBox="0 0 20 20"
               className="ml-1 transition-transform duration-300 ease-in-out"
               style={{
-                transform: isHovered ? 'scale(1.2)' : 'scale(1)'
+                transform: isHovered ? 'scale(1.2)' : 'scale(1)',
+                filter: 'drop-shadow(0 0 3px rgb(175, 139, 108))',
               }}
             >
               <path
@@ -230,7 +232,7 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
                 stroke="var(--primary)"
                 strokeWidth="2"
                 strokeLinejoin="round"
-                className="dark:stroke-darkBackground"
+                className="dark:stroke-darkSecondary"
               />
               <path
                 d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
@@ -318,7 +320,7 @@ const ArtGallery = ({ artGroups }) => (
     {artGroups.map((group, groupIndex) => (
       <div key={groupIndex} className="mb-4">
         {group.title && (
-          <h2 className="text-2xl font-body font-bold text-primary dark:text-darkSecondary mb-2 mt-10 tracking-tighter">
+          <h2 className="text-2xl font-body font-bold text-primary dark:text-darkSecondary mb-2 mt-10 tracking-tighter dark:neon-glow">
             {group.title}
           </h2>
         )}

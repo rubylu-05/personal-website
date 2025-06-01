@@ -88,30 +88,31 @@ const projects = [
 ];
 
 const ProjectTitle = ({ children, rotateRight = false, isHovered = false }) => (
-  <div className="relative inline-block">
+  <div className="relative inline-block overflow-visible">
     <svg
-      width="160"
-      height="40"
-      viewBox="0 0 180 40"
-      className="absolute -left-3 -top-2 h-12 w-auto"
+      width="180"
+      height="60"
+      viewBox="0 0 180 60"
+      className="absolute -left-2 -top-1 h-14 w-auto"
     >
       <ellipse
-        cx="50"
-        cy="22"
-        rx="50"
-        ry="12"
-        transform={rotateRight ? "rotate(6, 90, 20)" : "rotate(-6, 90, 20)"}
+        cx="70"
+        cy="25"
+        rx="60"
+        ry="15"
+        transform={rotateRight ? "rotate(6, 90, 30)" : "rotate(-6, 90, 30)"}
         className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
         strokeDasharray={isHovered ? 'none' : '0, 314'}
         strokeDashoffset="0"
         style={{
           transition: 'stroke-dasharray 0.8s ease-in-out',
-          strokeDasharray: isHovered ? '314' : '0, 314'
+          strokeDasharray: isHovered ? '314' : '0, 314',
+          filter: 'drop-shadow(0 0 4px var(--ellipse-glow))',
         }}
       />
     </svg>
 
-    {/* Title Text with Outlined Effect */}
+    {/* Title Text */}
     <h2 className="relative text-3xl font-body font-bold tracking-tighter leading-8
       dark:text-transparent dark:font-extrabold dark:tracking-tighter dark:leading-8
       text-[var(--primary)] dark:text-darkPrimary">
@@ -167,7 +168,7 @@ const ProjectCard = ({ project, index, expandedIds, toggleExpand, getHeight, con
             <ProjectTitle rotateRight={index % 2 === 0} isHovered={isHovered}>
               {project.title}
             </ProjectTitle>
-            <h3 className="text-lg font-body text-primary dark:text-darkSecondary mb-6 mt-1 leading-tight">
+            <h3 className="text-lg font-body text-primary dark:text-darkSecondary mb-6 mt-1 leading-tight dark:neon-glow">
               {project.subtitle}
             </h3>
             <p className="font-body font-light font-[var(--primary)]">
