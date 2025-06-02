@@ -770,7 +770,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
             minWidth: '80px',
             filter: theme === 'dark' ? 'drop-shadow(0 0 15px rgba(230, 220, 224, 0.1))' : 'none',
           }}
-          className="mx-auto object-contain transition-transform duration-400 cursor-pointer md:hover:scale-105 -mb-1"
+          className="mx-auto object-contain transition-transform duration-400 cursor-pointer md:hover:scale-[103%] -mb-1"
           onClick={handleAvatarClick}
         />
       </div>

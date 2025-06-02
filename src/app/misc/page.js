@@ -223,7 +223,7 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
               className="ml-1 transition-transform duration-300 ease-in-out"
               style={{
                 transform: isHovered ? 'scale(1.2)' : 'scale(1)',
-                filter: 'drop-shadow(0 0 3px rgb(175, 139, 108))',
+                filter: 'drop-shadow(0 0 3px var(--sparkle-glow))',
               }}
             >
               <path
