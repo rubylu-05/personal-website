@@ -229,7 +229,7 @@ function Movies() {
                         <button
                             key={`indicator-${index}`}
                             onClick={() => goToMovie(index)}
-                            className={`flex-shrink-0 w-2 h-2 transition-all rounded-full md:hover:scale-[1.2] ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4' : 'bg-background dark:bg-darkPrimary border border-primary dark:border-0'}`}
+                            className={`flex-shrink-0 w-2 h-2 transition-all rounded-full md:hover:scale-[1.2] ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4 dark:drop-shadow-[0_0_4px_rgba(230,220,224,0.3)]' : 'bg-background dark:bg-darkPrimary border border-primary dark:border-0'}`}
                             aria-label={`Go to movie ${index + 1}`}
                         />
                     ))}

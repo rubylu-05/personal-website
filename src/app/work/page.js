@@ -293,7 +293,7 @@ export default function Work() {
   };
 
   return (
-    <div className="p-6 relative">
+    <div className="p-6 relative bg-[var(--background)] transition-all">
       <p className="font-body font-light mb-6">
         For each project, you can click on <span className="font-bold tracking-tighter">Show More</span> for details about the technical process and my thoughts.
       </p>

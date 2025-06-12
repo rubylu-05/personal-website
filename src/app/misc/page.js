@@ -286,27 +286,28 @@ export default function Misc() {
   };
 
   return (
-    <div className="overflow-x-hidden p-6">
-      <div className="mb-24">
+    <div>
+      <div className="overflow-x-hidden p-6 bg-[var(--background)] transition-all">
         <ArtGallery artGroups={artData} />
       </div>
-
-      <div className="mb-24">
+      <div className="overflow-x-hidden p-6 bg-[var(--background)] transition-all mt-8">
         <RecentMediaSection />
       </div>
-
-      <FavoritesSection />
-
-      <RecommendationForm
-        watchRec={watchRec}
-        listenRec={listenRec}
-        isSubmitting={isSubmitting}
-        submitMessage={submitMessage}
-        onWatchRecChange={(e) => setWatchRec(e.target.value)}
-        onListenRecChange={(e) => setListenRec(e.target.value)}
-        onSubmit={handleSubmit}
-      />
-    </div>
+      <div className="overflow-x-hidden p-6 bg-[var(--background)] transition-all mt-8">
+        <FavoritesSection />
+      </div>
+      <div className="overflow-x-hidden p-6 bg-[var(--background)] transition-all mt-8">
+        <RecommendationForm
+          watchRec={watchRec}
+          listenRec={listenRec}
+          isSubmitting={isSubmitting}
+          submitMessage={submitMessage}
+          onWatchRecChange={(e) => setWatchRec(e.target.value)}
+          onListenRecChange={(e) => setListenRec(e.target.value)}
+          onSubmit={handleSubmit}
+        />
+      </div>
+    </div >
   );
 }
 
@@ -385,7 +386,7 @@ const FavoritesSection = () => (
     <div className="mb-10">
       <Movies />
     </div>
-    <div className="mb-12">
+    <div className="mb-4">
       <AlbumCollage />
     </div>
   </>
@@ -400,7 +401,7 @@ const RecommendationForm = ({
   onListenRecChange,
   onSubmit
 }) => (
-  <div className="mt-20">
+  <div>
     <p className="font-body font-light mb-6 text-lg">
       If you've made it this far, feel free to give me recommendations if you have any :) I'm not picky and I love watching & listening to new things.
     </p>

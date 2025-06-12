@@ -57,7 +57,7 @@ function LastFm() {
     }
 
     return (
-        <div className="mb-12">
+        <div className="mb-4">
             <h3 className="text-2xl font-body font-extrabold text-primary dark:text-darkSecondary mb-4 tracking-tighter dark:neon-glow">Top Artists This Week</h3>
             {artists.length > 0 ? (
                 <div className="flex flex-wrap gap-3">

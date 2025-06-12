@@ -35,6 +35,11 @@
         "image": "https://upload.wikimedia.org/wikipedia/en/8/8a/Lana_Del_Rey_-_Norman_Fucking_Rockwell.png"
     },
     {
+        "title": "Without Warning",
+        "artist": "21 Savage, Offset, Metro Boomin",
+        "image": "https://upload.wikimedia.org/wikipedia/en/d/de/21_Savage%2C_Offset_%26_Metro_Boomin_-_Without_Warning.png"
+    },
+    {
         "title": "In Rainbows",
         "artist": "Radiohead",
         "image": "https://upload.wikimedia.org/wikipedia/en/1/14/Inrainbowscover.png"
@@ -43,11 +48,6 @@
         "title": "Metallica",
         "artist": "Metallica",
         "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/Metallica_-_Metallica_cover.jpg"
-    },
-    {
-        "title": "Without Warning",
-        "artist": "21 Savage, Offset, Metro Boomin",
-        "image": "https://upload.wikimedia.org/wikipedia/en/d/de/21_Savage%2C_Offset_%26_Metro_Boomin_-_Without_Warning.png"
     },
     {
         "title": "Starboy",
@@ -151,9 +151,9 @@
         "image": "https://upload.wikimedia.org/wikipedia/en/c/c5/BlackHolesCover.jpg"
     },
     {
-        "title": "The Slow Rush",
-        "artist": "Tame Impala",
-        "image": "https://upload.wikimedia.org/wikipedia/en/5/54/Tame_Impala_-_The_Slow_Rush.png"
+        "title": "Folklore",
+        "artist": "Taylor Swift",
+        "image": "https://upload.wikimedia.org/wikipedia/en/f/f8/Taylor_Swift_-_Folklore.png"
     },
     {
         "title": "Black on Both Sides",

@@ -155,20 +155,6 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-[var(--background)] text-[var(--primary)] transition-all" style={{ height: '100dvh', width: '100dvw', overflow: 'hidden' }}>
-        <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-          <div className="hidden md:block absolute inset-0">
-            <div
-              className="absolute inset-0 bg-[length:40px_40px] bg-repeat"
-              style={{
-                backgroundImage: 'radial-gradient(circle, var(--dot-colour) 1px, transparent 1px)',
-                backgroundSize: '18px 18px',
-                opacity: 1,
-                maskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)'
-              }}
-            />
-          </div>
-        </div>
         <div className="flex flex-col" style={{ height: '100dvh' }}>
           <div className="flex flex-1 overflow-hidden">
             {isMobile && pathname !== '/' && (
@@ -225,9 +211,22 @@ export default function RootLayout({ children }) {
             )}
 
             <main className={`flex-1 transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} overflow-y-auto ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''}`}>
-              <div id="main-content" className="flex justify-center px-2 md:px-16 py-10">
-                <div className="w-full max-w-4xl 2xl:max-w-5xl bg-[var(--background)] transition-all">
-                  {children}
+              <div className="relative min-h-full">
+                {/* Dots pattern background */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                  {!isMobile && (
+                    <div
+                      className="w-full h-full bg-[length:18px_18px] bg-repeat"
+                      style={{
+                        backgroundImage: 'radial-gradient(circle, var(--dot-colour, #000) 1px, transparent 1px)',
+                      }}
+                    />
+                  )}
+                </div>
+                <div id="main-content" className="flex justify-center px-2 md:px-16 py-10 relative z-10">
+                  <div className="w-full max-w-4xl 2xl:max-w-5xl transition-all">
+                    {children}
+                  </div>
                 </div>
               </div>
             </main>
@@ -490,8 +489,8 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
 
       <div className="h-[50vh] flex flex-col justify-end items-center relative">
         <div className="absolute bottom-2 left-4 text-xs text-[var(--primary)] font-body font-light z-20">
-          Built with <span className="dark:text-darkSecondary">♥</span><br />by
-          <span className="font-bold dark:text-darkSecondary tracking-tighter"> Ruby Lu</span>
+          Built with ♡<br />by
+          <span className="font-bold dark:text-darkSecondary tracking-tighter dark:neon-glow"> Ruby Lu</span>
         </div>
 
         <div className="absolute bottom-3 right-4 flex items-center z-20 group">
