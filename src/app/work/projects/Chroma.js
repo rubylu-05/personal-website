@@ -21,7 +21,7 @@ export default function Chroma() {
         <div className="mb-6">
           <SectionHeading>Thoughts</SectionHeading>
           <p className="font-body  mb-6 font-light">
-            Mobile app development operates pretty differently from web development, so it was a little intimidating at first. However, we were determined to make it work, even under the time constraint of a hackathon. We did a lot of breaking, fixing, learning, and desperate researching to finish the project just in time. It's worth noting that the RGB colour model (which is optimized for screens) might not be the best representation of how paints actually mix in real life, but the resulting colours generally ended up being pretty close to the target colours. This experience introduced me to the world of mobile development, which I would definitely be willing to explore further.
+            Mobile app development operates pretty differently from web development, so it was a little intimidating at first, especially since this was my first hackathon. However, we were determined to make it work, even under the time constraints. We did a lot of breaking, fixing, learning, and desperate researching to finish the project just in time. It's worth noting that the RGB colour model (which is optimized for screens) might not be the best representation of how paints actually mix in real life, but the resulting colours generally ended up being pretty close to the target colours. This experience introduced me to the world of mobile development, which I would definitely be willing to explore further.
           </p>
         </div>
       </div>

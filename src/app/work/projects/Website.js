@@ -177,7 +177,7 @@ export default function Website() {
                 </div>
 
                 <p className="font-body mb-6 font-light">
-                    In terms of my current design, I tried to incorporate elements of a retro aesthetic while maintaining some minimalism, and I'm (mostly) satisfied with how it looks now. Despite all the nitpicking, it felt very rewarding to create something that grows alongside my interests. I'll try to keep this website as up to date as possible!
+                    For my current design, I tried to incorporate elements of a retro aesthetic while still keeping it minimalist, and I'm (mostly) satisfied with how it looks now. Despite all the nitpicking, it felt very rewarding to create something that grows alongside my interests. I'll try to keep this website as up to date as possible.
                 </p>
             </div>
         </div>

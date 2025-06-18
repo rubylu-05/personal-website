@@ -19,7 +19,7 @@ export default function Hydropower() {
         <div className="mb-6">
           <SectionHeading>Thoughts</SectionHeading>
           <p className="font-body  mb-6 font-light">
-            Hydropower and renewable energy was a field that I had pretty much no knowledge in before working at Hatch, so I was eager to learn about the role of software in the energy sector. This project was interesting to work on because of the real-world application and potential for growth. What excited me the most was seeing how this model could be improved and integrated into the company's optimization systems for hydropower plants. As for the development process, I ended up gaining a much deeper understanding of the theory behind machine learning while I was experimenting with the model. Although it took a lot of time and learning, I enjoyed the process.
+            Hydropower and renewable energy was a field that I had pretty much no knowledge in before working at Hatch, so I was eager to learn about the role of software in the energy sector. This project was interesting to work on because of the real-world application and potential for growth. What excited me the most was seeing how this model could be improved and integrated into the company's optimization systems for hydropower plants. As for the development process, I ended up gaining a much deeper understanding of the theory behind machine learning while I was experimenting with the model. It took a lot of time and learning, but I enjoyed the process!
           </p>
         </div>
       </div>

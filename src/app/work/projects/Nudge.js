@@ -16,14 +16,14 @@ export default function Nudge() {
             <li>React for the extension's pop-up and dashboard</li>
             <li>MongoDB for storing activity logs</li>
             <li>Flask for the back end</li>
-            <li>GPT-4 (OpenAI) for generating responses based on the information fetched from the extension</li>
+            <li>GPT-4 (OpenAI) for generating responses</li>
             <li>Eleven Labs TTS for giving voice to the narrator</li>
           </ul>
         </div>
         <div className="mb-6">
           <SectionHeading>Thoughts</SectionHeading>
           <p className="font-body  mb-6 font-light">
-            This product isn't perfect - most hackathon projects aren't - but it taught me a lot about how Chrome extensions work under the hood. I gained some pretty valuable full-stack experience, but unfortunately also learned firsthand about how frustrating Chrome extensions can be to debug, especially when I'm trying to trace different messages and errors between background scripts, popups, and content scripts. However, this made it extra satisfying when the project started coming together nicely. I enjoyed the process of building Nudge, especially in the unique environment of a hackathon, and found the premise to be fun to design.
+            This product isn't perfect (most hackathon projects aren't), but it taught me a lot about how Chrome extensions work under the hood. I gained some pretty valuable full-stack experience, but unfortunately also learned firsthand about how frustrating Chrome extensions can be to debug, especially when I'm trying to trace different messages and errors between background scripts, popups, and content scripts. However, this made it extra satisfying when the project started coming together nicely. I enjoyed the process of building Nudge, especially in the unique environment of a hackathon, and found the premise to be really fun to design.
           </p>
         </div>
       </div>

@@ -239,21 +239,21 @@ export default function About() {
         <div>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
-              In the summer of 2024, I worked on enhancing desktop applications and automating systems for <ExternalLink href="https://www.ym-inc.com">YM Inc.</ExternalLink>, a Toronto-based retail company that operates fashion brands across North America.
+              Last summer, I worked on enhancing desktop applications and automating systems for <ExternalLink href="https://www.ym-inc.com">YM Inc.</ExternalLink>, a Toronto-based retail company that operates fashion brands across North America.
             </p>
           </TimelineItem>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
-              In winter 2025, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I was introduced to the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow; this experience ended up being a really interesting intersection of engineering, sustainability, and software.
+              This winter, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I was introduced to the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow; this experience ended up being a really interesting intersection of engineering, sustainability, and software.
             </p>
           </TimelineItem>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
-              In the fall of 2025, I'll be joining <ExternalLink href="https://aws.amazon.com/dynamodb/">Amazon Web Services (AWS)</ExternalLink> in Seattle as a Software Development Engineering Intern, which I'm pretty excited about!
+              This fall, I'll be joining <ExternalLink href="https://aws.amazon.com/dynamodb/">Amazon Web Services (AWS)</ExternalLink> in Seattle and contributing to Amazon DynamoDB as a Software Development Engineering Intern (excited for this!).
             </p>
           </TimelineItem>
           <TimelineItem isLast={true}>
-            <p className="mb-4 font-body font-light text-lg">I'm currently on the lookout for 2026 internship opportunities.</p>
+            <p className="mb-4 font-body font-light text-lg">I'm currently on the lookout for summer 2026 internship opportunities.</p>
           </TimelineItem>
         </div>
       </div>

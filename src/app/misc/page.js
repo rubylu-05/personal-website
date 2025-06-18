@@ -35,7 +35,7 @@ const artData = [
   },
   {
     "title": "Cats!",
-    "description": "I found a bunch of cute photos of cats on Pinterest as reference.",
+    "description": "I looked at a bunch of cute photos of cats on Pinterest as reference.",
     "pieces": [
       {
         "description": "A sleepy cat, painted with acrylics",
@@ -79,7 +79,7 @@ const artData = [
   },
   {
     "title": "Needle Felting",
-    "description": "Needle felting is pretty fun! I've made a bunch of little animals, but here are my personal favourites.",
+    "description": "Needle felting is pretty fun. I've made a bunch of little animals, but here are my favourites.",
     "pieces": [
       {
         "description": "Bunny!",
@@ -341,21 +341,23 @@ const ArtGallery = ({ artGroups }) => (
 
 const ArtPiece = ({ piece }) => (
   <div className={`${piece.fullWidth ? "col-span-full" : ""}`}>
-    {/* Image with shadow effect */}
     <div className="relative">
-      {/* Black shadow layer (image-sized) */}
-      <div className="absolute top-[4px] left-[4px] z-0 w-full h-full bg-primary dark:bg-darkSecondary rounded-xl"></div>
-
-      {/* Main image */}
-      <div className="relative z-10 transition-all md:hover:-translate-y-0.5 md:hover:-translate-x-0.5">
-        <img
-          src={piece.image}
-          alt=""
-          className="w-full h-auto object-fill border border-primary dark:border-0 rounded-xl"
-        />
+      {/* Shadow effect */}
+      <div className="relative before:absolute before:content-[''] before:top-[4px] before:left-[4px] 
+                      before:w-full before:h-full before:bg-primary dark:before:bg-darkSecondary 
+                      before:rounded-xl before:z-0">
+        {/* Main image */}
+        <div className="relative z-10 transition-transform duration-300 
+                        border border-primary dark:border-0 rounded-xl
+                        hover:-translate-y-0.5 hover:-translate-x-0.5">
+          <img
+            src={piece.image}
+            alt=""
+            className="w-full h-auto object-fill rounded-xl"
+          />
+        </div>
       </div>
     </div>
-
     {/* Description text */}
     <p className="font-body text-xs mt-2">{piece.description}</p>
   </div>
@@ -365,7 +367,7 @@ const RecentMediaSection = () => (
   <>
     <SectionHeading ellipseRotation={5}>Recent Watching & Listening</SectionHeading>
     <p className="font-body font-light mb-2 text-lg">
-      I like to watch movies when I have free time. I've always had a lot of interest in the horror genre in particular, from campy 80's horror (I love the practical effects from that era!) to atmospheric slow-burns. But my taste is super wide and I enjoy movies from pretty much any genre.
+      I like to watch movies when I have free time. I've always had a lot of interest in the horror genre in particular, from campy 80's horror (I love the practical effects from that era!) to slow-burn atmospheric dread. But my taste is super wide and I enjoy movies from pretty much any genre.
     </p>
     <p className="font-body font-light mb-6 text-lg">
       Below are my most recently watched movies (synced with my Letterboxd account), as well as my top played artists this week (synced with my Spotify listening).
