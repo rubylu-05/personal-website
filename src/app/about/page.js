@@ -249,7 +249,7 @@ export default function About() {
           </TimelineItem>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
-              This fall, I'll be joining <ExternalLink href="https://aws.amazon.com/dynamodb/">Amazon Web Services (AWS)</ExternalLink> in Seattle and contributing to Amazon DynamoDB as a Software Development Engineering Intern (excited for this!).
+              This fall, I'll be joining <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle and contributing to <ExternalLink href="https://aws.amazon.com/dynamodb/">DynamoDB</ExternalLink> as a Software Development Engineering Intern (excited for this!).
             </p>
           </TimelineItem>
           <TimelineItem isLast={true}>

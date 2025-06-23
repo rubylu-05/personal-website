@@ -349,7 +349,7 @@ const ArtPiece = ({ piece }) => (
         {/* Main image */}
         <div className="relative z-10 transition-transform duration-300 
                         border border-primary dark:border-0 rounded-xl
-                        hover:-translate-y-0.5 hover:-translate-x-0.5">
+                        md:hover:-translate-y-0.5 md:hover:-translate-x-0.5">
           <img
             src={piece.image}
             alt=""

@@ -69,12 +69,6 @@
         "artist": "Slowdive",
         "image": "https://upload.wikimedia.org/wikipedia/en/a/a6/Souvlaki_%28album%29_cover.jpg"
     },
-
-    {
-        "title": "Disintegration",
-        "artist": "The Cure",
-        "image": "https://upload.wikimedia.org/wikipedia/en/b/b8/CureDisintegration.jpg"
-    },
     {
         "title": "Demon Days",
         "artist": "Gorillaz",
@@ -84,6 +78,11 @@
         "title": "Visions",
         "artist": "Grimes",
         "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/Grimes_-_Visions_album_cover.png"
+    },
+    {
+        "title": "Disintegration",
+        "artist": "The Cure",
+        "image": "https://upload.wikimedia.org/wikipedia/en/b/b8/CureDisintegration.jpg"
     },
     {
         "title": "Evil Empire",
