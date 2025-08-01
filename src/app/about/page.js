@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import ExternalLink from '@/components/ExternalLink';
+import SectionHeading from '@/components/SectionHeading';
+import { useEffect, useState } from 'react';
 
 const SKILL_GROUPS = [
   { category: 'Programming Languages', items: ['Python', 'C++', 'C', 'C#', 'Java', 'JavaScript', 'Dart'] },
@@ -11,167 +13,6 @@ const SKILL_GROUPS = [
   { category: 'Mobile Development', items: ['Flutter'] },
   { category: 'Desktop & Systems', items: ['.NET'] }
 ];
-
-const ExternalLink = ({ href, children }) => (
-  <a
-    href={href}
-    className="text-primary hover:opacity-50 dark:hover:opacity-100 dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow"
-    target="_blank"
-  >
-    {children}
-  </a>
-);
-
-const SectionHeading = ({ children, ellipseRotation = -5 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const headingRef = useRef(null);
-
-  useEffect(() => {
-    const checkIfMobile = () => setIsMobile(window.innerWidth <= 1024);
-    checkIfMobile();
-    window.addEventListener('resize', checkIfMobile);
-    return () => window.removeEventListener('resize', checkIfMobile);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5
-      }
-    );
-
-    if (headingRef.current) {
-      observer.observe(headingRef.current);
-    }
-
-    return () => {
-      if (headingRef.current) {
-        observer.unobserve(headingRef.current);
-      }
-    };
-  }, []);
-
-  return (
-    <div
-      ref={headingRef}
-      className="flex items-center mb-4 relative group"
-      onMouseEnter={() => !isMobile && setIsHovered(true)}
-      onMouseLeave={() => !isMobile && setIsHovered(false)}
-    >
-      <div className="relative inline-block">
-        <svg
-          width="200"
-          height="60"
-          viewBox="0 0 200 60"
-          className="absolute -left-3 -top-2 h-12 w-auto"
-        >
-          <ellipse
-            cx="100"
-            cy="30"
-            rx="90"
-            ry="18"
-            transform={`rotate(${ellipseRotation}, 90, 20)`}
-            className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
-            strokeDasharray={
-              isVisible ? (isHovered && !isMobile ? '0, 565' : '565') : '0, 565'
-            }
-            strokeDashoffset="0"
-            style={{
-              transition: isVisible
-                ? 'stroke-dasharray 1.2s ease-in-out'
-                : 'none',
-              filter: 'drop-shadow(0 0 6px var(--ellipse-glow))',
-            }}
-          />
-        </svg>
-
-        <div className="relative">
-          <div className="relative">
-            {/* Shadow (offset) */}
-            <h2
-              className="text-5xl font-heading font-bold text-primary dark:text-transparent md:whitespace-nowrap tracking-tight"
-              style={{
-                transform: 'translate(2px, 2px)',
-                position: 'absolute',
-                zIndex: 0,
-                WebkitTextStroke: 'var(--stroke-width) var(--shadow-colour)',
-                textStroke: 'var(--stroke-width) var(--stroke-colour)',
-              }}
-            >
-              {children}
-            </h2>
-
-            {/* Stroke Layer */}
-            <h2
-              className="text-5xl font-heading font-bold md:whitespace-nowrap tracking-tight"
-              style={{
-                WebkitTextStroke: 'var(--stroke-width) var(--stroke-colour)',
-                textStroke: 'var(--stroke-width) var(--stroke-colour)',
-                position: 'relative',
-                zIndex: 1,
-              }}
-            >
-              {children}
-            </h2>
-
-            {/* Fill Layer */}
-            <h2
-              className="text-5xl font-heading font-bold md:whitespace-nowrap tracking-tight absolute top-0 left-0"
-              style={{
-                color: 'var(--text-fill-colour)',
-                zIndex: 2,
-              }}
-            >
-              {children}
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      {
-        !isMobile && (
-          <div className="hidden md:flex items-center w-full ml-4 relative top-[2px]">
-            <div className="flex-grow h-px bg-primary dark:bg-darkSecondary"></div>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              className="ml-1 transition-transform duration-300 ease-in-out"
-              style={{
-                transform: isHovered ? 'scale(1.2)' : 'scale(1)',
-                filter: 'drop-shadow(0 0 3px var(--sparkle-glow))',
-              }}
-            >
-              <path
-                d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
-                fill="transparent"
-                stroke="var(--primary)"
-                strokeWidth="2"
-                strokeLinejoin="round"
-                className="dark:stroke-darkSecondary"
-              />
-              <path
-                d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"
-                fill="background"
-                stroke="transparent"
-                className="dark:fill-darkSecondary"
-              />
-            </svg>
-          </div>
-        )
-      }
-    </div>
-  );
-};
 
 const TimelineItem = ({ children, isLast }) => (
   <div className="relative grid grid-cols-[24px_1fr] gap-2 group">
@@ -258,7 +99,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="p-6 bg-[var(--background)] transition-all mt-10">
+      <div className="p-6 bg-[var(--background)] transition-all mt-9">
         <SectionHeading ellipseRotation={-5}>Technical Skills</SectionHeading>
         <p className="mb-4 font-body font-light text-lg">In no particular order, these are some languages, libraries, frameworks, and technologies that I have experience working with.</p>
 
@@ -276,6 +117,49 @@ export default function About() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className="p-6 bg-[var(--background)] transition-all mt-8">
+        <SectionHeading ellipseRotation={-8}>Also</SectionHeading>
+        <p className="mb-4 font-body font-light text-lg">I've been reading a lot of old <ExternalLink href="https://www.fantagraphics.com/products/the-complete-peanuts-1965-1966-hardback?srsltid=AfmBOooiUpFpPyysLksw0oGwmdfu_0FUBHbOAoufckESWhwQMjI1js5X">Peanuts</ExternalLink> comic strips recently, so enjoy these gifs from <ExternalLink href="https://letterboxd.com/film/a-charlie-brown-christmas/">A Charlie Brown Christmas</ExternalLink> (1965)!</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+          <div className="relative">
+            {/* Shadow effect */}
+            <div className="relative before:absolute before:content-[''] before:top-[4px] before:left-[4px] 
+                      before:w-full before:h-full before:bg-primary dark:before:bg-darkSecondary 
+                      before:rounded-xl before:z-0">
+              {/* Main image */}
+              <div className="relative z-10 transition-transform duration-300 
+                        border border-primary dark:border-0 rounded-xl
+                        md:hover:-translate-y-0.5 md:hover:-translate-x-0.5">
+                <img
+                  src="/images/peanuts/children_dancing.gif"
+                  alt="children dancing"
+                  className="w-full h-auto object-cover rounded-xl"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="relative">
+            {/* Shadow effect */}
+            <div className="relative before:absolute before:content-[''] before:top-[4px] before:left-[4px] 
+                      before:w-full before:h-full before:bg-primary dark:before:bg-darkSecondary 
+                      before:rounded-xl before:z-0">
+              {/* Main image */}
+              <div className="relative z-10 transition-transform duration-300 
+                        border border-primary dark:border-0 rounded-xl
+                        md:hover:-translate-y-0.5 md:hover:-translate-x-0.5">
+                <img
+                  src="/images/peanuts/snoopy_dancing.gif"
+                  alt="snoopy dancing"
+                  className="w-full h-auto object-cover rounded-xl"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
