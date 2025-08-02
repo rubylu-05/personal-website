@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 
-const SectionHeading = ({ children, ellipseRotation = -5 }) => {
+const SectionHeading = ({ children, ellipseRotation = -5, ellipseLength = 200 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -40,6 +40,14 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
     };
   }, []);
 
+  const calculateCircumference = (rx, ry) => {
+    const h = Math.pow((rx - ry), 2) / Math.pow((rx + ry), 2);
+    return Math.PI * (rx + ry) * (1 + (3 * h) / (10 + Math.sqrt(4 - 3 * h)));
+  };
+
+  const rx = ellipseLength / 2 - 5;
+  const circumference = calculateCircumference(rx, 18);
+
   return (
     <div
       ref={headingRef}
@@ -49,20 +57,20 @@ const SectionHeading = ({ children, ellipseRotation = -5 }) => {
     >
       <div className="relative inline-block">
         <svg
-          width="200"
+          width={ellipseLength}
           height="60"
-          viewBox="0 0 200 60"
+          viewBox={`0 0 ${ellipseLength} 60`}
           className="absolute -left-3 -top-2 h-12 w-auto"
         >
           <ellipse
-            cx="100"
+            cx={ellipseLength / 2}
             cy="25"
-            rx="95"
+            rx={rx}
             ry="18"
-            transform={`rotate(${ellipseRotation}, 90, 20)`}
+            transform={`rotate(${ellipseRotation}, ${ellipseLength / 2 - 10}, 20)`}
             className="fill-none stroke-[0.5px] stroke-primary dark:stroke-darkSecondary"
             strokeDasharray={
-              isVisible ? (isHovered && !isMobile ? '0, 565' : '565') : '0, 565'
+              isVisible ? (isHovered && !isMobile ? `0, ${circumference}` : circumference) : `0, ${circumference}`
             }
             strokeDashoffset="0"
             style={{

@@ -164,7 +164,7 @@ export default function Misc() {
 
 const ArtGallery = ({ artGroups }) => (
   <>
-    <SectionHeading>Artistic Work</SectionHeading>
+    <SectionHeading ellipseRotation={-7} ellipseLength={230}>Artistic Work</SectionHeading>
     <p className="font-body font-light text-lg">
       A gallery of miscellaneous drawings, paintings, and crafts!
     </p>
@@ -216,7 +216,7 @@ const ArtPiece = ({ piece }) => (
 
 const RecentMediaSection = () => (
   <>
-    <SectionHeading ellipseRotation={5}>Recent Watching & Listening</SectionHeading>
+    <SectionHeading ellipseRotation={5} ellipseLength={300}>Recent Watching & Listening</SectionHeading>
     <p className="font-body font-light mb-2 text-lg">
       I like to watch movies. I've always had a lot of interest in the horror genre in particular, from campy 80's horror (I love the practical effects from that era!) to slow-burn atmospheric dread. But my taste is super wide and I enjoy movies from pretty much any genre.
     </p>
@@ -232,7 +232,7 @@ const RecentMediaSection = () => (
 
 const FavoritesSection = () => (
   <>
-    <SectionHeading ellipseRotation={-6}>Favourites!</SectionHeading>
+    <SectionHeading ellipseRotation={-6} ellipseLength={200}>Favourites!</SectionHeading>
     <p className="font-body font-light mb-4 text-lg">
       Since I shared my recents, I wanted to share my favourites as well, though this will probably change once in a while.
     </p>

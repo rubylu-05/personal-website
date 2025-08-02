@@ -66,7 +66,7 @@ export default function About() {
   return (
     <div>
       <div className="p-6 bg-[var(--background)] transition-all">
-        <SectionHeading ellipseRotation={-8}>Hi, I'm Ruby!</SectionHeading>
+        <SectionHeading ellipseRotation={-8} ellipseLength={150}>Hi, I'm Ruby!</SectionHeading>
         <p className="mb-4 font-body font-light text-lg">
           I'm a computer science student at the University of Waterloo who loves building practical solutions and learning through implementation. I've worked across various tech stacks in academic, personal, and professional projects, and I'm always eager to learn more.
         </p>
@@ -76,7 +76,7 @@ export default function About() {
         </p>
       </div>
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
-        <SectionHeading ellipseRotation={5}>Past, Present, and Future</SectionHeading>
+        <SectionHeading ellipseRotation={5} ellipseLength={250}>Past, Present, and Future</SectionHeading>
         <div>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
@@ -100,7 +100,7 @@ export default function About() {
       </div>
 
       <div className="p-6 bg-[var(--background)] transition-all mt-9">
-        <SectionHeading ellipseRotation={-5}>Technical Skills</SectionHeading>
+        <SectionHeading ellipseRotation={-5} ellipseLength={200}>Technical Skills</SectionHeading>
         <p className="mb-4 font-body font-light text-lg">In no particular order, these are some languages, libraries, frameworks, and technologies that I have experience working with.</p>
 
         <div>
@@ -121,7 +121,7 @@ export default function About() {
       </div>
 
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
-        <SectionHeading ellipseRotation={-8}>Also</SectionHeading>
+        <SectionHeading ellipseRotation={5} ellipseLength={150}>Also</SectionHeading>
         <p className="mb-4 font-body font-light text-lg">I've been reading a lot of old <ExternalLink href="https://www.fantagraphics.com/products/the-complete-peanuts-1965-1966-hardback?srsltid=AfmBOooiUpFpPyysLksw0oGwmdfu_0FUBHbOAoufckESWhwQMjI1js5X">Peanuts</ExternalLink> comic strips recently, so enjoy these gifs from <ExternalLink href="https://letterboxd.com/film/a-charlie-brown-christmas/">A Charlie Brown Christmas</ExternalLink> (1965)!</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
