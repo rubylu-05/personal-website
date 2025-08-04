@@ -234,7 +234,7 @@ const FavoritesSection = () => (
   <>
     <SectionHeading ellipseRotation={-6} ellipseLength={200}>Favourites!</SectionHeading>
     <p className="font-body font-light mb-4 text-lg">
-      Since I shared my recents, I wanted to share my favourites as well, though this will probably change once in a while.
+      Here are some movies I love! It was really hard to choose only 20. This list is probably full of recency bias and will change pretty often.
     </p>
     <div className="mb-10">
       <Movies />
