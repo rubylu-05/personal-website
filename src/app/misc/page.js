@@ -5,7 +5,7 @@ import AlbumCollage from './AlbumCollage';
 import Movies from './Movies';
 import ExternalLink from '@/components/ExternalLink';
 import SectionHeading from '@/components/SectionHeading';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 const artData = [
   {
@@ -138,14 +138,26 @@ export default function Misc() {
 
   return (
     <div>
-      <div className="overflow-x-hidden p-6 bg-[var(--background)] transition-all">
+      {/* Jump to navigation */}
+      <div className="overflow-x-hidden p-6 py-4 bg-[var(--background)] transition-all mb-10">
+        <div className="flex flex-wrap gap-4 items-center">
+          <span className="font-body font-light text-lg">Jump to:</span>
+          <div className="flex flex-wrap gap-2">
+            <JumpToLink href="#art" label="Artistic Work" />
+            <JumpToLink href="#recent" label="Recent Watching & Listening" />
+            <JumpToLink href="#favourites" label="Favourite Movies & Albums" />
+          </div>
+        </div>
+      </div>
+
+      <div id="art" className="overflow-x-hidden p-6 bg-[var(--background)] transition-all">
         <ArtGallery artGroups={artData} />
       </div>
-      <div className="overflow-x-hidden p-6 bg-[var(--background)] transition-all mt-8">
+      <div id="recent" className="overflow-x-hidden p-6 bg-[var(--background)] transition-all mt-8">
         <RecentMediaSection />
       </div>
-      <div className="overflow-x-hidden p-6 bg-[var(--background)] transition-all mt-8">
-        <FavoritesSection />
+      <div id="favourites" className="overflow-x-hidden p-6 bg-[var(--background)] transition-all mt-8">
+        <FavouritesSection />
       </div>
       <div className="overflow-x-hidden p-6 bg-[var(--background)] transition-all mt-8">
         <RecommendationForm
@@ -158,9 +170,46 @@ export default function Misc() {
           onSubmit={handleSubmit}
         />
       </div>
-    </div >
+    </div>
   );
 }
+
+const JumpToLink = ({ href, label }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  return (
+    <a
+      href={href}
+      onClick={handleClick}
+      className="relative inline-block group"
+    >
+      {/* Shadow Layer */}
+      <div className="absolute top-[4px] left-[4px] z-0">
+        <div className="py-1 px-3 flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
+          <span className="font-body text-sm text-[var(--primary)]">
+            {label}
+          </span>
+        </div>
+      </div>
+      {/* Main Button Layer */}
+      <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 py-1 px-3 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground2 group-hover:-translate-y-0.5 group-hover:-translate-x-0.5 rounded-full">
+        <span className="font-body text-sm text-[var(--primary)]">
+          {label}
+        </span>
+      </div>
+    </a>
+  );
+};
 
 const ArtGallery = ({ artGroups }) => (
   <>
@@ -230,7 +279,7 @@ const RecentMediaSection = () => (
   </>
 );
 
-const FavoritesSection = () => (
+const FavouritesSection = () => (
   <>
     <SectionHeading ellipseRotation={-6} ellipseLength={200}>Favourites!</SectionHeading>
     <p className="font-body font-light mb-4 text-lg">

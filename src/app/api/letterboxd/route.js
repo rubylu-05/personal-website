@@ -28,7 +28,10 @@ export async function GET() {
             const imageMatch = item.content.match(/<img.*?src="(.*?)"/);
             const image = imageMatch ? imageMatch[1] : null;
             
-            const watchedDate = new Date(item['letterboxd:watchedDate'] || item.isoDate).toLocaleDateString('en-US', {
+            const watchedDate = new Date(item['letterboxd:watchedDate'] || item.isoDate);
+            const correctedDate = new Date(watchedDate.getTime() + watchedDate.getTimezoneOffset() * 60000);
+
+            const formattedDate = correctedDate.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'numeric',
                 day: 'numeric'
@@ -39,7 +42,7 @@ export async function GET() {
                 year,
                 image,
                 rating,
-                watchedDate,
+                watchedDate: formattedDate,
                 link: item.link
             };
         });

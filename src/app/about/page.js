@@ -74,6 +74,9 @@ export default function About() {
           When I'm not staring at a terminal, you'll probably find me indulging in my creative side through <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow">art</Link>,
           whether it's sketching, painting, digital art, or working with alcohol markers. I also like to make an unnecessary amount of Spotify <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">playlists</ExternalLink> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged <ExternalLink href="https://letterboxd.com/rubylu/">{displayCount} films</ExternalLink> ({displayYearlyCount} this year) on Letterboxd so far.
         </p>
+        <p className="mb-4 font-body font-light text-lg">
+          This website, which I’ve poured many hours into, is an attempt to capture my growth as a developer as well as the passions that fuel me outside of tech. Thanks for stopping by!
+        </p>
       </div>
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
         <SectionHeading ellipseRotation={5} ellipseLength={250}>Past, Present, and Future</SectionHeading>
@@ -90,7 +93,7 @@ export default function About() {
           </TimelineItem>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
-              This fall, I'll be joining <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle and contributing to <ExternalLink href="https://aws.amazon.com/dynamodb/">DynamoDB</ExternalLink> as a Software Development Engineering Intern (excited for this!).
+              This fall, I'll be joining <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle and contributing to <ExternalLink href="https://aws.amazon.com/dynamodb/">DynamoDB</ExternalLink> as a Software Development Engineer Intern (excited for this!).
             </p>
           </TimelineItem>
           <TimelineItem isLast={true}>
