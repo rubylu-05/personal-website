@@ -180,14 +180,14 @@ function Letterboxd() {
                             ref={containerRef}
                             className="flex transition-all pl-0"
                             style={{
-                                transform: `translateX(${-offset * (itemRefs.current[0]?.offsetWidth + 24)}px)`
+                                transform: `translateX(${-offset * (itemRefs.current[0]?.offsetWidth + 16)}px)`
                             }}
                         >
                             {movies.map((movie, index) => (
                                 <div
                                     key={`${movie.title}-${index}`}
                                     ref={el => itemRefs.current[index] = el}
-                                    className="relative flex-shrink-0 w-40 mx-3 cursor-pointer first:ml-0"
+                                    className="relative flex-shrink-0 w-40 mx-2 cursor-pointer first:ml-0"
                                     onClick={() => goToMovie(index)}
                                 >
                                     {/* Shadow Layer */}

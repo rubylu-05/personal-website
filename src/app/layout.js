@@ -17,6 +17,16 @@ const MESSAGES = {
   '/misc': "A space for the non-technical things that I enjoy and appreciate!"
 };
 
+const scrollToTop = () => {
+  const mainElement = document.querySelector('main');
+  if (mainElement) {
+    mainElement.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+};
+
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -29,6 +39,7 @@ export default function RootLayout({ children }) {
   const menuRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const [theme, setTheme] = useState('light');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const currentMessage = MESSAGES[pathname] || MESSAGES['/'];
 
@@ -146,6 +157,21 @@ export default function RootLayout({ children }) {
     };
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const mainElement = document.querySelector('main');
+      if (mainElement) {
+        setIsScrolled(mainElement.scrollTop > 50);
+      }
+    };
+
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.addEventListener('scroll', handleScroll);
+      return () => mainElement.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -159,7 +185,11 @@ export default function RootLayout({ children }) {
           <div className="flex flex-1 overflow-hidden">
             {isMobile && pathname !== '/' && (
               <div className="fixed top-4 right-4 z-[1000]" ref={menuRef}>
-                <button onClick={toggleMobileMenu} className="transition-all p-2 border border-primary dark:border-darkBackground2 bg-background dark:bg-darkBackground2 rounded-full dark:shadow-[0_0_15px_rgba(0,0,0,0.5)]" aria-label="Menu">
+                <button
+                  onClick={toggleMobileMenu}
+                  className="transition-all w-10 h-10 p-2 border border-primary dark:border-darkBackground2 bg-background dark:bg-darkBackground2 rounded-full dark:shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center"
+                  aria-label="Menu"
+                >
                   <AiOutlineMenu className="text-2xl text-[var(--primary)]" />
                 </button>
 
@@ -193,6 +223,70 @@ export default function RootLayout({ children }) {
                 )}
               </div>
             )}
+
+            {isScrolled ? (
+              <div className="fixed bottom-4 right-4 z-[1000]">
+                <button
+                  onClick={scrollToTop}
+                  className="
+        transition-all 
+        w-10 h-10 p-2 
+        border border-primary dark:border-darkBackground2 
+        bg-background dark:bg-darkBackground2 
+        rounded-full 
+        dark:shadow-[0_0_15px_rgba(0,0,0,0.5)]
+        flex items-center justify-center
+        animate-slide-up"
+                  aria-label="scroll to top"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-[var(--primary)]"
+                  >
+                    <path d="M18 15l-6-6-6 6" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <div className="fixed bottom-4 right-4 z-[1000]">
+                <div className="animate-slide-down">
+                  <button
+                    onClick={scrollToTop}
+                    className="
+                    transition-all 
+                    w-10 h-10 p-2 
+                    border border-primary dark:border-darkBackground2 
+                    bg-background dark:bg-darkBackground2 
+                    rounded-full 
+                    dark:shadow-[0_0_15px_rgba(0,0,0,0.5)]
+                    flex items-center justify-center"
+                    aria-label="scroll to top"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-[var(--primary)]"
+                    >
+                      <path d="M18 15l-6-6-6 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
+
             {(!isMobile || pathname === '/') && (
               <Sidebar
                 isVisible={isSidebarVisible}
