@@ -68,7 +68,7 @@ export default function About() {
       <div className="p-6 bg-[var(--background)] transition-all">
         <SectionHeading ellipseRotation={-8} ellipseLength={150}>Hi, I'm Ruby!</SectionHeading>
         <p className="mb-4 font-body font-light text-lg">
-          I'm a computer science student at the University of Waterloo who loves building practical solutions and learning through implementation. I've worked across various tech stacks in academic, personal, and professional projects, and I'm always eager to learn more.
+          I'm a Waterloo computer science student who's perpetually curious about the architecture that powers our digital experiences. I've worked across various tech stacks in academic, personal, and professional projects, and I'm always eager to learn more. I'm particularly interested in distributed systems and backend engineering, and I'm growing my interest in the intersection of AI and large-scale systems.
         </p>
         <p className="mb-4 font-body font-light text-lg">
           When I'm not staring at a terminal, you'll probably find me indulging in my creative side through <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow">art</Link>,
@@ -93,7 +93,7 @@ export default function About() {
           </TimelineItem>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
-              This fall, I'll be joining <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle and contributing to <ExternalLink href="https://aws.amazon.com/dynamodb/">DynamoDB</ExternalLink> as a Software Development Engineer Intern (excited for this!).
+              This fall, I'm interning at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle! I'm working with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles and integrate operational tools into a unified, global infrastructure.
             </p>
           </TimelineItem>
           <TimelineItem isLast={true}>
