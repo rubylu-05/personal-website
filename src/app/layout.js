@@ -660,7 +660,7 @@ function SocialLinks() {
   return (
     <div className="flex justify-center gap-2 text-xl items-center">
       <div className="relative group flex items-center">
-        <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer">
+        <a href="mailto:ruby.lu@uwaterloo.ca" rel="noopener noreferrer">
           <MdOutlineMail className="text-[var(--primary)] md:hover:scale-110 text-2xl transition-all" />
         </a>
         {!isMobile && (
