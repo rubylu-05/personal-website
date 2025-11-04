@@ -134,3 +134,20 @@ body {
 .animate-slide-down {
   animation: slide-down 0.3s ease-out forwards;
 }
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.transition-transform {
+  transition-property: transform;
+}
+
+.duration-600 {
+  transition-duration: 600ms;
+}
+
+.ease-in-out {
+  transition-timing-function: ease-in-out;
+}

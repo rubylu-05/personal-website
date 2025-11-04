@@ -79,25 +79,22 @@ export default function About() {
         </p>
       </div>
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
-        <SectionHeading ellipseRotation={5} ellipseLength={250}>Past, Present, and Future</SectionHeading>
+        <SectionHeading ellipseRotation={5} ellipseLength={250}>Past & Present</SectionHeading>
         <div>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
-              Last summer, I worked on enhancing desktop applications and automating systems for <ExternalLink href="https://www.ym-inc.com">YM Inc.</ExternalLink>, a Toronto-based retail company that operates fashion brands across North America.
+              This fall term, I'm interning at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle! I'm working with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles for infrastructure tooling. It's been super interesting to learn about the challenges of maintaining a massive, high-performance database.
             </p>
           </TimelineItem>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
-              This winter, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I was introduced to the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow; this experience ended up being a really interesting intersection of engineering, sustainability, and software.
-            </p>
-          </TimelineItem>
-          <TimelineItem>
-            <p className="mb-4 font-body font-light text-lg">
-              This fall term, I'm interning at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle! I'm working with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles and integrate operational tools into a unified, global infrastructure.
+              In winter 2025, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I was introduced to the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow, which bridges the fields of engineering, sustainability, and software.
             </p>
           </TimelineItem>
           <TimelineItem isLast={true}>
-            <p className="mb-4 font-body font-light text-lg">I'm currently on the lookout for summer 2026 internship opportunities.</p>
+            <p className="mb-4 font-body font-light text-lg">
+              In summer 2024, I worked on enhancing desktop applications and automating systems for <ExternalLink href="https://www.ym-inc.com">YM Inc.</ExternalLink>, a Toronto-based retail company that operates fashion brands across North America.
+            </p>
           </TimelineItem>
         </div>
       </div>
@@ -125,7 +122,7 @@ export default function About() {
 
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
         <SectionHeading ellipseRotation={5} ellipseLength={150}>Also</SectionHeading>
-        <p className="mb-4 font-body font-light text-lg">I've been reading a lot of old <ExternalLink href="https://www.fantagraphics.com/products/the-complete-peanuts-1965-1966-hardback?srsltid=AfmBOooiUpFpPyysLksw0oGwmdfu_0FUBHbOAoufckESWhwQMjI1js5X">Peanuts</ExternalLink> comic strips recently, so enjoy these gifs from <ExternalLink href="https://letterboxd.com/film/a-charlie-brown-christmas/">A Charlie Brown Christmas</ExternalLink> (1965)!</p>
+        <p className="mb-4 font-body font-light text-lg">I've been reading a lot of <ExternalLink href="https://www.fantagraphics.com/products/the-complete-peanuts-1965-1966-hardback?srsltid=AfmBOooiUpFpPyysLksw0oGwmdfu_0FUBHbOAoufckESWhwQMjI1js5X">Peanuts</ExternalLink> comic strips recently, so enjoy these gifs from <ExternalLink href="https://letterboxd.com/film/a-charlie-brown-christmas/">A Charlie Brown Christmas</ExternalLink> (1965)!</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           <div className="relative">

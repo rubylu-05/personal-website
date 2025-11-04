@@ -106,20 +106,18 @@ export default function Website() {
                     I was initially unsure about whether I should make this website strictly professional or a little more casual. Ultimately, I leaned into the latter because I wanted it to be like a snapshot of the person I am right now.
                 </p>
                 <p className="font-body mb-4 font-light">
-                    I built this website from scratch and I'm a bit of a perfectionist, so it ended up becoming a never-ending cycle of tweaks and refinements. I became very fixated on tiny design choices; as a result, I spent an embarrassing amount of time browsing fonts, adjusting hex codes, and trying out different hover animations.
+                    I built this website from scratch and I'm a bit of a perfectionist, so it ended up becoming a never-ending cycle of tweaks and refinements. I became very fixated on tiny design choices; as a result, I spent an embarrassing amount of time browsing fonts, adjusting hex codes, and trying out different hover animations. For my current design, I tried to incorporate elements of a retro aesthetic, and I'm (mostly) satisfied with how it looks now. Despite all the nitpicking, it felt very rewarding to create something that grows alongside my interests. I'll try to keep this website as up to date as possible.
                 </p>
-                <p className="font-body mb-4 font-light">
+                {/* <p className="font-body mb-4 font-light">
                     Below are a few past iterations of the design, ordered from most to least recent:
                 </p>
                 
-                {/* Image Carousel */}
                 <div
                     ref={carouselRef}
                     className="relative w-full my-4"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
-                    {/* Main image container */}
                     <div
                         className="overflow-hidden rounded-lg border border-primary dark:border-darkBackground2 w-full"
                         onTouchStart={handleTouchStart}
@@ -139,7 +137,6 @@ export default function Website() {
                     </div>
 
                     <div className="flex items-center justify-between w-full">
-                        {/* Left arrow */}
                         <button
                             onClick={prevSlide}
                             className="text-[var(--primary)] transition-all flex items-center justify-center w-10 h-10 md:hover:scale-[1.2]"
@@ -150,7 +147,6 @@ export default function Website() {
                             </svg>
                         </button>
 
-                        {/* Indicators (centered) */}
                         <div className="flex space-x-4 px-2 overflow-x-auto py-2 no-scrollbar">
                             {images.map((_, index) => (
                                 <button
@@ -163,7 +159,6 @@ export default function Website() {
                             ))}
                         </div>
 
-                        {/* Right arrow */}
                         <button
                             onClick={nextSlide}
                             className="text-[var(--primary)] transition-all flex items-center justify-center w-10 h-10 md:hover:scale-[1.2]"
@@ -174,11 +169,7 @@ export default function Website() {
                             </svg>
                         </button>
                     </div>
-                </div>
-
-                <p className="font-body mb-6 font-light">
-                    For my current design, I tried to incorporate elements of a retro aesthetic while still keeping it minimalist, and I'm (mostly) satisfied with how it looks now. Despite all the nitpicking, it felt very rewarding to create something that grows alongside my interests. I'll try to keep this website as up to date as possible.
-                </p>
+                </div> */}
             </div>
         </div>
     );

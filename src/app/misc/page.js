@@ -51,7 +51,7 @@ const artData = [
   },
   {
     "title": "Creatures & Cryptids",
-    "description": "These are some illustrations inspired by famous cryptids and mythical creatures - I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their appearances are open to interpretation.",
+    "description": "These are some illustrations inspired by famous cryptids and mythical creatures — I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their appearances are open to interpretation.",
     "pieces": [
       {
         "description": "Wendigo (one of my favourite cryptids), drawn digitally",

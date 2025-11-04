@@ -34,6 +34,17 @@ const projects = [
   },
   {
     id: 3,
+    title: "Poképlants",
+    subtitle: "A game to make people feel more guilty about neglecting their houseplants (1st place @ Hack the 6ix)",
+    image: "/images/projects/pokeplants.png",
+    description: "Poképlants was built at Hack the 6ix, where our team of 4 wanted to tackle the issue of houseplants dying from lack of care. We wanted to make a product that would make plant care more fun, engaging, and rewarding, so we turned it into a Pokémon-inspired game. This project combines hardware sensors, computer vision, and Pokémon-style web-based RPG to monitor plants in real-time and gamify plant care.",
+    expandedContent: <Pokeplants />,
+    link: "https://devpost.com/software/pokeplants",
+    linkText: "Demo",
+    githubLink: "https://github.com/FO214/ht6"
+  },
+  {
+    id: 4,
     title: "Hydropower Inflow Forecasting",
     subtitle: "A machine learning model to optimize hydropower plants",
     image: "/images/projects/lstm.png",
@@ -43,17 +54,6 @@ const projects = [
     link: "",
     linkText: "",
     githubLink: ""
-  },
-  {
-    id: 4,
-    title: "Poképlants",
-    subtitle: "A game to make people feel more guilty about neglecting their houseplants (1st place @ Hack the 6ix)",
-    image: "/images/projects/pokeplants.png",
-    description: "Poképlants was built at Hack the 6ix, where our team of 4 wanted to tackle the issue of houseplants dying from lack of care. We wanted to make a product that would make plant care more fun, engaging, and rewarding, so we turned it into a Pokémon-inspired game. This project combines hardware sensors, computer vision, and Pokémon-style web-based RPG to monitor plants in real-time and gamify plant care.",
-    expandedContent: <Pokeplants />,
-    link: "https://devpost.com/software/pokeplants",
-    linkText: "Demo",
-    githubLink: "https://github.com/FO214/ht6"
   },
   {
     id: 5,

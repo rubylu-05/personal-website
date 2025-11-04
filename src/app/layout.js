@@ -202,7 +202,7 @@ export default function RootLayout({ children }) {
                       <MobileNavLink href="/misc" pathname={pathname} onClick={(e) => handleLinkClick(e, '/misc')}>Life Outside of Coding</MobileNavLink>
                     </div>
                     <div className="flex justify-center gap-4 px-4 pt-4">
-                      <a href="mailto:r25lu@uwaterloo.ca" rel="noopener noreferrer" className="text-[var(--primary)] transition-all">
+                      <a href="mailto:ruby.05.lu@gmail.com" rel="noopener noreferrer" className="text-[var(--primary)] transition-all">
                         <MdOutlineMail className="text-lg" />
                       </a>
                       <a href="https://www.linkedin.com/in/ruby-lu/" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] transition-all">
@@ -660,7 +660,7 @@ function SocialLinks() {
   return (
     <div className="flex justify-center gap-2 text-xl items-center">
       <div className="relative group flex items-center">
-        <a href="mailto:ruby.lu@uwaterloo.ca" rel="noopener noreferrer">
+        <a href="mailto:ruby.05.lu@gmail.com">
           <MdOutlineMail className="text-[var(--primary)] md:hover:scale-110 text-2xl transition-all" />
         </a>
         {!isMobile && (
@@ -788,6 +788,8 @@ function MobileNavLink({ href, pathname, onClick, children }) {
 function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, theme, currentIndex, currentMessage }) {
   const [currentAvatar, setCurrentAvatar] = useState(0);
   const [avatarHeight, setAvatarHeight] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const avatarRef = useRef(null);
   const isTyping = currentIndex < currentMessage.length;
 
@@ -798,7 +800,12 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
       setAvatarHeight(maxHeight);
     };
 
+    const checkTouchDevice = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+
     updateAvatarSize();
+    checkTouchDevice();
     window.addEventListener('resize', updateAvatarSize);
     return () => window.removeEventListener('resize', updateAvatarSize);
   }, []);
@@ -832,6 +839,18 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
     onAvatarClick();
   };
 
+  const handleMouseEnter = () => {
+    if (!isTouchDevice) {
+      setIsFlipped(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isTouchDevice) {
+      setIsFlipped(false);
+    }
+  };
+
   return (
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[520px] z-10">
       <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
@@ -851,21 +870,70 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
         <div className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-primary dark:border-t-darkBackground dark:filter dark:drop-shadow-[0_0_15px_rgba(230,220,224,0.3)]"></div>
       </div>
 
-      <div>
-        <img
-          ref={avatarRef}
-          src={getAvatarImage()}
-          alt="me"
+      <div 
+        className="relative mx-auto"
+        style={{
+          height: `${avatarHeight}px`,
+          width: '200px',
+          perspective: isTouchDevice ? 'none' : '1000px',
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div
+          className="relative w-full h-full transition-transform duration-600 ease-in-out"
           style={{
-            height: `${avatarHeight}px`,
-            width: 'auto',
-            maxWidth: '300px',
-            minWidth: '80px',
-            filter: theme === 'dark' ? 'drop-shadow(0 0 15px rgba(230, 220, 224, 0.1))' : 'none',
+            transformStyle: isTouchDevice ? 'flat' : 'preserve-3d',
+            transform: isTouchDevice ? 'none' : (isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'),
           }}
-          className="mx-auto object-contain transition-transform duration-400 cursor-pointer md:hover:scale-[103%] -mb-1"
-          onClick={handleAvatarClick}
-        />
+        >
+          <div
+            className="absolute w-full h-full backface-hidden flex items-center justify-center"
+            style={{
+              backfaceVisibility: isTouchDevice ? 'visible' : 'hidden',
+              WebkitBackfaceVisibility: isTouchDevice ? 'visible' : 'hidden',
+              // On touch devices, ensure the front is always visible
+              transform: isTouchDevice ? 'none' : undefined,
+            }}
+          >
+            <img
+              ref={avatarRef}
+              src={getAvatarImage()}
+              alt="me"
+              style={{
+                height: '100%',
+                width: 'auto',
+                maxWidth: '100%',
+                filter: theme === 'dark' ? 'drop-shadow(0 0 15px rgba(230, 220, 224, 0.1))' : 'none',
+              }}
+              className="object-contain cursor-pointer"
+              onClick={handleAvatarClick}
+            />
+          </div>
+          
+          <div
+            className="absolute w-full h-full backface-hidden flex items-center justify-center"
+            style={{
+              backfaceVisibility: isTouchDevice ? 'hidden' : 'hidden',
+              WebkitBackfaceVisibility: isTouchDevice ? 'hidden' : 'hidden',
+              transform: isTouchDevice ? 'none' : 'rotateY(180deg)',
+              display: isTouchDevice ? 'none' : 'flex',
+            }}
+          >
+            <img
+              src="/images/photos/avatar_photo.png"
+              alt="real me"
+              style={{
+                height: '100%',
+                width: 'auto',
+                maxWidth: 'none',
+                filter: theme === 'dark' ? 'drop-shadow(0 0 15px rgba(230, 220, 224, 0.1))' : 'none',
+              }}
+              className="object-contain cursor-pointer"
+              onClick={handleAvatarClick}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

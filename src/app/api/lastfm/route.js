@@ -21,20 +21,24 @@ export async function GET() {
     const isNowPlaying = recentTrack && recentTrack['@attr']?.nowplaying === "true";
     const topArtists = topArtistsData.topartists?.artist || [];
 
+    const fixName = (name) => {
+      return name.replace(/Travi\$/g, 'Travis');
+    };
+
     // Always return the most recent track, with nowplaying status
     return Response.json({
       nowplaying: isNowPlaying,
       track: {
-        artist: recentTrack?.artist,
+        artist: recentTrack?.artist ? fixName(recentTrack.artist['#text']) : undefined,
         name: recentTrack?.name,
-        album: recentTrack?.album,
+        album: recentTrack?.album ? fixName(recentTrack.album['#text']) : undefined,
         image: recentTrack?.image?.find(img => img.size === "large")?.["#text"] ||
                recentTrack?.image?.find(img => img.size === "medium")?.["#text"] ||
                recentTrack?.image?.[0]?.["#text"] || null
       },
       topartists: {
         artist: topArtists.map(artist => ({
-          name: artist.name,
+          name: fixName(artist.name),
           playcount: artist.playcount
         }))
       }
