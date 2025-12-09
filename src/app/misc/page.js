@@ -37,7 +37,7 @@ const artData = [
   },
   {
     "title": "Cats!",
-    "description": "I found a bunch of cute photos of cats on Pinterest as reference.",
+    "description": "I found cute photos of cats on Pinterest as reference.",
     "pieces": [
       {
         "description": "A sleepy cat, painted with acrylics",
@@ -54,11 +54,11 @@ const artData = [
     "description": "These are some illustrations inspired by famous cryptids and mythical creatures — I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their appearances are open to interpretation.",
     "pieces": [
       {
-        "description": "Wendigo (one of my favourite cryptids), drawn digitally",
+        "description": "Wendigo, drawn digitally",
         "image": "images/art/wendigo.png"
       },
       {
-        "description": "Mothman (another one of my favourites), drawn with pencils",
+        "description": "Mothman (one of my favourites), drawn with pencils",
         "image": "images/art/mothman.jpg"
       }
     ]
@@ -70,7 +70,7 @@ const artData = [
         "image": "images/art/deathworm.png"
       },
       {
-        "description": "Original (?), drawn digitally",
+        "description": "(?), drawn digitally",
         "image": "images/art/creature.png"
       },
       {
@@ -267,7 +267,7 @@ const RecentMediaSection = () => (
   <>
     <SectionHeading ellipseRotation={5} ellipseLength={300}>Recent Watching & Listening</SectionHeading>
     <p className="font-body font-light mb-2 text-lg">
-      I like to watch movies. I've always had a lot of interest in the horror genre in particular, from campy 80's horror (I love the practical effects from that era!) to slow-burn atmospheric dread. But my taste is super wide and I enjoy movies from pretty much any genre.
+      I'm a big movie enjoyer! I especially love the horror genre in all its glorious (or sometimes absurd) forms, from campy 80's horror to slow-burn atmospheric dread. But my taste is super wide and I enjoy movies from pretty much any genre.
     </p>
     <p className="font-body font-light mb-6 text-lg">
       Below are my most recently watched movies (synced with my <ExternalLink href="https://letterboxd.com/rubylu/">Letterboxd</ExternalLink> account), as well as my top played artists this week (synced with my <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">Spotify</ExternalLink> listening).
@@ -305,7 +305,7 @@ const RecommendationForm = ({
 }) => (
   <div>
     <p className="font-body font-light mb-6 text-lg">
-      If you've made it this far, feel free to give me recommendations if you have any :) I'm not picky and I love watching & listening to new things.
+      If you've made it this far, feel free to give me recommendations if you have any :) I'm not picky and I love watching/listening to new things.
     </p>
 
     <form onSubmit={onSubmit}>

@@ -983,7 +983,7 @@ function NoTracksDisplay() {
       <div className="text-left overflow-hidden min-w-0">
         <div className="text-xs text-[var(--primary)] font-light">Last Played on Spotify:</div>
         <div className="font-bold">—</div>
-        <div className="text-xs text-[var(--primary)] font-light">[No recent tracks found]</div>
+        <div className="text-xs text-[var(--primary)] font-light">No recent tracks found</div>
       </div>
     </div>
   );

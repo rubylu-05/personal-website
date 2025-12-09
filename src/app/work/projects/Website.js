@@ -106,7 +106,7 @@ export default function Website() {
                     I was initially unsure about whether I should make this website strictly professional or a little more casual. Ultimately, I leaned into the latter because I wanted it to be like a snapshot of the person I am right now.
                 </p>
                 <p className="font-body mb-4 font-light">
-                    I built this website from scratch and I'm a bit of a perfectionist, so it ended up becoming a never-ending cycle of tweaks and refinements. I became very fixated on tiny design choices; as a result, I spent an embarrassing amount of time browsing fonts, adjusting hex codes, and trying out different hover animations. For my current design, I tried to incorporate elements of a retro aesthetic, and I'm (mostly) satisfied with how it looks now. Despite all the nitpicking, it felt very rewarding to create something that grows alongside my interests. I'll try to keep this website as up to date as possible.
+                    I built this website from scratch and I'm a bit of a perfectionist, so it ended up becoming a never-ending cycle of tweaks and refinements. I became very fixated on tiny design choices; as a result, I spent an embarrassing amount of time browsing fonts, adjusting hex codes, and trying out different hover animations. Still, it was fun and it felt very rewarding to create something that grows alongside my interests. I'll try to keep this website as up to date as possible.
                 </p>
                 {/* <p className="font-body mb-4 font-light">
                     Below are a few past iterations of the design, ordered from most to least recent:
