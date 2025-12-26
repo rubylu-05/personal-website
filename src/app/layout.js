@@ -224,66 +224,18 @@ export default function RootLayout({ children }) {
               </div>
             )}
 
-            {isScrolled ? (
-              <div className="fixed bottom-4 right-4 z-[1000]">
+            {/* FIXED SCROLL TO TOP: Only active when main is visible and scrolled */}
+            {!isSidebarVisible && (
+              <div className={`fixed bottom-4 right-4 z-[1000] transition-all duration-300 ${isScrolled ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none translate-y-4'}`}>
                 <button
                   onClick={scrollToTop}
-                  className="
-        transition-all 
-        w-10 h-10 p-2 
-        border border-primary dark:border-darkBackground2 
-        bg-background dark:bg-darkBackground2 
-        rounded-full 
-        dark:shadow-[0_0_15px_rgba(0,0,0,0.5)]
-        flex items-center justify-center
-        animate-slide-up"
+                  className="w-10 h-10 p-2 border border-primary dark:border-darkBackground2 bg-background dark:bg-darkBackground2 rounded-full dark:shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center"
                   aria-label="scroll to top"
                 >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-[var(--primary)]"
-                  >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--primary)]">
                     <path d="M18 15l-6-6-6 6" />
                   </svg>
                 </button>
-              </div>
-            ) : (
-              <div className="fixed bottom-4 right-4 z-[1000]">
-                <div className="animate-slide-down">
-                  <button
-                    onClick={scrollToTop}
-                    className="
-                    transition-all 
-                    w-10 h-10 p-2 
-                    border border-primary dark:border-darkBackground2 
-                    bg-background dark:bg-darkBackground2 
-                    rounded-full 
-                    dark:shadow-[0_0_15px_rgba(0,0,0,0.5)]
-                    flex items-center justify-center"
-                    aria-label="scroll to top"
-                  >
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-[var(--primary)]"
-                    >
-                      <path d="M18 15l-6-6-6 6" />
-                    </svg>
-                  </button>
-                </div>
               </div>
             )}
 
@@ -304,9 +256,9 @@ export default function RootLayout({ children }) {
               />
             )}
 
-            <main className={`flex-1 transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full' : 'translate-x-0'} overflow-y-auto ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''}`}>
+            {/* FIXED MAIN: Added pointer-events-none when sidebar is visible to prevent click blocking */}
+            <main className={`flex-1 transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full pointer-events-none' : 'translate-x-0 pointer-events-auto'} overflow-y-auto ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''}`}>
               <div className="relative min-h-full">
-                {/* Dots pattern background */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
                   {!isMobile && (
                     <div
@@ -431,7 +383,6 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
               style={{ pointerEvents: 'none' }}
             />
 
-            {/* Main ellipse */}
             <ellipse
               cx="150"
               cy="70"
@@ -447,7 +398,6 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
               }}
             />
 
-            {/* Top, between 'y' and 'L' */}
             <svg
               x="170"
               y="15"
@@ -469,7 +419,6 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
               />
             </svg>
 
-            {/* Below 'R' slightly to the left */}
             <svg
               x="55"
               y="100"
@@ -491,7 +440,6 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
               />
             </svg>
 
-            {/* Below 'u' bottom right side */}
             <svg
               x="250"
               y="105"
@@ -536,7 +484,6 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
                 Ruby Lu
               </text>
 
-              {/* Text with stroke */}
               <text
                 x="50%"
                 y="60%"
@@ -553,7 +500,6 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
                 Ruby Lu
               </text>
 
-              {/* Text fill */}
               <text
                 x="50%"
                 y="60%"
@@ -587,9 +533,11 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
           <span className="font-bold dark:text-darkSecondary tracking-tighter dark:neon-glow"> Ruby Lu</span>
         </div>
 
+        {/* WEBRING WIDGET */}
         <div className="absolute bottom-3 right-4 flex items-center z-20 group">
           <a
             href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=prev"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--primary)] md:hover:scale-110 transition-all flex items-center justify-center w-3 h-3 mr-[-4px]"
             aria-label="Previous"
@@ -623,6 +571,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
 
           <a
             href="https://cs.uwatering.com/#https://www.rubylu.dev/?nav=next"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--primary)] md:hover:scale-110 transition-all flex items-center justify-center w-3 h-3 ml-[-8px]"
             aria-label="Next"
@@ -852,8 +801,10 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
   };
 
   return (
-    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[520px] z-10">
-      <div className="relative -top-5 mx-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
+    // FIXED: pointer-events-none on the wrapper so clicks pass to webring behind it
+    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[520px] z-10 pointer-events-none">
+      {/* FIXED: pointer-events-auto on the children that need interaction */}
+      <div className="relative -top-5 mx-auto pointer-events-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
         <div
           className={`bg-[var(--background)] border border-primary dark:border-darkBackground p-2 px-4 text-[var(--primary)] whitespace-pre-line text-center min-h-[40px] font-body font-light text-base rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)] ${showNowPlaying ? 'pr-6' : ''}`}
         >
@@ -871,7 +822,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
       </div>
 
       <div 
-        className="relative mx-auto"
+        className="relative mx-auto pointer-events-auto"
         style={{
           height: `${avatarHeight}px`,
           width: '200px',
@@ -892,7 +843,6 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
             style={{
               backfaceVisibility: isTouchDevice ? 'visible' : 'hidden',
               WebkitBackfaceVisibility: isTouchDevice ? 'visible' : 'hidden',
-              // On touch devices, ensure the front is always visible
               transform: isTouchDevice ? 'none' : undefined,
             }}
           >
