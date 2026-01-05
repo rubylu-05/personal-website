@@ -83,7 +83,7 @@ export default function About() {
         <div>
           <TimelineItem>
             <p className="mb-4 font-body font-light text-lg">
-              This fall term, I'm interning at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle! I'm working with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles for infrastructure tooling. It's been super interesting to learn about the challenges of maintaining a massive, high-performance database.
+              This past fall term, I interned at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle! I worked with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles for infrastructure tooling. It was super interesting to learn about the challenges of maintaining a massive, high-performance database.
             </p>
           </TimelineItem>
           <TimelineItem>

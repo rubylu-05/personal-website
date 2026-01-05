@@ -9,7 +9,8 @@ import { useState } from 'react';
 
 const artData = [
   {
-    "title": "Digital",
+    "title": "Digital Art",
+    "columns": 1,
     "pieces": [
       {
         "description": "Street under a pink sky, drawn digitally",
@@ -19,7 +20,56 @@ const artData = [
     ]
   },
   {
+    "title": "Creature Design", 
+    "columns": 2,
+    "description": "I love seeing creative creature design when I watch sci-fi or horror media, so I sometimes experiment by making concept art of my own. These are just some amateur sketches and a fun way for me to get a bit creative. I use alcohol markers, a black pen, and a white gel pen.",
+    "pieces": [
+      {
+        "description": "A creature that's meant to look a bit swampy and uncanny, inspired by the monster from Cloverfield (2008)",
+        "image": "images/art/creaturedesign2.png"
+      },
+      {
+        "description": "Some sort of insectoid predator, inspired by the creatures from The Mist (2007)",
+        "image": "images/art/creaturedesign1.png"
+      }
+    ]
+  },
+  {
+    "title": "Cryptids & Mythical Creatures",
+    "columns": 2,
+    "description": "These are some illustrations inspired by famous cryptids and mythical creatures — I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their appearances are open to interpretation.",
+    "pieces": [
+      {
+        "description": "Wendigo, drawn digitally",
+        "image": "images/art/wendigo.png"
+      },
+      {
+        "description": "Mothman (one of my favourites), drawn with pencils",
+        "image": "images/art/mothman.jpg"
+      }
+    ]
+  },
+  {
+    "columns": 3,
+    "pieces": [
+      {
+        "description": "Death worm, drawn digitally",
+        "image": "images/art/deathworm.png"
+      },
+      {
+        "description": "(?), drawn digitally",
+        "image": "images/art/creature.png"
+      },
+      {
+        "description": "Dragon, drawn digitally",
+        "image": "images/art/dragon.png"
+      }
+    ]
+  },
+  {
     "title": "Alcohol Markers",
+    "columns": 3,
+    "description": "Alcohol markers are probably my go-to medium since they offer a middle ground between drawing and painting. They're fun to colour with.",
     "pieces": [
       {
         "description": "I bought some grayscale Tombow alcohol markers from Dollarama and watched Mad Max: Fury Road for the first time, inspiring me to draw this",
@@ -37,10 +87,11 @@ const artData = [
   },
   {
     "title": "Cats!",
-    "description": "I found cute photos of cats on Pinterest as reference.",
+    "columns": 3,
+    "description": "I used cute photos of cats from Pinterest as reference.",
     "pieces": [
       {
-        "description": "A sleepy cat, painted with acrylics",
+        "description": "A sleepy cat, painted in acrylic",
         "image": "/images/art/cat.jpg"
       },
       {
@@ -50,37 +101,8 @@ const artData = [
     ]
   },
   {
-    "title": "Creatures & Cryptids",
-    "description": "These are some illustrations inspired by famous cryptids and mythical creatures — I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their appearances are open to interpretation.",
-    "pieces": [
-      {
-        "description": "Wendigo, drawn digitally",
-        "image": "images/art/wendigo.png"
-      },
-      {
-        "description": "Mothman (one of my favourites), drawn with pencils",
-        "image": "images/art/mothman.jpg"
-      }
-    ]
-  },
-  {
-    "pieces": [
-      {
-        "description": "Death worm, drawn digitally",
-        "image": "images/art/deathworm.png"
-      },
-      {
-        "description": "(?), drawn digitally",
-        "image": "images/art/creature.png"
-      },
-      {
-        "description": "Dragon, drawn digitally",
-        "image": "images/art/dragon.png"
-      }
-    ]
-  },
-  {
     "title": "Needle Felting",
+    "columns": 3,
     "description": "Needle felting is pretty fun! I've made a bunch of little animals, but here are my favourites.",
     "pieces": [
       {
@@ -119,10 +141,7 @@ export default function Misc() {
         body: JSON.stringify({ watchRec, listenRec }),
       });
 
-      setSubmitMessage(response.ok
-        ? 'Thanks!'
-        : 'Failed to send :('
-      );
+      setSubmitMessage(response.ok ? 'Thanks!' : 'Failed to send :(');
 
       if (response.ok) {
         setWatchRec('');
@@ -138,7 +157,6 @@ export default function Misc() {
 
   return (
     <div>
-      {/* Jump to navigation */}
       <div className="overflow-x-hidden p-6 py-4 bg-[var(--background)] transition-all mb-10">
         <div className="flex flex-wrap gap-4 items-center">
           <span className="font-body font-light text-lg">Jump to:</span>
@@ -180,32 +198,19 @@ const JumpToLink = ({ href, label }) => {
     const targetId = href.replace('#', '');
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
-    <a
-      href={href}
-      onClick={handleClick}
-      className="relative inline-block group"
-    >
-      {/* Shadow Layer */}
+    <a href={href} onClick={handleClick} className="relative inline-block group">
       <div className="absolute top-[4px] left-[4px] z-0">
         <div className="py-1 px-3 flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
-          <span className="font-body text-sm text-[var(--primary)]">
-            {label}
-          </span>
+          <span className="font-body text-sm text-[var(--primary)]">{label}</span>
         </div>
       </div>
-      {/* Main Button Layer */}
       <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 py-1 px-3 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground2 group-hover:-translate-y-0.5 group-hover:-translate-x-0.5 rounded-full">
-        <span className="font-body text-sm text-[var(--primary)]">
-          {label}
-        </span>
+        <span className="font-body text-sm text-[var(--primary)]">{label}</span>
       </div>
     </a>
   );
@@ -218,35 +223,37 @@ const ArtGallery = ({ artGroups }) => (
       A gallery of miscellaneous drawings, paintings, and crafts!
     </p>
 
-    {artGroups.map((group, groupIndex) => (
-      <div key={groupIndex} className="mb-4">
-        {group.title && (
-          <h2 className="text-2xl font-body font-bold text-primary dark:text-darkSecondary mb-2 mt-10 tracking-tighter dark:neon-glow">
-            {group.title}
-          </h2>
-        )}
-        {group.description && (
-          <p className="mb-4 font-body font-light text-lg">{group.description}</p>
-        )}
+    {artGroups.map((group, groupIndex) => {
+      const desktopCols = group.columns === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3';
+      
+      return (
+        <div key={groupIndex} className="mb-4">
+          {group.title && (
+            <h2 className="text-2xl font-body font-bold text-primary dark:text-darkSecondary mb-2 mt-10 tracking-tighter dark:neon-glow">
+              {group.title}
+            </h2>
+          )}
+          {group.description && (
+            <p className="mb-4 font-body font-light text-lg">{group.description}</p>
+          )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {group.pieces.map((piece, pieceIndex) => (
-            <ArtPiece key={pieceIndex} piece={piece} />
-          ))}
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${desktopCols}`}>
+            {group.pieces.map((piece, pieceIndex) => (
+              <ArtPiece key={pieceIndex} piece={piece} />
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
+      );
+    })}
   </>
 );
 
 const ArtPiece = ({ piece }) => (
   <div className={`${piece.fullWidth ? "col-span-full" : ""}`}>
     <div className="relative">
-      {/* Shadow effect */}
       <div className="relative before:absolute before:content-[''] before:top-[4px] before:left-[4px] 
                       before:w-full before:h-full before:bg-primary dark:before:bg-darkSecondary 
                       before:rounded-xl before:z-0">
-        {/* Main image */}
         <div className="relative z-10 transition-transform duration-300 
                         border border-primary dark:border-0 rounded-xl
                         md:hover:-translate-y-0.5 md:hover:-translate-x-0.5">
@@ -258,7 +265,6 @@ const ArtPiece = ({ piece }) => (
         </div>
       </div>
     </div>
-    {/* Description text */}
     <p className="font-body text-xs mt-2">{piece.description}</p>
   </div>
 );
@@ -348,7 +354,6 @@ const RecommendationInput = ({ label, value, onChange, placeholder }) => (
 
 const SubmitButton = ({ isSubmitting }) => (
   <div className="relative inline-block">
-    {/* Shadow Layer */}
     <div className="absolute top-[4px] left-[4px] z-0">
       <div className="py-2 px-4 pt flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
         <span className="font-body text-base text-[var(--primary)]">
@@ -356,7 +361,6 @@ const SubmitButton = ({ isSubmitting }) => (
         </span>
       </div>
     </div>
-    {/* Main Button Layer */}
     <button
       type="submit"
       disabled={isSubmitting}

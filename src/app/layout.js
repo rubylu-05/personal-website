@@ -801,9 +801,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
   };
 
   return (
-    // FIXED: pointer-events-none on the wrapper so clicks pass to webring behind it
     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[520px] z-10 pointer-events-none">
-      {/* FIXED: pointer-events-auto on the children that need interaction */}
       <div className="relative -top-5 mx-auto pointer-events-auto" style={{ width: "fit-content", maxWidth: "70%" }}>
         <div
           className={`bg-[var(--background)] border border-primary dark:border-darkBackground p-2 px-4 text-[var(--primary)] whitespace-pre-line text-center min-h-[40px] font-body font-light text-base rounded-full dark:shadow-[0_0_15px_rgba(230,220,224,0.1)] ${showNowPlaying ? 'pr-6' : ''}`}
@@ -822,10 +820,10 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
       </div>
 
       <div 
-        className="relative mx-auto pointer-events-auto"
+        className="relative mx-auto pointer-events-auto flex justify-center"
         style={{
           height: `${avatarHeight}px`,
-          width: '200px',
+          width: 'auto', // Removed fixed 200px width
           perspective: isTouchDevice ? 'none' : '1000px',
         }}
         onMouseEnter={handleMouseEnter}
@@ -839,7 +837,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
           }}
         >
           <div
-            className="absolute w-full h-full backface-hidden flex items-center justify-center"
+            className="absolute inset-0 backface-hidden flex items-center justify-center"
             style={{
               backfaceVisibility: isTouchDevice ? 'visible' : 'hidden',
               WebkitBackfaceVisibility: isTouchDevice ? 'visible' : 'hidden',
@@ -853,7 +851,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
               style={{
                 height: '100%',
                 width: 'auto',
-                maxWidth: '100%',
+                maxWidth: 'none',
                 filter: theme === 'dark' ? 'drop-shadow(0 0 15px rgba(230, 220, 224, 0.1))' : 'none',
               }}
               className="object-contain cursor-pointer"
@@ -862,7 +860,7 @@ function DialogueBox({ displayText, showNowPlaying, nowPlaying, onAvatarClick, t
           </div>
           
           <div
-            className="absolute w-full h-full backface-hidden flex items-center justify-center"
+            className="absolute inset-0 backface-hidden flex items-center justify-center"
             style={{
               backfaceVisibility: isTouchDevice ? 'hidden' : 'hidden',
               WebkitBackfaceVisibility: isTouchDevice ? 'hidden' : 'hidden',
