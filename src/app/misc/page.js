@@ -69,7 +69,7 @@ const artData = [
   {
     "title": "Alcohol Markers",
     "columns": 3,
-    "description": "Alcohol markers are probably my go-to medium since they offer a middle ground between drawing and painting. They're fun to colour with.",
+    "description": "Alcohol markers are one of my go-to mediums since they offer a middle ground between drawing and painting. They're nice to colour with.",
     "pieces": [
       {
         "description": "I bought some grayscale Tombow alcohol markers from Dollarama and watched Mad Max: Fury Road for the first time, inspiring me to draw this",

@@ -68,11 +68,11 @@ export default function About() {
       <div className="p-6 bg-[var(--background)] transition-all">
         <SectionHeading ellipseRotation={-8} ellipseLength={150}>Hi, I'm Ruby!</SectionHeading>
         <p className="mb-4 font-body font-light text-lg">
-          As a Waterloo computer science student, I've worked across a variety of tech stacks in personal, academic, and professional projects, but I'm always eager to learn more. I'm particularly interested in distributed systems and backend engineering, and I'm growing my interest in the intersection of AI and large-scale systems.
+          I study computer science at the <ExternalLink href="https://maps.app.goo.gl/sK6uhRsgKs8JgN9FA">University of Waterloo</ExternalLink>. My primary focus lies in backend engineering and distributed systems, but I'm increasingly fascinated by the infrastructure required to support large-scale AI systems.
         </p>
         <p className="mb-4 font-body font-light text-lg">
           When I'm not staring at a terminal, you'll probably find me indulging in my creative side through <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow">art</Link>,
-          whether it's sketching, painting, digital art, or working with alcohol markers. I also like to make an unnecessary amount of Spotify <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">playlists</ExternalLink> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged <ExternalLink href="https://letterboxd.com/rubylu/">{displayCount} films</ExternalLink> (<ExternalLink href="https://letterboxd.com/rubylu/diary">{displayYearlyCount} this year</ExternalLink>) on Letterboxd so far.
+          whether it's drawing, painting, or digital art. I also like to make an unnecessary amount of Spotify <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">playlists</ExternalLink> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged <ExternalLink href="https://letterboxd.com/rubylu/">{displayCount} films</ExternalLink> (<ExternalLink href="https://letterboxd.com/rubylu/diary">{displayYearlyCount} this year</ExternalLink>) on Letterboxd so far. I've recently started learning guitar too.
         </p>
         <p className="mb-4 font-body font-light text-lg">
           This website, which I’ve poured many hours into, is an attempt to capture my growth as a developer as well as the passions that fuel me outside of tech. Thanks for stopping by!
@@ -99,7 +99,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="p-6 bg-[var(--background)] transition-all mt-9">
+      {/* <div className="p-6 bg-[var(--background)] transition-all mt-9">
         <SectionHeading ellipseRotation={-5} ellipseLength={200}>Technical Skills</SectionHeading>
         <p className="mb-4 font-body font-light text-lg">These are some languages, libraries, frameworks, and technologies that I have experience working with.</p>
 
@@ -118,7 +118,7 @@ export default function About() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
         <SectionHeading ellipseRotation={5} ellipseLength={150}>Also</SectionHeading>
