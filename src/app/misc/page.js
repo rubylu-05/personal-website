@@ -219,7 +219,7 @@ const JumpToLink = ({ href, label }) => {
 const ArtGallery = ({ artGroups }) => (
   <>
     <SectionHeading ellipseRotation={-7} ellipseLength={230}>Artistic Work</SectionHeading>
-    <p className="font-body font-light text-lg">
+    <p className="font-body font-light lg:text-lg">
       A gallery of miscellaneous drawings, paintings, and crafts!
     </p>
 
@@ -234,7 +234,7 @@ const ArtGallery = ({ artGroups }) => (
             </h2>
           )}
           {group.description && (
-            <p className="mb-4 font-body font-light text-lg">{group.description}</p>
+            <p className="mb-4 font-body font-light lg:text-lg">{group.description}</p>
           )}
 
           <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${desktopCols}`}>
@@ -272,10 +272,10 @@ const ArtPiece = ({ piece }) => (
 const RecentMediaSection = () => (
   <>
     <SectionHeading ellipseRotation={5} ellipseLength={300}>Recent Watching & Listening</SectionHeading>
-    <p className="font-body font-light mb-2 text-lg">
-      I'm a big movie enjoyer! I especially love the horror genre in all its glorious (or sometimes absurd) forms, from campy 80's horror to slow-burn atmospheric dread. But my taste is super wide and I enjoy movies from pretty much any genre.
+    <p className="font-body font-light mb-2 lg:text-lg">
+      I'm a big movie lover! I especially love the horror genre in all its glorious (or sometimes absurd) forms, from campy 80's horror to slow-burn atmospheric dread. But my taste is super wide and I enjoy movies from pretty much any genre.
     </p>
-    <p className="font-body font-light mb-6 text-lg">
+    <p className="font-body font-light mb-6 lg:text-lg">
       Below are my most recently watched movies (synced with my <ExternalLink href="https://letterboxd.com/rubylu/">Letterboxd</ExternalLink> account), as well as my top played artists this week (synced with my <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">Spotify</ExternalLink> listening).
     </p>
     <div className="mb-10">
@@ -288,7 +288,7 @@ const RecentMediaSection = () => (
 const FavouritesSection = () => (
   <>
     <SectionHeading ellipseRotation={-6} ellipseLength={200}>Favourites!</SectionHeading>
-    <p className="font-body font-light mb-4 text-lg">
+    <p className="font-body font-light mb-4 lg:text-lg">
       Here are some movies I love! It was really hard to choose only 20. This list is probably full of recency bias and will change pretty often.
     </p>
     <div className="mb-10">
@@ -310,12 +310,12 @@ const RecommendationForm = ({
   onSubmit
 }) => (
   <div>
-    <p className="font-body font-light mb-6 text-lg">
+    <p className="font-body font-light mb-6 lg:text-lg">
       If you've made it this far, feel free to give me recommendations if you have any :) I'm not picky and I love watching/listening to new things.
     </p>
 
     <form onSubmit={onSubmit}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 text-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 lg:text-lg">
         <RecommendationInput
           label="Tell me what to watch:"
           value={watchRec}

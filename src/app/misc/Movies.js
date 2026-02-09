@@ -6,9 +6,11 @@ function Movies() {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
     const [offset, setOffset] = useState(0);
+    const [visibleItems, setVisibleItems] = useState(4);
+
     const containerRef = useRef(null);
-    const itemRefs = useRef([]);
     const autoScrollInterval = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
     const componentRef = useRef(null);
@@ -29,6 +31,23 @@ function Movies() {
     }, []);
 
     useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (width < 640) {
+                setVisibleItems(2); // mobile
+            } else if (width < 1024) {
+                setVisibleItems(3); // tablet
+            } else {
+                setVisibleItems(4); // laptop/desktop
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -37,10 +56,7 @@ function Movies() {
                     stopAutoScroll();
                 }
             },
-            {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            }
+            { threshold: 0.1 }
         );
 
         if (componentRef.current) {
@@ -53,14 +69,16 @@ function Movies() {
             }
             stopAutoScroll();
         };
-    }, [movies.length]);
+    }, [movies.length, visibleItems, offset]);
+
+    const maxOffset = Math.max(0, movies.length - visibleItems);
 
     const startAutoScroll = () => {
         if (autoScrollInterval.current) return;
         if (movies.length === 0) return;
 
         autoScrollInterval.current = setInterval(() => {
-            setOffset(prev => (prev + 1) % movies.length);
+            nextMovie();
         }, 5000);
     };
 
@@ -71,37 +89,39 @@ function Movies() {
         }
     };
 
+    const resetAutoScroll = () => {
+        stopAutoScroll();
+        if (!isHovered) startAutoScroll();
+    };
+
     const nextMovie = () => {
-        setOffset(prev => (prev + 1) % movies.length);
+        setOffset(prev => {
+            if (prev >= maxOffset) return 0;
+            return prev + 1;
+        });
         resetAutoScroll();
     };
 
     const prevMovie = () => {
-        setOffset(prev => (prev - 1 + movies.length) % movies.length);
+        setOffset(prev => {
+            if (prev <= 0) return maxOffset;
+            return prev - 1;
+        });
         resetAutoScroll();
     };
 
     const goToMovie = (index) => {
-        setOffset(index);
+        let safeIndex = index;
+        if (safeIndex > maxOffset) safeIndex = maxOffset;
+        setOffset(safeIndex);
         resetAutoScroll();
-    };
-
-    const resetAutoScroll = () => {
-        stopAutoScroll();
-        startAutoScroll();
     };
 
     useEffect(() => {
         if (isHovered) {
             stopAutoScroll();
-        } else if (componentRef.current) {
-            const observer = new IntersectionObserver(([entry]) => {
-                if (entry.isIntersecting) {
-                    startAutoScroll();
-                }
-            }, { threshold: 0.1 });
-            observer.observe(componentRef.current);
-            return () => observer.disconnect();
+        } else {
+            startAutoScroll();
         }
     }, [isHovered]);
 
@@ -114,66 +134,69 @@ function Movies() {
         const diff = touchStartX - touchEndX;
 
         if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                nextMovie();
-            } else {
-                prevMovie();
-            }
+            if (diff > 0) nextMovie();
+            else prevMovie();
         }
     };
 
-    if (loading) {
-        return <p className="font-body font-light">Loading movie data...</p>;
-    }
-
-    if (error) {
-        return <p className="font-body font-light">{error}</p>;
-    }
+    if (loading) return <p className="font-body font-light">Loading movie data...</p>;
+    if (error) return <p className="font-body font-light">{error}</p>;
 
     return (
         <div ref={componentRef}>
             <h3 className="text-2xl font-body font-bold text-primary dark:text-darkSecondary mb-1 tracking-tight dark:neon-glow">Favourite Movies</h3>
-            <div className="relative">
-                <div
-                    className="flex items-center"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                >
+
+            <div
+                className="group/container"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+            >
+                {/* --- Slider Wrapper --- */}
+                <div className="relative">
+
+                    {/* --- Left Button --- */}
                     <button
                         onClick={prevMovie}
-                        className="text-[var(--primary)] transition-all absolute left-0 z-10 flex items-center justify-center w-10 h-14 group"
-                        style={{ transform: 'translateX(-70%)' }}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 -translate-x-1/2 z-40 
+                               w-10 h-10 rounded-full 
+                               bg-background dark:bg-darkPrimary
+                               border border-primary dark:border-darkPrimary 
+                               text-primary dark:text-darkBackground
+                               flex items-center justify-center 
+                               transition-transform duration-200 hover:scale-110 shadow-md cursor-pointer"
                         aria-label="Previous movie"
                     >
-                        <div className="group-hover:scale-[1.2] transition-transform">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M15 18l-6-6 6-6" />
-                            </svg>
-                        </div>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
                     </button>
 
-                    <div className="relative w-full overflow-x-hidden overflow-y-visible min-h-[19rem] p-1">
+                    {/* --- Movie Cards Container --- */}
+                    <div className="relative w-full overflow-hidden min-h-[19rem] px-1 pt-1 pb-4 pl-2">
                         <div
                             ref={containerRef}
-                            className="flex transition-all pl-0"
+                            className="flex transition-transform duration-500 ease-in-out -ml-2"
                             style={{
-                                transform: `translateX(${-offset * (itemRefs.current[0]?.offsetWidth + 16)}px)`
+                                transform: `translateX(-${offset * (100 / visibleItems)}%)`
                             }}
                         >
                             {movies.map((movie, index) => (
                                 <div
                                     key={`${movie.title}-${index}`}
-                                    ref={el => itemRefs.current[index] = el}
-                                    className="relative flex-shrink-0 w-40 mx-2 cursor-pointer first:ml-0"
+                                    className="relative flex-shrink-0 cursor-pointer"
+                                    style={{
+                                        width: `${100 / visibleItems}%`,
+                                        padding: '0 0.5rem'
+                                    }}
                                     onClick={() => goToMovie(index)}
                                 >
                                     {/* Shadow Layer */}
-                                    <div className="absolute top-[4px] left-[4px] z-0 w-full h-full bg-primary dark:bg-darkSecondary rounded-2xl"></div>
+                                    <div className="absolute top-0 left-[0.5rem] right-[0.5rem] bottom-0 h-full bg-primary dark:bg-darkSecondary rounded-2xl -z-10 translate-x-[4px] translate-y-[4px]"></div>
 
                                     {/* Main Card Layer */}
-                                    <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkBackground2 p-3 md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-2xl">
+                                    <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 border border-primary dark:border-darkBackground2 p-3 md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-2xl h-full">
                                         <div className="w-full mb-3 overflow-hidden border border-primary dark:border-darkBackground2 rounded-xl">
                                             {movie.image ? (
                                                 <img
@@ -210,29 +233,38 @@ function Movies() {
                         </div>
                     </div>
 
+                    {/* --- Right Button --- */}
                     <button
                         onClick={nextMovie}
-                        className="text-[var(--primary)] transition-all absolute right-0 z-10 flex items-center justify-center w-10 h-14 group"
-                        style={{ transform: 'translateX(70%)' }}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 translate-x-1/2 z-40 
+                               w-10 h-10 rounded-full 
+                               bg-background dark:bg-darkPrimary
+                               border border-primary dark:border-darkPrimary
+                               text-primary dark:text-darkBackground
+                               flex items-center justify-center 
+                               transition-transform duration-200 hover:scale-110 shadow-md cursor-pointer"
                         aria-label="Next movie"
                     >
-                        <div className="group-hover:scale-[1.2] transition-transform">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M9 18l6-6-6-6" />
-                            </svg>
-                        </div>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
                     </button>
                 </div>
 
+                {/* --- Dots Indicator --- */}
                 <div className="flex justify-center mt-2 space-x-2 overflow-x-auto py-2 no-scrollbar">
-                    {movies.map((_, index) => (
-                        <button
-                            key={`indicator-${index}`}
-                            onClick={() => goToMovie(index)}
-                            className={`flex-shrink-0 w-2 h-2 transition-all rounded-full md:hover:scale-[1.2] ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4 dark:drop-shadow-[0_0_4px_rgba(230,220,224,0.3)]' : 'bg-background dark:bg-darkPrimary border border-primary dark:border-0'}`}
-                            aria-label={`Go to movie ${index + 1}`}
-                        />
-                    ))}
+                    {movies.map((_, index) => {
+                        if (index > maxOffset && index !== offset) return null;
+
+                        return (
+                            <button
+                                key={`indicator-${index}`}
+                                onClick={() => goToMovie(index)}
+                                className={`flex-shrink-0 w-2 h-2 transition-all rounded-full md:hover:scale-[1.2] ${index === offset ? 'bg-primary dark:bg-darkSecondary w-4 dark:drop-shadow-[0_0_4px_rgba(230,220,224,0.3)]' : 'bg-background dark:bg-darkPrimary border border-primary dark:border-0'}`}
+                                aria-label={`Go to movie ${index + 1}`}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </div >

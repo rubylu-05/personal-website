@@ -224,12 +224,11 @@ export default function RootLayout({ children }) {
               </div>
             )}
 
-            {/* FIXED SCROLL TO TOP: Only active when main is visible and scrolled */}
             {!isSidebarVisible && (
               <div className={`fixed bottom-4 right-4 z-[1000] transition-all duration-300 ${isScrolled ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none translate-y-4'}`}>
                 <button
                   onClick={scrollToTop}
-                  className="w-10 h-10 p-2 border border-primary dark:border-darkBackground2 bg-background dark:bg-darkBackground2 rounded-full dark:shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center"
+                  className="w-10 h-10 p-2 border border-primary dark:border-darkBackground2 bg-background dark:bg-darkBackground2 rounded-full dark:shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center hover:scale-110 transition-all"
                   aria-label="scroll to top"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--primary)]">
@@ -256,7 +255,6 @@ export default function RootLayout({ children }) {
               />
             )}
 
-            {/* FIXED MAIN: Added pointer-events-none when sidebar is visible to prevent click blocking */}
             <main className={`flex-1 transition-all duration-700 ${isSidebarVisible && !isMobile ? 'translate-x-full pointer-events-none' : 'translate-x-0 pointer-events-auto'} overflow-y-auto ${!isMobile ? '[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[var(--background)] [&::-webkit-scrollbar-thumb]:bg-[var(--primary)] dark:[&::-webkit-scrollbar-thumb]:bg-darkSecondary' : ''}`}>
               <div className="relative min-h-full">
                 <div className="absolute inset-0 z-0 pointer-events-none">

@@ -31,10 +31,10 @@ export async function GET() {
             const watchedDate = new Date(item['letterboxd:watchedDate'] || item.isoDate);
             const correctedDate = new Date(watchedDate.getTime() + watchedDate.getTimezoneOffset() * 60000);
 
-            const formattedDate = correctedDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric'
+            const formattedDate = correctedDate.toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
             });
             
             return {

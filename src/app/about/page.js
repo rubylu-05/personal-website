@@ -67,14 +67,14 @@ export default function About() {
     <div>
       <div className="p-6 bg-[var(--background)] transition-all">
         <SectionHeading ellipseRotation={-8} ellipseLength={150}>Hi, I'm Ruby!</SectionHeading>
-        <p className="mb-4 font-body font-light text-lg">
+        <p className="mb-4 font-body font-light lg:text-lg">
           I study computer science at the <ExternalLink href="https://maps.app.goo.gl/sK6uhRsgKs8JgN9FA">University of Waterloo</ExternalLink>. My primary focus lies in backend engineering and distributed systems, but I'm increasingly fascinated by the infrastructure required to support large-scale AI systems.
         </p>
-        <p className="mb-4 font-body font-light text-lg">
+        <p className="mb-4 font-body font-light lg:text-lg">
           When I'm not staring at a terminal, you'll probably find me indulging in my creative side through <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow">art</Link>,
           whether it's drawing, painting, or digital art. I also like to make an unnecessary amount of Spotify <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">playlists</ExternalLink> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged <ExternalLink href="https://letterboxd.com/rubylu/">{displayCount} films</ExternalLink> (<ExternalLink href="https://letterboxd.com/rubylu/diary">{displayYearlyCount} this year</ExternalLink>) on Letterboxd so far. I've recently started learning guitar too.
         </p>
-        <p className="mb-4 font-body font-light text-lg">
+        <p className="mb-4 font-body font-light lg:text-lg">
           This website, which I’ve poured many hours into, is an attempt to capture my growth as a developer as well as the passions that fuel me outside of tech. Thanks for stopping by!
         </p>
       </div>
@@ -82,17 +82,17 @@ export default function About() {
         <SectionHeading ellipseRotation={5} ellipseLength={250}>Past & Present</SectionHeading>
         <div>
           <TimelineItem>
-            <p className="mb-4 font-body font-light text-lg">
+            <p className="mb-4 font-body font-light lg:text-lg">
               This past fall term, I interned at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle! I worked with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles for infrastructure tooling. It was super interesting to learn about the challenges of maintaining a massive, high-performance database.
             </p>
           </TimelineItem>
           <TimelineItem>
-            <p className="mb-4 font-body font-light text-lg">
+            <p className="mb-4 font-body font-light lg:text-lg">
               In winter 2025, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I was introduced to the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow, which bridges the fields of engineering, sustainability, and software.
             </p>
           </TimelineItem>
           <TimelineItem isLast={true}>
-            <p className="mb-4 font-body font-light text-lg">
+            <p className="mb-4 font-body font-light lg:text-lg">
               In summer 2024, I worked on enhancing desktop applications and automating systems for <ExternalLink href="https://www.ym-inc.com">YM Inc.</ExternalLink>, a Toronto-based retail company that operates fashion brands across North America.
             </p>
           </TimelineItem>
@@ -122,7 +122,7 @@ export default function About() {
 
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
         <SectionHeading ellipseRotation={5} ellipseLength={150}>Also</SectionHeading>
-        <p className="mb-4 font-body font-light text-lg">I've been reading a lot of <ExternalLink href="https://www.fantagraphics.com/products/the-complete-peanuts-1965-1966-hardback?srsltid=AfmBOooiUpFpPyysLksw0oGwmdfu_0FUBHbOAoufckESWhwQMjI1js5X">Peanuts</ExternalLink> comic strips recently, so enjoy these gifs from <ExternalLink href="https://letterboxd.com/film/a-charlie-brown-christmas/">A Charlie Brown Christmas</ExternalLink> (1965)!</p>
+        <p className="mb-4 font-body font-light lg:text-lg">I've been reading a lot of <ExternalLink href="https://www.fantagraphics.com/products/the-complete-peanuts-1965-1966-hardback?srsltid=AfmBOooiUpFpPyysLksw0oGwmdfu_0FUBHbOAoufckESWhwQMjI1js5X">Peanuts</ExternalLink> comic strips recently, so enjoy these gifs from <ExternalLink href="https://letterboxd.com/film/a-charlie-brown-christmas/">A Charlie Brown Christmas</ExternalLink> (1965)!</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           <div className="relative">
