@@ -13,7 +13,6 @@ const artData = [
     "columns": 1,
     "pieces": [
       {
-        "description": "Street under a pink sky, drawn digitally",
         "image": "/images/art/street.png",
         "fullWidth": true
       }
@@ -25,11 +24,9 @@ const artData = [
     "description": "I love seeing creative creature design when I watch sci-fi or horror media, so I sometimes experiment by making concept art of my own. These are just some amateur sketches and a fun way for me to get a bit creative. I use alcohol markers, a black pen, and a white gel pen.",
     "pieces": [
       {
-        "description": "A creature that's meant to look a bit swampy and uncanny, inspired by the monster from Cloverfield (2008)",
         "image": "images/art/creaturedesign2.png"
       },
       {
-        "description": "Some sort of insectoid predator, inspired by the creatures from The Mist (2007)",
         "image": "images/art/creaturedesign1.png"
       }
     ]
@@ -40,11 +37,9 @@ const artData = [
     "description": "These are some illustrations inspired by famous cryptids and mythical creatures — I've always found cryptids to be interesting since they exist somewhere between folklore and modern myth. Plus they're fun to draw since their appearances are open to interpretation.",
     "pieces": [
       {
-        "description": "Wendigo, drawn digitally",
         "image": "images/art/wendigo.png"
       },
       {
-        "description": "Mothman (one of my favourites), drawn with pencils",
         "image": "images/art/mothman.jpg"
       }
     ]
@@ -53,34 +48,63 @@ const artData = [
     "columns": 3,
     "pieces": [
       {
-        "description": "Death worm, drawn digitally",
         "image": "images/art/deathworm.png"
       },
       {
-        "description": "(?), drawn digitally",
         "image": "images/art/creature.png"
       },
       {
-        "description": "Dragon, drawn digitally",
         "image": "images/art/dragon.png"
+      }
+    ]
+  },
+  {
+    "title": "Acrylic Markers",
+    "columns": 2,
+    "pieces": [
+      {
+        "image": "/images/art/bugs.png"
+      },
+      {
+        "image": "images/art/bag.png"
+      },
+      {
+        "image": "images/art/burger.png"
+      },
+      {
+        "image": "images/art/oyster.png"
+      }
+    ]
+  },
+  {
+    "title": "Oil Pastels",
+    "columns": 2,
+    "pieces": [
+      {
+        "image": "/images/art/goldfish_bag.png"
+      },
+      {
+        "image": "images/art/lilies.png"
+      },
+      {
+        "image": "images/art/goldfish.png"
+      },
+      {
+        "image": "images/art/cat_oranges.png"
       }
     ]
   },
   {
     "title": "Alcohol Markers",
     "columns": 3,
-    "description": "Alcohol markers are one of my go-to mediums since they offer a middle ground between drawing and painting. They're nice to colour with.",
     "pieces": [
       {
-        "description": "I bought some grayscale Tombow alcohol markers from Dollarama and watched Mad Max: Fury Road for the first time, inspiring me to draw this",
         "image": "/images/art/fury_road.jpg"
       },
       {
-        "description": "A quaint storefront, drawn with Tombow alcohol markers and fineliner pens",
         "image": "images/art/storefront.jpeg"
       },
       {
-        "description": "I drew a Corvette for a family friend who really likes cars",
         "image": "images/art/car.jpeg"
       }
     ]
@@ -88,14 +112,11 @@ const artData = [
   {
     "title": "Cats!",
     "columns": 3,
-    "description": "I used cute photos of cats from Pinterest as reference.",
     "pieces": [
       {
-        "description": "A sleepy cat, painted in acrylic",
         "image": "/images/art/cat.jpg"
       },
       {
-        "description": "Sleepy gray cats, drawn with alcohol markers",
         "image": "/images/art/cats.jpg"
       }
     ]
@@ -103,18 +124,14 @@ const artData = [
   {
     "title": "Needle Felting",
     "columns": 3,
-    "description": "Needle felting is pretty fun! I've made a bunch of little animals, but here are my favourites.",
     "pieces": [
       {
-        "description": "Bunny!",
         "image": "images/art/bunny.jpg"
       },
       {
-        "description": "Frog!",
         "image": "images/art/frog.jpg"
       },
       {
-        "description": "Dinosaur!",
         "image": "images/art/dinosaur.jpg"
       }
     ]
