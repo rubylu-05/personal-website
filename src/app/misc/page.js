@@ -59,24 +59,6 @@ const artData = [
     ]
   },
   {
-    "title": "Acrylic Markers",
-    "columns": 2,
-    "pieces": [
-      {
-        "image": "/images/art/bugs.png"
-      },
-      {
-        "image": "images/art/bag.png"
-      },
-      {
-        "image": "images/art/burger.png"
-      },
-      {
-        "image": "images/art/oyster.png"
-      }
-    ]
-  },
-  {
     "title": "Oil Pastels",
     "columns": 2,
     "pieces": [
@@ -91,6 +73,24 @@ const artData = [
       },
       {
         "image": "images/art/cat_oranges.png"
+      }
+    ]
+  },
+  {
+    "title": "Acrylic Markers",
+    "columns": 2,
+    "pieces": [
+      {
+        "image": "/images/art/bugs.png"
+      },
+      {
+        "image": "images/art/bag.png"
+      },
+      {
+        "image": "images/art/burger.png"
+      },
+      {
+        "image": "images/art/oyster.png"
       }
     ]
   },
