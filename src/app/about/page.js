@@ -71,19 +71,28 @@ export default function About() {
           I study computer science at the <ExternalLink href="https://maps.app.goo.gl/sK6uhRsgKs8JgN9FA">University of Waterloo</ExternalLink>. My primary focus lies in backend engineering and distributed systems, but I'm increasingly fascinated by the infrastructure required to support large-scale AI systems.
         </p>
         <p className="mb-4 font-body font-light lg:text-lg">
-          When I'm not staring at a terminal, you'll probably find me indulging in my creative side through <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow">art</Link>,
-          whether it's drawing, painting, or digital art. I also like to make an unnecessary amount of Spotify <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">playlists</ExternalLink> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged <ExternalLink href="https://letterboxd.com/rubylu/">{displayCount} films</ExternalLink> (<ExternalLink href="https://letterboxd.com/rubylu/diary">{displayYearlyCount} this year</ExternalLink>) on Letterboxd so far. I've recently started learning guitar too.
+          When I'm not staring at a terminal, you'll probably find me <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow">drawing</Link>. I also like to make an unnecessary amount of Spotify <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">playlists</ExternalLink> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged <ExternalLink href="https://letterboxd.com/rubylu/">{displayCount} films</ExternalLink> (<ExternalLink href="https://letterboxd.com/rubylu/diary">{displayYearlyCount} this year</ExternalLink>) on Letterboxd so far. I've recently started learning guitar too.
         </p>
         <p className="mb-4 font-body font-light lg:text-lg">
           This website, which I’ve poured many hours into, is an attempt to capture my growth as a developer as well as the passions that fuel me outside of tech. Thanks for stopping by!
         </p>
       </div>
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
-        <SectionHeading ellipseRotation={5} ellipseLength={250}>Past & Present</SectionHeading>
+        <SectionHeading ellipseRotation={5} ellipseLength={250}>Past, Present, and Future</SectionHeading>
         <div>
           <TimelineItem>
             <p className="mb-4 font-body font-light lg:text-lg">
-              This past fall term, I interned at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle! I worked with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles for infrastructure tooling. It was super interesting to learn about the challenges of maintaining a massive, high-performance database.
+              This fall, I'll be in San Francisco as a Member of Technical Staff Intern at <ExternalLink href="https://openai.com/">OpenAI</ExternalLink>! I'm looking forward to exploring the Bay Area and getting lost in technical challenges.
+            </p>
+          </TimelineItem>
+          <TimelineItem>
+            <p className="mb-4 font-body font-light lg:text-lg">
+              This summer, I'm joining <ExternalLink href="https://www.databricks.com/homepage">Databricks</ExternalLink> in San Francisco as a Software Engineering Intern. I've been interested in machine learning infrastructure for a while now, so I'm super excited about this!
+            </p>
+          </TimelineItem>
+          <TimelineItem>
+            <p className="mb-4 font-body font-light lg:text-lg">
+              In fall 2025, I interned at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle. I worked with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles for infrastructure tooling. It was definitely interesting to learn about the challenges of maintaining a massive, high-performance database.
             </p>
           </TimelineItem>
           <TimelineItem>
@@ -122,7 +131,7 @@ export default function About() {
 
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
         <SectionHeading ellipseRotation={5} ellipseLength={150}>Also</SectionHeading>
-        <p className="mb-4 font-body font-light lg:text-lg">I've been reading a lot of <ExternalLink href="https://www.fantagraphics.com/products/the-complete-peanuts-1965-1966-hardback?srsltid=AfmBOooiUpFpPyysLksw0oGwmdfu_0FUBHbOAoufckESWhwQMjI1js5X">Peanuts</ExternalLink> comic strips recently, so enjoy these gifs from <ExternalLink href="https://letterboxd.com/film/a-charlie-brown-christmas/">A Charlie Brown Christmas</ExternalLink> (1965)!</p>
+        <p className="mb-4 font-body font-light lg:text-lg">I've been reading a lot of <ExternalLink href="https://www.fantagraphics.com/products/the-complete-peanuts-1965-1966-hardback?srsltid=AfmBOooiUpFpPyysLksw0oGwmdfu_0FUBHbOAoufckESWhwQMjI1js5X">Peanuts</ExternalLink> comic strips recently, so enjoy these gifs from <ExternalLink href="https://letterboxd.com/film/a-charlie-brown-christmas/">A Charlie Brown Christmas</ExternalLink>!</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           <div className="relative">

@@ -13,7 +13,7 @@ import { Analytics } from "@vercel/analytics/react"
 const MESSAGES = {
   '/': "Welcome! Feel free to take a look around :)",
   '/about': "A quick peek into my personal interests and growth as a developer.",
-  '/work': "Recent projects that I've poured my curiosity into - they all taught me something new.",
+  '/work': "A few projects that I've poured my curiosity into - they all taught me something new.",
   '/misc': "A space for the non-technical things that I enjoy and appreciate!"
 };
 
@@ -198,7 +198,7 @@ export default function RootLayout({ children }) {
                     <div className="flex flex-col items-center">
                       <MobileNavLink href="/" pathname={pathname} onClick={(e) => handleLinkClick(e, '/')}>Home</MobileNavLink>
                       <MobileNavLink href="/about" pathname={pathname} onClick={(e) => handleLinkClick(e, '/about')}>About</MobileNavLink>
-                      <MobileNavLink href="/work" pathname={pathname} onClick={(e) => handleLinkClick(e, '/work')}>Recent Projects</MobileNavLink>
+                      <MobileNavLink href="/work" pathname={pathname} onClick={(e) => handleLinkClick(e, '/work')}>Coding Projects</MobileNavLink>
                       <MobileNavLink href="/misc" pathname={pathname} onClick={(e) => handleLinkClick(e, '/misc')}>Life Outside of Coding</MobileNavLink>
                     </div>
                     <div className="flex justify-center gap-4 px-4 pt-4">
@@ -519,7 +519,7 @@ function Sidebar({ isVisible, pathname, displayText, showNowPlaying, nowPlaying,
           <SocialLinks isMobile={isMobile} />
           <nav className="text-[var(--primary)] text-base font-light font-body mt-4 text-center space-y-1 relative z-30">
             <NavLink href="/about" pathname={pathname} onClick={(e) => onLinkClick(e, '/about')} theme={theme}>About</NavLink>
-            <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')} theme={theme}>Recent Projects</NavLink>
+            <NavLink href="/work" pathname={pathname} onClick={(e) => onLinkClick(e, '/work')} theme={theme}>Coding Projects</NavLink>
             <NavLink href="/misc" pathname={pathname} onClick={(e) => onLinkClick(e, '/misc')} theme={theme}>Life Outside of Coding</NavLink>
           </nav>
         </div>

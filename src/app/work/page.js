@@ -28,7 +28,7 @@ const projects = [
     title: "Personal Website",
     subtitle: "What you're looking at right now!",
     image: "/images/projects/website/website.png",
-    description: "This website serves as a central hub for my professional history, passion projects, and personal interests. It was designed with both aesthetics and functionality in mind, and I wanted to make it as personal as possible. That’s why I included my art and integrated my real-time Spotify listening and Letterboxd activity to incorporate my taste in movies and music. Thanks for checking it out!",
+    description: "This website is like a central hub for my professional history, passion projects, and personal interests. It was designed with both aesthetics and functionality in mind, and I wanted to make it as personal as possible. Thanks for checking it out!",
     expandedContent: <Website />,
     githubLink: "https://github.com/rubylu-05/personal-website"
   },
