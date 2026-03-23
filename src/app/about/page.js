@@ -14,17 +14,29 @@ const SKILL_GROUPS = [
   { category: 'Desktop Development', items: ['.NET'] }
 ];
 
-const TimelineItem = ({ children, isLast }) => (
-  <div className="relative grid grid-cols-[24px_1fr] gap-2 group">
-    <div className="relative">
-      <div className="absolute top-1.5 w-4 h-4 border border-primary dark:border-darkSecondary bg-background dark:bg-darkBackground2 z-10 md:group-hover:bg-primary dark:md:group-hover:bg-darkSecondary transition-all rounded-full dark:drop-shadow-[0_0_10px_rgba(230,220,224,0.2)] dark:group-hover:drop-shadow-[0_0_10px_rgba(230,220,224,0.5)]" />
-      {!isLast && (
-        <div className="absolute top-4 left-[7.5px] bottom-[-8px] w-px bg-primary dark:bg-darkSecondary z-0" />
+const TimelineItem = ({ children, logoSrc, isFirst, isLast }) => (
+  <div className="relative grid grid-cols-[56px_1fr] gap-x-4 group mb-4 last:mb-0">
+    <div className="relative flex justify-center items-center">
+      
+      {!isFirst && (
+        <div className="absolute top-0 w-px h-[calc(50%+2px)] bg-primary dark:bg-darkSecondary z-0" />
       )}
+      
+      {!isLast && (
+        <div className="absolute top-1/2 w-px h-[calc(50%+1rem+2px)] bg-primary dark:bg-darkSecondary z-0" />
+      )}
+
+      <img
+        src={logoSrc}
+        alt="Company Logo"
+        className="relative z-10 w-14 h-14 rounded-full object-cover border border-primary dark:border-darkSecondary bg-white md:group-hover:scale-110 transition-transform duration-300 dark:drop-shadow-[0_0_10px_rgba(230,220,224,0.2)]"
+      />
     </div>
 
-    <div className="font-body font-light md:group-hover:translate-x-1.5 transition-all">
-      {children}
+    <div className="flex items-center">
+      <div className="font-body font-light md:group-hover:translate-x-1.5 transition-transform duration-300 w-full">
+        {children}
+      </div>
     </div>
   </div>
 );
@@ -77,31 +89,32 @@ export default function About() {
           This website, which I’ve poured many hours into, is an attempt to capture my growth as a developer as well as the passions that fuel me outside of tech. Thanks for stopping by!
         </p>
       </div>
+      
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
         <SectionHeading ellipseRotation={5} ellipseLength={250}>Past, Present, and Future</SectionHeading>
-        <div>
-          <TimelineItem>
-            <p className="mb-4 font-body font-light lg:text-lg">
+        <div className="flex flex-col">
+          <TimelineItem isFirst={true} logoSrc="images/logos/openai.png">
+            <p className="font-body font-light lg:text-lg">
               This fall, I'll be in San Francisco as a Member of Technical Staff Intern at <ExternalLink href="https://openai.com/">OpenAI</ExternalLink>! I'm looking forward to exploring the Bay Area and getting lost in technical challenges.
             </p>
           </TimelineItem>
-          <TimelineItem>
-            <p className="mb-4 font-body font-light lg:text-lg">
+          <TimelineItem logoSrc="images/logos/databricks.png">
+            <p className="font-body font-light lg:text-lg">
               This summer, I'm joining <ExternalLink href="https://www.databricks.com/homepage">Databricks</ExternalLink> in San Francisco as a Software Engineering Intern. I've been interested in machine learning infrastructure for a while now, so I'm super excited about this!
             </p>
           </TimelineItem>
-          <TimelineItem>
-            <p className="mb-4 font-body font-light lg:text-lg">
+          <TimelineItem logoSrc="images/logos/aws.png">
+            <p className="font-body font-light lg:text-lg">
               In fall 2025, I interned at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle. I worked with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles for infrastructure tooling. It was definitely interesting to learn about the challenges of maintaining a massive, high-performance database.
             </p>
           </TimelineItem>
-          <TimelineItem>
-            <p className="mb-4 font-body font-light lg:text-lg">
+          <TimelineItem logoSrc="images/logos/hatch.png">
+            <p className="font-body font-light lg:text-lg">
               In winter 2025, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I was introduced to the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow, which bridges the fields of engineering, sustainability, and software.
             </p>
           </TimelineItem>
-          <TimelineItem isLast={true}>
-            <p className="mb-4 font-body font-light lg:text-lg">
+          <TimelineItem isLast={true} logoSrc="images/logos/ym_inc.png">
+            <p className="font-body font-light lg:text-lg">
               In summer 2024, I worked on enhancing desktop applications and automating systems for <ExternalLink href="https://www.ym-inc.com">YM Inc.</ExternalLink>, a Toronto-based retail company that operates fashion brands across North America.
             </p>
           </TimelineItem>
@@ -135,11 +148,9 @@ export default function About() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           <div className="relative">
-            {/* Shadow effect */}
             <div className="relative before:absolute before:content-[''] before:top-[4px] before:left-[4px] 
                       before:w-full before:h-full before:bg-primary dark:before:bg-darkSecondary 
                       before:rounded-xl before:z-0">
-              {/* Main image */}
               <div className="relative z-10 transition-transform duration-300 
                         border border-primary dark:border-0 rounded-xl
                         md:hover:-translate-y-0.5 md:hover:-translate-x-0.5">
@@ -153,11 +164,9 @@ export default function About() {
           </div>
 
           <div className="relative">
-            {/* Shadow effect */}
             <div className="relative before:absolute before:content-[''] before:top-[4px] before:left-[4px] 
                       before:w-full before:h-full before:bg-primary dark:before:bg-darkSecondary 
                       before:rounded-xl before:z-0">
-              {/* Main image */}
               <div className="relative z-10 transition-transform duration-300 
                         border border-primary dark:border-0 rounded-xl
                         md:hover:-translate-y-0.5 md:hover:-translate-x-0.5">
@@ -184,7 +193,6 @@ const SkillBadge = ({ skillName }) => {
 
   return (
     <div className="relative inline-block">
-      {/* Shadow Layer */}
       <div className="absolute top-[4px] left-[4px] z-0">
         <div className="p-2 pr-4 flex items-center whitespace-nowrap bg-primary dark:bg-darkSecondary rounded-full">
           <div className="w-6 h-6 mr-2 flex items-center justify-center">
@@ -196,7 +204,6 @@ const SkillBadge = ({ skillName }) => {
         </div>
       </div>
 
-      {/* Main Card Layer */}
       <div className="relative z-10 transition-all bg-background dark:bg-darkBackground2 p-2 pr-4 flex items-center whitespace-nowrap border border-[var(--primary)] dark:border-darkBackground2 md:hover:-translate-y-0.5 md:hover:-translate-x-0.5 rounded-full">
         <div className="w-6 h-6 mr-2 flex items-center justify-center">
           <img src={iconPath} alt={skillName} className="w-5 h-5 object-contain" />
