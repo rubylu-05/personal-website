@@ -1,7 +1,7 @@
 'use client';
-import LastFm from './LastFm';
+// import LastFm from './LastFm';
 import Letterboxd from './Letterboxd';
-import AlbumCollage from './AlbumCollage';
+// import AlbumCollage from './AlbumCollage';
 import Movies from './Movies';
 import ExternalLink from '@/components/ExternalLink';
 import SectionHeading from '@/components/SectionHeading';
@@ -140,13 +140,14 @@ const artData = [
 
 export default function Misc() {
   const [watchRec, setWatchRec] = useState('');
-  const [listenRec, setListenRec] = useState('');
+  // const [listenRec, setListenRec] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!watchRec && !listenRec) return;
+    // if (!watchRec && !listenRec) return;
+    if (!watchRec) return;
 
     setIsSubmitting(true);
     setSubmitMessage('');
@@ -155,14 +156,15 @@ export default function Misc() {
       const response = await fetch('/api/send_recs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ watchRec, listenRec }),
+        // body: JSON.stringify({ watchRec, listenRec }),
+        body: JSON.stringify({ watchRec }),
       });
 
       setSubmitMessage(response.ok ? 'Thanks!' : 'Failed to send :(');
 
       if (response.ok) {
         setWatchRec('');
-        setListenRec('');
+        // setListenRec('');
       }
     } catch {
       setSubmitMessage('An error occurred. Please try again.');
@@ -179,8 +181,11 @@ export default function Misc() {
           <span className="font-body font-light text-lg">Jump to:</span>
           <div className="flex flex-wrap gap-2">
             <JumpToLink href="#art" label="Artistic Work" />
-            <JumpToLink href="#recent" label="Recent Watching & Listening" />
-            <JumpToLink href="#favourites" label="Favourite Movies & Albums" />
+            {/* <JumpToLink href="#recent" label="Recent Watching & Listening" /> */}
+            <JumpToLink href="#recent" label="Recently Watched" />
+            
+            {/* <JumpToLink href="#favourites" label="Favourite Movies & Albums" /> */}
+            <JumpToLink href="#favourites" label="Favourite Movies" />
           </div>
         </div>
       </div>
@@ -197,11 +202,11 @@ export default function Misc() {
       <div className="overflow-x-hidden p-6 bg-[var(--background)] transition-all mt-8">
         <RecommendationForm
           watchRec={watchRec}
-          listenRec={listenRec}
+          // listenRec={listenRec}
           isSubmitting={isSubmitting}
           submitMessage={submitMessage}
           onWatchRecChange={(e) => setWatchRec(e.target.value)}
-          onListenRecChange={(e) => setListenRec(e.target.value)}
+          // onListenRecChange={(e) => setListenRec(e.target.value)}
           onSubmit={handleSubmit}
         />
       </div>
@@ -288,17 +293,20 @@ const ArtPiece = ({ piece }) => (
 
 const RecentMediaSection = () => (
   <>
-    <SectionHeading ellipseRotation={5} ellipseLength={300}>Recent Watching & Listening</SectionHeading>
+    {/* <SectionHeading ellipseRotation={5} ellipseLength={300}>Recent Watching & Listening</SectionHeading> */}
+    <SectionHeading ellipseRotation={5} ellipseLength={250}>Recently Watched</SectionHeading>
+    
     <p className="font-body font-light mb-2 lg:text-lg">
       I'm a big movie lover! I especially love the horror genre in all its glorious (or sometimes absurd) forms, from campy 80's horror to slow-burn atmospheric dread. But my taste is super wide and I enjoy movies from pretty much any genre.
     </p>
     <p className="font-body font-light mb-6 lg:text-lg">
-      Below are my most recently watched movies (synced with my <ExternalLink href="https://letterboxd.com/rubylu/">Letterboxd</ExternalLink> account), as well as my top played artists this week (synced with my <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">Spotify</ExternalLink> listening).
+      {/* Below are my most recently watched movies (synced with my <ExternalLink href="https://letterboxd.com/rubylu/">Letterboxd</ExternalLink> account), as well as my top played artists this week (synced with my <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">Spotify</ExternalLink> listening). */}
+      Below are my most recently watched movies (synced with my <ExternalLink href="https://letterboxd.com/rubylu/">Letterboxd</ExternalLink> account).
     </p>
-    <div className="mb-10">
+    <div className="mb-2">
       <Letterboxd />
     </div>
-    <LastFm />
+    {/* <LastFm /> */}
   </>
 );
 
@@ -308,12 +316,12 @@ const FavouritesSection = () => (
     <p className="font-body font-light mb-4 lg:text-lg">
       Here are some movies I love! It was really hard to choose only 20. This list is probably full of recency bias and will change pretty often.
     </p>
-    <div className="mb-10">
+    <div className="mb-2">
       <Movies />
     </div>
-    <div className="mb-4">
+    {/* <div className="mb-4">
       <AlbumCollage />
-    </div>
+    </div> */}
   </>
 );
 

@@ -13,7 +13,7 @@ import { Analytics } from "@vercel/analytics/react"
 const MESSAGES = {
   '/': "Welcome! Feel free to take a look around :)",
   '/about': "A quick peek into my personal interests and growth as a developer.",
-  '/work': "A few projects that I've poured my curiosity into - they all taught me something new.",
+  '/work': "A few projects that I've poured my curiosity into --- they all taught me something new.",
   '/misc': "A space for the non-technical things that I enjoy and appreciate!"
 };
 
