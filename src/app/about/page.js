@@ -86,7 +86,7 @@ export default function About() {
           When I'm not staring at a terminal, you'll probably find me <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow">drawing</Link>. I also like to make an unnecessary amount of Spotify <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">playlists</ExternalLink> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged <ExternalLink href="https://letterboxd.com/rubylu/">{displayCount} films</ExternalLink> (<ExternalLink href="https://letterboxd.com/rubylu/diary">{displayYearlyCount} this year</ExternalLink>) on Letterboxd so far.
         </p>
         <p className="mb-4 font-body font-light lg:text-lg">
-          This website, which I’ve poured many hours into, is an attempt to summarize my growth as a developer and (most of all) my passions outside of tech. Thanks for stopping by!
+          This website, which I’ve poured many hours into, is an attempt to summarize my growth as a developer and my passions outside of tech. Thanks for stopping by!
         </p>
       </div>
       
@@ -105,17 +105,12 @@ export default function About() {
           </TimelineItem>
           <TimelineItem logoSrc="images/logos/aws.png">
             <p className="font-body font-light lg:text-lg">
-              In fall 2025, I interned at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle. I worked with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles for infrastructure tooling. It was definitely interesting to learn about the challenges of maintaining a massive, high-performance database.
+              In fall 2025, I interned at <ExternalLink href="https://aws.amazon.com/">Amazon Web Services (AWS)</ExternalLink> in Seattle. I worked with the <ExternalLink href="https://aws.amazon.com/dynamodb/global-tables/">DynamoDB Global Tables</ExternalLink> team to break down regional obstacles for infrastructure tooling. It was interesting to learn about the challenges of maintaining a massive, high-performance database.
             </p>
           </TimelineItem>
-          <TimelineItem logoSrc="images/logos/hatch.png">
+          <TimelineItem isLast={true} logoSrc="images/logos/hatch.png">
             <p className="font-body font-light lg:text-lg">
               In winter 2025, I interned at <ExternalLink href="https://www.hatch.com/">Hatch</ExternalLink> in their Niagara Falls office, where I was introduced to the complexities of hydropower optimization. I worked on improving the efficiency of hydropower dams and explored the use of machine learning for predicting water inflow, which bridges the fields of engineering, sustainability, and software.
-            </p>
-          </TimelineItem>
-          <TimelineItem isLast={true} logoSrc="images/logos/ym_inc.png">
-            <p className="font-body font-light lg:text-lg">
-              In summer 2024, I worked on enhancing desktop applications and automating systems for <ExternalLink href="https://www.ym-inc.com">YM Inc.</ExternalLink>, a Toronto-based retail company that operates fashion brands across North America.
             </p>
           </TimelineItem>
         </div>
