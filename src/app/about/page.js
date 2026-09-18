@@ -80,7 +80,7 @@ export default function About() {
       <div className="p-6 bg-[var(--background)] transition-all">
         <SectionHeading ellipseRotation={-8} ellipseLength={150}>Hi, I'm Ruby!</SectionHeading>
         <p className="mb-4 font-body font-light lg:text-lg">
-          I study computer science at the <ExternalLink href="https://maps.app.goo.gl/sK6uhRsgKs8JgN9FA">University of Waterloo</ExternalLink>. My primary focus lies in backend engineering and distributed systems, but I'm increasingly fascinated by the infrastructure required to support large-scale AI systems.
+          I study computer science at the <ExternalLink href="https://maps.app.goo.gl/sK6uhRsgKs8JgN9FA">University of Waterloo</ExternalLink> and work at the intersection of distributed systems and ML infrastructure.
         </p>
         <p className="mb-4 font-body font-light lg:text-lg">
           When I'm not staring at a terminal, you'll probably find me <Link href="/misc" className="text-primary hover:text-secondary dark:text-darkSecondary dark:hover:text-darkPrimary transition-all font-bold [text-decoration:none] pb-[0.5px] [box-shadow:inset_0_-0.5px_0_0_var(--primary)] dark:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] hover:[box-shadow:inset_0_-0.5px_0_0_var(--secondary)] dark:hover:[box-shadow:inset_0_-0.5px_0_0_var(--primary)] tracking-tighter dark:neon-glow">drawing</Link>. I also like to make an unnecessary amount of Spotify <ExternalLink href="https://open.spotify.com/user/xpikg3hgljzcxdwltg3zoebtp?si=111b33842cdf497f">playlists</ExternalLink> and consider myself to be a movie enthusiast (with a soft spot for the horror genre), having watched and logged <ExternalLink href="https://letterboxd.com/rubylu/">{displayCount} films</ExternalLink> (<ExternalLink href="https://letterboxd.com/rubylu/diary">{displayYearlyCount} this year</ExternalLink>) on Letterboxd so far.
@@ -91,16 +91,16 @@ export default function About() {
       </div>
       
       <div className="p-6 bg-[var(--background)] transition-all mt-8">
-        <SectionHeading ellipseRotation={5} ellipseLength={250}>Past, Present, and Future</SectionHeading>
+        <SectionHeading ellipseRotation={5} ellipseLength={250}>Past and Present</SectionHeading>
         <div className="flex flex-col">
           <TimelineItem isFirst={true} logoSrc="images/logos/openai.png">
             <p className="font-body font-light lg:text-lg">
-              This fall, I'll be in San Francisco as a Member of Technical Staff Intern at <ExternalLink href="https://openai.com/">OpenAI</ExternalLink>!
+              This fall, I'm in San Francisco as a Member of Technical Staff Intern at <ExternalLink href="https://openai.com/">OpenAI</ExternalLink>! I'm on the Ads ML Infra team working on detecting train-serve skew for pCTR models.
             </p>
           </TimelineItem>
           <TimelineItem logoSrc="images/logos/databricks.png">
             <p className="font-body font-light lg:text-lg">
-              This summer, I'm interning at <ExternalLink href="https://www.databricks.com/homepage">Databricks</ExternalLink> in San Francisco, where I'm working on AI workflows and LLM orchestration. Super excited about this!
+              In summer 2026, I interned at <ExternalLink href="https://www.databricks.com/homepage">Databricks</ExternalLink> in San Francisco, where I worked on AI workflows and LLM orchestration for developer tooling. It was pretty fascinating to dive into the orchestration layer and navigate trade-offs in tracing, latency, and state management.
             </p>
           </TimelineItem>
           <TimelineItem logoSrc="images/logos/aws.png">
