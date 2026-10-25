@@ -4,6 +4,7 @@ import Link from 'next/link';
 import ExternalLink from '@/components/ExternalLink';
 import SectionHeading from '@/components/SectionHeading';
 import { useEffect, useState } from 'react';
+import { LETTERBOXD_FALLBACK_STATS, withLetterboxdFallbacks } from '@/lib/letterboxd';
 
 const SKILL_GROUPS = [
   { category: 'Programming Languages', items: ['Python', 'C++', 'C', 'C#', 'Java', 'JavaScript', 'Dart'] },
@@ -46,33 +47,51 @@ export default function About() {
   const [displayYearlyCount, setDisplayYearlyCount] = useState(0);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const animationFrames = new Set();
+
     const fetchMovieCount = async () => {
+      let data = LETTERBOXD_FALLBACK_STATS;
       try {
-        const response = await fetch('/api/letterboxd_stats');
-        const data = await response.json();
-        if (data.count) animateCount(parseInt(data.count), setDisplayCount);
-        if (data.yearlyCount) animateCount(parseInt(data.yearlyCount), setDisplayYearlyCount);
+        const response = await fetch('/api/letterboxd_stats', { signal: controller.signal });
+        if (!response.ok) throw new Error(`Movie count request failed: ${response.status}`);
+        data = withLetterboxdFallbacks(await response.json());
       } catch (error) {
-        console.error('Failed to fetch movie count:', error);
+        if (!controller.signal.aborted) console.error('Failed to fetch movie count:', error);
       }
+
+      if (controller.signal.aborted) return;
+      animateCount(data.count, setDisplayCount);
+      animateCount(data.yearlyCount, setDisplayYearlyCount);
     };
 
     const animateCount = (finalNumber, setter) => {
+      if (finalNumber === 0) return;
       const duration = 2000;
       const startTime = performance.now();
+      let frameId;
 
       const updateCount = (currentTime) => {
+        animationFrames.delete(frameId);
+        if (controller.signal.aborted) return;
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
         setter(Math.floor(progress * finalNumber));
-        if (progress < 1) requestAnimationFrame(updateCount);
-        else setter(finalNumber);
+        if (progress < 1) {
+          frameId = requestAnimationFrame(updateCount);
+          animationFrames.add(frameId);
+        }
       };
 
-      requestAnimationFrame(updateCount);
+      frameId = requestAnimationFrame(updateCount);
+      animationFrames.add(frameId);
     };
 
     fetchMovieCount();
+    return () => {
+      controller.abort();
+      animationFrames.forEach(cancelAnimationFrame);
+    };
   }, []);
 
   return (
